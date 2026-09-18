@@ -1,0 +1,90 @@
+project:
+  type: website
+  output-dir: _output
+
+website:
+  title: "labBook"
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+    - text: "home"
+      href: index.qmd
+    - section: "Pre reading"
+      contents:
+      - text: "Project information"
+        href: content/0_preTb1/Wk0/ProjectInfo.qmd
+      - text: "Wk0 Log"
+        href: content/0_preTb1/Wk0/log.qmd
+
+    - section: "TB1"
+      contents:
+      - text: "Wk1 Log"
+        href: content/1_Tb1/Wk1/log.qmd
+      - text: "Wk2 Log"
+        href: content/1_Tb1/Wk2/log.qmd
+      - text: "Wk3 Log"
+        href: content/1_Tb1/Wk3/log.qmd
+      - text: "Wk4 Log"
+        href: content/1_Tb1/Wk4/log.qmd
+      - text: "Wk5 Log"
+        href: content/1_Tb1/Wk5/log.qmd
+      - text: "Wk6 Log"
+        href: content/1_Tb1/Wk6/log.qmd
+      - text: "Wk7 Log"
+        href: content/1_Tb1/Wk7/log.qmd
+      - text: "Wk8 Log"
+        href: content/1_Tb1/Wk8/log.qmd
+      - text: "Wk9 Log"
+        href: content/1_Tb1/Wk9/log.qmd
+      - text: "Wk10 Log"
+        href: content/1_Tb1/Wk10/log.qmd
+      - text: "Wk11 Log"
+        href: content/1_Tb1/Wk11/log.qmd
+      - text: "Wk12 Log"
+        href: content/1_Tb1/Wk12/log.qmd
+
+
+    - section: "Winter break"
+      contents:
+      - text: "Winter holiday Log"
+        href: content/2_WinterHoliday/WinterHoliday/log.qmd
+
+    - section: "TB2"
+      contents:
+      - text: "Wk13 Log"
+        href: content/3_Tb2/Wk13/log.qmd
+      - text: "Wk14 Log"
+        href: content/3_Tb2/Wk14/log.qmd
+      - text: "Wk15 Log"
+        href: content/3_Tb2/Wk15/log.qmd
+      - text: "Wk16 Log"
+        href: content/3_Tb2/Wk16/log.qmd
+      - text: "Wk17 Log"
+        href: content/3_Tb2/Wk17/log.qmd
+      - text: "Wk18 Log"
+        href: content/3_Tb2/Wk18/log.qmd
+      - text: "Wk19 Log"
+        href: content/3_Tb2/Wk19/log.qmd
+      - text: "Wk20 Log"
+        href: content/3_Tb2/Wk20/log.qmd
+      - text: "Wk21 Log"
+        href: content/3_Tb2/Wk21/log.qmd
+      - text: "Wk22 Log"
+        href: content/3_Tb2/Wk22/log.qmd
+
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+
+
+bibliography: Dissertation_resources.bib
+
+
+

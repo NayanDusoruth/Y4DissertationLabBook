@@ -1,0 +1,16 @@
+# Dissertation information:
+
+Supervisor: Dr Francesco Turci\ 
+Co-supervisor: Prof Stephen Clark\
+Co-supervisor: Dr David Strachan\
+Lab partner: Hannah Sobieralska (initially, she's had to take a year out for personal reasons, so am doing this project alone)\
+Project: Driving non-markovianity in open systems\
+Code: TP-M09\
+
+# Project description:
+
+An open system exchanges matter and energy with the environment. Typically, one distinguishes the system from the environment by separating scales: in space, the system is much smaller than the environment, and in time, the environment relaxes much more quickly than the system (it Markovian, i.e. memoryless). The two are, however, always coupled, with interfaces whose contributions are normally taken to be small.
+However, in open quantum systems, a clear separation between the system and the environment becomes more challenging, both conceptually and practically. Conceptually, the coupling between the system and the bath may be strong enough to lead to important memory effects, where the evolution of the system is strongly correlated in time, and the environment itself behaves differently from a purely thermalised state; from the practical point of view, computer modelling of open systems typically requires explicitly modelling both, i.e. simulating a closed system and examining two subsystems (the original system of interest and the remainder, intrepreted as the environment) [@OpenQuantumSystemsTextbook2007].
+In this project, we will investigate how such memory effects develop in computational models of open quantum systems, exploiting the Matrix Product State (MPS) formalism and tensor network methods [@TensorNetworkMethods2020]. We will explore how different models of system-bath coupling and structures affect the development of non-Markovian correlations both in the system and in the environment [@DavidMpemba2025]. We will start by considering equilibration towards the thermal state and then focus on periodically driven couplings, which introduce additional timescales and allow us to observe the system stroboscopically (Floquet setting). This will take us to tackle situations in which dissipation coupled to periodic driving can lead to the emergence of non-trivial states, such as time crystals.
+You will build your project on in-house code in the dedicated, high-performance, scientific programming language Julia, along with existing advanced packages for the simulation of open quantum systems using tensor networks (ITensors). You will have the opportunity to explore both analytically tractable toy models and more complex simulation settings. You will have the opportunity to work on this frontier topic with support from David Strachan, a recently appointed EPSRC Postdoctoral Pathway Fellow working in this area.
+For further discussion of the project scope, please contact the project supervisor.

@@ -1,0 +1,177 @@
+# Pre TB1 Log:
+
+## 27/04/2026:
+
+Have received project assignments, am quite happy since this was my second choice, has amazing supervisors, and lab partner allocation is good too; Hannah's nice, hard working (and intelligent; she was able to do the LFU stuff whilst ill and not having done particle physics) and i know her. Besides ik she's taking complex disordered matter which'll be a boon.
+
+Next steps include:
+
+* contacting Hannah so we're both aware of this
+
+Have contacted Hannah and we're both excited for this project.
+
+
+## 20/08/2026:
+Hannah has let me know she needs to take a year out for personal reasons. Unfortunate but should be fine (diss can be adjusted to 1 person according to Dr Turci), so will go ahead as single person project.
+Unfortunate, was looking forwards to working with her
+
+
+## 09/09/2026:
+Have been reading through 100page intro paper on open Qm systems; have also installed/setup Zotero; its a REALLY nice referencing system, i think i'm gonna use that for the project.
+Additionally have arranged in person meeting with supervisors to discuss project.
+
+## 10/09/2026
+Have received some prereading for tmrs meeting (in person). Its short but gives bare bone basics [@ProjectOutline2026].
+
+The bare bones intro states:
+"This project will investigate how different operational definitions of quantum Markovianity appear in a single impurity model coupled to a structured environment."
+
+The project sketch outlines first steps:
+
+### part 1 (basic setup, direct diagonalisation):
+* simulate a "single impurity" directly
+* take a "fermionic system" w/single site coupled to a bath. This setup involves a single system site coupled to a bunch of bath sites. The combined system hamiltonian follows:
+
+$\hat{H}=\epsilon \hat{s}^{\dagger} \hat{s}+
+\sum_{k=1}^N g_k(\hat{b}_k^{\dagger} \hat{s}+\hat{s}^{\dagger} \hat{b}_k)
++\sum_{k=1}^N \omega_k \hat{b}_k^{\dagger} \hat{b}_k.$
+
+The first term is the "on site" energy, the second is the system/bath coupling energy (hopping energy?), with the last term being the bath's free energy. All these terms are described in terms of the systems and baths creation/annihalation operators ($\hat{s}$ and $\hat{b}$ respectively). There's also some relation between the coupling $g_{k}$ and the "spectral density". Also also since only creation/annhilation operators are involved; can consider the hamiltonian non interaction (from reading around topic this prob relates to interaction picture; which is nice that i wont need to deal with that atm (i think interpreation is that bath sites don't really interact with each other; and system site (of which there is only 1) doesnt interact with other system sites (because only 1)).
+
+Fermionic anticommutation relations apply; determine stats.
+
+The "all bath sites" connect to the single system site is called a "star geometry".
+
+Direct diagonalisation and time evolution evaluation of this system doesn't scale well w/bath size; so isn't useful for examining continuum limit (Note; if its quick, may still be worth implementing a solver for this; firstly as an exercise to familiarise myself w/problem setup, and to directly illustrate these scaling challenges).
+
+
+### part 2 (correlation matrix):
+Given non interacting hamiltonian; correlation matrix of system determines dynamics.
+Given an "operator vector":
+
+
+$\hat{\mathbf{A}} = (\hat{s}, \hat{b}_1, \hat{b}_2, ..., \hat{b}_N)^T$
+
+
+Correlation matrix follows:
+
+$\mathbf{C}_{ij} = \langle \hat{A}_j^\dagger \hat{A}_i \rangle$
+
+These relate to the hamiltonian via a "single particle hamiltonian" $h$ (unsure exactly what this represents):
+
+$\hat{H}=\hat{\mathbf{A}}^{\dagger} \mathbf{h} \hat{\mathbf{A}}=\sum_{i, j=1}^{\infty} h_{i j} \hat{A}_i^{\dagger} \hat{A}_j$
+
+The correlation matrix evolves as:
+
+$\mathbf{C}(t) = \mathbf{u}(t) \mathbf{C}(0) \mathbf{u}(t)^{\dagger}$
+$\mathbf{u}(t) = e^{-i \mathbf{h} t}$
+
+Since the system is what is of interest, and the first term in the operator vector $\hat{A}$ represents the system; the reduced density operator for the system only requires the first term in the correlation matrix as:
+
+$\rho_S(t)=\left(\begin{array}{cc}
+1-\mathbf{C}_{11}(t) & 0 \\
+0 & \mathbf{C}_{11}(t)
+\end{array}\right)$
+
+I suspect in practice, the starting system state would inform $C_{11}=\langle \hat{s}^{}\hat{s} \rangle$, and time evolution on $C_{11}$ would be performed using the system single particle hamiltonian; then the reduced density operator can be computed for any time and examined. The specifics of how this is to be done are unclear to me atm.
+
+### part 3 ("chain mapping"):
+Chain mapping maps system from "star geometry" to "semi-infinite" 1D chain. proceeds as:
+* discretize bath spectral density to determine bath couplings/modes
+* unitary transform maps bath onto 1D chain with nearest neighbour couplings (seemingly trying to "match" modes of complete bath?) - system couples at start of chain
+* resulting hamiltonian is seemingly nicely behaved and easy to simulate?
+* Note finite length of chain can cause "reflections" which can mess w/signal - there are ways to deal w/this
+
+### part 4 (extracting dynamical map):
+Key point of these sims is to extract "dynamical map" $\Gamma$ which maps the initial reduced density $\rho_{s}(0)$ to $\rho_{s}(t)$ as $\rho_{s}(t) = \Gamma(t, 0)\rho_{s}(0)$. This dynamical map becomes main "result" of simulations and is necessary for analysis.
+
+### part 5 (testing memory effects):
+The dynamical map can then be examined to test for memory effects using various different metrics:
+
+* memory kernels - defined by "Nakajima-Zwanzig formalism"
+* Information backflow - defined by BPL (Breuer-Laine-Piilo) measure
+* Failure of Completely positive (CP) divisibility - RHP (Rivas-Huelga-Plenio) measure
+
+I'm unsure exactly what these different measures capture, but seem to be main "probes" into the system's memory effects.
+
+## Meeting discussion points:
+* Physics discussion:
+	* specifics of simulation setup
+	* basics reading (i think paper i have and book i have are these)
+		* the references in this project sketch may be useful
+	* associated research area reading (papers that sketch out research area)
+* Admin discussion:
+	* What do i need to setup:
+		* Ref manager (Zotero) [x]
+		* Julia [x]
+		* IDE (VScodium) [x]
+		* Julia Itensor package [x]
+		* Labbook (default instinct is quarto, but want to ask)
+	* future meetings and general timeline
+		* when regular supervisor meetings
+		* when regular time to work on project
+		* what are project stages (I.E, general research, coding/experimentation..?)
+		* what milestones are part of diss (i forget exactly where i saw em, but there were presentations... that i need to do early)
+
+
+
+
+## 11/09/2026 meeting
+Recommended Condensed matter field theory chapter 2 (second quantisation) [@secondQuantisationBook2010]
+
+compare measures for non markoviantity; qualitative difference; edge cases of where measures fail
+
+programming language of choice; julia or python
+
+general explanation of setup
+
+current plan for recurring meeting is thursday 10:00-11:00 potentially.
+
+To do list:
+
+* setup labbook as quarto notebook 
+* continue familiarise self w/Julia
+* continue reading paper
+* experiment w/code Dr Turci will send me
+
+
+## 17/09/2026
+Had welcome lecture, set out timetable for project.
+The deadlines follow:
+
+* 29/10/2026 - Presentation submissions
+* Wk7 - Project presentations
+* 18/01/2027 - interim report
+* Wk19 - End of all practical work
+* 11/03/2026 - Poster submissions
+* 17/03/2026 - Poster session
+* 12/04/2026 - Final report
+* 14/04/2026 - Lab book submission
+* Wk23-24 Final interview
+
+The assesment credits break down as:
+
+* 10% - Presentation (10min in front of peers and academic member of staff)
+* 10% - Poster fair
+* 30% - Final report
+* 50% - "research output" - this represents the general work done throughout this project - evaluated through lab book, report, and final interview
+
+Where also encouraged against doing it alone, however i've discussed it w/Dr Turci, and i'm happy to do so. I really like this project, the supervisors... I'd rather do it alone than do another project. Have responded to Prof Carrington email clarifying this fact.
+
+I've also emailed Dr Turci asking after the simulation code. I'd like to fiddle with the code to get an idea of the setup.
+
+
+To do list:
+
+* Finish setting up github repository for labbook
+* Setup github webpage for labbook - share w/supervisors
+* Setup repository for project code and data - Setting this up early and thinking through its organisation may make things easier
+* Continue reading through paper
+* Look through second quantisation chapter recommended by Dr Turci
+* Experiment w/code Dr Turci will send me
+
+
+## 18/09/2026
+Have spent some time cleaning up labbook, have set citation keys for entries in Zotero project and set it to export full bibliography to this labbook; that way citations are easy to reference in here.
+
+I'm going to setup this as a github project and webpage next.

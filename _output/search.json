@@ -1,0 +1,195 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "labBook",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.",
+    "crumbs": [
+      "home"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "t About this site"
+  },
+  {
+    "objectID": "preTb1/Wk0/log.html",
+    "href": "preTb1/Wk0/log.html",
+    "title": "Foreword",
+    "section": "",
+    "text": "This text doc is intended to be a general info/log place prior to dissertation start.",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "preTb1/Wk0/log.html#section",
+    "href": "preTb1/Wk0/log.html#section",
+    "title": "Foreword",
+    "section": "27/04/2026:",
+    "text": "27/04/2026:\nHave received project assignments, am quite happy since this was my second choice, has amazing supervisors, and lab partner allocation is good too; Hannah’s nice, hard working (and intelligent; she was able to do the LFU stuff whilst ill and not having done particle physics) and i know her. Besides ik she’s taking complex disordered matter which’ll be a boon.\nNext steps include:\n\ncontacting Hannah so we’re both aware of this",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "preTb1/Wk0/log.html#section-1",
+    "href": "preTb1/Wk0/log.html#section-1",
+    "title": "Foreword",
+    "section": "20/08/2026:",
+    "text": "20/08/2026:\nHannah needs to take a year out; should be fine (diss can be adjusted to 1 person according to Turci), so will go ahead as is).",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "preTb1/Wk0/log.html#section-2",
+    "href": "preTb1/Wk0/log.html#section-2",
+    "title": "Foreword",
+    "section": "09/09/2026:",
+    "text": "09/09/2026:\nHave been reading through 100page intro paper on open Qm systems; have also installed/setup Zotero; its a REALLY nice referencing system, i think i’m gonna use that for the project.",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "preTb1/Wk0/log.html#section-3",
+    "href": "preTb1/Wk0/log.html#section-3",
+    "title": "Foreword",
+    "section": "10/09/2026",
+    "text": "10/09/2026\nHave received some prereading for tmrs meeting (in person). Its short but gives bare bone basics.\nThe bare bones intro states: “This project will investigate how different operational definitions of quantum Markovianity appear in a single impurity model coupled to a structured environment.”\nThe project sketch outlines first steps:\n\npart 1 (basic setup, direct diagonalisation):\n\nsimulate a “single impurity” directly\ntake a “fermionic system” w/single site coupled to a bath. This setup involves a single system site coupled to a bunch of bath sites. The combined system hamiltonian follows:\n\n$ =+ +. $\nThe first (blue) term is the “on site” energy, the second is the system/bath coupling energy (hopping energy?), with the last term being the bath’s free energy. All these terms are described in terms of the systems and baths creation/annihalation operators (\\(\\hat{s}\\) and \\(\\hat{b}\\) respectively). There’s also some relation between the coupling \\(g_{k}\\) and the “spectral density”. Also also since only creation/annhilation operators are involved; can consider the hamiltonian non interaction (from reading around topic this prob relates to interaction picture; which is nice that i wont need to deal with that atm (i think interpreation is that bath sites don’t really interact with each other; and system site (of which there is only 1) doesnt interact with other system sites (because only 1)).\nFermionic anticommutation relations apply; determine stats.\nThe “all bath sites” connect to the single system site is called a “star geometry”.\nDirect diagonalisation and time evolution evaluation of this system doesn’t scale well w/bath size; so isn’t useful for examining continuum limit (Note; if its quick, may still be worth implementing a solver for this; firstly as an exercise to familiarise myself w/problem setup, and to directly illustrate these scaling challenges).\n\n\npart 2 (correlation matrix):\nGiven non interacting hamiltonian; correlation matrix of system determines dynamics. Given an “operator vector”:\n$ \\(\\hat{\\mathbf{A}} = (\\hat{s}, \\hat{b}_1, \\hat{b}_2, ..., \\hat{b}_N)^T\\) $\nCorrelation matrix follows:\n\\(\\mathbf{C}_{ij} = \\langle \\hat{A}_j^\\dagger \\hat{A}_i \\rangle\\)\nThese relate to the hamiltonian via a “single particle hamiltonian” \\(h\\) (unsure exactly what this represents):\n$ =^{} ={i, j=1}^{} h{i j} _i^{} _j $\nThe correlation matrix evolves as:\n\\(\\mathbf{C}(t) = \\mathbf{u}(t) \\mathbf{C}(0) \\mathbf{u}(t)^{\\dagger}\\) \\(\\mathbf{u}(t) = e^{-i \\mathbf{h} t}\\)\nSince the system is what is of interest, and the first term in the operator vector \\(\\hat{A}\\) represents the system; the reduced density operator for the system only requires the first term in the correlation matrix as:\n$ _S(t)=(\n\\[\\begin{array}{cc}\n1-\\mathbf{C}_{11}(t) & 0 \\\\\n0 & \\mathbf{C}_{11}(t)\n\\end{array}\\]\n) $\nI suspect in practice, the starting system state would inform \\(C_{11}=\\langle \\hat{s}^{}\\hat{s} \\rangle\\), and time evolution on \\(C_{11}\\) would be performed using the system single particle hamiltonian; then the reduced density operator can be computed for any time and examined. The specifics of how this is to be done are unclear to me atm.\n\n\npart 3 (“chain mapping”):\nChain mapping maps system from “star geometry” to “semi-infinite” 1D chain. proceeds as: * discretize bath spectral density to determine bath couplings/modes * unitary transform maps bath onto 1D chain with nearest neighbour couplings (seemingly trying to “match” modes of complete bath?) - system couples at start of chain * resulting hamiltonian is seemingly nicely behaved and easy to simulate? * Note finite length of chain can cause “reflections” which can mess w/signal - there are ways to deal w/this\n\n\npart 4 (extracting dynamical map):\nKey point of these sims is to extract “dynamical map” \\(\\Gamma\\) which maps the initial reduced density \\(\\rho_{s}(0)\\) to \\(\\rho_{s}(t)\\) as \\(\\rho_{s}(t) = \\Gamma(t, 0)\\rho_{s}(0)\\). This dynamical map becomes main “result” of simulations and is necessary for analysis.\n\n\npart 5 (testing memory effects):\nThe dynamical map can then be examined to test for memory effects using various different metrics: * memory kernels - defined by “Nakajima-Zwanzig formalism” * Information backflow - defined by BPL (Breuer-Laine-Piilo) measure * Failure of Completely positive (CP) divisibility - RHP (Rivas-Huelga-Plenio) measure\nI’m unsure exactly what these different measures capture, but seem to be main “probes” into the system’s memory effects.",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "preTb1/Wk0/log.html#meeting-discussion-points",
+    "href": "preTb1/Wk0/log.html#meeting-discussion-points",
+    "title": "Foreword",
+    "section": "Meeting discussion points:",
+    "text": "Meeting discussion points:\n\nPhysics discussion:\n\nspecifics of simulation setup\nbasics reading (i think paper i have and book i have are these)\n\nthe references in this project sketch may be useful\n\nassociated research area reading (papers that sketch out research area)\n\nAdmin discussion:\n\nWhat do i need to setup:\n\nRef manager (Zotero) [x]\nJulia [x]\nIDE (VScodium) [x]\nJulia Itensor package [x]\nLabbook (default instinct is quarto, but want to ask)\n\nfuture meetings and general timeline\n\nwhen regular supervisor meetings\nwhen regular time to work on project\nwhat are project stages (I.E, general research, coding/experimentation..?)\nwhat milestones are part of diss (i forget exactly where i saw em, but there were presentations… that i need to do early)\n\n\n\n11/09/2026 meeting Recommended Condensed matter field theory chapter 2 (second quantisation)\ncompare measures for non markoviantity; qualitative difference; edge cases of where measures fail\nprogramming language of choice; julia or python\ngeneral explanation of setup\ncurrent plan for recurring meeting is thursday 10:00-11:00 potentially.\nTo do list: * setup labbook as quarto notebook * continue familiarise self w/Julia * continue reading paper * experiment w/code Turci will send me",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/log.html",
+    "href": "content/0_preTb1/Wk0/log.html",
+    "title": "Pre TB1 Log:",
+    "section": "",
+    "text": "Have received project assignments, am quite happy since this was my second choice, has amazing supervisors, and lab partner allocation is good too; Hannah’s nice, hard working (and intelligent; she was able to do the LFU stuff whilst ill and not having done particle physics) and i know her. Besides ik she’s taking complex disordered matter which’ll be a boon.\nNext steps include:\n\ncontacting Hannah so we’re both aware of this\n\nHave contacted Hannah and we’re both excited for this project.\n\n\n\nHannah has let me know she needs to take a year out for personal reasons. Unfortunate but should be fine (diss can be adjusted to 1 person according to Dr Turci), so will go ahead as single person project. Unfortunate, was looking forwards to working with her\n\n\n\nHave been reading through 100page intro paper on open Qm systems; have also installed/setup Zotero; its a REALLY nice referencing system, i think i’m gonna use that for the project. Additionally have arranged in person meeting with supervisors to discuss project.\n\n\n\nHave received some prereading for tmrs meeting (in person). Its short but gives bare bone basics (Turci, n.d.).\nThe bare bones intro states: “This project will investigate how different operational definitions of quantum Markovianity appear in a single impurity model coupled to a structured environment.”\nThe project sketch outlines first steps:\n\n\n\nsimulate a “single impurity” directly\ntake a “fermionic system” w/single site coupled to a bath. This setup involves a single system site coupled to a bunch of bath sites. The combined system hamiltonian follows:\n\n\\(\\hat{H}=\\epsilon \\hat{s}^{\\dagger} \\hat{s}+\n\\sum_{k=1}^N g_k(\\hat{b}_k^{\\dagger} \\hat{s}+\\hat{s}^{\\dagger} \\hat{b}_k)\n+\\sum_{k=1}^N \\omega_k \\hat{b}_k^{\\dagger} \\hat{b}_k.\\)\nThe first term is the “on site” energy, the second is the system/bath coupling energy (hopping energy?), with the last term being the bath’s free energy. All these terms are described in terms of the systems and baths creation/annihalation operators (\\(\\hat{s}\\) and \\(\\hat{b}\\) respectively). There’s also some relation between the coupling \\(g_{k}\\) and the “spectral density”. Also also since only creation/annhilation operators are involved; can consider the hamiltonian non interaction (from reading around topic this prob relates to interaction picture; which is nice that i wont need to deal with that atm (i think interpreation is that bath sites don’t really interact with each other; and system site (of which there is only 1) doesnt interact with other system sites (because only 1)).\nFermionic anticommutation relations apply; determine stats.\nThe “all bath sites” connect to the single system site is called a “star geometry”.\nDirect diagonalisation and time evolution evaluation of this system doesn’t scale well w/bath size; so isn’t useful for examining continuum limit (Note; if its quick, may still be worth implementing a solver for this; firstly as an exercise to familiarise myself w/problem setup, and to directly illustrate these scaling challenges).\n\n\n\nGiven non interacting hamiltonian; correlation matrix of system determines dynamics. Given an “operator vector”:\n\\(\\hat{\\mathbf{A}} = (\\hat{s}, \\hat{b}_1, \\hat{b}_2, ..., \\hat{b}_N)^T\\)\nCorrelation matrix follows:\n\\(\\mathbf{C}_{ij} = \\langle \\hat{A}_j^\\dagger \\hat{A}_i \\rangle\\)\nThese relate to the hamiltonian via a “single particle hamiltonian” \\(h\\) (unsure exactly what this represents):\n\\(\\hat{H}=\\hat{\\mathbf{A}}^{\\dagger} \\mathbf{h} \\hat{\\mathbf{A}}=\\sum_{i, j=1}^{\\infty} h_{i j} \\hat{A}_i^{\\dagger} \\hat{A}_j\\)\nThe correlation matrix evolves as:\n\\(\\mathbf{C}(t) = \\mathbf{u}(t) \\mathbf{C}(0) \\mathbf{u}(t)^{\\dagger}\\) \\(\\mathbf{u}(t) = e^{-i \\mathbf{h} t}\\)\nSince the system is what is of interest, and the first term in the operator vector \\(\\hat{A}\\) represents the system; the reduced density operator for the system only requires the first term in the correlation matrix as:\n\\(\\rho_S(t)=\\left(\\begin{array}{cc}\n1-\\mathbf{C}_{11}(t) & 0 \\\\\n0 & \\mathbf{C}_{11}(t)\n\\end{array}\\right)\\)\nI suspect in practice, the starting system state would inform \\(C_{11}=\\langle \\hat{s}^{}\\hat{s} \\rangle\\), and time evolution on \\(C_{11}\\) would be performed using the system single particle hamiltonian; then the reduced density operator can be computed for any time and examined. The specifics of how this is to be done are unclear to me atm.\n\n\n\nChain mapping maps system from “star geometry” to “semi-infinite” 1D chain. proceeds as: * discretize bath spectral density to determine bath couplings/modes * unitary transform maps bath onto 1D chain with nearest neighbour couplings (seemingly trying to “match” modes of complete bath?) - system couples at start of chain * resulting hamiltonian is seemingly nicely behaved and easy to simulate? * Note finite length of chain can cause “reflections” which can mess w/signal - there are ways to deal w/this\n\n\n\nKey point of these sims is to extract “dynamical map” \\(\\Gamma\\) which maps the initial reduced density \\(\\rho_{s}(0)\\) to \\(\\rho_{s}(t)\\) as \\(\\rho_{s}(t) = \\Gamma(t, 0)\\rho_{s}(0)\\). This dynamical map becomes main “result” of simulations and is necessary for analysis.\n\n\n\nThe dynamical map can then be examined to test for memory effects using various different metrics:\n\nmemory kernels - defined by “Nakajima-Zwanzig formalism”\nInformation backflow - defined by BPL (Breuer-Laine-Piilo) measure\nFailure of Completely positive (CP) divisibility - RHP (Rivas-Huelga-Plenio) measure\n\nI’m unsure exactly what these different measures capture, but seem to be main “probes” into the system’s memory effects.\n\n\n\n\n\nPhysics discussion:\n\nspecifics of simulation setup\nbasics reading (i think paper i have and book i have are these)\n\nthe references in this project sketch may be useful\n\nassociated research area reading (papers that sketch out research area)\n\nAdmin discussion:\n\nWhat do i need to setup:\n\nRef manager (Zotero) [x]\nJulia [x]\nIDE (VScodium) [x]\nJulia Itensor package [x]\nLabbook (default instinct is quarto, but want to ask)\n\nfuture meetings and general timeline\n\nwhen regular supervisor meetings\nwhen regular time to work on project\nwhat are project stages (I.E, general research, coding/experimentation..?)\nwhat milestones are part of diss (i forget exactly where i saw em, but there were presentations… that i need to do early)\n\n\n\n\n\n\nRecommended Condensed matter field theory chapter 2 (second quantisation) (Altland and Simons 2010)\ncompare measures for non markoviantity; qualitative difference; edge cases of where measures fail\nprogramming language of choice; julia or python\ngeneral explanation of setup\ncurrent plan for recurring meeting is thursday 10:00-11:00 potentially.\nTo do list:\n\nsetup labbook as quarto notebook\ncontinue familiarise self w/Julia\ncontinue reading paper\nexperiment w/code Dr Turci will send me\n\n\n\n\nHad welcome lecture, set out timetable for project. The deadlines follow:\n\n29/10/2026 - Presentation submissions\nWk7 - Project presentations\n18/01/2027 - interim report\nWk19 - End of all practical work\n11/03/2026 - Poster submissions\n17/03/2026 - Poster session\n12/04/2026 - Final report\n14/04/2026 - Lab book submission\nWk23-24 Final interview\n\nThe assesment credits break down as:\n\n10% - Presentation (10min in front of peers and academic member of staff)\n10% - Poster fair\n30% - Final report\n50% - “research output” - this represents the general work done throughout this project - evaluated through lab book, report, and final interview\n\nWhere also encouraged against doing it alone, however i’ve discussed it w/Dr Turci, and i’m happy to do so. I really like this project, the supervisors… I’d rather do it alone than do another project. Have responded to Prof Carrington email clarifying this fact.\nI’ve also emailed Dr Turci asking after the simulation code. I’d like to fiddle with the code to get an idea of the setup.\nTo do list:\n\nFinish setting up github repository for labbook\nSetup github webpage for labbook - share w/supervisors\nSetup repository for project code and data - Setting this up early and thinking through its organisation may make things easier\nContinue reading through paper\nLook through second quantisation chapter recommended by Dr Turci\nExperiment w/code Dr Turci will send me\n\n\n\n\nHave spent some time cleaning up labbook, have set citation keys for entries in Zotero project and set it to export full bibliography to this labbook; that way citations are easy to reference in here.\nI’m going to setup this as a github project and webpage next.",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/log.html#section",
+    "href": "content/0_preTb1/Wk0/log.html#section",
+    "title": "Pre TB1 Log:",
+    "section": "",
+    "text": "Have received project assignments, am quite happy since this was my second choice, has amazing supervisors, and lab partner allocation is good too; Hannah’s nice, hard working (and intelligent; she was able to do the LFU stuff whilst ill and not having done particle physics) and i know her. Besides ik she’s taking complex disordered matter which’ll be a boon.\nNext steps include:\n\ncontacting Hannah so we’re both aware of this\n\nHave contacted Hannah and we’re both excited for this project.",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/log.html#section-1",
+    "href": "content/0_preTb1/Wk0/log.html#section-1",
+    "title": "Pre TB1 Log:",
+    "section": "",
+    "text": "Hannah has let me know she needs to take a year out for personal reasons. Unfortunate but should be fine (diss can be adjusted to 1 person according to Dr Turci), so will go ahead as single person project. Unfortunate, was looking forwards to working with her",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/log.html#section-2",
+    "href": "content/0_preTb1/Wk0/log.html#section-2",
+    "title": "Pre TB1 Log:",
+    "section": "",
+    "text": "Have been reading through 100page intro paper on open Qm systems; have also installed/setup Zotero; its a REALLY nice referencing system, i think i’m gonna use that for the project. Additionally have arranged in person meeting with supervisors to discuss project.",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/log.html#section-3",
+    "href": "content/0_preTb1/Wk0/log.html#section-3",
+    "title": "Pre TB1 Log:",
+    "section": "",
+    "text": "Have received some prereading for tmrs meeting (in person). Its short but gives bare bone basics (Turci, n.d.).\nThe bare bones intro states: “This project will investigate how different operational definitions of quantum Markovianity appear in a single impurity model coupled to a structured environment.”\nThe project sketch outlines first steps:\n\n\n\nsimulate a “single impurity” directly\ntake a “fermionic system” w/single site coupled to a bath. This setup involves a single system site coupled to a bunch of bath sites. The combined system hamiltonian follows:\n\n\\(\\hat{H}=\\epsilon \\hat{s}^{\\dagger} \\hat{s}+\n\\sum_{k=1}^N g_k(\\hat{b}_k^{\\dagger} \\hat{s}+\\hat{s}^{\\dagger} \\hat{b}_k)\n+\\sum_{k=1}^N \\omega_k \\hat{b}_k^{\\dagger} \\hat{b}_k.\\)\nThe first term is the “on site” energy, the second is the system/bath coupling energy (hopping energy?), with the last term being the bath’s free energy. All these terms are described in terms of the systems and baths creation/annihalation operators (\\(\\hat{s}\\) and \\(\\hat{b}\\) respectively). There’s also some relation between the coupling \\(g_{k}\\) and the “spectral density”. Also also since only creation/annhilation operators are involved; can consider the hamiltonian non interaction (from reading around topic this prob relates to interaction picture; which is nice that i wont need to deal with that atm (i think interpreation is that bath sites don’t really interact with each other; and system site (of which there is only 1) doesnt interact with other system sites (because only 1)).\nFermionic anticommutation relations apply; determine stats.\nThe “all bath sites” connect to the single system site is called a “star geometry”.\nDirect diagonalisation and time evolution evaluation of this system doesn’t scale well w/bath size; so isn’t useful for examining continuum limit (Note; if its quick, may still be worth implementing a solver for this; firstly as an exercise to familiarise myself w/problem setup, and to directly illustrate these scaling challenges).\n\n\n\nGiven non interacting hamiltonian; correlation matrix of system determines dynamics. Given an “operator vector”:\n\\(\\hat{\\mathbf{A}} = (\\hat{s}, \\hat{b}_1, \\hat{b}_2, ..., \\hat{b}_N)^T\\)\nCorrelation matrix follows:\n\\(\\mathbf{C}_{ij} = \\langle \\hat{A}_j^\\dagger \\hat{A}_i \\rangle\\)\nThese relate to the hamiltonian via a “single particle hamiltonian” \\(h\\) (unsure exactly what this represents):\n\\(\\hat{H}=\\hat{\\mathbf{A}}^{\\dagger} \\mathbf{h} \\hat{\\mathbf{A}}=\\sum_{i, j=1}^{\\infty} h_{i j} \\hat{A}_i^{\\dagger} \\hat{A}_j\\)\nThe correlation matrix evolves as:\n\\(\\mathbf{C}(t) = \\mathbf{u}(t) \\mathbf{C}(0) \\mathbf{u}(t)^{\\dagger}\\) \\(\\mathbf{u}(t) = e^{-i \\mathbf{h} t}\\)\nSince the system is what is of interest, and the first term in the operator vector \\(\\hat{A}\\) represents the system; the reduced density operator for the system only requires the first term in the correlation matrix as:\n\\(\\rho_S(t)=\\left(\\begin{array}{cc}\n1-\\mathbf{C}_{11}(t) & 0 \\\\\n0 & \\mathbf{C}_{11}(t)\n\\end{array}\\right)\\)\nI suspect in practice, the starting system state would inform \\(C_{11}=\\langle \\hat{s}^{}\\hat{s} \\rangle\\), and time evolution on \\(C_{11}\\) would be performed using the system single particle hamiltonian; then the reduced density operator can be computed for any time and examined. The specifics of how this is to be done are unclear to me atm.\n\n\n\nChain mapping maps system from “star geometry” to “semi-infinite” 1D chain. proceeds as: * discretize bath spectral density to determine bath couplings/modes * unitary transform maps bath onto 1D chain with nearest neighbour couplings (seemingly trying to “match” modes of complete bath?) - system couples at start of chain * resulting hamiltonian is seemingly nicely behaved and easy to simulate? * Note finite length of chain can cause “reflections” which can mess w/signal - there are ways to deal w/this\n\n\n\nKey point of these sims is to extract “dynamical map” \\(\\Gamma\\) which maps the initial reduced density \\(\\rho_{s}(0)\\) to \\(\\rho_{s}(t)\\) as \\(\\rho_{s}(t) = \\Gamma(t, 0)\\rho_{s}(0)\\). This dynamical map becomes main “result” of simulations and is necessary for analysis.\n\n\n\nThe dynamical map can then be examined to test for memory effects using various different metrics:\n\nmemory kernels - defined by “Nakajima-Zwanzig formalism”\nInformation backflow - defined by BPL (Breuer-Laine-Piilo) measure\nFailure of Completely positive (CP) divisibility - RHP (Rivas-Huelga-Plenio) measure\n\nI’m unsure exactly what these different measures capture, but seem to be main “probes” into the system’s memory effects.",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/log.html#meeting-discussion-points",
+    "href": "content/0_preTb1/Wk0/log.html#meeting-discussion-points",
+    "title": "Pre TB1 Log:",
+    "section": "",
+    "text": "Physics discussion:\n\nspecifics of simulation setup\nbasics reading (i think paper i have and book i have are these)\n\nthe references in this project sketch may be useful\n\nassociated research area reading (papers that sketch out research area)\n\nAdmin discussion:\n\nWhat do i need to setup:\n\nRef manager (Zotero) [x]\nJulia [x]\nIDE (VScodium) [x]\nJulia Itensor package [x]\nLabbook (default instinct is quarto, but want to ask)\n\nfuture meetings and general timeline\n\nwhen regular supervisor meetings\nwhen regular time to work on project\nwhat are project stages (I.E, general research, coding/experimentation..?)\nwhat milestones are part of diss (i forget exactly where i saw em, but there were presentations… that i need to do early)",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/log.html#meeting",
+    "href": "content/0_preTb1/Wk0/log.html#meeting",
+    "title": "Pre TB1 Log:",
+    "section": "",
+    "text": "Recommended Condensed matter field theory chapter 2 (second quantisation) (Altland and Simons 2010)\ncompare measures for non markoviantity; qualitative difference; edge cases of where measures fail\nprogramming language of choice; julia or python\ngeneral explanation of setup\ncurrent plan for recurring meeting is thursday 10:00-11:00 potentially.\nTo do list:\n\nsetup labbook as quarto notebook\ncontinue familiarise self w/Julia\ncontinue reading paper\nexperiment w/code Dr Turci will send me",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/log.html#section-4",
+    "href": "content/0_preTb1/Wk0/log.html#section-4",
+    "title": "Pre TB1 Log:",
+    "section": "",
+    "text": "Had welcome lecture, set out timetable for project. The deadlines follow:\n\n29/10/2026 - Presentation submissions\nWk7 - Project presentations\n18/01/2027 - interim report\nWk19 - End of all practical work\n11/03/2026 - Poster submissions\n17/03/2026 - Poster session\n12/04/2026 - Final report\n14/04/2026 - Lab book submission\nWk23-24 Final interview\n\nThe assesment credits break down as:\n\n10% - Presentation (10min in front of peers and academic member of staff)\n10% - Poster fair\n30% - Final report\n50% - “research output” - this represents the general work done throughout this project - evaluated through lab book, report, and final interview\n\nWhere also encouraged against doing it alone, however i’ve discussed it w/Dr Turci, and i’m happy to do so. I really like this project, the supervisors… I’d rather do it alone than do another project. Have responded to Prof Carrington email clarifying this fact.\nI’ve also emailed Dr Turci asking after the simulation code. I’d like to fiddle with the code to get an idea of the setup.\nTo do list:\n\nFinish setting up github repository for labbook\nSetup github webpage for labbook - share w/supervisors\nSetup repository for project code and data - Setting this up early and thinking through its organisation may make things easier\nContinue reading through paper\nLook through second quantisation chapter recommended by Dr Turci\nExperiment w/code Dr Turci will send me",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/ProjectInfo.html",
+    "href": "content/0_preTb1/Wk0/ProjectInfo.html",
+    "title": "Dissertation information:",
+    "section": "",
+    "text": "Dissertation information:\nSupervisor: Dr Francesco Turci  Co-supervisor: Prof Stephen Clark\nCo-supervisor: Dr David Strachan\nLab partner: Hannah Sobieralska (initially, she’s had to take a year out for personal reasons, so am doing this project alone)\nProject: Driving non-markovianity in open systems\nCode: TP-M09\n\n\n\nProject description:\nAn open system exchanges matter and energy with the environment. Typically, one distinguishes the system from the environment by separating scales: in space, the system is much smaller than the environment, and in time, the environment relaxes much more quickly than the system (it Markovian, i.e. memoryless). The two are, however, always coupled, with interfaces whose contributions are normally taken to be small. However, in open quantum systems, a clear separation between the system and the environment becomes more challenging, both conceptually and practically. Conceptually, the coupling between the system and the bath may be strong enough to lead to important memory effects, where the evolution of the system is strongly correlated in time, and the environment itself behaves differently from a purely thermalised state; from the practical point of view, computer modelling of open systems typically requires explicitly modelling both, i.e. simulating a closed system and examining two subsystems (the original system of interest and the remainder, intrepreted as the environment) (Heinz-Peter Breuer, and Francesco Petruccione 2007). In this project, we will investigate how such memory effects develop in computational models of open quantum systems, exploiting the Matrix Product State (MPS) formalism and tensor network methods (Brenes et al. 2020). We will explore how different models of system-bath coupling and structures affect the development of non-Markovian correlations both in the system and in the environment (Strachan, Purkayastha, and Clark 2025). We will start by considering equilibration towards the thermal state and then focus on periodically driven couplings, which introduce additional timescales and allow us to observe the system stroboscopically (Floquet setting). This will take us to tackle situations in which dissipation coupled to periodic driving can lead to the emergence of non-trivial states, such as time crystals. You will build your project on in-house code in the dedicated, high-performance, scientific programming language Julia, along with existing advanced packages for the simulation of open quantum systems using tensor networks (ITensors). You will have the opportunity to explore both analytically tractable toy models and more complex simulation settings. You will have the opportunity to work on this frontier topic with support from David Strachan, a recently appointed EPSRC Postdoctoral Pathway Fellow working in this area. For further discussion of the project scope, please contact the project supervisor.\n\n\n\n\n\nReferences\n\nBrenes, Marlon, Juan José Mendoza-Arenas, Archak Purkayastha, Mark T. Mitchison, Stephen R. Clark, and John Goold. 2020. “Tensor-Network Method to Simulate Strongly Interacting Quantum Thermal Machines.” Physical Review X 10 (3): 031040. https://doi.org/10.1103/PhysRevX.10.031040.\n\n\nHeinz-Peter Breuer, and Francesco Petruccione. 2007. The Theory of Open Quantum Systems. https://doi.org/https://doi.org/10.1093/acprof:oso/9780199213900.001.0001.\n\n\nStrachan, David J., Archak Purkayastha, and Stephen R. Clark. 2025. “Non-Markovian Quantum Mpemba Effect.” Physical Review Letters 134 (22): 220403. https://doi.org/10.1103/PhysRevLett.134.220403.",
+    "crumbs": [
+      "Pre reading",
+      "Project information"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/log.html#section-5",
+    "href": "content/0_preTb1/Wk0/log.html#section-5",
+    "title": "Pre TB1 Log:",
+    "section": "",
+    "text": "Have spent some time cleaning up labbook, have set citation keys for entries in Zotero project and set it to export full bibliography to this labbook; that way citations are easy to reference in here.\nI’m going to setup this as a github project and webpage next.",
+    "crumbs": [
+      "Pre reading",
+      "Wk0 Log"
+    ]
+  }
+]
