@@ -1,5 +1,4 @@
 ---
 title: "About"
 ---
-t
-About this site
+this quarto notebook is a lab book for my Y4 Msci physics dissertation project.
