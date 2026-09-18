@@ -177,3 +177,12 @@ Have spent some time cleaning up labbook, have set citation keys for entries in 
 I'm going to setup this as a github project and webpage next.
 
 Have setup github repository and linked it to webpage. It should update every time I commit and push the main branch.
+
+Next steps follow:
+
+* Setup repository for project code and data - Setting this up early and thinking through its organisation may make things easier
+* Continue reading through paper
+* Look through second quantisation chapter recommended by Dr Turci
+* Experiment w/code Dr Turci will send me
+
+I think however that the project code/data repository is worth waiting a bit on. Experimenting with the simulation and such may help inform how to structure that repository.
