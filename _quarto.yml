@@ -10,7 +10,7 @@ website:
     contents:
     - text: "home"
       href: index.qmd
-    - section: "Pre reading"
+    - section: "Pre TB1 work"
       contents:
       - text: "Project information"
         href: content/0_preTb1/Wk0/ProjectInfo.qmd
