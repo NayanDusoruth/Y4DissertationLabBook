@@ -175,3 +175,5 @@ To do list:
 Have spent some time cleaning up labbook, have set citation keys for entries in Zotero project and set it to export full bibliography to this labbook; that way citations are easy to reference in here.
 
 I'm going to setup this as a github project and webpage next.
+
+Have setup github repository and linked it to webpage. It should update every time I commit and push the main branch.

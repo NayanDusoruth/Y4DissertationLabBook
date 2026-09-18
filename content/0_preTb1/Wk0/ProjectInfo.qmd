@@ -1,7 +1,5 @@
 # Dissertation information:
 
-test edit - test edit 2
-
 Supervisor: Dr Francesco Turci\ 
 Co-supervisor: Prof Stephen Clark\
 Co-supervisor: Dr David Strachan\
