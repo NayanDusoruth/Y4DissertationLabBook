@@ -186,3 +186,7 @@ Next steps follow:
 * Experiment w/code Dr Turci will send me
 
 I think however that the project code/data repository is worth waiting a bit on. Experimenting with the simulation and such may help inform how to structure that repository.
+
+
+## 20/09/2026
+Have replied to Dr Turci, and setup a code repository; have added the code he sent me; will experiment w/it asp.
