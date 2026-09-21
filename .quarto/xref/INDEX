@@ -83,7 +83,8 @@
     "log.html": "5628146e"
   },
   "content/1_Tb1/Wk1/log.qmd": {
-    "log.html": "91e638cc"
+    "log.html": "91e638cc",
+    "log.tex": "2c3f51c8"
   },
   "content/1_Tb1/Wk6/log.qmd": {
     "log.html": "6fb23795"
@@ -95,6 +96,7 @@
     "log.html": "5fd4a0c0"
   },
   "content/0_preTb1/Wk0/ProjectInfo.qmd": {
-    "ProjectInfo.html": "6c21568c"
+    "ProjectInfo.html": "6c21568c",
+    "ProjectInfo.tex": "8a141765"
   }
 }

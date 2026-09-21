@@ -31,6 +31,7 @@ Second quantisation seems to be general framework of ladder operators and associ
 
 Chapter motivates second quantisation by highlighting computational issues w/many body QM due to indistinguishablity, symmetrization.antisymmetrization, and the exchange of particle numbers.
 
+#### Second quantisation basics
 It then covers the "apparatus of second quantization".
 
 Compares representation of labelling particles in state individually to simply counting the number of particles in each state (I.E $\ket{1, 1, 1, 1, 2, 2, 3}$ becomes $\ket{4, 2, 1}$). This is the "occuptation number representation". Also note the "Fock space" $\mathcal{F}$; made up of basis states $\{ \ket{n_{i}} \}$ w/out occupation num condition $\sum n_i = N$. Therefore many body state can be represented as $\ket{\Psi}=\sum_{n_{i}} c_{n_i}\ket{n_{i}}$.
@@ -62,3 +63,56 @@ $[a_i,a_j^{\dagger}]_{\zeta}=\delta_{ij}$
 $[a_i,a_j]_{\zeta}=0$
 
 $[a_i^{\dagger},a_j^{\dagger}]_{\zeta}=0$
+
+#### practical aspects:
+The chapter continues into the "practical aspects" of this framework.
+
+::: {.callout-note title="Single particle base transforms"}
+Firstly; switching between single particle bases $\{ \lambda \} \to \{ \widetilde{\lambda} \}$ - the operators transform as:
+
+$a_{\widetilde{\lambda}}^{\dagger} = \sum_{\lambda}\braket{\lambda|\widetilde{\lambda}}a_{\lambda}^{\dagger}$
+
+$a_{\widetilde{\lambda}} = \sum_{\lambda}\braket{\widetilde{\lambda}|\lambda}a_{\lambda}$
+
+where $\lambda$ represents a particular particle state in a particular single particle basis.
+For continuous quantum numbers (I.E, pos) the sum becomes integrals as:
+
+$a_{\lambda}=\int_{0}^{L}dx\braket{\lambda|x}a(x)$
+
+$a(x)=\sum_{k}\braket{x|\lambda}a_{\lambda}$
+:::
+
+::: {.callout-note title="Single particle operators"}
+Secondly operators acting on single particles w/single party operator $o_{n}$ on nth particle typically become $\mathcal{O_{1}}=\sum_{n=1}^{N}o_{n}$.
+
+Typical example noted is momentum:
+$T=\sum_{n}\frac{p_{n}^2}{2m}$
+
+Also introduces "occupation number operator" which counts #particles in state:
+
+$n_{\lambda}=a_{\lambda}^{\dagger}a_{\lambda}$
+
+Which is useful for actually constructing $\mathcal{O_{1}}$. Given $o=\sum_{i}o_{\lambda_i}\ket{\lambda_i}\bra{\lambda_i}$, $o_{\lambda_i}=\braket{\lambda_i | o | \lambda_i}$. Skipping over details i'm uninterested in rn, the general result is:
+
+$\mathcal{O_1}=\sum_{\mu\nu}\braket{\mu |o|\nu}a_{\lambda}^{\dagger}a_{\lambda}$
+:::
+
+The chapter then goes into concrete examples to cement these ideas - not immediately relevant, but earmarking p48 in case useful for later.
+
+
+#### skimming rest of chapter
+
+There's also a practical applications section. Not going to go into that in depth; skimming to try to earmark anything of use:
+
+* Electrons in a periodic potential (goes through nearly free electrons -> tight binding)(p51)
+* Mott-hubbard transition and the magnetic state (p61)
+* interacting fermions in one dimension (p67)
+	* this section starts using ideas of interaction vs non interacting terms - i suspect wicks theorem (and other useful bits) may be here
+* Quantum spin chains (76)
+* Summary and outlook - Ch summary (p83)
+
+Wick theorem is not in this section - its mentioned in the summary.
+ctrl+f through the book doesn't seem to have a contained explanation albeit many uses of Wick's theorem.
+In which case [@NoNonsenseQFT] may be a better call - the mathematical machinery seems to generalize beyond QFT, so it should be applicable. Ctrl+f through [@NoNonsenseQFT], the explanation of contractions/Wick's theorem goes between p426-p428 at minimum (more after that). Not a today thing to look at but worth earmarking for later.
+
+This reading was a useful refresher and "earmarking exploration" - i think tmr i can go through the code in depth to understand what its doing/how its structured. I should be able to come up with a near term plan thereafter (wether i can get on w/the computational engine or if i need more reading).

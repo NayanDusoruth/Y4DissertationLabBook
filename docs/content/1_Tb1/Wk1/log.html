@@ -408,6 +408,8 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="reading-notes-second-quantisation-impressions-secondquantisationbook2010">Reading notes: Second quantisation impressions <span class="citation" data-cites="secondQuantisationBook2010">(<a href="#ref-secondQuantisationBook2010" role="doc-biblioref">Altland and Simons 2010</a>)</span>:</h3>
 <p>Second quantisation seems to be general framework of ladder operators and associated commutation relations; which is a familiar concept. Apparently generalises nicely to N-body quantum physics.</p>
 <p>Chapter motivates second quantisation by highlighting computational issues w/many body QM due to indistinguishablity, symmetrization.antisymmetrization, and the exchange of particle numbers.</p>
+<section id="second-quantisation-basics" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="second-quantisation-basics">Second quantisation basics</h4>
 <p>It then covers the “apparatus of second quantization”.</p>
 <p>Compares representation of labelling particles in state individually to simply counting the number of particles in each state (I.E <span class="math inline">\(\ket{1, 1, 1, 1, 2, 2, 3}\)</span> becomes <span class="math inline">\(\ket{4, 2, 1}\)</span>). This is the “occuptation number representation”. Also note the “Fock space” <span class="math inline">\(\mathcal{F}\)</span>; made up of basis states <span class="math inline">\(\{ \ket{n_{i}} \}\)</span> w/out occupation num condition <span class="math inline">\(\sum n_i = N\)</span>. Therefore many body state can be represented as <span class="math inline">\(\ket{\Psi}=\sum_{n_{i}} c_{n_i}\ket{n_{i}}\)</span>.</p>
 <p>Within this framework, ladder operators can be constructed to act on <span class="math inline">\(\mathcal{F}\)</span>:</p>
@@ -424,9 +426,67 @@ window.Quarto = {
 <p><span class="math inline">\([a_i,a_j^{\dagger}]_{\zeta}=\delta_{ij}\)</span></p>
 <p><span class="math inline">\([a_i,a_j]_{\zeta}=0\)</span></p>
 <p><span class="math inline">\([a_i^{\dagger},a_j^{\dagger}]_{\zeta}=0\)</span></p>
+</section>
+<section id="practical-aspects" class="level4">
+<h4 class="anchored" data-anchor-id="practical-aspects">practical aspects:</h4>
+<p>The chapter continues into the “practical aspects” of this framework.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Single particle base transforms">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Single particle base transforms
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Firstly; switching between single particle bases <span class="math inline">\(\{ \lambda \} \to \{ \widetilde{\lambda} \}\)</span> - the operators transform as:</p>
+<p><span class="math inline">\(a_{\widetilde{\lambda}}^{\dagger} = \sum_{\lambda}\braket{\lambda|\widetilde{\lambda}}a_{\lambda}^{\dagger}\)</span></p>
+<p><span class="math inline">\(a_{\widetilde{\lambda}} = \sum_{\lambda}\braket{\widetilde{\lambda}|\lambda}a_{\lambda}\)</span></p>
+<p>where <span class="math inline">\(\lambda\)</span> represents a particular particle state in a particular single particle basis. For continuous quantum numbers (I.E, pos) the sum becomes integrals as:</p>
+<p><span class="math inline">\(a_{\lambda}=\int_{0}^{L}dx\braket{\lambda|x}a(x)\)</span></p>
+<p><span class="math inline">\(a(x)=\sum_{k}\braket{x|\lambda}a_{\lambda}\)</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Single particle operators">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Single particle operators
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Secondly operators acting on single particles w/single party operator <span class="math inline">\(o_{n}\)</span> on nth particle typically become <span class="math inline">\(\mathcal{O_{1}}=\sum_{n=1}^{N}o_{n}\)</span>.</p>
+<p>Typical example noted is momentum: <span class="math inline">\(T=\sum_{n}\frac{p_{n}^2}{2m}\)</span></p>
+<p>Also introduces “occupation number operator” which counts #particles in state:</p>
+<p><span class="math inline">\(n_{\lambda}=a_{\lambda}^{\dagger}a_{\lambda}\)</span></p>
+<p>Which is useful for actually constructing <span class="math inline">\(\mathcal{O_{1}}\)</span>. Given <span class="math inline">\(o=\sum_{i}o_{\lambda_i}\ket{\lambda_i}\bra{\lambda_i}\)</span>, <span class="math inline">\(o_{\lambda_i}=\braket{\lambda_i | o | \lambda_i}\)</span>. Skipping over details i’m uninterested in rn, the general result is:</p>
+<p><span class="math inline">\(\mathcal{O_1}=\sum_{\mu\nu}\braket{\mu |o|\nu}a_{\lambda}^{\dagger}a_{\lambda}\)</span></p>
+</div>
+</div>
+<p>The chapter then goes into concrete examples to cement these ideas - not immediately relevant, but earmarking p48 in case useful for later.</p>
+</section>
+<section id="skimming-rest-of-chapter" class="level4">
+<h4 class="anchored" data-anchor-id="skimming-rest-of-chapter">skimming rest of chapter</h4>
+<p>There’s also a practical applications section. Not going to go into that in depth; skimming to try to earmark anything of use:</p>
+<ul>
+<li>Electrons in a periodic potential (goes through nearly free electrons -&gt; tight binding)(p51)</li>
+<li>Mott-hubbard transition and the magnetic state (p61)</li>
+<li>interacting fermions in one dimension (p67)
+<ul>
+<li>this section starts using ideas of interaction vs non interacting terms - i suspect wicks theorem (and other useful bits) may be here</li>
+</ul></li>
+<li>Quantum spin chains (76)</li>
+<li>Summary and outlook - Ch summary (p83)</li>
+</ul>
+<p>Wick theorem is not in this section - its mentioned in the summary. ctrl+f through the book doesn’t seem to have a contained explanation albeit many uses of Wick’s theorem. In which case <span class="citation" data-cites="NoNonsenseQFT">(<a href="#ref-NoNonsenseQFT" role="doc-biblioref">Schwichtenberg, n.d.</a>)</span> may be a better call - the mathematical machinery seems to generalize beyond QFT, so it should be applicable. Ctrl+f through <span class="citation" data-cites="NoNonsenseQFT">(<a href="#ref-NoNonsenseQFT" role="doc-biblioref">Schwichtenberg, n.d.</a>)</span>, the explanation of contractions/Wick’s theorem goes between p426-p428 at minimum (more after that). Not a today thing to look at but worth earmarking for later.</p>
+<p>This reading was a useful refresher and “earmarking exploration” - i think tmr i can go through the code in depth to understand what its doing/how its structured. I should be able to come up with a near term plan thereafter (wether i can get on w/the computational engine or if i need more reading).</p>
 
 
 
+</section>
 </section>
 </section>
 
