@@ -29,8 +29,36 @@ Changed my mind, i'm going to try and quickly skim the chapter with the remainde
 
 Second quantisation seems to be general framework of ladder operators and associated commutation relations; which is a familiar concept. Apparently generalises nicely to N-body quantum physics.
 
-Chapter motivates second quantisation by highlighting computational issues w/many body QM due to indistinguishablity, and the exchange of particle numbers.
+Chapter motivates second quantisation by highlighting computational issues w/many body QM due to indistinguishablity, symmetrization.antisymmetrization, and the exchange of particle numbers.
 
 It then covers the "apparatus of second quantization".
 
-Compares representation of labelling particles in state individually to simply counting the number of particles in each state (I.E $\ket{1, 1, 1, 1, 2, 2, 3}$ becomes $\ket{4, 2, 1}$
+Compares representation of labelling particles in state individually to simply counting the number of particles in each state (I.E $\ket{1, 1, 1, 1, 2, 2, 3}$ becomes $\ket{4, 2, 1}$). This is the "occuptation number representation". Also note the "Fock space" $\mathcal{F}$; made up of basis states $\{ \ket{n_{i}} \}$ w/out occupation num condition $\sum n_i = N$. Therefore many body state can be represented as $\ket{\Psi}=\sum_{n_{i}} c_{n_i}\ket{n_{i}}$.
+
+Within this framework, ladder operators can be constructed to act on $\mathcal{F}$:
+
+$a_{i}^{\dagger}\ket{n_{1},...,n_{i},...}=(n_{i}+1)^{1/2}\zeta^{s_{i}}\ket{n_{1},...n_{i}+1,...}$
+$s_{i}=\sum_{j=1}^{i-1}n_{j}$
+
+Note that in the fermionic case, the $n_{i}+1$ operation is a mod 2 operation $n_{i}+1 \equiv (n_{i}+1)\%2$
+Utility of this; can generate all states by repeated application of $a_{i}^{\dagger}$ to vacuum state:
+
+$\ket{n_{1},...}=\prod_{i}\frac{1}{(n_{i}!)^{1/2}}(a_{i}^{\dagger})^{n_{i}\ket{0}}$
+
+::: {.column-margin}
+Wierd notation used by chapter for commutation/anti-commutation relations:
+
+$[A,B]_{\zeta}=AB-\zeta AB$
+
+$[A,B]_{\zeta=+1}=[A,B]_{+}=AB-AB$ // commutator
+
+$[A,B]_{\zeta=-1}=[A,B]_{-}=AB+AB=\{A,B\}$ // anticomutator
+:::
+
+Note that:
+
+$[a_i,a_j^{\dagger}]_{\zeta}=\delta_{ij}$
+
+$[a_i,a_j]_{\zeta}=0$
+
+$[a_i^{\dagger},a_j^{\dagger}]_{\zeta}=0$

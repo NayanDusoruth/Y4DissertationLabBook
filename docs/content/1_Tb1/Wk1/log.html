@@ -122,7 +122,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar docked slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -374,12 +374,12 @@ window.Quarto = {
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">Wk1 Log</a></li></ol></nav></header>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">Wk1 Log</a></li></ol></nav></header>
 
 
 
 
-<section id="section" class="level2">
+<section id="section" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="section">21/09/2026</h2>
 <p>Recaping to date, I have:</p>
 <ul>
@@ -404,12 +404,26 @@ window.Quarto = {
 <p>After i’ve done these i’ll be equiped with the main theoretical and computational tools for this project. This will inform the rest of the investigation of this project.</p>
 <p>Having a practical understanding of what this project entails should help me understand the theory “in context”. As such, i think for now its worth examining the code Dr Turci has sent me, in order to start planning the computational engine.</p>
 <p>Examining the provided julia code (Y4DissertationCodeMaterials/providedCode/basic-1site-bath-julia.ipynb), it starts by reiterating the maths. Note; explanation recommends finding a good explanation for “wick’s theorem”. Examining my old personal notes for QFT, i recall it being relevant to evaluating the non commuting terms in the Dyson series. That understanding was based on <span class="citation" data-cites="NoNonsenseQFT">(<a href="#ref-NoNonsenseQFT" role="doc-biblioref">Schwichtenberg, n.d.</a>)</span> which may be of use. However i wonder if the second quantisation <span class="citation" data-cites="secondQuantisationBook2010">(<a href="#ref-secondQuantisationBook2010" role="doc-biblioref">Altland and Simons 2010</a>)</span> chapter will introduce it in a more contextually relevant manner. Skimming the chapter it seems so… Changed my mind, i’m going to try and quickly skim the chapter with the remainder of this afternoon. I expect the concepts will be familiar, so shouldn’t take too long. Code examination can come tmr.</p>
-<section id="reading-notes-second-quantisation-impressions-secondquantisationbook2010" class="level3">
+<section id="reading-notes-second-quantisation-impressions-secondquantisationbook2010" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="reading-notes-second-quantisation-impressions-secondquantisationbook2010">Reading notes: Second quantisation impressions <span class="citation" data-cites="secondQuantisationBook2010">(<a href="#ref-secondQuantisationBook2010" role="doc-biblioref">Altland and Simons 2010</a>)</span>:</h3>
 <p>Second quantisation seems to be general framework of ladder operators and associated commutation relations; which is a familiar concept. Apparently generalises nicely to N-body quantum physics.</p>
-<p>Chapter motivates second quantisation by highlighting computational issues w/many body QM due to indistinguishablity, and the exchange of particle numbers.</p>
+<p>Chapter motivates second quantisation by highlighting computational issues w/many body QM due to indistinguishablity, symmetrization.antisymmetrization, and the exchange of particle numbers.</p>
 <p>It then covers the “apparatus of second quantization”.</p>
-<p>Compares representation of labelling particles in state individually to simply counting the number of particles in each state (I.E <span class="math inline">\(\ket{1, 1, 1, 1, 2, 2, 3}\)</span> becomes <span class="math inline">\(\ket{4, 2, 1}\)</span></p>
+<p>Compares representation of labelling particles in state individually to simply counting the number of particles in each state (I.E <span class="math inline">\(\ket{1, 1, 1, 1, 2, 2, 3}\)</span> becomes <span class="math inline">\(\ket{4, 2, 1}\)</span>). This is the “occuptation number representation”. Also note the “Fock space” <span class="math inline">\(\mathcal{F}\)</span>; made up of basis states <span class="math inline">\(\{ \ket{n_{i}} \}\)</span> w/out occupation num condition <span class="math inline">\(\sum n_i = N\)</span>. Therefore many body state can be represented as <span class="math inline">\(\ket{\Psi}=\sum_{n_{i}} c_{n_i}\ket{n_{i}}\)</span>.</p>
+<p>Within this framework, ladder operators can be constructed to act on <span class="math inline">\(\mathcal{F}\)</span>:</p>
+<p><span class="math inline">\(a_{i}^{\dagger}\ket{n_{1},...,n_{i},...}=(n_{i}+1)^{1/2}\zeta^{s_{i}}\ket{n_{1},...n_{i}+1,...}\)</span> <span class="math inline">\(s_{i}=\sum_{j=1}^{i-1}n_{j}\)</span></p>
+<p>Note that in the fermionic case, the <span class="math inline">\(n_{i}+1\)</span> operation is a mod 2 operation <span class="math inline">\(n_{i}+1 \equiv (n_{i}+1)\%2\)</span> Utility of this; can generate all states by repeated application of <span class="math inline">\(a_{i}^{\dagger}\)</span> to vacuum state:</p>
+<p><span class="math inline">\(\ket{n_{1},...}=\prod_{i}\frac{1}{(n_{i}!)^{1/2}}(a_{i}^{\dagger})^{n_{i}\ket{0}}\)</span></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Wierd notation used by chapter for commutation/anti-commutation relations:</p>
+<p><span class="math inline">\([A,B]_{\zeta}=AB-\zeta AB\)</span></p>
+<p><span class="math inline">\([A,B]_{\zeta=+1}=[A,B]_{+}=AB-AB\)</span> // commutator</p>
+<p><span class="math inline">\([A,B]_{\zeta=-1}=[A,B]_{-}=AB+AB=\{A,B\}\)</span> // anticomutator</p>
+</div></div><p>Note that:</p>
+<p><span class="math inline">\([a_i,a_j^{\dagger}]_{\zeta}=\delta_{ij}\)</span></p>
+<p><span class="math inline">\([a_i,a_j]_{\zeta}=0\)</span></p>
+<p><span class="math inline">\([a_i^{\dagger},a_j^{\dagger}]_{\zeta}=0\)</span></p>
 
 
 
