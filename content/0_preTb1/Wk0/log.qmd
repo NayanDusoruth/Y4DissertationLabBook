@@ -123,7 +123,8 @@ compare measures for non markoviantity; qualitative difference; edge cases of wh
 
 programming language of choice; julia or python
 
-general explanation of setup
+general explanation of setup (is along lines of introductary pre-reading i was sent).
+First major aim is to setup core "computational engine" which should allow me to plug in a spectral function, simulate the setup, and output the data.
 
 current plan for recurring meeting is thursday 10:00-11:00 potentially.
 
@@ -190,3 +191,5 @@ I think however that the project code/data repository is worth waiting a bit on.
 
 ## 20/09/2026
 Have replied to Dr Turci, and setup a code repository; have added the code he sent me; will experiment w/it asp.
+
+Am experimenting a bit with the code (end of day so just trying to get it to run, installing missing packages). Have gotten it working, need to look at it more depth asp; not today i think.

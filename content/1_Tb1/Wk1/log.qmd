@@ -1,0 +1,18 @@
+# 21/09/2026
+Recaping to date, I have:
+
+* Set up labbook
+* Set up code repository locally
+* Received code and basic introduction from Dr Turci
+* Partly read introductory papers/books on the topic
+
+Looking forwards, there are 2 more immediate things i need to do:
+
+* continue reading to build up understanding:
+	* Second quantisation [@secondQuantisationBook2010]
+	* Introductory paper [@OpenQuantumSystemsIntro2012]
+* Build up main "computational engine":
+	* Look through and understand code Dr Turci has sent me
+	* Refactor said code into a convenient utility I can use throughout this project
+
+Having a practical understanding of what this project entails should help me understand the theory "in context". As such, i think for now its worth examining the code Dr Turci has sent me, in order to start planning the computational engine.
