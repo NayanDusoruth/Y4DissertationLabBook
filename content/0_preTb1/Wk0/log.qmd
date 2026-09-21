@@ -23,12 +23,13 @@ Additionally have arranged in person meeting with supervisors to discuss project
 ## 10/09/2026
 Have received some prereading for tmrs meeting (in person). Its short but gives bare bone basics [@ProjectOutline2026].
 
+### Reading notes: Project introduction [@ProjectOutline2026]
 The bare bones intro states:
 "This project will investigate how different operational definitions of quantum Markovianity appear in a single impurity model coupled to a structured environment."
 
 The project sketch outlines first steps:
 
-### part 1 (basic setup, direct diagonalisation):
+#### part 1 (basic setup, direct diagonalisation):
 * simulate a "single impurity" directly
 * take a "fermionic system" w/single site coupled to a bath. This setup involves a single system site coupled to a bunch of bath sites. The combined system hamiltonian follows:
 
@@ -45,7 +46,7 @@ The "all bath sites" connect to the single system site is called a "star geometr
 Direct diagonalisation and time evolution evaluation of this system doesn't scale well w/bath size; so isn't useful for examining continuum limit (Note; if its quick, may still be worth implementing a solver for this; firstly as an exercise to familiarise myself w/problem setup, and to directly illustrate these scaling challenges).
 
 
-### part 2 (correlation matrix):
+#### part 2 (correlation matrix):
 Given non interacting hamiltonian; correlation matrix of system determines dynamics.
 Given an "operator vector":
 
@@ -75,17 +76,17 @@ $\rho_S(t)=\left(\begin{array}{cc}
 
 I suspect in practice, the starting system state would inform $C_{11}=\langle \hat{s}^{}\hat{s} \rangle$, and time evolution on $C_{11}$ would be performed using the system single particle hamiltonian; then the reduced density operator can be computed for any time and examined. The specifics of how this is to be done are unclear to me atm.
 
-### part 3 ("chain mapping"):
+#### part 3 ("chain mapping"):
 Chain mapping maps system from "star geometry" to "semi-infinite" 1D chain. proceeds as:
 * discretize bath spectral density to determine bath couplings/modes
 * unitary transform maps bath onto 1D chain with nearest neighbour couplings (seemingly trying to "match" modes of complete bath?) - system couples at start of chain
 * resulting hamiltonian is seemingly nicely behaved and easy to simulate?
 * Note finite length of chain can cause "reflections" which can mess w/signal - there are ways to deal w/this
 
-### part 4 (extracting dynamical map):
+#### part 4 (extracting dynamical map):
 Key point of these sims is to extract "dynamical map" $\Gamma$ which maps the initial reduced density $\rho_{s}(0)$ to $\rho_{s}(t)$ as $\rho_{s}(t) = \Gamma(t, 0)\rho_{s}(0)$. This dynamical map becomes main "result" of simulations and is necessary for analysis.
 
-### part 5 (testing memory effects):
+#### part 5 (testing memory effects):
 The dynamical map can then be examined to test for memory effects using various different metrics:
 
 * memory kernels - defined by "Nakajima-Zwanzig formalism"
@@ -125,6 +126,8 @@ programming language of choice; julia or python
 
 general explanation of setup (is along lines of introductary pre-reading i was sent).
 First major aim is to setup core "computational engine" which should allow me to plug in a spectral function, simulate the setup, and output the data.
+
+Crucially the central question of this project is to compare the different definitions of non-markovianity as outlined in the introduction. The different definitions don't always agree, so comparing these should yield further insight into markovian behaviour in open quantum systems.
 
 current plan for recurring meeting is thursday 10:00-11:00 potentially.
 

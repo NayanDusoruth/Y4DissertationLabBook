@@ -1,4 +1,4 @@
-# 21/09/2026
+## 21/09/2026
 Recaping to date, I have:
 
 * Set up labbook
@@ -15,4 +15,16 @@ Looking forwards, there are 2 more immediate things i need to do:
 	* Look through and understand code Dr Turci has sent me
 	* Refactor said code into a convenient utility I can use throughout this project
 
+After i've done these i'll be equiped with the main theoretical and computational tools for this project. This will inform the rest of the investigation of this project.
+
 Having a practical understanding of what this project entails should help me understand the theory "in context". As such, i think for now its worth examining the code Dr Turci has sent me, in order to start planning the computational engine.
+
+
+Examining the provided julia code (Y4DissertationCodeMaterials/providedCode/basic-1site-bath-julia.ipynb), it starts by reiterating the maths.
+Note; explanation recommends finding a good explanation for "wick's theorem". Examining my old personal notes for QFT, i recall it being relevant to evaluating the non commuting terms in the Dyson series. That understanding was based on [@NoNonsenseQFT] which may be of use. However i wonder if the second quantisation [@secondQuantisationBook2010] chapter will introduce it in a more contextually relevant manner.
+Skimming the chapter it seems so...
+Changed my mind, i'm going to try and quickly skim the chapter with the remainder of this afternoon. I expect the concepts will be familiar, so shouldn't take too long. Code examination can come tmr.
+
+### Reading notes: Second quantisation impressions [@secondQuantisationBook2010]:
+
+Second quantisation seems to be general framework of ladder operators and associated commutation relations; which is a familiar concept. Apparently generalises nicely to N-body quantum physics.
