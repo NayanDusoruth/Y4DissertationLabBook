@@ -28,3 +28,5 @@ Changed my mind, i'm going to try and quickly skim the chapter with the remainde
 ### Reading notes: Second quantisation impressions [@secondQuantisationBook2010]:
 
 Second quantisation seems to be general framework of ladder operators and associated commutation relations; which is a familiar concept. Apparently generalises nicely to N-body quantum physics.
+
+Chapter motivates second quantisation by highlighting computational issues w/many body QM due to indistinguishablity, and the exchange of particle numbers.

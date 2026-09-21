@@ -95,7 +95,7 @@ The dynamical map can then be examined to test for memory effects using various 
 
 I'm unsure exactly what these different measures capture, but seem to be main "probes" into the system's memory effects.
 
-## Meeting discussion points:
+### Meeting discussion points:
 * Physics discussion:
 	* specifics of simulation setup
 	* basics reading (i think paper i have and book i have are these)
