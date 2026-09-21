@@ -373,20 +373,16 @@ window.Quarto = {
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">09/09/2026:</a></li>
   <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">10/09/2026</a>
   <ul class="collapse">
-  <li><a href="#part-1-basic-setup-direct-diagonalisation" id="toc-part-1-basic-setup-direct-diagonalisation" class="nav-link" data-scroll-target="#part-1-basic-setup-direct-diagonalisation">part 1 (basic setup, direct diagonalisation):</a></li>
-  <li><a href="#part-2-correlation-matrix" id="toc-part-2-correlation-matrix" class="nav-link" data-scroll-target="#part-2-correlation-matrix">part 2 (correlation matrix):</a></li>
-  <li><a href="#part-3-chain-mapping" id="toc-part-3-chain-mapping" class="nav-link" data-scroll-target="#part-3-chain-mapping">part 3 (“chain mapping”):</a></li>
-  <li><a href="#part-4-extracting-dynamical-map" id="toc-part-4-extracting-dynamical-map" class="nav-link" data-scroll-target="#part-4-extracting-dynamical-map">part 4 (extracting dynamical map):</a></li>
-  <li><a href="#part-5-testing-memory-effects" id="toc-part-5-testing-memory-effects" class="nav-link" data-scroll-target="#part-5-testing-memory-effects">part 5 (testing memory effects):</a></li>
-  </ul></li>
+  <li><a href="#reading-notes-project-introduction-projectoutline2026" id="toc-reading-notes-project-introduction-projectoutline2026" class="nav-link" data-scroll-target="#reading-notes-project-introduction-projectoutline2026">Reading notes: Project introduction <span class="citation" data-cites="ProjectOutline2026">(Turci, n.d.)</span></a></li>
   <li><a href="#meeting-discussion-points" id="toc-meeting-discussion-points" class="nav-link" data-scroll-target="#meeting-discussion-points">Meeting discussion points:</a></li>
+  </ul></li>
   <li><a href="#meeting" id="toc-meeting" class="nav-link" data-scroll-target="#meeting">11/09/2026 meeting</a></li>
   <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">17/09/2026</a></li>
   <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">18/09/2026</a></li>
   <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6">20/09/2026</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/0_preTb1/Wk0/ProjectInfo.html">Pre TB1 work</a></li><li class="breadcrumb-item"><a href="../../../content/0_preTb1/Wk0/log.html">Wk0 Log</a></li></ol></nav></header>
@@ -416,10 +412,12 @@ window.Quarto = {
 <section id="section-3" class="level2">
 <h2 class="anchored" data-anchor-id="section-3">10/09/2026</h2>
 <p>Have received some prereading for tmrs meeting (in person). Its short but gives bare bone basics <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Turci, n.d.</a>)</span>.</p>
+<section id="reading-notes-project-introduction-projectoutline2026" class="level3">
+<h3 class="anchored" data-anchor-id="reading-notes-project-introduction-projectoutline2026">Reading notes: Project introduction <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Turci, n.d.</a>)</span></h3>
 <p>The bare bones intro states: “This project will investigate how different operational definitions of quantum Markovianity appear in a single impurity model coupled to a structured environment.”</p>
 <p>The project sketch outlines first steps:</p>
-<section id="part-1-basic-setup-direct-diagonalisation" class="level3">
-<h3 class="anchored" data-anchor-id="part-1-basic-setup-direct-diagonalisation">part 1 (basic setup, direct diagonalisation):</h3>
+<section id="part-1-basic-setup-direct-diagonalisation" class="level4">
+<h4 class="anchored" data-anchor-id="part-1-basic-setup-direct-diagonalisation">part 1 (basic setup, direct diagonalisation):</h4>
 <ul>
 <li>simulate a “single impurity” directly</li>
 <li>take a “fermionic system” w/single site coupled to a bath. This setup involves a single system site coupled to a bunch of bath sites. The combined system hamiltonian follows:</li>
@@ -432,8 +430,8 @@ window.Quarto = {
 <p>The “all bath sites” connect to the single system site is called a “star geometry”.</p>
 <p>Direct diagonalisation and time evolution evaluation of this system doesn’t scale well w/bath size; so isn’t useful for examining continuum limit (Note; if its quick, may still be worth implementing a solver for this; firstly as an exercise to familiarise myself w/problem setup, and to directly illustrate these scaling challenges).</p>
 </section>
-<section id="part-2-correlation-matrix" class="level3">
-<h3 class="anchored" data-anchor-id="part-2-correlation-matrix">part 2 (correlation matrix):</h3>
+<section id="part-2-correlation-matrix" class="level4">
+<h4 class="anchored" data-anchor-id="part-2-correlation-matrix">part 2 (correlation matrix):</h4>
 <p>Given non interacting hamiltonian; correlation matrix of system determines dynamics. Given an “operator vector”:</p>
 <p><span class="math inline">\(\hat{\mathbf{A}} = (\hat{s}, \hat{b}_1, \hat{b}_2, ..., \hat{b}_N)^T\)</span></p>
 <p>Correlation matrix follows:</p>
@@ -449,16 +447,16 @@ window.Quarto = {
 \end{array}\right)\)</span></p>
 <p>I suspect in practice, the starting system state would inform <span class="math inline">\(C_{11}=\langle \hat{s}^{}\hat{s} \rangle\)</span>, and time evolution on <span class="math inline">\(C_{11}\)</span> would be performed using the system single particle hamiltonian; then the reduced density operator can be computed for any time and examined. The specifics of how this is to be done are unclear to me atm.</p>
 </section>
-<section id="part-3-chain-mapping" class="level3">
-<h3 class="anchored" data-anchor-id="part-3-chain-mapping">part 3 (“chain mapping”):</h3>
+<section id="part-3-chain-mapping" class="level4">
+<h4 class="anchored" data-anchor-id="part-3-chain-mapping">part 3 (“chain mapping”):</h4>
 <p>Chain mapping maps system from “star geometry” to “semi-infinite” 1D chain. proceeds as: * discretize bath spectral density to determine bath couplings/modes * unitary transform maps bath onto 1D chain with nearest neighbour couplings (seemingly trying to “match” modes of complete bath?) - system couples at start of chain * resulting hamiltonian is seemingly nicely behaved and easy to simulate? * Note finite length of chain can cause “reflections” which can mess w/signal - there are ways to deal w/this</p>
 </section>
-<section id="part-4-extracting-dynamical-map" class="level3">
-<h3 class="anchored" data-anchor-id="part-4-extracting-dynamical-map">part 4 (extracting dynamical map):</h3>
+<section id="part-4-extracting-dynamical-map" class="level4">
+<h4 class="anchored" data-anchor-id="part-4-extracting-dynamical-map">part 4 (extracting dynamical map):</h4>
 <p>Key point of these sims is to extract “dynamical map” <span class="math inline">\(\Gamma\)</span> which maps the initial reduced density <span class="math inline">\(\rho_{s}(0)\)</span> to <span class="math inline">\(\rho_{s}(t)\)</span> as <span class="math inline">\(\rho_{s}(t) = \Gamma(t, 0)\rho_{s}(0)\)</span>. This dynamical map becomes main “result” of simulations and is necessary for analysis.</p>
 </section>
-<section id="part-5-testing-memory-effects" class="level3">
-<h3 class="anchored" data-anchor-id="part-5-testing-memory-effects">part 5 (testing memory effects):</h3>
+<section id="part-5-testing-memory-effects" class="level4">
+<h4 class="anchored" data-anchor-id="part-5-testing-memory-effects">part 5 (testing memory effects):</h4>
 <p>The dynamical map can then be examined to test for memory effects using various different metrics:</p>
 <ul>
 <li>memory kernels - defined by “Nakajima-Zwanzig formalism”</li>
@@ -468,8 +466,8 @@ window.Quarto = {
 <p>I’m unsure exactly what these different measures capture, but seem to be main “probes” into the system’s memory effects.</p>
 </section>
 </section>
-<section id="meeting-discussion-points" class="level2">
-<h2 class="anchored" data-anchor-id="meeting-discussion-points">Meeting discussion points:</h2>
+<section id="meeting-discussion-points" class="level3">
+<h3 class="anchored" data-anchor-id="meeting-discussion-points">Meeting discussion points:</h3>
 <ul>
 <li>Physics discussion:
 <ul>
@@ -500,12 +498,14 @@ window.Quarto = {
 </ul></li>
 </ul>
 </section>
+</section>
 <section id="meeting" class="level2">
 <h2 class="anchored" data-anchor-id="meeting">11/09/2026 meeting</h2>
 <p>Recommended Condensed matter field theory chapter 2 (second quantisation) <span class="citation" data-cites="secondQuantisationBook2010">(<a href="#ref-secondQuantisationBook2010" role="doc-biblioref">Altland and Simons 2010</a>)</span></p>
 <p>compare measures for non markoviantity; qualitative difference; edge cases of where measures fail</p>
 <p>programming language of choice; julia or python</p>
 <p>general explanation of setup (is along lines of introductary pre-reading i was sent). First major aim is to setup core “computational engine” which should allow me to plug in a spectral function, simulate the setup, and output the data.</p>
+<p>Crucially the central question of this project is to compare the different definitions of non-markovianity as outlined in the introduction. The different definitions don’t always agree, so comparing these should yield further insight into markovian behaviour in open quantum systems.</p>
 <p>current plan for recurring meeting is thursday 10:00-11:00 potentially.</p>
 <p>To do list:</p>
 <ul>

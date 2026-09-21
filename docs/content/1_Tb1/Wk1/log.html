@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -69,6 +89,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 </head>
@@ -317,9 +366,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">21/09/2026</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">21/09/2026</a>
+  <ul class="collapse">
+  <li><a href="#reading-notes-second-quantisation-impressions-secondquantisationbook2010" id="toc-reading-notes-second-quantisation-impressions-secondquantisationbook2010" class="nav-link" data-scroll-target="#reading-notes-second-quantisation-impressions-secondquantisationbook2010">Reading notes: Second quantisation impressions <span class="citation" data-cites="secondQuantisationBook2010">(Altland and Simons 2010)</span>:</a></li>
+  </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">Wk1 Log</a></li></ol></nav></header>
@@ -327,8 +379,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="section" class="level1">
-<h1>21/09/2026</h1>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">21/09/2026</h2>
 <p>Recaping to date, I have:</p>
 <ul>
 <li>Set up labbook</li>
@@ -340,14 +392,41 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>continue reading to build up understanding:
 <ul>
-<li></li>
+<li>Second quantisation <span class="citation" data-cites="secondQuantisationBook2010">(<a href="#ref-secondQuantisationBook2010" role="doc-biblioref">Altland and Simons 2010</a>)</span></li>
+<li>Introductory paper <span class="citation" data-cites="OpenQuantumSystemsIntro2012">(<a href="#ref-OpenQuantumSystemsIntro2012" role="doc-biblioref">Rivas and Huelga 2012</a>)</span></li>
+</ul></li>
+<li>Build up main “computational engine”:
+<ul>
+<li>Look through and understand code Dr Turci has sent me</li>
+<li>Refactor said code into a convenient utility I can use throughout this project</li>
 </ul></li>
 </ul>
+<p>After i’ve done these i’ll be equiped with the main theoretical and computational tools for this project. This will inform the rest of the investigation of this project.</p>
+<p>Having a practical understanding of what this project entails should help me understand the theory “in context”. As such, i think for now its worth examining the code Dr Turci has sent me, in order to start planning the computational engine.</p>
+<p>Examining the provided julia code (Y4DissertationCodeMaterials/providedCode/basic-1site-bath-julia.ipynb), it starts by reiterating the maths. Note; explanation recommends finding a good explanation for “wick’s theorem”. Examining my old personal notes for QFT, i recall it being relevant to evaluating the non commuting terms in the Dyson series. That understanding was based on <span class="citation" data-cites="NoNonsenseQFT">(<a href="#ref-NoNonsenseQFT" role="doc-biblioref">Schwichtenberg, n.d.</a>)</span> which may be of use. However i wonder if the second quantisation <span class="citation" data-cites="secondQuantisationBook2010">(<a href="#ref-secondQuantisationBook2010" role="doc-biblioref">Altland and Simons 2010</a>)</span> chapter will introduce it in a more contextually relevant manner. Skimming the chapter it seems so… Changed my mind, i’m going to try and quickly skim the chapter with the remainder of this afternoon. I expect the concepts will be familiar, so shouldn’t take too long. Code examination can come tmr.</p>
+<section id="reading-notes-second-quantisation-impressions-secondquantisationbook2010" class="level3">
+<h3 class="anchored" data-anchor-id="reading-notes-second-quantisation-impressions-secondquantisationbook2010">Reading notes: Second quantisation impressions <span class="citation" data-cites="secondQuantisationBook2010">(<a href="#ref-secondQuantisationBook2010" role="doc-biblioref">Altland and Simons 2010</a>)</span>:</h3>
+<p>Second quantisation seems to be general framework of ladder operators and associated commutation relations; which is a familiar concept. Apparently generalises nicely to N-body quantum physics.</p>
+<p>Chapter motivates second quantisation by highlighting computational issues w/many body QM due to indistinguishablity, and the exchange of particle numbers.</p>
+<p>It then covers the “apparatus of second quantization”.</p>
+<p>Compares representation of labelling particles in state individually to simply counting the number of particles in each state (I.E <span class="math inline">\(\ket{1, 1, 1, 1, 2, 2, 3}\)</span> becomes <span class="math inline">\(\ket{4, 2, 1}\)</span></p>
+
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-secondQuantisationBook2010" class="csl-entry" role="listitem">
+Altland, Alexander, and Ben Simons. 2010. <em>Condensed <span>Matter</span> <span>Field</span> <span>Theory</span> 2e</em>. Cambridge University Press. https://doi.org/<a href="https://doi.org/10.1017/CBO9780511789984">https://doi.org/10.1017/CBO9780511789984</a>.
+</div>
+<div id="ref-OpenQuantumSystemsIntro2012" class="csl-entry" role="listitem">
+Rivas, Ángel, and Susana F Huelga. 2012. <em>Open <span>Quantum</span> <span>Systems</span>. <span>An</span> <span>Introduction</span></em>. https://doi.org/<a href="https://doi.org/10.48550/arXiv.1104.5242">https://doi.org/10.48550/arXiv.1104.5242</a>.
+</div>
+<div id="ref-NoNonsenseQFT" class="csl-entry" role="listitem">
+Schwichtenberg. n.d. <em>No-<span>Nonsense</span> <span>Quantum</span> <span>Field</span> <span>Theory</span></em>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

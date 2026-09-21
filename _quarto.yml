@@ -81,6 +81,12 @@ format:
       - brand
     css: styles.css
     toc: true
+  pdf: 
+     include-in-header:  
+        - text: |
+            \usepackage{amsfonts}
+            \usepackage{amsmath}
+            \usepackage{braket}
 
 
 
