@@ -580,12 +580,59 @@ window.Quarto = {
 <ul>
 <li>Julia: 45.252466917037964 sec</li>
 <li>Python: 45.61387276649475 sec</li>
-<li>Pytorch: sec</li>
+<li>Pytorch: 27.66377019882202 sec</li>
 </ul>
 <p>Sidenote; when running the python code, my laptop’s fan is SIGNIFICANTLY louder than when running the Julia code. I may have a look and see my system resource use; cause that may give further insight into wether or not the above is a fair comparison, or if there are further optimisations that could be made to Julia.</p>
+<p>Have pulled up <code>top</code> in terminal, This is a non rigorous test, however the cpu usage for the 3 options peaks at:</p>
+<ul>
+<li>Julia: 798 %cpu - 39.82936978340149 sec - #threads: 43/8</li>
+<li>Python: 746 %cpu - 41.40748572349548 sec - #threads: 18/8</li>
+<li>Pytorch: 767 %cpu - 27.51361894607544 sec - #threads: 27/8</li>
+</ul>
+<p>hmmmmmm… This quick test implies that Julia uses the most CPU resources, yet performs the worst… There where 1 or 2 lines of julia code i didn’t quite comment out when commenting out the plotting stuff; i doubt it has much of an effect but repeating the timing tests:</p>
+<ul>
+<li>Julia: 44.23794388771057 sec</li>
+</ul>
+<p>Effectively no difference…</p>
+<p>Am building quick test algorithm in both julia and python:</p>
+<ul>
+<li><p>define basic addition function f(x,y) = x + y</p></li>
+<li><p>start timer</p></li>
+<li><p>initiate 2 arrays 1000 elements long from 0-10000</p></li>
+<li><p>add the 2 together into an output array</p></li>
+<li><p>end timer</p></li>
+<li><p>Julia: 0.008497953414916992</p></li>
+<li><p>python: 0.0000841617584229</p></li>
+</ul>
+<p>odd… Excluding the array construction from the time:</p>
+<ul>
+<li>Julia: 0.006654024124145508</li>
+<li>python: 0.0000829696655273</li>
+</ul>
+<p>Not much of a difference. Note however, when instead of ’‘’x+y’’’ ’‘’x.+y’’’ the time jumps an order of magnitude…</p>
+<p>THis leads me to believe that the julia code may be poorly optimised especially since its being compared to numpy and and scipy implementations. <span class="citation" data-cites="juliaPerformanceTips">(<a href="#ref-juliaPerformanceTips" role="doc-biblioref"><span>“Performance <span>Tips</span> · <span>The</span> <span>Julia</span> <span>Language</span>”</span> n.d.</a>)</span> is an article detailing how to get most out of Julia so will have a quick look through there.</p>
+<section id="julia-performance-tips-reading-juliaperformancetips" class="level4">
+<h4 class="anchored" data-anchor-id="julia-performance-tips-reading-juliaperformancetips">julia performance tips reading <span class="citation" data-cites="juliaPerformanceTips">(<a href="#ref-juliaPerformanceTips" role="doc-biblioref"><span>“Performance <span>Tips</span> · <span>The</span> <span>Julia</span> <span>Language</span>”</span> n.d.</a>)</span></h4>
+<ul>
+<li>performance critical code should be inside functions</li>
+<li>avoid unsigned global variables</li>
+</ul>
+<p>Tried <span class="citation" data-cites="stackoverflowJuliaVsPython2022">(<a href="#ref-stackoverflowJuliaVsPython2022" role="doc-biblioref"><strong>stackoverflowJuliaVsPython2022?</strong></a>)</span> moving everything into a function in case that worked; it didnt. However i suspect that the code requires broader optimisation. The fact that the basic adding arrays test favours python so strongly is incredibly odd… Apparently global variables are REALLY bad in julia, so maybe its that?</p>
+<p>Have just measured the one case where there is a global variable and thats the issue. THis block of code:</p>
+<pre><code>Udt = unitary(dt)
+    UdtT = Udt'
+    Css = Dict(0.0 =&gt; C0)
+    key = 0.0
+    for t in times[2:end]
+        #println(key, " ",t)
+        Css[t] = Udt * Css[key] * UdtT
+        key = t
+    end</code></pre>
+<p>is whats causing issues</p>
 
 
 
+</section>
 </section>
 </section>
 
@@ -595,6 +642,9 @@ Altland, Alexander, and Ben Simons. 2010. <em>Condensed <span>Matter</span> <spa
 </div>
 <div id="ref-juliaVsPythonPerformance" class="csl-entry" role="listitem">
 Clayton, Michael. 2022. <span>“Is <span>Julia</span> <span>Really</span> <span>Faster</span> Than <span>Python</span> and <span>Numpy</span>?”</span> <em>Towards Data Science</em>. <a href="https://towardsdatascience.com/is-julia-really-faster-than-python-and-numpy-242e0a5fe34f/">https://towardsdatascience.com/is-julia-really-faster-than-python-and-numpy-242e0a5fe34f/</a>.
+</div>
+<div id="ref-juliaPerformanceTips" class="csl-entry" role="listitem">
+<span>“Performance <span>Tips</span> · <span>The</span> <span>Julia</span> <span>Language</span>.”</span> n.d. Accessed September 22, 2026. <a href="https://docs.julialang.org/en/v1/manual/performance-tips/">https://docs.julialang.org/en/v1/manual/performance-tips/</a>.
 </div>
 <div id="ref-OpenQuantumSystemsIntro2012" class="csl-entry" role="listitem">
 Rivas, Ángel, and Susana F Huelga. 2012. <em>Open <span>Quantum</span> <span>Systems</span>. <span>An</span> <span>Introduction</span></em>. https://doi.org/<a href="https://doi.org/10.48550/arXiv.1104.5242">https://doi.org/10.48550/arXiv.1104.5242</a>.

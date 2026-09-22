@@ -223,6 +223,63 @@ Going to comment out the plotting code in both, compare the speed therein:
 
 * Julia: 45.252466917037964 sec
 * Python: 45.61387276649475 sec
-* Pytorch: sec
+* Pytorch: 27.66377019882202 sec
 
-Sidenote; when running the python code, my laptop's fan is SIGNIFICANTLY louder than when running the Julia code. I may have a look and see my system resource use; cause that may give further insight into wether or not the above is a fair comparison, or if there are further optimisations that could be made to Julia.
+Sidenote; when running the python code, my laptop's fan is SIGNIFICANTLY louder than when running the Julia code. I may have a look and see my system resource use; cause that may give further insight into wether or not the above is a fair comparison, or if there are further optimisations that could be made to Julia. 
+
+Have pulled up ```top``` in terminal, This is a non rigorous test, however the cpu usage for the 3 options peaks at:
+
+* Julia: 798 %cpu - 39.82936978340149 sec - #threads: 43/8
+* Python: 746 %cpu - 41.40748572349548 sec - #threads: 18/8
+* Pytorch: 767 %cpu - 27.51361894607544 sec - #threads: 27/8
+
+hmmmmmm... This quick test implies that Julia uses the most CPU resources, yet performs the worst...
+There where 1 or 2 lines of julia code i didn't quite comment out when commenting out the plotting stuff; i doubt it has much of an effect but repeating the timing tests:
+
+* Julia: 44.23794388771057 sec
+
+Effectively no difference...
+
+Am building quick test algorithm in both julia and python:
+
+* define basic addition function f(x,y) = x + y
+* start timer
+* initiate 2 arrays 1000 elements long from 0-10000
+* add the 2 together into an output array
+* end timer
+
+* Julia: 0.008497953414916992
+* python: 0.0000841617584229
+
+
+odd... Excluding the array construction from the time:
+
+* Julia: 0.006654024124145508
+* python: 0.0000829696655273
+
+Not much of a difference. Note however, when instead of '''x+y''' '''x.+y''' the time jumps an order of magnitude...
+
+THis leads me to believe that the julia code may be poorly optimised especially since its being compared to numpy and and scipy implementations.
+[@juliaPerformanceTips] is an article detailing how to get most out of Julia so will have a quick look through there.
+
+#### julia performance tips reading [@juliaPerformanceTips]
+
+* performance critical code should be inside functions
+* avoid unsigned global variables
+
+Tried [@stackoverflowJuliaVsPython2022] moving everything into a function in case that worked; it didnt. However i suspect that the code requires broader optimisation. The fact that the basic adding arrays test favours python so strongly is incredibly odd... Apparently global variables are REALLY bad in julia, so maybe its that?
+
+Have just measured the one case where there is a global variable and thats the issue.
+THis block of code:
+```
+Udt = unitary(dt)
+    UdtT = Udt'
+    Css = Dict(0.0 => C0)
+    key = 0.0
+    for t in times[2:end]
+        #println(key, " ",t)
+        Css[t] = Udt * Css[key] * UdtT
+        key = t
+    end
+```
+is whats causing issues
