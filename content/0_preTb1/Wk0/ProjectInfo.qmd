@@ -14,21 +14,3 @@ However, in open quantum systems, a clear separation between the system and the 
 In this project, we will investigate how such memory effects develop in computational models of open quantum systems, exploiting the Matrix Product State (MPS) formalism and tensor network methods [@TensorNetworkMethods2020]. We will explore how different models of system-bath coupling and structures affect the development of non-Markovian correlations both in the system and in the environment [@DavidMpemba2025]. We will start by considering equilibration towards the thermal state and then focus on periodically driven couplings, which introduce additional timescales and allow us to observe the system stroboscopically (Floquet setting). This will take us to tackle situations in which dissipation coupled to periodic driving can lead to the emergence of non-trivial states, such as time crystals.
 You will build your project on in-house code in the dedicated, high-performance, scientific programming language Julia, along with existing advanced packages for the simulation of open quantum systems using tensor networks (ITensors). You will have the opportunity to explore both analytically tractable toy models and more complex simulation settings. You will have the opportunity to work on this frontier topic with support from David Strachan, a recently appointed EPSRC Postdoctoral Pathway Fellow working in this area.
 For further discussion of the project scope, please contact the project supervisor.
-
-
-
-# Labbook notes to self (delete before submission):
-
-For consistency sake, the title/subtitling should ~follow:
-
-# Main Title (#)
-A section of multiple days
-
-## dd/mm/yyyy (##):
-The log for a given day
-
-### Task title (###)
-The log for a particular task - title should preface what sort of task it is (I.E, Reading notes, Coding notes,...)
-
-#### sub-subsection (####)
-Subdivider for a task 

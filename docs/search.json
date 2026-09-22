@@ -110,7 +110,7 @@
     "href": "content/0_preTb1/Wk0/ProjectInfo.html",
     "title": "Dissertation information:",
     "section": "",
-    "text": "Supervisor: Dr Francesco Turci  Co-supervisor: Prof Stephen Clark\nCo-supervisor: Dr David Strachan\nLab partner: Hannah Sobieralska (initially, she’s had to take a year out for personal reasons, so am doing this project alone)\nProject: Driving non-markovianity in open systems\nCode: TP-M09",
+    "text": "Dissertation information:\nSupervisor: Dr Francesco Turci  Co-supervisor: Prof Stephen Clark\nCo-supervisor: Dr David Strachan\nLab partner: Hannah Sobieralska (initially, she’s had to take a year out for personal reasons, so am doing this project alone)\nProject: Driving non-markovianity in open systems\nCode: TP-M09\n\n\n\nProject description:\nAn open system exchanges matter and energy with the environment. Typically, one distinguishes the system from the environment by separating scales: in space, the system is much smaller than the environment, and in time, the environment relaxes much more quickly than the system (it Markovian, i.e. memoryless). The two are, however, always coupled, with interfaces whose contributions are normally taken to be small. However, in open quantum systems, a clear separation between the system and the environment becomes more challenging, both conceptually and practically. Conceptually, the coupling between the system and the bath may be strong enough to lead to important memory effects, where the evolution of the system is strongly correlated in time, and the environment itself behaves differently from a purely thermalised state; from the practical point of view, computer modelling of open systems typically requires explicitly modelling both, i.e. simulating a closed system and examining two subsystems (the original system of interest and the remainder, intrepreted as the environment) (Heinz-Peter Breuer, and Francesco Petruccione 2007). In this project, we will investigate how such memory effects develop in computational models of open quantum systems, exploiting the Matrix Product State (MPS) formalism and tensor network methods (Brenes et al. 2020). We will explore how different models of system-bath coupling and structures affect the development of non-Markovian correlations both in the system and in the environment (DavidMpemba2025?). We will start by considering equilibration towards the thermal state and then focus on periodically driven couplings, which introduce additional timescales and allow us to observe the system stroboscopically (Floquet setting). This will take us to tackle situations in which dissipation coupled to periodic driving can lead to the emergence of non-trivial states, such as time crystals. You will build your project on in-house code in the dedicated, high-performance, scientific programming language Julia, along with existing advanced packages for the simulation of open quantum systems using tensor networks (ITensors). You will have the opportunity to explore both analytically tractable toy models and more complex simulation settings. You will have the opportunity to work on this frontier topic with support from David Strachan, a recently appointed EPSRC Postdoctoral Pathway Fellow working in this area. For further discussion of the project scope, please contact the project supervisor.\n\n\n\n\n\nReferences\n\nBrenes, Marlon, Juan José Mendoza-Arenas, Archak Purkayastha, Mark T. Mitchison, Stephen R. Clark, and John Goold. 2020. “Tensor-Network Method to Simulate Strongly Interacting Quantum Thermal Machines.” Physical Review X 10 (3): 031040. https://doi.org/10.1103/PhysRevX.10.031040.\n\n\nHeinz-Peter Breuer, and Francesco Petruccione. 2007. The Theory of Open Quantum Systems. https://doi.org/https://doi.org/10.1093/acprof:oso/9780199213900.001.0001.",
     "crumbs": [
       "Pre TB1 work",
       "Project information"
@@ -175,10 +175,43 @@
     "href": "content/1_Tb1/Wk1/log.html#section-1",
     "title": "labBook",
     "section": "22/09/2026",
-    "text": "22/09/2026\nGoing to look through the code Dr Turci sent me. I think task list is:\n\nRead through code and break down what its doing\nCompare the julia vs python code - quick runtime benchmark should show Julia to be faster, thus justifying its use",
+    "text": "22/09/2026\nGoing to look through the code Dr Turci sent me. I think task list is:\n\nRead through code and break down what its doing\nCompare the julia vs python code - quick runtime benchmark should show Julia to be faster, thus justifying its use\nthink about how to rewrite the simulation into a utility that can be used for the rest of the project:\n\nAssuming Julia’s faster, write the simulation code in Julia\nIf needbe, can export the simulation results, and build a python julia handler - that way the julia sim is smth that can be called from python code as its own utility\n\n\n\nExamining provided code:\nFirst code block is just some library setup.\nSecond code block sets up spectral function (currently set to a semi-circle) as function of \\(\\omega\\). It then initialises an empty 2D hamiltonian array for the bath sites. Unsure why 2D; my understanding is that a 1D list would encapsulate the bath perfectly fine. Potentially initialising all timesteps and fills them throughout the sim? Oooooh, nvm, its the hamiltonian matrix. Plots the spectral function over \\(\\omega\\).\nThird code block sets up initial state using Fermi Dirac stats.",
     "crumbs": [
       "TB1",
       "Wk1 Log"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/ProjectInfo.html#minor-quarto-notes-to-self",
+    "href": "content/0_preTb1/Wk0/ProjectInfo.html#minor-quarto-notes-to-self",
+    "title": "Dissertation information:",
+    "section": "Minor quarto notes to self:",
+    "text": "Minor quarto notes to self:\n\nSidenotes and boxes:\nCan make sidenotes and textboxes using the following notation:\n::: {.column-margin}\nInsert sidenote here!\n:::\n::: {.callout-note title=\"Insert textboxt title here!\"}\nInsert textbox contents here!\n:::",
+    "crumbs": [
+      "Pre TB1 work",
+      "Project information"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/labbookNotesToSelf.html",
+    "href": "content/0_preTb1/Wk0/labbookNotesToSelf.html",
+    "title": "Labbook notes to self (delete before submission):",
+    "section": "",
+    "text": "This section is a quick place to note down how i keep this labbook, or various bits of markdown/quarto syntax for later ref. Its not part of the main labbook, should be deleted later; i just need a place to help keep labbook formatting consistent or remind myself how to quarto.",
+    "crumbs": [
+      "Pre TB1 work",
+      "Labbook formatting notes"
+    ]
+  },
+  {
+    "objectID": "content/0_preTb1/Wk0/labbookNotesToSelf.html#ddmmyyyy",
+    "href": "content/0_preTb1/Wk0/labbookNotesToSelf.html#ddmmyyyy",
+    "title": "Labbook notes to self (delete before submission):",
+    "section": "dd/mm/yyyy (##):",
+    "text": "dd/mm/yyyy (##):\nThe log for a given day\n\nTask title (###)\nThe log for a particular task - title should preface what sort of task it is (I.E, Reading notes, Coding notes,…)\n\nsub-subsection (####)\nSubdivider for a task",
+    "crumbs": [
+      "Pre TB1 work",
+      "Labbook formatting notes"
     ]
   }
 ]

@@ -14,6 +14,8 @@ website:
       contents:
       - text: "Project information"
         href: content/0_preTb1/Wk0/ProjectInfo.qmd
+      - text: "Labbook formatting notes"
+        href: content/0_preTb1/Wk0/labbookNotesToSelf.qmd
       - text: "Wk0 Log"
         href: content/0_preTb1/Wk0/log.qmd
 

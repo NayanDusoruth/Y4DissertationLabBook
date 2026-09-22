@@ -179,6 +179,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../content/0_preTb1/Wk0/labbookNotesToSelf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labbook formatting notes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../content/0_preTb1/Wk0/log.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wk0 Log</span></a>
   </div>
@@ -370,7 +376,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#reading-notes-second-quantisation-impressions-secondquantisationbook2010" id="toc-reading-notes-second-quantisation-impressions-secondquantisationbook2010" class="nav-link" data-scroll-target="#reading-notes-second-quantisation-impressions-secondquantisationbook2010">Reading notes: Second quantisation impressions <span class="citation" data-cites="secondQuantisationBook2010">(Altland and Simons 2010)</span>:</a></li>
   </ul></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">22/09/2026</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">22/09/2026</a>
+  <ul class="collapse">
+  <li><a href="#examining-provided-code" id="toc-examining-provided-code" class="nav-link" data-scroll-target="#examining-provided-code">Examining provided code:</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -493,11 +502,21 @@ window.Quarto = {
 <ul>
 <li>Read through code and break down what its doing</li>
 <li>Compare the julia vs python code - quick runtime benchmark should show Julia to be faster, thus justifying its use</li>
-<li></li>
+<li>think about how to rewrite the simulation into a utility that can be used for the rest of the project:
+<ul>
+<li>Assuming Julia’s faster, write the simulation code in Julia</li>
+<li>If needbe, can export the simulation results, and build a python julia handler - that way the julia sim is smth that can be called from python code as its own utility</li>
+</ul></li>
 </ul>
+<section id="examining-provided-code" class="level3">
+<h3 class="anchored" data-anchor-id="examining-provided-code">Examining provided code:</h3>
+<p>First code block is just some library setup.</p>
+<p>Second code block sets up spectral function (currently set to a semi-circle) as function of <span class="math inline">\(\omega\)</span>. It then initialises an empty 2D hamiltonian array for the bath sites. Unsure why 2D; my understanding is that a 1D list would encapsulate the bath perfectly fine. Potentially initialising all timesteps and fills them throughout the sim? Oooooh, nvm, its the hamiltonian matrix. Plots the spectral function over <span class="math inline">\(\omega\)</span>.</p>
+<p>Third code block sets up initial state using Fermi Dirac stats.</p>
 
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

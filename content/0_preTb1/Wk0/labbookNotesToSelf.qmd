@@ -1,0 +1,42 @@
+# Labbook notes to self (delete before submission):
+This section is a quick place to note down how i keep this labbook, or various bits of markdown/quarto syntax for later ref. Its not part of the main labbook, should be deleted later; i just need a place to help keep labbook formatting consistent or remind myself how to quarto.
+
+# Title organisation:
+For consistency sake, the title/subtitling should ~follow:
+
+# Main Title (#)
+A section of multiple days
+
+## dd/mm/yyyy (##):
+The log for a given day
+
+### Task title (###)
+The log for a particular task - title should preface what sort of task it is (I.E, Reading notes, Coding notes,...)
+
+#### sub-subsection (####)
+Subdivider for a task 
+
+
+# Quarto notes to self:
+
+### Sidenotes and boxes:
+Can make sidenotes and textboxes using the following notation:
+
+```
+::: {.column-margin}
+Insert sidenote here!
+:::
+```
+
+::: {.column-margin}
+Insert sidenote here!
+:::
+
+```
+::: {.callout-note title="Insert textboxt title here!"}
+Insert textbox contents here!
+:::
+```
+::: {.callout-note title="Insert textboxt title here!"}
+Insert textbox contents here!
+:::

@@ -125,4 +125,19 @@ I think task list is:
 
 * Read through code and break down what its doing
 * Compare the julia vs python code - quick runtime benchmark should show Julia to be faster, thus justifying its use
-* 
+* think about how to rewrite the simulation into a utility that can be used for the rest of the project:
+	* Assuming Julia's faster, write the simulation code in Julia
+	* If needbe, can export the simulation results, and build a python julia handler - that way the julia sim is smth that can be called from python code as its own utility
+
+### Examining provided code:
+First code block is just some library setup.
+
+Second code block sets up spectral function (currently set to a semi-circle) as function of $\omega$. It then initialises an empty 2D hamiltonian array for the bath sites. Unsure why 2D; my understanding is that a 1D list would encapsulate the bath perfectly fine. Potentially initialising all timesteps and fills them throughout the sim? Oooooh, nvm, its the hamiltonian matrix.
+Plots the spectral function over $\omega$.
+
+Third code block sets up initial state using Fermi Dirac stats. 
+
+
+
+
+
