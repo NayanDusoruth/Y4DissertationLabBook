@@ -135,9 +135,58 @@ First code block is just some library setup.
 Second code block sets up spectral function (currently set to a semi-circle) as function of $\omega$. It then initialises an empty 2D hamiltonian array for the bath sites. Unsure why 2D; my understanding is that a 1D list would encapsulate the bath perfectly fine. Potentially initialising all timesteps and fills them throughout the sim? Oooooh, nvm, its the hamiltonian matrix.
 Plots the spectral function over $\omega$.
 
-Third code block sets up initial state using Fermi Dirac stats. 
+::: {.column-margin}
+Sidenote; just realized Julia indicates vector maths using a "." notation (I.E, scalar addition ```a+b``` becomes vector addition ```a.+b```)
+:::
 
+Third code block sets up initial state using Fermi Dirac stats: 
 
+$\mathcal{f}(\beta, \mu, E) = \dfrac{1}{1+e^{\beta E-\beta\mu}}$
 
+The simulation assumes no initial correlations; therefore initial correlation matrix is diagonalised and filled with $\mathcal{f}(\beta, \mu, E)$ for all corresponding system and bath sites:
 
+$C_{ii} = \mathcal{f}(\beta, \mu, E_i)$
+
+Third code block sets up this initial correlation matrix.
+
+Fourth/fifth code blocks illustrate fact that $C_{t=0}$ is diagnolized in site, not hamiltonian basis.
+
+Sixth/seventh code block builds unitary time evolution:
+
+$U(t) = e^{-iHt}$
+
+And build function to evolve correlation matrix over time t.
+::: {.column-margin}
+Sidenote; another julia syntax note; matrix complex conjugate is indicated as ```H'```
+:::
+
+Code block 9 (and surrounding commented out code blocks) compute the correlation matrix over a range of times. The commented out bits inc a computationally slower algorithm (the main method is iterative), and a commented out plot.
+
+Code blocks 10, 11 compute and plot the reduced density matrix element corresponding to the occupation of the system. Recalling [@ProjectOutline2026], the reduced density matrix follows:
+
+$\rho_S(t)=(\begin{array}{cc}
+1-\mathbf{C}_{11}(t) & 0 \\
+0 & \mathbf{C}_{11}(t)
+\end{array})$
+
+where the first element corresponds to the system.
+
+Code block 12 computes the occupation for the bath at the end of the sim.
+
+Final section asks the following questions:
+
+#### On convergence
+
+* How does the convergence depend on the quality of the time discretisation
+* How does it truly depend on the number of bath sites (on CPU and GPUs)?
+* How does it depend on alternative choices of the initial state
+* How does it compare with alternative methods (e.g. the matrix product state (MPS) approach)? 
+
+#### On the physics
+
+* What happens to the covariance matrix as we time evolve? Does it show any emergent structure? 
+* How do these structures relate to the initial choice of the spectral function?
+* Let's perturb the spectral function: can we see long-lived memory effects building up?
+
+Which seem to be starting points for my investigations.
 

@@ -496,7 +496,7 @@ window.Quarto = {
 </section>
 </section>
 </section>
-<section id="section-1" class="level2">
+<section id="section-1" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="section-1">22/09/2026</h2>
 <p>Going to look through the code Dr Turci sent me. I think task list is:</p>
 <ul>
@@ -508,14 +508,52 @@ window.Quarto = {
 <li>If needbe, can export the simulation results, and build a python julia handler - that way the julia sim is smth that can be called from python code as its own utility</li>
 </ul></li>
 </ul>
-<section id="examining-provided-code" class="level3">
+<section id="examining-provided-code" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="examining-provided-code">Examining provided code:</h3>
 <p>First code block is just some library setup.</p>
 <p>Second code block sets up spectral function (currently set to a semi-circle) as function of <span class="math inline">\(\omega\)</span>. It then initialises an empty 2D hamiltonian array for the bath sites. Unsure why 2D; my understanding is that a 1D list would encapsulate the bath perfectly fine. Potentially initialising all timesteps and fills them throughout the sim? Oooooh, nvm, its the hamiltonian matrix. Plots the spectral function over <span class="math inline">\(\omega\)</span>.</p>
-<p>Third code block sets up initial state using Fermi Dirac stats.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Sidenote; just realized Julia indicates vector maths using a “.” notation (I.E, scalar addition <code>a+b</code> becomes vector addition <code>a.+b</code>)</p>
+</div></div><p>Third code block sets up initial state using Fermi Dirac stats:</p>
+<p><span class="math inline">\(\mathcal{f}(\beta, \mu, E) = \dfrac{1}{1+e^{\beta E-\beta\mu}}\)</span></p>
+<p>The simulation assumes no initial correlations; therefore initial correlation matrix is diagonalised and filled with <span class="math inline">\(\mathcal{f}(\beta, \mu, E)\)</span> for all corresponding system and bath sites:</p>
+<p><span class="math inline">\(C_{ii} = \mathcal{f}(\beta, \mu, E_i)\)</span></p>
+<p>Third code block sets up this initial correlation matrix.</p>
+<p>Fourth/fifth code blocks illustrate fact that <span class="math inline">\(C_{t=0}\)</span> is diagnolized in site, not hamiltonian basis.</p>
+<p>Sixth/seventh code block builds unitary time evolution:</p>
+<p><span class="math inline">\(U(t) = e^{-iHt}\)</span></p>
+<p>And build function to evolve correlation matrix over time t. ::: {.column-margin} Sidenote; another julia syntax note; matrix complex conjugate is indicated as <code>H'</code> :::</p>
+<p>Code block 9 (and surrounding commented out code blocks) compute the correlation matrix over a range of times. The commented out bits inc a computationally slower algorithm (the main method is iterative), and a commented out plot.</p>
+<p>Code blocks 10, 11 compute and plot the reduced density matrix element corresponding to the occupation of the system. Recalling <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Turci 2026</a>)</span>, the reduced density matrix follows:</p>
+<p><span class="math inline">\(\rho_S(t)=(\begin{array}{cc}
+1-\mathbf{C}_{11}(t) &amp; 0 \\
+0 &amp; \mathbf{C}_{11}(t)
+\end{array})\)</span></p>
+<p>where the first element corresponds to the system.</p>
+<p>Code block 12 computes the occupation for the bath at the end of the sim.</p>
+<p>Final section asks the following questions:</p>
+<section id="on-convergence" class="level4">
+<h4 class="anchored" data-anchor-id="on-convergence">On convergence</h4>
+<ul>
+<li>How does the convergence depend on the quality of the time discretisation</li>
+<li>How does it truly depend on the number of bath sites (on CPU and GPUs)?</li>
+<li>How does it depend on alternative choices of the initial state</li>
+<li>How does it compare with alternative methods (e.g.&nbsp;the matrix product state (MPS) approach)?</li>
+</ul>
+</section>
+<section id="on-the-physics" class="level4">
+<h4 class="anchored" data-anchor-id="on-the-physics">On the physics</h4>
+<ul>
+<li>What happens to the covariance matrix as we time evolve? Does it show any emergent structure?</li>
+<li>How do these structures relate to the initial choice of the spectral function?</li>
+<li>Let’s perturb the spectral function: can we see long-lived memory effects building up?</li>
+</ul>
+<p>Which seem to be starting points for my investigations.</p>
 
 
 
+</section>
 </section>
 </section>
 
@@ -528,6 +566,9 @@ Rivas, Ángel, and Susana F Huelga. 2012. <em>Open <span>Quantum</span> <span>Sy
 </div>
 <div id="ref-NoNonsenseQFT" class="csl-entry" role="listitem">
 Schwichtenberg. 2020. <em>No-<span>Nonsense</span> <span>Quantum</span> <span>Field</span> <span>Theory</span></em>.
+</div>
+<div id="ref-ProjectOutline2026" class="csl-entry" role="listitem">
+Turci, Francesco. 2026. <span>“<span>MarkovianityOutline</span>.”</span>
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
