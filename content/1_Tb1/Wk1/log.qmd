@@ -272,7 +272,7 @@ Tried [@stackoverflowJuliaVsPython2022] moving everything into a function in cas
 Have just measured the one case where there is a global variable and thats the issue.
 THis block of code:
 ```
-Udt = unitary(dt)
+    Udt = unitary(dt)
     UdtT = Udt'
     Css = Dict(0.0 => C0)
     key = 0.0
@@ -282,4 +282,18 @@ Udt = unitary(dt)
         key = t
     end
 ```
-is whats causing issues
+is whats causing issues. If the global variable key is to blame, editing the code to not use it may help? it may also be an issue of the matrix multiplcation occuring in that loop. Also dictionary access?
+As i see it 3 potential issues:
+
+* Matrix multiplications are computationally awful
+* the "key" variable is to my knowledge global, and is getting reassigned every iteration - apparently Julia dislikes this
+* assigning the data to a dictionary which intuition would suggest is a less efficient data structure
+
+Have reworked it so that instead of assigning key, doing it by iteration - seems to shave 5-10sec. Will examine the dictionary storage next because that also seems to be causing issues. Switching to array doesn't seem to have saved time. Seemingly matrix multiplication is main cause of issues...
+
+Regardless, supervisor meeting tmr, i think points to bring up may be:
+
+* Why am i getting these unintuitive performances?
+	* outcome of this would inform future coding plans
+* summarise what material i've read/earmarked through
+* share labbook
