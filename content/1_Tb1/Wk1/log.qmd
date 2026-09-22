@@ -190,3 +190,39 @@ Final section asks the following questions:
 
 Which seem to be starting points for my investigations.
 
+IMPORTANT NOTE: The python version of the code also includes some additional stuff; a version of the code which uses pytorch for GPU acceleration. Does the same process, but using pytorch for the matrix multiplications. This may be faster; will thus need to compare julia, base python, pytorch accelerated python.
+
+### thoughts on the code
+The code is written in a very "linear" manner - good to illustrate the computational process, less useful as a project utility; rewriting it into a self contained utility that can be called by other code will be useful. Before that however, it'll be useful to quickly copy/paste the code into julia/py files, run and time em for benchmarking reasons.
+
+Am quickly copying over the code to dedicated julia/py files. the py file also has the pytorch stuff commented out for the moment. Going to test the timings for all three; currently just making sure the 3 codes run. Going to comment out all print statements since ik in python that can slow things down; and the main simulation engine wouldn't have print statements built in anyhows.
+The rough timings follow:
+
+* Julia: 108.98370599746704 sec
+* Python: 74.38792300224304 sec
+* pytorch: 56.157703161239624 sec
+
+Thats odd and counterintuitive. Going to repeat both tests to make sure its not a fluke.
+
+* Julia: 105.68335008621216 sec
+* Python: 64.68177103996277 sec
+* pytorch: 31.687152862548828 sec
+
+
+That is odd... Quick lookup, this [@juliaVsPythonPerformance] explainer notes that generally Julia is faster as it is a C based compiled language whilst python is an interpretive language. However, certain python libraries (notably numpy) are written in C so have similar performances. As such, if using those C based python libraries, python can be almost as fast as julia. However that doesn't explain the significant discrepancy in results here.
+
+Have fiddled with vscodium's julia settings; initially it was using an auto #threads, have set it to 8 for now to see if that makes a diff. Seems to not make a difference; have set the value to auto. Doesn't make a difference... Trying again with 16 threads, but have restarted the terminal; double check that that hasn't been overlooked. Ok that fixed it to some degree producing:
+
+* Julia: 60.03582501411438 sec
+
+Which is roughly on par w/python; although pytorch still outperforms it significantly.
+
+Thinking of other potential issues, either there are some tasks that Julia is worse at (I.E, i wonder if plotting is as efficient), or the julia code isn't fully optimised whilst the python code makes efficient use of the numpy/pytorch libraries.
+
+Going to comment out the plotting code in both, compare the speed therein:
+
+* Julia: 45.252466917037964 sec
+* Python: 45.61387276649475 sec
+* Pytorch: sec
+
+Sidenote; when running the python code, my laptop's fan is SIGNIFICANTLY louder than when running the Julia code. I may have a look and see my system resource use; cause that may give further insight into wether or not the above is a fair comparison, or if there are further optimisations that could be made to Julia.

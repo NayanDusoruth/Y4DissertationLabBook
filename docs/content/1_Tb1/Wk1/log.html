@@ -379,6 +379,7 @@ window.Quarto = {
   <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">22/09/2026</a>
   <ul class="collapse">
   <li><a href="#examining-provided-code" id="toc-examining-provided-code" class="nav-link" data-scroll-target="#examining-provided-code">Examining provided code:</a></li>
+  <li><a href="#thoughts-on-the-code" id="toc-thoughts-on-the-code" class="nav-link" data-scroll-target="#thoughts-on-the-code">thoughts on the code</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -550,16 +551,50 @@ window.Quarto = {
 <li>Let’s perturb the spectral function: can we see long-lived memory effects building up?</li>
 </ul>
 <p>Which seem to be starting points for my investigations.</p>
-
-
-
+<p>IMPORTANT NOTE: The python version of the code also includes some additional stuff; a version of the code which uses pytorch for GPU acceleration. Does the same process, but using pytorch for the matrix multiplications. This may be faster; will thus need to compare julia, base python, pytorch accelerated python.</p>
 </section>
+</section>
+<section id="thoughts-on-the-code" class="level3">
+<h3 class="anchored" data-anchor-id="thoughts-on-the-code">thoughts on the code</h3>
+<p>The code is written in a very “linear” manner - good to illustrate the computational process, less useful as a project utility; rewriting it into a self contained utility that can be called by other code will be useful. Before that however, it’ll be useful to quickly copy/paste the code into julia/py files, run and time em for benchmarking reasons.</p>
+<p>Am quickly copying over the code to dedicated julia/py files. the py file also has the pytorch stuff commented out for the moment. Going to test the timings for all three; currently just making sure the 3 codes run. Going to comment out all print statements since ik in python that can slow things down; and the main simulation engine wouldn’t have print statements built in anyhows. The rough timings follow:</p>
+<ul>
+<li>Julia: 108.98370599746704 sec</li>
+<li>Python: 74.38792300224304 sec</li>
+<li>pytorch: 56.157703161239624 sec</li>
+</ul>
+<p>Thats odd and counterintuitive. Going to repeat both tests to make sure its not a fluke.</p>
+<ul>
+<li>Julia: 105.68335008621216 sec</li>
+<li>Python: 64.68177103996277 sec</li>
+<li>pytorch: 31.687152862548828 sec</li>
+</ul>
+<p>That is odd… Quick lookup, this <span class="citation" data-cites="juliaVsPythonPerformance">(<a href="#ref-juliaVsPythonPerformance" role="doc-biblioref">Clayton 2022</a>)</span> explainer notes that generally Julia is faster as it is a C based compiled language whilst python is an interpretive language. However, certain python libraries (notably numpy) are written in C so have similar performances. As such, if using those C based python libraries, python can be almost as fast as julia. However that doesn’t explain the significant discrepancy in results here.</p>
+<p>Have fiddled with vscodium’s julia settings; initially it was using an auto #threads, have set it to 8 for now to see if that makes a diff. Seems to not make a difference; have set the value to auto. Doesn’t make a difference… Trying again with 16 threads, but have restarted the terminal; double check that that hasn’t been overlooked. Ok that fixed it to some degree producing:</p>
+<ul>
+<li>Julia: 60.03582501411438 sec</li>
+</ul>
+<p>Which is roughly on par w/python; although pytorch still outperforms it significantly.</p>
+<p>Thinking of other potential issues, either there are some tasks that Julia is worse at (I.E, i wonder if plotting is as efficient), or the julia code isn’t fully optimised whilst the python code makes efficient use of the numpy/pytorch libraries.</p>
+<p>Going to comment out the plotting code in both, compare the speed therein:</p>
+<ul>
+<li>Julia: 45.252466917037964 sec</li>
+<li>Python: 45.61387276649475 sec</li>
+<li>Pytorch: sec</li>
+</ul>
+<p>Sidenote; when running the python code, my laptop’s fan is SIGNIFICANTLY louder than when running the Julia code. I may have a look and see my system resource use; cause that may give further insight into wether or not the above is a fair comparison, or if there are further optimisations that could be made to Julia.</p>
+
+
+
 </section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-secondQuantisationBook2010" class="csl-entry" role="listitem">
 Altland, Alexander, and Ben Simons. 2010. <em>Condensed <span>Matter</span> <span>Field</span> <span>Theory</span> 2e</em>. Cambridge University Press. https://doi.org/<a href="https://doi.org/10.1017/CBO9780511789984">https://doi.org/10.1017/CBO9780511789984</a>.
+</div>
+<div id="ref-juliaVsPythonPerformance" class="csl-entry" role="listitem">
+Clayton, Michael. 2022. <span>“Is <span>Julia</span> <span>Really</span> <span>Faster</span> Than <span>Python</span> and <span>Numpy</span>?”</span> <em>Towards Data Science</em>. <a href="https://towardsdatascience.com/is-julia-really-faster-than-python-and-numpy-242e0a5fe34f/">https://towardsdatascience.com/is-julia-really-faster-than-python-and-numpy-242e0a5fe34f/</a>.
 </div>
 <div id="ref-OpenQuantumSystemsIntro2012" class="csl-entry" role="listitem">
 Rivas, Ángel, and Susana F Huelga. 2012. <em>Open <span>Quantum</span> <span>Systems</span>. <span>An</span> <span>Introduction</span></em>. https://doi.org/<a href="https://doi.org/10.48550/arXiv.1104.5242">https://doi.org/10.48550/arXiv.1104.5242</a>.
