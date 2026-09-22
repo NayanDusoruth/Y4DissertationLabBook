@@ -169,5 +169,16 @@
       "Pre TB1 work",
       "Project information"
     ]
+  },
+  {
+    "objectID": "content/1_Tb1/Wk1/log.html#section-1",
+    "href": "content/1_Tb1/Wk1/log.html#section-1",
+    "title": "labBook",
+    "section": "22/09/2026",
+    "text": "22/09/2026\nGoing to look through the code Dr Turci sent me. I think task list is:\n\nRead through code and break down what its doing\nCompare the julia vs python code - quick runtime benchmark should show Julia to be faster, thus justifying its use",
+    "crumbs": [
+      "TB1",
+      "Wk1 Log"
+    ]
   }
 ]

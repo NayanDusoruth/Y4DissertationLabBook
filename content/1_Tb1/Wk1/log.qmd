@@ -116,3 +116,13 @@ ctrl+f through the book doesn't seem to have a contained explanation albeit many
 In which case [@NoNonsenseQFT] may be a better call - the mathematical machinery seems to generalize beyond QFT, so it should be applicable. Ctrl+f through [@NoNonsenseQFT], the explanation of contractions/Wick's theorem goes between p426-p428 at minimum (more after that). Not a today thing to look at but worth earmarking for later.
 
 This reading was a useful refresher and "earmarking exploration" - i think tmr i can go through the code in depth to understand what its doing/how its structured. I should be able to come up with a near term plan thereafter (wether i can get on w/the computational engine or if i need more reading).
+
+
+
+## 22/09/2026
+Going to look through the code Dr Turci sent me.
+I think task list is:
+
+* Read through code and break down what its doing
+* Compare the julia vs python code - quick runtime benchmark should show Julia to be faster, thus justifying its use
+* 
