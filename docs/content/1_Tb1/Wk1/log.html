@@ -381,6 +381,7 @@ window.Quarto = {
   <li><a href="#examining-provided-code" id="toc-examining-provided-code" class="nav-link" data-scroll-target="#examining-provided-code">Examining provided code:</a></li>
   <li><a href="#thoughts-on-the-code" id="toc-thoughts-on-the-code" class="nav-link" data-scroll-target="#thoughts-on-the-code">thoughts on the code</a></li>
   </ul></li>
+  <li><a href="#supervisor-meeting" id="toc-supervisor-meeting" class="nav-link" data-scroll-target="#supervisor-meeting">23/09/2026 - supervisor meeting</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -644,11 +645,35 @@ window.Quarto = {
 <li>summarise what material i’ve read/earmarked through</li>
 <li>share labbook</li>
 </ul>
-
-
-
 </section>
 </section>
+</section>
+<section id="supervisor-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="supervisor-meeting">23/09/2026 - supervisor meeting</h2>
+<p>explained what i did wick theorem - wick theorem - applies generally slater determinant - slater determinant - old language for first quantisation - is old language for fock state practical result of wick theorem ensures hamiltonian is quadratic as in intro</p>
+<p>Meeting outline:</p>
+<ul>
+<li>First outlined quickly what i did</li>
+<li>asked after wicks theorem - tldr: it is useful because it produces the quadratic hamiltonian and ensures the correlation matrix is expressed solely in terms of <span class="math inline">\(h_{ij}\)</span></li>
+<li>spectral function - semicircle corresponds to 1D chain of sites - “1D fermi gas” was physical comparison</li>
+<li>went through the code step by step and getting sidetracked by the “dials” of the spectral function
+<ul>
+<li>Oscillations due to sharp bounds (particularly noticeable when cranking up prefactor and epsilon)</li>
+<li>spectral function bandwidth, number</li>
+<li>idea of “what the system sees” (relates to both energy level and coupling strength; term “lorentzian” came up - David will send over resources)</li>
+</ul></li>
+<li>discussed analytical way of computing steady state occupation analytically in order to compare the numerical sim - in some regimes these may disagree as the analytical solution is over a continuous rather than discretized bath</li>
+<li>Going forwards:
+<ul>
+<li>Worth fiddling w/dials, for them moment stay w/semicircular function for the moment</li>
+<li>try “breaking” model w/wierd regimes (I.E, large prefactor and epsilon) to try and understand limits of sytem</li>
+<li>implement analytical thermalized occupation number computation - can then compare analytical and numerical values</li>
+</ul></li>
+</ul>
+<p>Plans in order to support that: * Share link labbook w/supervisors * join teams group Dr Turci set up [x] * Rewrite simulation code into simple utility code that i can call which spits results out in standard form * Julia vs python - idt that i can get Julia to be much better. As such pytorch implementation is most performant. As such main reason to use Julia would be to learn Julia for skills development reasons. * Need to think on language choice: * Pure python * Mix - Julia for core simulation, build python OS command call to handle Julia core; have it spit out results in format that python code can read so that analysis can be done in more familiar python * Pure Julia * Code structure notes: * be able to take in spectral function, and sim parameters * run simulation * export simulation data in standard format (standardising format will make it easier to export and store data for comparative purposes) * object orriented approach may be useful - that way a simulation object can contain all the parameters, run, save and load itself to files for data collection reasons. * then the simulation object can passed as self contained object into analyses</p>
+
+
+
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

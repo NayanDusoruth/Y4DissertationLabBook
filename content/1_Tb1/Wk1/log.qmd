@@ -297,3 +297,42 @@ Regardless, supervisor meeting tmr, i think points to bring up may be:
 	* outcome of this would inform future coding plans
 * summarise what material i've read/earmarked through
 * share labbook
+
+## 23/09/2026 - supervisor meeting
+explained what i did
+wick theorem - wick theorem - applies generally slater determinant - 
+slater determinant - old language for first quantisation - is old language for fock state
+practical result of wick theorem ensures hamiltonian is quadratic as in intro
+
+
+Meeting outline:
+
+* First outlined quickly what i did
+* asked after wicks theorem - tldr: it is useful because it produces the quadratic hamiltonian and ensures the correlation matrix is expressed solely in terms of $h_{ij}$
+* spectral function - semicircle corresponds to 1D chain of sites - "1D fermi gas" was physical comparison
+* went through the code step by step and getting sidetracked by the "dials" of the spectral function
+	* Oscillations due to sharp bounds (particularly noticeable when cranking up prefactor and epsilon)
+	* spectral function bandwidth, number
+	* idea of "what the system sees" (relates to both energy level and coupling strength; term "lorentzian" came up - David will send over resources)
+* discussed analytical way of computing steady state occupation analytically in order to compare the numerical sim - in some regimes these may disagree as the analytical solution is over a continuous rather than discretized bath
+* Going forwards:
+	* Worth fiddling w/dials, for them moment stay w/semicircular function for the moment
+	* try "breaking" model w/wierd regimes (I.E, large prefactor and epsilon) to try and understand limits of sytem
+	* implement analytical thermalized occupation number computation - can then compare analytical and numerical values
+
+Plans in order to support that:
+* Share link labbook w/supervisors
+* join teams group Dr Turci set up [x]
+* Rewrite simulation code into simple utility code that i can call which spits results out in standard form
+	* Julia vs python - idt that i can get Julia to be much better. As such pytorch implementation is most performant. As such main reason to use Julia would be to learn Julia for skills development reasons.
+	* Need to think on language choice:
+		* Pure python
+		* Mix - Julia for core simulation, build python OS command call to handle Julia core; have it spit out results in format that python code can read so that analysis can be done in more familiar python
+		* Pure Julia
+	* Code structure notes:
+		* be able to take in spectral function, and sim parameters
+		* run simulation
+		* export simulation data in standard format (standardising format will make it easier to export and store data for comparative purposes)
+		* object orriented approach may be useful - that way a simulation object can contain all the parameters, run, save and load itself to files for data collection reasons.
+		* then the simulation object can passed as self contained object into analyses
+
