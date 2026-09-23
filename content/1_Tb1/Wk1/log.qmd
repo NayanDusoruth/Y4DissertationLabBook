@@ -335,4 +335,5 @@ Plans in order to support that:
 		* export simulation data in standard format (standardising format will make it easier to export and store data for comparative purposes)
 		* object orriented approach may be useful - that way a simulation object can contain all the parameters, run, save and load itself to files for data collection reasons.
 		* then the simulation object can passed as self contained object into analyses
+* Read through analytical thermalization resources David will send - implement these in code
 
