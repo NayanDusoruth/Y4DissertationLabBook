@@ -321,6 +321,7 @@ Meeting outline:
 	* implement analytical thermalized occupation number computation - can then compare analytical and numerical values
 
 Plans in order to support that:
+
 * Share link labbook w/supervisors
 * join teams group Dr Turci set up [x]
 * Rewrite simulation code into simple utility code that i can call which spits results out in standard form

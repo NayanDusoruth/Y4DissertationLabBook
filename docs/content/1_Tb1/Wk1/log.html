@@ -670,7 +670,30 @@ window.Quarto = {
 <li>implement analytical thermalized occupation number computation - can then compare analytical and numerical values</li>
 </ul></li>
 </ul>
-<p>Plans in order to support that: * Share link labbook w/supervisors * join teams group Dr Turci set up [x] * Rewrite simulation code into simple utility code that i can call which spits results out in standard form * Julia vs python - idt that i can get Julia to be much better. As such pytorch implementation is most performant. As such main reason to use Julia would be to learn Julia for skills development reasons. * Need to think on language choice: * Pure python * Mix - Julia for core simulation, build python OS command call to handle Julia core; have it spit out results in format that python code can read so that analysis can be done in more familiar python * Pure Julia * Code structure notes: * be able to take in spectral function, and sim parameters * run simulation * export simulation data in standard format (standardising format will make it easier to export and store data for comparative purposes) * object orriented approach may be useful - that way a simulation object can contain all the parameters, run, save and load itself to files for data collection reasons. * then the simulation object can passed as self contained object into analyses</p>
+<p>Plans in order to support that:</p>
+<ul>
+<li>Share link labbook w/supervisors</li>
+<li>join teams group Dr Turci set up [x]</li>
+<li>Rewrite simulation code into simple utility code that i can call which spits results out in standard form
+<ul>
+<li>Julia vs python - idt that i can get Julia to be much better. As such pytorch implementation is most performant. As such main reason to use Julia would be to learn Julia for skills development reasons.</li>
+<li>Need to think on language choice:
+<ul>
+<li>Pure python</li>
+<li>Mix - Julia for core simulation, build python OS command call to handle Julia core; have it spit out results in format that python code can read so that analysis can be done in more familiar python</li>
+<li>Pure Julia</li>
+</ul></li>
+<li>Code structure notes:
+<ul>
+<li>be able to take in spectral function, and sim parameters</li>
+<li>run simulation</li>
+<li>export simulation data in standard format (standardising format will make it easier to export and store data for comparative purposes)</li>
+<li>object orriented approach may be useful - that way a simulation object can contain all the parameters, run, save and load itself to files for data collection reasons.</li>
+<li>then the simulation object can passed as self contained object into analyses</li>
+</ul></li>
+</ul></li>
+<li>Read through analytical thermalization resources David will send - implement these in code</li>
+</ul>
 
 
 
