@@ -241,7 +241,18 @@
     "href": "content/1_Tb1/Wk1/log.html#section-3",
     "title": "labBook",
     "section": "27/09/2026",
-    "text": "27/09/2026\nHave realized there are some additional bits that would be convenient to implement into the base utility:\n\nSaving method - don’t need to save all the correlation matrices, just the densities:\n\nDo still need to save the last correlation matrix - need it to be able to compute further correlation matrices\n\nimplement simulation names - will help with file handling\nSave all method - create folder into which .simData, all plots, and a readable json w/simulation info is placed\n\nHave implemented the above. The saved object is significantly smaller now which will help in future. I think next steps are:\n\nSimulate and save results over variations on spectral function parameters - gain qualitative insight into the system behaviour as a result\nImplement the analytical thermalization solution David has given me (“RLM Occupation,” n.d.)\n\nQuickly looking at the analytical thermalization David has given me (“RLM Occupation,” n.d.)",
+    "text": "27/09/2026\nHave realized there are some additional bits that would be convenient to implement into the base utility:\n\nSaving method - don’t need to save all the correlation matrices, just the densities:\n\nDo still need to save the last correlation matrix - need it to be able to compute further correlation matrices\n\nimplement simulation names - will help with file handling\nSave all method - create folder into which .simData, all plots, and a readable json w/simulation info is placed\n\nHave implemented the above. The saved object is significantly smaller now which will help in future. I think next steps are:\n\nSimulate and save results over variations on spectral function parameters - gain qualitative insight into the system behaviour as a result\nImplement the analytical thermalization solution David has given me (“RLM Occupation,” n.d.)",
+    "crumbs": [
+      "TB1",
+      "Wk1 Log"
+    ]
+  },
+  {
+    "objectID": "content/1_Tb1/Wk1/log.html#basic-parameter-variations",
+    "href": "content/1_Tb1/Wk1/log.html#basic-parameter-variations",
+    "title": "labBook",
+    "section": "Basic parameter variations",
+    "text": "Basic parameter variations\nHave set some basic variations of initial parameters running to gain insight into the system setup. Variations:\n\nPrefactor: 5 samples over [0.005, 0.01]\nBandwidth: 5 samples over [0.5, 1.5]\nbath size: 5 samples over [100, 500]\nenergy scale: 5 samples over [0,2]\nbeta: 5 samples over [0,2]\nmu: 5 samples over [0,2]\n\nInitial impressions:\n\nComputational slowdown over bath size is significant. Didn’t time the computation, however \\(n=500\\) is taking significantly longer than \\(n=400\\). Unsuprising in retrospect, but informs a computational limit of this simulation. Am an idiot; setup my arrays wrong, so it only did [100, 400] - the long compute time was it doing all the other simulations. Quickly redoing that one.",
     "crumbs": [
       "TB1",
       "Wk1 Log"

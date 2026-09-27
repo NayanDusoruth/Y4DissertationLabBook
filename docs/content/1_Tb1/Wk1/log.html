@@ -383,10 +383,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#supervisor-meeting" id="toc-supervisor-meeting" class="nav-link" data-scroll-target="#supervisor-meeting">23/09/2026 - supervisor meeting</a></li>
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">26/09/2026</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">27/09/2026</a>
-  <ul class="collapse">
-  <li><a href="#reading-notes-rlmoccupation2026" id="toc-reading-notes-rlmoccupation2026" class="nav-link" data-scroll-target="#reading-notes-rlmoccupation2026">Reading notes <span class="citation" data-cites="RLMoccupation2026">(<span>“<span>RLM</span> Occupation,”</span> n.d.)</span></a></li>
-  </ul></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">27/09/2026</a></li>
+  <li><a href="#basic-parameter-variations" id="toc-basic-parameter-variations" class="nav-link" data-scroll-target="#basic-parameter-variations">Basic parameter variations</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -730,16 +728,28 @@ window.Quarto = {
 <li>Simulate and save results over variations on spectral function parameters - gain qualitative insight into the system behaviour as a result</li>
 <li>Implement the analytical thermalization solution David has given me <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref"><span>“<span>RLM</span> Occupation,”</span> n.d.</a>)</span></li>
 </ul>
-<p>Quickly looking at the analytical thermalization David has given me <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref"><span>“<span>RLM</span> Occupation,”</span> n.d.</a>)</span></p>
-<section id="reading-notes-rlmoccupation2026" class="level3">
-
+</section>
+<section id="basic-parameter-variations" class="level2">
+<h2 class="anchored" data-anchor-id="basic-parameter-variations">Basic parameter variations</h2>
+<p>Have set some basic variations of initial parameters running to gain insight into the system setup. Variations:</p>
+<ul>
+<li>Prefactor: 5 samples over [0.005, 0.01]</li>
+<li>Bandwidth: 5 samples over [0.5, 1.5]</li>
+<li>bath size: 5 samples over [100, 500]</li>
+<li>energy scale: 5 samples over [0,2]</li>
+<li>beta: 5 samples over [0,2]</li>
+<li>mu: 5 samples over [0,2]</li>
+</ul>
+<p>Initial impressions:</p>
+<ul>
+<li>Computational slowdown over bath size is significant. Didn’t time the computation, however <span class="math inline">\(n=500\)</span> is taking significantly longer than <span class="math inline">\(n=400\)</span>. Unsuprising in retrospect, but informs a computational limit of this simulation. Am an idiot; setup my arrays wrong, so it only did [100, 400] - the long compute time was it doing all the other simulations. Quickly redoing that one.</li>
+</ul>
 
 
 
 </section>
-</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Reading notes (“RLM Occupation,” n.d.)</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-secondQuantisationBook2010" class="csl-entry" role="listitem">
 Altland, Alexander, and Ben Simons. 2010. <em>Condensed <span>Matter</span> <span>Field</span> <span>Theory</span> 2e</em>. Cambridge University Press. https://doi.org/<a href="https://doi.org/10.1017/CBO9780511789984">https://doi.org/10.1017/CBO9780511789984</a>.
 </div>

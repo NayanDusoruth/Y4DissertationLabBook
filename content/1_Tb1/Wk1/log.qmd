@@ -370,5 +370,17 @@ I think next steps are:
 * Simulate and save results over variations on spectral function parameters - gain qualitative insight into the system behaviour as a result
 * Implement the analytical thermalization solution David has given me [@RLMoccupation2026]
 
+## Basic parameter variations
+Have set some basic variations of initial parameters running to gain insight into the system setup.
+Variations:
 
-### Reading notes [@RLMoccupation2026]
+* Prefactor: 5 samples over [0.005, 0.01] 
+* Bandwidth: 5 samples over [0.5, 1.5]
+* bath size: 5 samples over [100, 500]
+* energy scale: 5 samples over [0,2]
+* beta: 5 samples over [0,2]
+* mu: 5 samples over [0,2]
+
+Initial impressions:
+
+* Computational slowdown over bath size is significant. Didn't time the computation, however $n=500$ is taking significantly longer than $n=400$. Unsuprising in retrospect, but informs a computational limit of this simulation. Am an idiot; setup my arrays wrong, so it only did [100, 400] - the long compute time was it doing all the other simulations. Quickly redoing that one. Well, am not doing that again. I'm pretty sure that was the first time i've properly crashed my laptop. granted other things where running in the background, but still, i think $n=400$ is likely a safe limit
