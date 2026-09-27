@@ -382,6 +382,11 @@ window.Quarto = {
   <li><a href="#thoughts-on-the-code" id="toc-thoughts-on-the-code" class="nav-link" data-scroll-target="#thoughts-on-the-code">thoughts on the code</a></li>
   </ul></li>
   <li><a href="#supervisor-meeting" id="toc-supervisor-meeting" class="nav-link" data-scroll-target="#supervisor-meeting">23/09/2026 - supervisor meeting</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">26/09/2026</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">27/09/2026</a>
+  <ul class="collapse">
+  <li><a href="#reading-notes-rlmoccupation2026" id="toc-reading-notes-rlmoccupation2026" class="nav-link" data-scroll-target="#reading-notes-rlmoccupation2026">Reading notes <span class="citation" data-cites="RLMoccupation2026">(<span>“<span>RLM</span> Occupation,”</span> n.d.)</span></a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -618,7 +623,7 @@ window.Quarto = {
 <li>performance critical code should be inside functions</li>
 <li>avoid unsigned global variables</li>
 </ul>
-<p>Tried <span class="citation" data-cites="stackoverflowJuliaVsPython2022">(<a href="#ref-stackoverflowJuliaVsPython2022" role="doc-biblioref"><strong>stackoverflowJuliaVsPython2022?</strong></a>)</span> moving everything into a function in case that worked; it didnt. However i suspect that the code requires broader optimisation. The fact that the basic adding arrays test favours python so strongly is incredibly odd… Apparently global variables are REALLY bad in julia, so maybe its that?</p>
+<p>Tried <span class="citation" data-cites="stackoverflowJuliaVsPython2022">(<a href="#ref-stackoverflowJuliaVsPython2022" role="doc-biblioref">Kamiński 2022</a>)</span> moving everything into a function in case that worked; it didnt. However i suspect that the code requires broader optimisation. The fact that the basic adding arrays test favours python so strongly is incredibly odd… Apparently global variables are REALLY bad in julia, so maybe its that?</p>
 <p>Have just measured the one case where there is a global variable and thats the issue. THis block of code:</p>
 <pre><code>    Udt = unitary(dt)
     UdtT = Udt'
@@ -696,23 +701,62 @@ window.Quarto = {
 <li>Read through analytical thermalization resources David will send - implement these in code</li>
 <li>fiddle w/numerical simulation spectral function parameters, compare to analytical thermalization</li>
 </ul>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">26/09/2026</h2>
+<p>Plan before next supervisor meeting:</p>
+<ul>
+<li>Get standard simulation utility rewritten</li>
+<li>Perform some basic variations onto the spectral function (I.E, same function, fiddle w/prefactor and energies)</li>
+<li>Implement analytical thermalization that David sent me</li>
+</ul>
+<p>In terms of the code utility, I’m going to use python. The performance benefits of Julia are unclear and would require significant investigation to leverage. Adapting the pytorch implementation should provide sufficient performance. Furthermore using python will allow an object oriented implementation; whereby each individual simulation is handled and run by a simulation object. These could also support saveData and loadData utilities allowing for data to be stored for later analysis.</p>
+<p>Note, whilst i’m rewriting a lot of the code, i am also wholesale copying the code that works and can be adapted to the new framework. Going to break for lunch; adapting is going well; have gotten a bit bogged down in getting the graphs pretty. A bit of a waste of time, but i’d rather make em work nicely in a “set and forget” manner now so i don’t have to worry about them later.</p>
+<p>Have finished base implementation - it can simulate code as in the provided code, as well as save/load itself from a pickle file. Unfortunately the pickle files are large (1.45Gb for 100 steps, n=300); so may want to build another “lossy” data export method which just saves/loads the densities… TBD, not a today thing. As such, I think tmr i can begin varying the spectral function parameters and implementing the analytical thermalization.</p>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3">27/09/2026</h2>
+<p>Have realized there are some additional bits that would be convenient to implement into the base utility:</p>
+<ul>
+<li>Saving method - don’t need to save all the correlation matrices, just the densities:
+<ul>
+<li>Do still need to save the last correlation matrix - need it to be able to compute further correlation matrices</li>
+</ul></li>
+<li>implement simulation names - will help with file handling</li>
+<li>Save all method - create folder into which .simData, all plots, and a readable json w/simulation info is placed</li>
+</ul>
+<p>Have implemented the above. The saved object is significantly smaller now which will help in future. I think next steps are:</p>
+<ul>
+<li>Simulate and save results over variations on spectral function parameters - gain qualitative insight into the system behaviour as a result</li>
+<li>Implement the analytical thermalization solution David has given me <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref"><span>“<span>RLM</span> Occupation,”</span> n.d.</a>)</span></li>
+</ul>
+<p>Quickly looking at the analytical thermalization David has given me <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref"><span>“<span>RLM</span> Occupation,”</span> n.d.</a>)</span></p>
+<section id="reading-notes-rlmoccupation2026" class="level3">
+
 
 
 
 </section>
+</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Reading notes (“RLM Occupation,” n.d.)</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-secondQuantisationBook2010" class="csl-entry" role="listitem">
 Altland, Alexander, and Ben Simons. 2010. <em>Condensed <span>Matter</span> <span>Field</span> <span>Theory</span> 2e</em>. Cambridge University Press. https://doi.org/<a href="https://doi.org/10.1017/CBO9780511789984">https://doi.org/10.1017/CBO9780511789984</a>.
 </div>
 <div id="ref-juliaVsPythonPerformance" class="csl-entry" role="listitem">
 Clayton, Michael. 2022. <span>“Is <span>Julia</span> <span>Really</span> <span>Faster</span> Than <span>Python</span> and <span>Numpy</span>?”</span> <em>Towards Data Science</em>. <a href="https://towardsdatascience.com/is-julia-really-faster-than-python-and-numpy-242e0a5fe34f/">https://towardsdatascience.com/is-julia-really-faster-than-python-and-numpy-242e0a5fe34f/</a>.
 </div>
+<div id="ref-stackoverflowJuliaVsPython2022" class="csl-entry" role="listitem">
+Kamiński, Bogumił. 2022. <span>“Answer to "<span>Julia</span> Running an Order of Magnitude Slower Than Python".”</span> <em>Stack Overflow</em>. <a href="https://stackoverflow.com/a/74077856">https://stackoverflow.com/a/74077856</a>.
+</div>
 <div id="ref-juliaPerformanceTips" class="csl-entry" role="listitem">
 <span>“Performance <span>Tips</span> · <span>The</span> <span>Julia</span> <span>Language</span>.”</span> n.d. Accessed September 22, 2026. <a href="https://docs.julialang.org/en/v1/manual/performance-tips/">https://docs.julialang.org/en/v1/manual/performance-tips/</a>.
 </div>
 <div id="ref-OpenQuantumSystemsIntro2012" class="csl-entry" role="listitem">
 Rivas, Ángel, and Susana F Huelga. 2012. <em>Open <span>Quantum</span> <span>Systems</span>. <span>An</span> <span>Introduction</span></em>. https://doi.org/<a href="https://doi.org/10.48550/arXiv.1104.5242">https://doi.org/10.48550/arXiv.1104.5242</a>.
+</div>
+<div id="ref-RLMoccupation2026" class="csl-entry" role="listitem">
+<span>“<span>RLM</span> Occupation.”</span> n.d.
 </div>
 <div id="ref-NoNonsenseQFT" class="csl-entry" role="listitem">
 Schwichtenberg. 2020. <em>No-<span>Nonsense</span> <span>Quantum</span> <span>Field</span> <span>Theory</span></em>.

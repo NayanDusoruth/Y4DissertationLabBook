@@ -340,3 +340,35 @@ Plans in order to support that:
 * Read through analytical thermalization resources David will send - implement these in code
 * fiddle w/numerical simulation spectral function parameters, compare to analytical thermalization
 
+
+## 26/09/2026
+Plan before next supervisor meeting:
+
+* Get standard simulation utility rewritten
+* Perform some basic variations onto the spectral function (I.E, same function, fiddle w/prefactor and energies)
+* Implement analytical thermalization that David sent me
+
+In terms of the code utility, I'm going to use python. The performance benefits of Julia are unclear and would require significant investigation to leverage. Adapting the pytorch implementation should provide sufficient performance. Furthermore using python will allow an object oriented implementation; whereby each individual simulation is handled and run by a simulation object. These could also support saveData and loadData utilities allowing for data to be stored for later analysis.
+
+Note, whilst i'm rewriting a lot of the code, i am also wholesale copying the code that works and can be adapted to the new framework.
+Going to break for lunch; adapting is going well; have gotten a bit bogged down in getting the graphs pretty. A bit of a waste of time, but i'd rather make em work nicely in a "set and forget" manner now so i don't have to worry about them later.
+
+Have finished base implementation - it can simulate code as in the provided code, as well as save/load itself from a pickle file. Unfortunately the pickle files are large (1.45Gb for 100 steps, n=300); so may want to build another "lossy" data export method which just saves/loads the densities... TBD, not a today thing. As such, I think tmr i can begin varying the spectral function parameters and implementing the analytical thermalization.
+
+
+## 27/09/2026
+Have realized there are some additional bits that would be convenient to implement into the base utility:
+
+* Saving method - don't need to save all the correlation matrices, just the densities:
+	* Do still need to save the last correlation matrix - need it to be able to compute further correlation matrices
+* implement simulation names - will help with file handling
+* Save all method - create folder into which .simData, all plots, and a readable json w/simulation info is placed
+
+Have implemented the above. The saved object is significantly smaller now which will help in future.
+I think next steps are:
+
+* Simulate and save results over variations on spectral function parameters - gain qualitative insight into the system behaviour as a result
+* Implement the analytical thermalization solution David has given me [@RLMoccupation2026]
+
+
+### Reading notes [@RLMoccupation2026]
