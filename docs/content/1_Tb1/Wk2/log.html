@@ -375,7 +375,7 @@ window.Quarto = {
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">29/09/2026</a>
   <ul class="collapse">
   <li><a href="#simulation-data-spectral-function-parameter-variations" id="toc-simulation-data-spectral-function-parameter-variations" class="nav-link" data-scroll-target="#simulation-data-spectral-function-parameter-variations">Simulation data: Spectral function parameter variations:</a></li>
-  <li><a href="#reading-notes-rlmoccupation2026" id="toc-reading-notes-rlmoccupation2026" class="nav-link" data-scroll-target="#reading-notes-rlmoccupation2026">Reading notes <span class="citation" data-cites="RLMoccupation2026">(<span>“<span>RLM</span> Occupation,”</span> n.d.)</span></a></li>
+  <li><a href="#reading-notes-rlmoccupation2026" id="toc-reading-notes-rlmoccupation2026" class="nav-link" data-scroll-target="#reading-notes-rlmoccupation2026">Reading notes <span class="citation" data-cites="RLMoccupation2026">(<span>“<span>RLM</span> Occupation,”</span> n.d.)</span>:</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -631,15 +631,98 @@ Figure&nbsp;8: Chemical potential variation: Bath and system occupations (top an
 </ul>
 <p>Additionally note these tests were performed for the same semi-circle spectral function - other spectral functions will likely have differing behaviours.</p>
 </section>
-<section id="reading-notes-rlmoccupation2026" class="level3">
+<section id="reading-notes-rlmoccupation2026" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="reading-notes-rlmoccupation2026">Reading notes <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref"><span>“<span>RLM</span> Occupation,”</span> n.d.</a>)</span>:</h3>
+<p>Reading through the thermalization maths David sent me. Derivation starts w/same hamiltonian and spectral function expressed more generally:</p>
+<p><span id="eq-hamiltonian"><span class="math display">\[
+\hat{H} = \epsilon \hat{s}^{\dagger}\hat{s} + \sum_{k=1}^{N}g_{k}(\hat{b}_{k}^{\dagger}\hat{s}+\hat{b}_{k}\hat{s}^{\dagger}) + \sum_{k=1}^{N}
+\tag{2}\]</span></span></p>
+<p><span id="eq-generalSpectralFunction"><span class="math display">\[
+J(\omega) = \sum_{k=1}^{N} |g_{k}|^{2}\delta(\omega - \omega_{k})
+\tag{3}\]</span></span></p>
+<p>using properties of the dirac delta distribution, it follows that:</p>
+<p><span class="math display">\[
+\sum_{k=1}^{N} |g_{k}|^{2} F(\omega_{k}) = \int d\omega J(\omega) F(\omega)
+\]</span></p>
+<p>In Heisenberg picture, operators are expressed as:</p>
 
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Sidenote: if i recall correctly on my own background knowledge; 2 general pictures of QM depending on wether time dependence is incorporated into state <span class="math inline">\(\hat{O}\ket{\psi(t)}\)</span> or into operator <span class="math inline">\(\hat{O(t)}\ket{\psi}\)</span>. The former is the Schrodinger picture, the latter the Heisenberg picture; with a weird mismash of the 2 being the interaction picture (wether time dependence is incorporated into the operator or state depends on wether it represents the non interacting or interacting bits of the hamiltonian))</p>
+</div></div><p><span id="eq-heisenbergOperator"><span class="math display">\[
+\hat{O(t)} = \hat(U)(t)\hat{O}\hat(U)^{\dagger}(t)
+\tag{4}\]</span></span></p>
+<p>which yields Heisenberg’s eq which describes QM time evolution alternatively to Schrodinger’s eq:</p>
+<p><span id="eq-heisenbergEq"><span class="math display">\[
+i\frac{d\hat{O(t)}}{dt}=[\hat{O(t)},\hat{H}]
+\tag{5}\]</span></span></p>
+<p>Obeying fermionic anticommutations:</p>
+<p><span id="eq-fermionicAnticommutations"><span class="math display">\[
+\{\hat{s},\hat{s}^{\dagger}\}=1 \ \ \ \ \{\hat{b_{k}},\hat{b_{q}}^{\dagger}\}=\delta_{kq} \ \ \ \ \{\hat{s},\hat{b_{k}}\}=\{\hat{s},\hat{b_{k}}^{\dagger}\}=\{\hat{b_{k}},\hat{b_{q}}\}=0
+\tag{6}\]</span></span></p>
+<p>A useful identity for evaluating the fermion creator/annihalator operators in <a href="#eq-hamiltonian" class="quarto-xref">Equation&nbsp;2</a> in terms of anti commutations instead of commutators follows:</p>
+<p><span id="eq-commutatorAnticommutatorIdentity"><span class="math display">\[
+[\hat{A}, \hat{B}\hat{C}] = \{\hat{A}, \hat{B}\} \hat{C} - \hat{B}\{\hat{A}, \hat{C}\}
+\tag{7}\]</span></span></p>
+<p>Applying <a href="#eq-commutatorAnticommutatorIdentity" class="quarto-xref">Equation&nbsp;7</a> to all the terms in <a href="#eq-generalSpectralFunction" class="quarto-xref">Equation&nbsp;3</a> yields:</p>
+<p><span id="eq-sHcommutator"><span class="math display">\[
+[\hat{s},\hat{H}] = \epsilon \hat{s}+\sum_{q}g_{q}\hat{b_{q}}
+\tag{8}\]</span></span></p>
+<p><span id="eq-bHcommutator"><span class="math display">\[
+[\hat{b_{q}},\hat{H}] = \omega \hat{b_{q}}+g_{k}\hat{s}
+\tag{9}\]</span></span></p>
+<p>Applying these to <a href="#eq-heisenbergEq" class="quarto-xref">Equation&nbsp;5</a> yields the system specific Eqs of motion:</p>
+<p><span id="eq-motionS"><span class="math display">\[
+i\dot{\hat{s}} = \epsilon \hat{s}+\sum_{q}g_{q}\hat{b_{q}}
+\tag{10}\]</span></span></p>
+<p><span id="eq-motionB"><span class="math display">\[
+i\dot{\hat{b_{k}}} = \omega \hat{b_{q}}+g_{k}\hat{s}
+\tag{11}\]</span></span></p>
+<p>Since these are linear, they are analytically solvable.</p>
+<p>Apparently the approach involves solving <a href="#eq-motionB" class="quarto-xref">Equation&nbsp;11</a> for <span class="math inline">\(\hat{b_k(t)}\)</span> which can then be subbed into <a href="#eq-motionS" class="quarto-xref">Equation&nbsp;10</a> for an exact solution. Skipping over some steps (which looks like a fourier transform), <span class="math inline">\(\hat{b_k(t)}\)</span> follows as:</p>
+<p><span id="eq-motionBsol"><span class="math display">\[
+\hat{b_k(t)} = \hat{b_k(t_{0})}e^{-i\omega_{k}(t-t_0)} - ig_{k}\int_{t_0}^{t}dt'e^{-i\omega_{k}(t-t_0)}\hat{s(t')}
+\tag{12}\]</span></span></p>
+<p><a href="#eq-motionS" class="quarto-xref">Equation&nbsp;10</a> is expressed in terms of a <span class="math inline">\(\sum_{q}g_{q}\hat{b_{q}}\)</span> term; so <a href="#eq-motionBsol" class="quarto-xref">Equation&nbsp;12</a> becomes:</p>
+<p><span class="math display">\[
+\sum_{q}g_{q}\hat{b_{q}} = \hat{\xi(t)}-i \int_{t_{0}}^{t}dt'K(t-t')\hat{s(t')}
+\]</span></p>
+<p><span class="math display">\[
+\hat{\xi(t)} = \sum_{k} g_{k}\hat{b_{k}(t_{0})e^{-i\omega_{k}(t-t_0)}}
+\]</span></p>
+<p><span class="math display">\[
+K(t-t') = \sum_{k}|g_{k}|^2e^{-i\omega_{k}(t-t_0)} = \int d\omega J(\omega)e^{-i\omega_{k}(t-t_0)}
+\]</span></p>
+<p>so <a href="#eq-motionS" class="quarto-xref">Equation&nbsp;10</a> becomes:</p>
+<p><span class="math display">\[
+i\dot{\hat{s}} = \epsilon \hat{s}+\hat{\xi(t)}-i\int_{t_{0}}^{t}dt'K(t-t')\hat{s(t')}
+\]</span></p>
+<p>This is apparently fiddly to solve (which i believe), the main utility is once having an expression for <span class="math inline">\(\hat{s(t)}\)</span>, we can take the <span class="math inline">\(\lim_{t\to\infty}\)</span> to determine the thermalized occupancy which follows:</p>
+<p><span id="eq-analyticalNsys"><span class="math display">\[
+n_{sys} = \int \frac{d\omega}{2\pi}A(\omega)f(\omega)
+\tag{13}\]</span></span></p>
+<p><span id="eq-analyticalA"><span class="math display">\[
+A(\omega) = \frac{2\pi J(\omega)}{(\omega-\epsilon-\Lambda(\omega))^2+\pi^2J(\omega)^2}
+\tag{14}\]</span></span></p>
+<p><span id="eq-analyticalLambda"><span class="math display">\[
+\Lambda(\omega) = \mathcal{P}\int d\omega \frac{J(\omega')}{\omega - \omega'}
+\tag{15}\]</span></span></p>
+<p>There are a few things i’m unsure of with these final expressions:</p>
+<ul>
+<li>What does <span class="math inline">\(f(\omega)\)</span> represent</li>
+<li>What does <span class="math inline">\(\mathcal{P}\)</span> represent</li>
+<li>What are the integration bounds in <a href="#eq-analyticalLambda" class="quarto-xref">Equation&nbsp;15</a> - i’m assuming its the bandwidth but not 100% sure</li>
+</ul>
+<p>Assuming that <span class="math inline">\(\mathcal{P}\)</span> is just some easy to plug in constant and the integral bounds are the bandwidth; i suspect the sympy library can handle <a href="#eq-analyticalLambda" class="quarto-xref">Equation&nbsp;15</a> and <a href="#eq-analyticalA" class="quarto-xref">Equation&nbsp;14</a> for arbitrary <span class="math inline">\(J(\omega)\)</span>. Plugging it into existing code will require either some spaghetti connections between the lambda function spectral function and sympy expressions, or a rewrite of how the spectral function is stored in terms of sympy expressions; however both are trivial technical tasks.</p>
+<p>Wether sympy can handle <a href="#eq-analyticalNsys" class="quarto-xref">Equation&nbsp;13</a> depends on <span class="math inline">\(f(\omega)\)</span>. However if its a reasonably well behaved function that is plugged into <a href="#eq-analyticalNsys" class="quarto-xref">Equation&nbsp;13</a> w/out fuss, then sympy SHOULD be able to handle all of that, and compute analytical expressions for <a href="#eq-analyticalNsys" class="quarto-xref">Equation&nbsp;13</a> given arbitrary <span class="math inline">\(J(\omega)\)</span> which would be convenient. Would be worth testing however; ik the sympy integrators can be fickle, so worth testing that it can handle these integrals at least for the base case of a semicircular <span class="math inline">\(J(\omega)\)</span> before committing time towards accomodating sympy in the code.</p>
+<p>However if that can be done, implementing the analytical thermalization for this problem shouldn’t take more than a day i think.</p>
+<p>Assuming that can be done, it’d be possible to compare simulated <span class="math inline">\(n_{sys}\)</span> to analytical thermalization - this could be interesting on it’s own, but could also be used to curtail the simulation once it’s thermalizes (assuming that thermalization process and thermalized state are the only things of interest and that we’re not interested in the dethermalization)</p>
 
 
 
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Reading notes (“RLM Occupation,” n.d.)</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-RLMoccupation2026" class="csl-entry" role="listitem">
 <span>“<span>RLM</span> Occupation.”</span> n.d.
 </div>

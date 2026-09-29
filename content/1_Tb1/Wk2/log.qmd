@@ -172,4 +172,127 @@ Summarizing the apparent trends in these initial variations:
 
 Additionally note these tests were performed for the same semi-circle spectral function - other spectral functions will likely have differing behaviours.
 
-### Reading notes [@RLMoccupation2026]
+### Reading notes [@RLMoccupation2026]:
+Reading through the thermalization maths David sent me.
+Derivation starts w/same hamiltonian and spectral function expressed more generally:
+
+$$
+\hat{H} = \epsilon \hat{s}^{\dagger}\hat{s} + \sum_{k=1}^{N}g_{k}(\hat{b}_{k}^{\dagger}\hat{s}+\hat{b}_{k}\hat{s}^{\dagger}) + \sum_{k=1}^{N}
+$${#eq-hamiltonian}
+
+$$
+J(\omega) = \sum_{k=1}^{N} |g_{k}|^{2}\delta(\omega - \omega_{k})
+$${#eq-generalSpectralFunction}
+
+using properties of the dirac delta distribution, it follows that:
+
+$$
+\sum_{k=1}^{N} |g_{k}|^{2} F(\omega_{k}) = \int d\omega J(\omega) F(\omega)
+$$
+
+
+In Heisenberg picture, operators are expressed as:
+
+::: {.column-margin}
+Sidenote: if i recall correctly on my own background knowledge; 2 general pictures of QM depending on wether time dependence is incorporated into state $\hat{O}\ket{\psi(t)}$ or into operator $\hat{O(t)}\ket{\psi}$. The former is the Schrodinger picture, the latter the Heisenberg picture; with a weird mismash of the 2 being the interaction picture (wether time dependence is incorporated into the operator or state depends on wether it represents the non interacting or interacting bits of the hamiltonian))
+:::
+
+$$
+\hat{O(t)} = \hat(U)(t)\hat{O}\hat(U)^{\dagger}(t)
+$${#eq-heisenbergOperator}
+
+which yields Heisenberg's eq which describes QM time evolution alternatively to Schrodinger's eq:
+
+$$
+i\frac{d\hat{O(t)}}{dt}=[\hat{O(t)},\hat{H}]
+$${#eq-heisenbergEq}
+
+Obeying fermionic anticommutations: 
+
+$$
+\{\hat{s},\hat{s}^{\dagger}\}=1 \ \ \ \ \{\hat{b_{k}},\hat{b_{q}}^{\dagger}\}=\delta_{kq} \ \ \ \ \{\hat{s},\hat{b_{k}}\}=\{\hat{s},\hat{b_{k}}^{\dagger}\}=\{\hat{b_{k}},\hat{b_{q}}\}=0
+$${#eq-fermionicAnticommutations}
+
+A useful identity for evaluating the fermion creator/annihalator operators in @eq-hamiltonian in terms of anti commutations instead of commutators follows:
+
+$$
+[\hat{A}, \hat{B}\hat{C}] = \{\hat{A}, \hat{B}\} \hat{C} - \hat{B}\{\hat{A}, \hat{C}\}
+$${#eq-commutatorAnticommutatorIdentity}
+
+Applying @eq-commutatorAnticommutatorIdentity to all the terms in @eq-generalSpectralFunction yields:
+
+$$
+[\hat{s},\hat{H}] = \epsilon \hat{s}+\sum_{q}g_{q}\hat{b_{q}}
+$${#eq-sHcommutator}
+
+$$
+[\hat{b_{q}},\hat{H}] = \omega \hat{b_{q}}+g_{k}\hat{s}
+$${#eq-bHcommutator}
+
+Applying these to @eq-heisenbergEq yields the system specific Eqs of motion:
+
+$$
+i\dot{\hat{s}} = \epsilon \hat{s}+\sum_{q}g_{q}\hat{b_{q}}
+$${#eq-motionS}
+
+$$
+i\dot{\hat{b_{k}}} = \omega \hat{b_{q}}+g_{k}\hat{s}
+$${#eq-motionB}
+
+Since these are linear, they are analytically solvable.
+
+Apparently the approach involves solving @eq-motionB for $\hat{b_k(t)}$ which can then be subbed into @eq-motionS for an exact solution.
+Skipping over some steps (which looks like a fourier transform), $\hat{b_k(t)}$ follows as:
+
+$$
+\hat{b_k(t)} = \hat{b_k(t_{0})}e^{-i\omega_{k}(t-t_0)} - ig_{k}\int_{t_0}^{t}dt'e^{-i\omega_{k}(t-t_0)}\hat{s(t')}
+$${#eq-motionBsol}
+
+@eq-motionS is expressed in terms of a $\sum_{q}g_{q}\hat{b_{q}}$ term; so @eq-motionBsol becomes:
+
+$$
+\sum_{q}g_{q}\hat{b_{q}} = \hat{\xi(t)}-i \int_{t_{0}}^{t}dt'K(t-t')\hat{s(t')} 
+$$
+
+$$
+\hat{\xi(t)} = \sum_{k} g_{k}\hat{b_{k}(t_{0})e^{-i\omega_{k}(t-t_0)}} 
+$$
+
+$$
+K(t-t') = \sum_{k}|g_{k}|^2e^{-i\omega_{k}(t-t_0)} = \int d\omega J(\omega)e^{-i\omega_{k}(t-t_0)}
+$$
+
+so @eq-motionS becomes:
+
+$$
+i\dot{\hat{s}} = \epsilon \hat{s}+\hat{\xi(t)}-i\int_{t_{0}}^{t}dt'K(t-t')\hat{s(t')}
+$$
+
+This is apparently fiddly to solve (which i believe), the main utility is once having an expression for $\hat{s(t)}$, we can take the $\lim_{t\to\infty}$ to determine the thermalized occupancy which follows:
+
+$$
+n_{sys} = \int \frac{d\omega}{2\pi}A(\omega)f(\omega)
+$${#eq-analyticalNsys}
+
+$$
+A(\omega) = \frac{2\pi J(\omega)}{(\omega-\epsilon-\Lambda(\omega))^2+\pi^2J(\omega)^2}
+$${#eq-analyticalA}
+
+$$
+\Lambda(\omega) = \mathcal{P}\int d\omega \frac{J(\omega')}{\omega - \omega'}
+$${#eq-analyticalLambda}
+
+There are a few things i'm unsure of with these final expressions:
+
+* What does $f(\omega)$ represent
+* What does $\mathcal{P}$ represent
+* What are the integration bounds in @eq-analyticalLambda - i'm assuming its the bandwidth but not 100% sure
+
+
+Assuming that $\mathcal{P}$ is just some easy to plug in constant and the integral bounds are the bandwidth; i suspect the sympy library can handle @eq-analyticalLambda and @eq-analyticalA for arbitrary $J(\omega)$. Plugging it into existing code will require either some spaghetti connections between the lambda function spectral function and sympy expressions, or a rewrite of how the spectral function is stored in terms of sympy expressions; however both are trivial technical tasks.
+
+Wether sympy can handle @eq-analyticalNsys depends on $f(\omega)$. However if its a reasonably well behaved function that is plugged into @eq-analyticalNsys w/out fuss, then sympy SHOULD be able to handle all of that, and compute analytical expressions for @eq-analyticalNsys given arbitrary $J(\omega)$ which would be convenient. Would be worth testing however; ik the sympy integrators can be fickle, so worth testing that it can handle these integrals at least for the base case of a semicircular $J(\omega)$ before committing time  towards accomodating sympy in the code. 
+
+However if that can be done, implementing the analytical thermalization for this problem shouldn't take more than a day i think.
+
+Assuming that can be done, it'd be possible to compare simulated $n_{sys}$ to analytical thermalization - this could be interesting on it's own, but could also be used to curtail the simulation once it's thermalizes (assuming that thermalization process and thermalized state are the only things of interest and that we're not interested in the dethermalization).
