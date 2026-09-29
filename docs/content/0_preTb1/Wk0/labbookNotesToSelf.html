@@ -335,6 +335,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#quarto-notes-to-self" id="toc-quarto-notes-to-self" class="nav-link" data-scroll-target="#quarto-notes-to-self">Quarto notes to self:</a>
   <ul class="collapse">
   <li><a href="#sidenotes-and-boxes" id="toc-sidenotes-and-boxes" class="nav-link" data-scroll-target="#sidenotes-and-boxes">Sidenotes and boxes:</a></li>
+  <li><a href="#figures" id="toc-figures" class="nav-link" data-scroll-target="#figures">figures:</a></li>
+  <li><a href="#eqs" id="toc-eqs" class="nav-link" data-scroll-target="#eqs">Eqs:</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="labbookNotesToSelf.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -396,6 +398,29 @@ Insert textbox contents here!
 <p>Insert textbox contents here!</p>
 </div>
 </div>
+</section>
+<section id="figures" class="level3">
+<h3 class="anchored" data-anchor-id="figures">figures:</h3>
+<p>Basic figure:</p>
+<pre><code>![Caption](pathToFig){#fig-figRef} // Note the "fig-" prefix is mandatory for crossref</code></pre>
+<p>Subfigures:</p>
+<pre><code>::: {#fig-figref layout-ncol=2}
+
+![subCaption1](pathToFig1){#fig-subFigRef1}
+
+![subCaption2](pathToFig2){#fig-subFigRef2}
+
+Global caption
+:::</code></pre>
+</section>
+<section id="eqs" class="level3">
+<h3 class="anchored" data-anchor-id="eqs">Eqs:</h3>
+<p>Note, eqs w/crossref:</p>
+<pre><code>$$
+eq here
+$${#eq-eqRef}</code></pre>
+<p>vs general maths notation:</p>
+<pre><code>$$</code></pre>
 
 
 </section>

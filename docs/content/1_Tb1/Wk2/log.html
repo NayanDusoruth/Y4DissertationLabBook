@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -69,11 +89,40 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar docked slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -116,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Pre reading</span></a>
+ <span class="menu-text">Pre TB1 work</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -126,6 +175,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../content/0_preTb1/Wk0/ProjectInfo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../content/0_preTb1/Wk0/labbookNotesToSelf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labbook formatting notes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -312,19 +367,286 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">29/09/2026</a>
+  <ul class="collapse">
+  <li><a href="#simulation-data-spectral-function-parameter-variations" id="toc-simulation-data-spectral-function-parameter-variations" class="nav-link" data-scroll-target="#simulation-data-spectral-function-parameter-variations">Simulation data: Spectral function parameter variations:</a></li>
+  <li><a href="#reading-notes-rlmoccupation2026" id="toc-reading-notes-rlmoccupation2026" class="nav-link" data-scroll-target="#reading-notes-rlmoccupation2026">Reading notes <span class="citation" data-cites="RLMoccupation2026">(<span>“<span>RLM</span> Occupation,”</span> n.d.)</span></a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk2/log.html">Wk2 Log</a></li></ol></nav></header>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk2/log.html">Wk2 Log</a></li></ol></nav></header>
 
 
 
 
+<section id="section" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section">29/09/2026</h2>
+<section id="simulation-data-spectral-function-parameter-variations" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="simulation-data-spectral-function-parameter-variations">Simulation data: Spectral function parameter variations:</h3>
+<p>Starting today by examining the spectral function parameter variations done yesterday. Recapping, a range of values were made on all “initial setup” simulation parameters:</p>
+<ul>
+<li>Prefactor: 5 samples over [0.005, 0.01]</li>
+<li>Bandwidth: 5 samples over [0.5, 1.5]</li>
+<li>bath size: 5 samples over [100, 500]</li>
+<li>energy scale: 5 samples over [0,2]</li>
+<li>beta: 5 samples over [0,2]</li>
+<li>mu: 5 samples over [0,2]</li>
+</ul>
+<p>Whilst keeping the spectral function and simulation time constant:</p>
+<p><span id="eq-circularSpectralFunction"><span class="math display">\[
+J(\omega) = f_{pre}\sqrt{1-\frac{\omega}{D}}
+\tag{1}\]</span></span><br>
+<span class="math inline">\(f_{pre}=\)</span> prefactor<br>
+<span class="math inline">\(\omega=\)</span> bath site energies<br>
+<span class="math inline">\(D=\)</span> bandwidth<br>
+</p>
+<p><span class="math inline">\(\Delta t=0.1\)</span><br>
+<span class="math inline">\(t_{maz}=10000\)</span></p>
+<p>Since this parameters were varied in isolation, the following default parameter values were used for non varied parameters:</p>
+<p><span class="math inline">\(f_{pre}=0.005\)</span><br>
+<span class="math inline">\(n=300\)</span><br>
+<span class="math inline">\(D=1\)</span><br>
+<span class="math inline">\(\epsilon = 0\)</span><br>
+<span class="math inline">\(\beta = 1\)</span><br>
+<span class="math inline">\(\mu = 1\)</span><br>
+</p>
+<p>Using these standard values produces a bath and system occupation as in <a href="#fig-standardCase" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="fig-standardCase" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-standardCase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/prefactor_0_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/prefactor_0_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-standardCase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Standard case: Bath and system occupations. Note that the bath occupation plot has colour coded lines corresponding to the bath at different moments in time w/blue corresponding to low <span class="math inline">\(t\)</span>, red to high <span class="math inline">\(t\)</span>. Note that the dotted black line in the bath plot corresponds to the Fermi dirac distribution.
+</figcaption>
+</figure>
+</div>
+<p>The system occupation in <a href="#fig-standardCase" class="quarto-xref">Figure&nbsp;1</a> demonstrates a thermalization towards <span class="math inline">\(n_{sys} \approx 0.7\)</span>, with a sudden dethermalization around <span class="math inline">\(t \approx 950\)</span>. The bath occupation plot generally follows a Fermi dirac distribution with a notable decrease centered about <span class="math inline">\(\omega=0\)</span>, which presumably corresponds to occupation of the system.</p>
+<div id="fig-prefactorVariation" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prefactorVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/prefactor_0_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/prefactor_4_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/prefactor_0_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/prefactor_4_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prefactorVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Prefactor variation: Bath and system occupations (top and bottom) for <span class="math inline">\(f_{pre}=0.005, 0.01\)</span> (left and right)
+</figcaption>
+</figure>
+</div>
+<p>Examining <a href="#fig-prefactorVariation" class="quarto-xref">Figure&nbsp;2</a>, there appears to be a narrower/deeper dip in the bath occupation for low <span class="math inline">\(f_{pre}\)</span> and a wider/shallower dip for high <span class="math inline">\(f_{pre}\)</span>. The system also seems to thermalize and dethermalize more quickly for high <span class="math inline">\(f_{pre}\)</span> compared to low <span class="math inline">\(f_{pre}\)</span>. Both seem to thermalize to the same <span class="math inline">\(n_{sys} \approx 0.7\)</span> value. Given that <span class="math inline">\(f_{pre}\)</span> controls the magnitude of <span class="math inline">\(J(\omega)\)</span> in <a href="#eq-circularSpectralFunction" class="quarto-xref">Equation&nbsp;1</a>, this makes sense. A higher <span class="math inline">\(f_{pre}\)</span> would result in greater coupling between the bath and the system, presumably allowing the system to both thermalize w/the system mor quickly, as well as access a slightly wider range of energies <span class="math inline">\(\Delta\omega\)</span>, thus resulting in the apparently wider/shallower dip in the bath occupation for high <span class="math inline">\(f_{pre}\)</span>.</p>
+<div id="fig-bandwidthVariation" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bandwidthVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/bandwidth_0_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/bandwidth_4_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/bandwidth_0_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/bandwidth_4_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bandwidthVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Bandwidth variation: Bath and system occupations (top and bottom) for <span class="math inline">\(D=0.5, 1.5\)</span> (left and right)
+</figcaption>
+</figure>
+</div>
+<p>Examining <a href="#fig-bandwidthVariation" class="quarto-xref">Figure&nbsp;3</a>, the most dramatic observation is the difference in dethermalization time. For small <span class="math inline">\(D\)</span>, the system thermalizes quickly and doesn’t dethermalize over the simulation. Contrast this to large <span class="math inline">\(D\)</span> where the system dethermalizes and exhibits some nearly periodic behaviour after dethermalization. They both seem to thermalize to the same <span class="math inline">\(n_{sys} \approx 0.7\)</span> point.</p>
+<div id="fig-bathsizeVariation" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bathsizeVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/n_0_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/n_3_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/n_0_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/n_3_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bathsizeVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Bath size variation: Bath and system occupations (top and bottom) for <span class="math inline">\(n=100, 400\)</span> (left and right)
+</figcaption>
+</figure>
+</div>
+<p>Examining <a href="#fig-bathsizeVariation" class="quarto-xref">Figure&nbsp;4</a>, a similarly dramatic difference in dethermalization becomes apparent. the small <span class="math inline">\(n\)</span> system dethermalizes dramatically and proceeds to fluctuate wildly (yet seemingly continuously) for the remaining runtime, never rethermalizing. Presumably this is due to a thermodynamic limit argument - thermalization w/a bath occurs due to the system coupling with a narrow average value of the bath instead of to all the elements in the bath. The detail of the bath elements is overshadowed by the average behaviour of many elements. However for smaller <span class="math inline">\(n\)</span>, this thermodynamic limit doesn’t apply, reducing the average behaviour, resulting in unpredictable contributions due to individual bath elements (this is a poorly rambled explanation, but will do for now). What is interesting to note, is that the dethermalization in <a href="#fig-prefactorVariation" class="quarto-xref">Figure&nbsp;2</a>, <a href="#fig-bandwidthVariation" class="quarto-xref">Figure&nbsp;3</a> seem qualitatively similar to the start of this chaotic dethermalized process. Presumably this dethermalization is thus due to the finite nature of the simulation, with the small <span class="math inline">\(n\)</span> merely highlighting this behaviour earlier due to its particularly small bath.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Sidenote: The dethermalizing behaviour exhibited here gives me some tangential thoughts on memory effects. I’m not yet well versed in the definitions of memory, however an idea which feels related is “given a point <span class="math inline">\(n_{sys}(t)\)</span> and its instantaneous derivatives for some unknown time <span class="math inline">\(t\)</span>, can you find that time <span class="math inline">\(t\)</span>?”. Because for the thermalized state <span class="math inline">\(n_{sys}\)</span> and its derivatives are fairly constant over a wide range of <span class="math inline">\(t\)</span>, so the exact <span class="math inline">\(t\)</span> may not be retrievable (given some measurement error). However given this unthermalizing behaviour, there appears to be a lot of variability such that a point <span class="math inline">\(n_{sys}\)</span> and its derivatives could be traced back to a unique <span class="math inline">\(t\)</span>. Idk why this makes me think of memory effects; i’m likely just not yet well read up on the subject; however its an observation worth noting.</p>
+</div></div><div id="fig-energyScaleVariation" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-energyScaleVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/energyScale_0_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/energyScale_4_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/energyScale_0_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/energyScale_4_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-energyScaleVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Energy scale variation: Bath and system occupations (top and bottom) for <span class="math inline">\(\epsilon=0, 0.5\)</span> (left and right)
+</figcaption>
+</figure>
+</div>
+<p>Examining <a href="#fig-energyScaleVariation" class="quarto-xref">Figure&nbsp;5</a>, the main trend to note is a shift in the dip in the bath occupation plot from <span class="math inline">\(\omega=0\)</span> to <span class="math inline">\(\omega=0.5\)</span>. This is explained by the shift in the system energy, as the system will “steal” occupation from the bath at a comparable energy which is presumably energetically favourable.</p>
+<div id="fig-betaVariation" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-betaVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/beta_0_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/beta_4_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/beta_0_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/beta_4_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-betaVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Temperature variation: Bath and system occupations (top and bottom) for <span class="math inline">\(\beta=0, 2\)</span> (left and right)
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-betaVariation" class="quarto-xref">Figure&nbsp;6</a> varies the temperature from a high temperature low <span class="math inline">\(beta\)</span> to a low temperature high <span class="math inline">\(beta\)</span> value. This shifts the distribution of the bath in line with the Fermi-Dirac distribution. Interestingly, it also shift <span class="math inline">\(n_{sys}\)</span>, with the high temperature limit reducing <span class="math inline">\(n_{sys}\approx 0.5\)</span> whilst the low temperature limit increases <span class="math inline">\(n_{sys} \approx 0.9\)</span>. This makes some intuitive sense; higher temperatures would provide the system with thermal energy to hop more frequently, whilst a lower temperature would almost “freeze” the system in a higher occupation. This does also introduce the question of system entropy and wether some idea of “system/bath phase” is applicable. My immediate instinct is that this setup shouldn’t see any phase trasition; as in <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Turci 2026</a>)</span>, the system can be remapped onto a 1D chain w/nearest neighbour interactions. Borrowing intuition from 1D ising models where the dimensionality of that setup results in no phase transition as finite temperature, my (non rigorous) instinct would be that no phase transition should occur in this quantum setup due to that ~ one dimensionality. Have run another simulations with higher <span class="math inline">\(beta\)</span> just to double check this intuition. Non rigorously speculating and translating this 1D ising model intuition to the present setup; there should be a an ordered phase at <span class="math inline">\(T=0\)</span>. My guess of what this would entail in this quantum setup is a phase where the particle “freezes” into the system, such that <span class="math inline">\(n_{sys}=1\)</span>. Conversly for <span class="math inline">\(T\to\infty\)</span>, a maximally disordered state should occur where the particle can be in any of the bath or system sites at random. Given that each bath site only couples to the bath site, my assumption would be that the bath occupation would still be quite high, since for the particle to hop between different bath sites requires a transfer through the system. This seems to be borne out by <a href="#fig-betaVariation" class="quarto-xref">Figure&nbsp;6</a> where for <span class="math inline">\(\beta=0\)</span> <span class="math inline">\(n_{sys} \approx 0.5\)</span>.</p>
+<p>Additional simulations finished yielding <a href="#fig-betaAdditionalVariation" class="quarto-xref">Figure&nbsp;7</a>.</p>
+<div id="fig-betaAdditionalVariation" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-betaAdditionalVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/beta_5_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/beta_6_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/beta_5_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/beta_6_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-betaAdditionalVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Additional temperature variation: Bath and system occupations (top and bottom) for <span class="math inline">\(\beta=5, 10\)</span> (left and right)
+</figcaption>
+</figure>
+</div>
+<p>Which seem to indicate a thermalized <span class="math inline">\(n_{sys}=1\)</span> for low <span class="math inline">\(T\)</span>, in line with this “freezing” idea. Visually examining the plots over <span class="math inline">\(\beta\)</span>, there doesn’t appear to be any discontinous shift in either the system or bath occupation for finite <span class="math inline">\(T\)</span>, so I don’t think that there are any phase shifts at finite temperature for this system. I’m unsure if the 1D ising model analogy is sound, however if it is, classical criticality may provide useful analogues or insights into this system’s behaviour.</p>
+<div id="fig-muVariation" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-muVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/mu_0_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/mu_4_bathOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/mu_0_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/mu_4_systemOccupation.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-muVariation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Chemical potential variation: Bath and system occupations (top and bottom) for <span class="math inline">\(\mu=0, 2\)</span> (left and right)
+</figcaption>
+</figure>
+</div>
+<p>The chemical potential variations in <a href="#fig-muVariation" class="quarto-xref">Figure&nbsp;8</a> seem roughly analagous to the trends in <span class="math inline">\(\beta\)</span> variation in <a href="#fig-betaVariation" class="quarto-xref">Figure&nbsp;6</a>, <a href="#fig-betaAdditionalVariation" class="quarto-xref">Figure&nbsp;7</a>. This makes sense given their reciprocal role in the Fermi Dirac distribution; however its a nice confirmation.</p>
+<p>Summarizing the apparent trends in these initial variations:</p>
+<ul>
+<li>The system occupation <span class="math inline">\(n_{sys}\)</span> starts low then rapidly thermalizes towards a thermalized point.</li>
+<li>After this thermalized point, the system dethermalizes, presumably due to the finite nature of the bath, with unpredictable (yet seemingly continuous) behaviour following</li>
+<li>The bath occupation follows fermi dirac statistics except for a “dip” centered around the system energy - this can non rigourously be thought of as the system “stealing” occupation</li>
+<li>there seems to be non finite “phases” to the system w/“frozen” <span class="math inline">\(n_{sys}(T=0)=1\)</span> and “disordered” <span class="math inline">\(n_{sys}(T\to\infty)=0.5\)</span> - I speculate that this may be analagous to the lack of finite temperature phase transitions in the 1D ising model - given that chain mapping allows this problem to be remapped to 1D, there may by some analagous phase behaviour as a result of the 1D setup. This is speculation however</li>
+</ul>
+<p>Additionally note these tests were performed for the same semi-circle spectral function - other spectral functions will likely have differing behaviours.</p>
+</section>
+<section id="reading-notes-rlmoccupation2026" class="level3">
 
 
 
-</main> <!-- /main -->
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Reading notes (“RLM Occupation,” n.d.)</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-RLMoccupation2026" class="csl-entry" role="listitem">
+<span>“<span>RLM</span> Occupation.”</span> n.d.
+</div>
+<div id="ref-ProjectOutline2026" class="csl-entry" role="listitem">
+Turci, Francesco. 2026. <span>“<span>MarkovianityOutline</span>.”</span>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

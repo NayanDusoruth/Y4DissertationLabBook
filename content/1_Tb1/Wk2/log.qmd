@@ -1,0 +1,175 @@
+## 29/09/2026
+
+### Simulation data: Spectral function parameter variations:
+Starting today by examining the spectral function parameter variations done yesterday.
+Recapping, a range of values were made on all "initial setup" simulation parameters:
+
+* Prefactor: 5 samples over [0.005, 0.01] 
+* Bandwidth: 5 samples over [0.5, 1.5]
+* bath size: 5 samples over [100, 500]
+* energy scale: 5 samples over [0,2]
+* beta: 5 samples over [0,2]
+* mu: 5 samples over [0,2]
+
+Whilst keeping the spectral function and simulation time constant:
+
+$$
+J(\omega) = f_{pre}\sqrt{1-\frac{\omega}{D}}
+$${#eq-circularSpectralFunction} \
+$f_{pre}=$ prefactor \
+$\omega=$ bath site energies \
+$D=$ bandwidth \
+
+$\Delta t=0.1$ \
+$t_{maz}=10000$
+
+Since this parameters were varied in isolation, the following default parameter values were used for non varied parameters:
+
+$f_{pre}=0.005$ \
+$n=300$ \
+$D=1$ \
+$\epsilon = 0$ \
+$\beta = 1$ \
+$\mu = 1$ \
+
+Using these standard values produces a bath and system occupation as in @fig-standardCase.
+
+
+:::{#fig-standardCase layout-ncol=2}
+
+![](figures/prefactor_0_bathOccupation.png){}
+
+![](figures/prefactor_0_systemOccupation.png){}
+
+Standard case: Bath and system occupations. Note that the bath occupation plot has colour coded lines corresponding to the bath at different moments in time w/blue corresponding to low $t$, red to high $t$. Note that the dotted black line in the bath plot corresponds to the Fermi dirac distribution.
+:::
+
+The system occupation in @fig-standardCase demonstrates a thermalization towards $n_{sys} \approx 0.7$, with a sudden dethermalization around $t \approx 950$. The bath occupation plot generally follows a Fermi dirac distribution with a notable decrease centered about $\omega=0$, which presumably corresponds to occupation of the system.
+
+:::{#fig-prefactorVariation layout-ncol=2 layout-nrow=2}
+
+![](figures/prefactor_0_bathOccupation.png){}
+
+![](figures/prefactor_4_bathOccupation.png){}
+
+![](figures/prefactor_0_systemOccupation.png){}
+
+![](figures/prefactor_4_systemOccupation.png){}
+
+Prefactor variation: Bath and system occupations (top and bottom) for $f_{pre}=0.005, 0.01$ (left and right)
+:::
+
+Examining @fig-prefactorVariation, there appears to be a narrower/deeper dip in the bath occupation for low $f_{pre}$ and a wider/shallower dip for high $f_{pre}$. The system also seems to thermalize and dethermalize more quickly for high $f_{pre}$ compared to low $f_{pre}$. Both seem to thermalize to the same $n_{sys} \approx 0.7$ value. Given that $f_{pre}$ controls the magnitude of $J(\omega)$ in @eq-circularSpectralFunction, this makes sense. A higher $f_{pre}$ would result in greater coupling between the bath and the system, presumably allowing the system to both thermalize w/the system mor quickly, as well as access a slightly wider range of energies $\Delta\omega$, thus resulting in the apparently wider/shallower dip in the bath occupation for high $f_{pre}$.
+
+:::{#fig-bandwidthVariation layout-ncol=2 layout-nrow=2}
+
+![](figures/bandwidth_0_bathOccupation.png){}
+
+![](figures/bandwidth_4_bathOccupation.png){}
+
+![](figures/bandwidth_0_systemOccupation.png){}
+
+![](figures/bandwidth_4_systemOccupation.png){}
+
+Bandwidth variation: Bath and system occupations (top and bottom) for $D=0.5, 1.5$ (left and right)
+:::
+
+Examining @fig-bandwidthVariation, the most dramatic observation is the difference in dethermalization time. For small $D$, the system thermalizes quickly and doesn't dethermalize over the simulation. Contrast this to large $D$ where the system dethermalizes and exhibits some nearly periodic behaviour after dethermalization. They both seem to thermalize to the same $n_{sys} \approx 0.7$ point. 
+
+:::{#fig-bathsizeVariation layout-ncol=2 layout-nrow=2}
+
+![](figures/n_0_bathOccupation.png){}
+
+![](figures/n_3_bathOccupation.png){}
+
+![](figures/n_0_systemOccupation.png){}
+
+![](figures/n_3_systemOccupation.png){}
+
+Bath size variation: Bath and system occupations (top and bottom) for $n=100, 400$ (left and right)
+:::
+
+Examining @fig-bathsizeVariation, a similarly dramatic difference in dethermalization becomes apparent. the small $n$ system dethermalizes dramatically and proceeds to fluctuate wildly 
+(yet seemingly continuously) for the remaining runtime, never rethermalizing. Presumably this is due to a thermodynamic limit argument - thermalization w/a bath occurs due to the system coupling with a narrow average value of the bath instead of to all the elements in the bath. The detail of the bath elements is overshadowed by the average behaviour of many elements. However for smaller $n$, this thermodynamic limit doesn't apply, reducing the average behaviour, resulting in unpredictable contributions due to individual bath elements (this is a poorly rambled explanation, but will do for now).
+What is interesting to note, is that the dethermalization in @fig-prefactorVariation, @fig-bandwidthVariation seem qualitatively similar to the start of this chaotic dethermalized process. Presumably this dethermalization is thus due to the finite nature of the simulation, with the small $n$ merely highlighting this behaviour earlier due to its particularly small bath. 
+
+::: {.column-margin}
+Sidenote: The dethermalizing behaviour exhibited here gives me some tangential thoughts on memory effects. I'm not yet well versed in the definitions of memory, however an idea which feels related is "given a point $n_{sys}(t)$ and its instantaneous derivatives for some unknown time $t$, can you find that time $t$?". Because for the thermalized state $n_{sys}$ and its derivatives are fairly constant over a wide range of $t$, so the exact $t$ may not be retrievable (given some measurement error). However given this unthermalizing behaviour, there appears to be a lot of variability such that a point $n_{sys}$ and its derivatives could be traced back to a unique $t$. Idk why this makes me think of memory effects; i'm likely just not yet well read up on the subject; however its an observation worth noting.
+:::
+
+
+:::{#fig-energyScaleVariation layout-ncol=2 layout-nrow=2}
+
+![](figures/energyScale_0_bathOccupation.png){}
+
+![](figures/energyScale_4_bathOccupation.png){}
+
+![](figures/energyScale_0_systemOccupation.png){}
+
+![](figures/energyScale_4_systemOccupation.png){}
+
+Energy scale variation: Bath and system occupations (top and bottom) for $\epsilon=0, 0.5$ (left and right)
+:::
+
+Examining @fig-energyScaleVariation, the main trend to note is a shift in the dip in the bath occupation plot from $\omega=0$ to $\omega=0.5$. This is explained by the shift in the system energy, as the system will "steal" occupation from the bath at a comparable energy which is presumably energetically favourable.
+
+:::{#fig-betaVariation layout-ncol=2 layout-nrow=2}
+
+![](figures/beta_0_bathOccupation.png){}
+
+![](figures/beta_4_bathOccupation.png){}
+
+![](figures/beta_0_systemOccupation.png){}
+
+![](figures/beta_4_systemOccupation.png){}
+
+Temperature variation: Bath and system occupations (top and bottom) for $\beta=0, 2$ (left and right)
+:::
+
+@fig-betaVariation varies the temperature from a high temperature low $beta$ to a low temperature high $beta$ value. This shifts the distribution of the bath in line with the Fermi-Dirac distribution. Interestingly, it also shift $n_{sys}$, with the high temperature limit reducing $n_{sys}\approx 0.5$ whilst the low temperature limit increases $n_{sys} \approx 0.9$. This makes some intuitive sense; higher temperatures would provide the system with thermal energy to hop more frequently, whilst a lower temperature would almost "freeze" the system in a higher occupation. 
+This does also introduce the question of system entropy and wether some idea of "system/bath phase" is applicable. My immediate instinct is that this setup shouldn't see any phase trasition; as in [@ProjectOutline2026], the system can be remapped onto a 1D chain w/nearest neighbour interactions. Borrowing intuition from 1D ising models where the dimensionality of that setup results in no phase transition as finite temperature, my (non rigorous) instinct would be that no phase transition should occur in this quantum setup due to that ~ one dimensionality. Have run another simulations with higher $beta$ just to double check this intuition. Non rigorously speculating and translating this 1D ising model intuition to the present setup; there should be a an ordered phase at $T=0$. My guess of what this would entail in this quantum setup is a phase where the particle "freezes" into the system, such that $n_{sys}=1$. Conversly for $T\to\infty$, a maximally disordered state should occur where the particle can be in any of the bath or system sites at random. Given that each bath site only couples to the bath site, my assumption would be that the bath occupation would still be quite high, since for the particle to hop between different bath sites requires a transfer through the system. This seems to be borne out by @fig-betaVariation where for $\beta=0$ $n_{sys} \approx 0.5$.
+
+Additional simulations finished yielding @fig-betaAdditionalVariation. 
+
+:::{#fig-betaAdditionalVariation layout-ncol=2 layout-nrow=2}
+
+![](figures/beta_5_bathOccupation.png){}
+
+![](figures/beta_6_bathOccupation.png){}
+
+![](figures/beta_5_systemOccupation.png){}
+
+![](figures/beta_6_systemOccupation.png){}
+
+Additional temperature variation: Bath and system occupations (top and bottom) for $\beta=5, 10$ (left and right)
+:::
+
+Which seem to indicate a thermalized $n_{sys}=1$ for low $T$, in line with this "freezing" idea. 
+Visually examining the plots over $\beta$, there doesn't appear to be any discontinous shift in either the system or bath occupation for finite $T$, so I don't think that there are any phase shifts at finite temperature for this system. I'm unsure if the 1D ising model analogy is sound, however if it is, classical criticality may provide useful analogues or insights into this system's behaviour. 
+
+:::{#fig-muVariation layout-ncol=2 layout-nrow=2}
+
+![](figures/mu_0_bathOccupation.png){}
+
+![](figures/mu_4_bathOccupation.png){}
+
+![](figures/mu_0_systemOccupation.png){}
+
+![](figures/mu_4_systemOccupation.png){}
+
+Chemical potential variation: Bath and system occupations (top and bottom) for $\mu=0, 2$ (left and right)
+:::
+
+The chemical potential variations in @fig-muVariation seem roughly analagous to the trends in $\beta$ variation in @fig-betaVariation, @fig-betaAdditionalVariation. This makes sense given their reciprocal role in the Fermi Dirac distribution; however its a nice confirmation.
+
+
+Summarizing the apparent trends in these initial variations:
+
+* The system occupation $n_{sys}$ starts low then rapidly thermalizes towards a thermalized point. 
+* After this thermalized point, the system dethermalizes, presumably due to the finite nature of the bath, with unpredictable (yet seemingly continuous) behaviour following
+* The bath occupation follows fermi dirac statistics except for a "dip" centered around the system energy - this can non rigourously be thought of as the system "stealing" occupation 
+* there seems to be non finite "phases" to the system w/"frozen" $n_{sys}(T=0)=1$ and "disordered" $n_{sys}(T\to\infty)=0.5$ - I speculate that this may be analagous to the lack of finite temperature phase transitions in the 1D ising model - given that chain mapping allows this problem to be remapped to 1D, there may by some analagous phase behaviour as a result of the 1D setup. This is speculation however
+
+Additionally note these tests were performed for the same semi-circle spectral function - other spectral functions will likely have differing behaviours.
+
+### Reading notes [@RLMoccupation2026]

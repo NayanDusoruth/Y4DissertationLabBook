@@ -40,3 +40,39 @@ Insert textbox contents here!
 ::: {.callout-note title="Insert textboxt title here!"}
 Insert textbox contents here!
 :::
+
+### figures:
+
+Basic figure:
+
+```
+![Caption](pathToFig){#fig-figRef} // Note the "fig-" prefix is mandatory for crossref
+```
+
+Subfigures:
+```
+::: {#fig-figref layout-ncol=2}
+
+![subCaption1](pathToFig1){#fig-subFigRef1}
+
+![subCaption2](pathToFig2){#fig-subFigRef2}
+
+Global caption
+:::
+```
+
+### Eqs:
+
+Note, eqs w/crossref:
+
+```
+$$
+eq here
+$${#eq-eqRef}
+```
+
+vs general maths notation:
+
+```
+$$
+```
