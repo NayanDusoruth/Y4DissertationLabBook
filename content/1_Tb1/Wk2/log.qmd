@@ -168,9 +168,9 @@ Summarizing the apparent trends in these initial variations:
 * The system occupation $n_{sys}$ starts low then rapidly thermalizes towards a thermalized point. 
 * After this thermalized point, the system dethermalizes, presumably due to the finite nature of the bath, with unpredictable (yet seemingly continuous) behaviour following
 * The bath occupation follows fermi dirac statistics except for a "dip" centered around the system energy - this can non rigourously be thought of as the system "stealing" occupation 
-* there seems to be non finite "phases" to the system w/"frozen" $n_{sys}(T=0)=1$ and "disordered" $n_{sys}(T\to\infty)=0.5$ - I speculate that this may be analagous to the lack of finite temperature phase transitions in the 1D ising model - given that chain mapping allows this problem to be remapped to 1D, there may by some analagous phase behaviour as a result of the 1D setup. This is speculation however
+* there seems to be non finite "phases" to the system w/"frozen" $n_{sys}(T=0)=1$ and "disordered" $n_{sys}(T\to\infty)=0.5$ - I speculate that this may be analagous to the lack of finite temperature phase transitions in the 1D ising model - given that chain mapping allows this problem to be remapped to 1D, there may by some analagous phase behaviour as a result of the 1D setup. This is speculation however.
 
-Additionally note these tests were performed for the same semi-circle spectral function - other spectral functions will likely have differing behaviours.
+Additionally note these tests were performed for the same semi-circle spectral function - other spectral functions will likely have differing behaviours. I suspect that the semicircle is responsible for the shape of the bath occupation dip, effectively deciding which bath site energies the system can couple to.
 
 ### Reading notes [@RLMoccupation2026]:
 Reading through the thermalization maths David sent me.
@@ -296,3 +296,21 @@ Wether sympy can handle @eq-analyticalNsys depends on $f(\omega)$. However if it
 However if that can be done, implementing the analytical thermalization for this problem shouldn't take more than a day i think.
 
 Assuming that can be done, it'd be possible to compare simulated $n_{sys}$ to analytical thermalization - this could be interesting on it's own, but could also be used to curtail the simulation once it's thermalizes (assuming that thermalization process and thermalized state are the only things of interest and that we're not interested in the dethermalization).
+
+
+Have meeting (virtually) tmr; questions to ask:
+
+* What do all the terms in @eq-analyticalNsys, @eq-analyticalA, @eq-analyticalLambda represent
+	* given this try to figure out if sympy-ing this would be worth it
+* Are there any general resources with the information included in [@RLMoccupation2026] - these notes are very clear, however i do not know how to cite them properly
+* Discuss parameter variations I've done above - wether the insights i've speculated are correct/useful:
+	* Dethermalization due to finite size - behaviour of dethermalized occupation
+	* relationship between spectral function and the dip
+	* 1D Ising model phase transition comparison
+* presentation logistics:
+	* ik i need to produce presentation - what do i need to do for that
+	* i suspect i need to give brief overview of problem as in [@ProjectOutline2026]
+	* Probably give an account of what i've done thus far
+	* Presumably give account for plans going forwards and open questions i'm investigating
+	* TLDR: I want further details on the presentation to make sure i plan prepping that into my schedule
+

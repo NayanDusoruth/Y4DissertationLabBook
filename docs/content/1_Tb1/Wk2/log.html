@@ -627,9 +627,9 @@ Figure&nbsp;8: Chemical potential variation: Bath and system occupations (top an
 <li>The system occupation <span class="math inline">\(n_{sys}\)</span> starts low then rapidly thermalizes towards a thermalized point.</li>
 <li>After this thermalized point, the system dethermalizes, presumably due to the finite nature of the bath, with unpredictable (yet seemingly continuous) behaviour following</li>
 <li>The bath occupation follows fermi dirac statistics except for a “dip” centered around the system energy - this can non rigourously be thought of as the system “stealing” occupation</li>
-<li>there seems to be non finite “phases” to the system w/“frozen” <span class="math inline">\(n_{sys}(T=0)=1\)</span> and “disordered” <span class="math inline">\(n_{sys}(T\to\infty)=0.5\)</span> - I speculate that this may be analagous to the lack of finite temperature phase transitions in the 1D ising model - given that chain mapping allows this problem to be remapped to 1D, there may by some analagous phase behaviour as a result of the 1D setup. This is speculation however</li>
+<li>there seems to be non finite “phases” to the system w/“frozen” <span class="math inline">\(n_{sys}(T=0)=1\)</span> and “disordered” <span class="math inline">\(n_{sys}(T\to\infty)=0.5\)</span> - I speculate that this may be analagous to the lack of finite temperature phase transitions in the 1D ising model - given that chain mapping allows this problem to be remapped to 1D, there may by some analagous phase behaviour as a result of the 1D setup. This is speculation however.</li>
 </ul>
-<p>Additionally note these tests were performed for the same semi-circle spectral function - other spectral functions will likely have differing behaviours.</p>
+<p>Additionally note these tests were performed for the same semi-circle spectral function - other spectral functions will likely have differing behaviours. I suspect that the semicircle is responsible for the shape of the bath occupation dip, effectively deciding which bath site energies the system can couple to.</p>
 </section>
 <section id="reading-notes-rlmoccupation2026" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="reading-notes-rlmoccupation2026">Reading notes <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref"><span>“<span>RLM</span> Occupation,”</span> n.d.</a>)</span>:</h3>
@@ -715,7 +715,29 @@ A(\omega) = \frac{2\pi J(\omega)}{(\omega-\epsilon-\Lambda(\omega))^2+\pi^2J(\om
 <p>Assuming that <span class="math inline">\(\mathcal{P}\)</span> is just some easy to plug in constant and the integral bounds are the bandwidth; i suspect the sympy library can handle <a href="#eq-analyticalLambda" class="quarto-xref">Equation&nbsp;15</a> and <a href="#eq-analyticalA" class="quarto-xref">Equation&nbsp;14</a> for arbitrary <span class="math inline">\(J(\omega)\)</span>. Plugging it into existing code will require either some spaghetti connections between the lambda function spectral function and sympy expressions, or a rewrite of how the spectral function is stored in terms of sympy expressions; however both are trivial technical tasks.</p>
 <p>Wether sympy can handle <a href="#eq-analyticalNsys" class="quarto-xref">Equation&nbsp;13</a> depends on <span class="math inline">\(f(\omega)\)</span>. However if its a reasonably well behaved function that is plugged into <a href="#eq-analyticalNsys" class="quarto-xref">Equation&nbsp;13</a> w/out fuss, then sympy SHOULD be able to handle all of that, and compute analytical expressions for <a href="#eq-analyticalNsys" class="quarto-xref">Equation&nbsp;13</a> given arbitrary <span class="math inline">\(J(\omega)\)</span> which would be convenient. Would be worth testing however; ik the sympy integrators can be fickle, so worth testing that it can handle these integrals at least for the base case of a semicircular <span class="math inline">\(J(\omega)\)</span> before committing time towards accomodating sympy in the code.</p>
 <p>However if that can be done, implementing the analytical thermalization for this problem shouldn’t take more than a day i think.</p>
-<p>Assuming that can be done, it’d be possible to compare simulated <span class="math inline">\(n_{sys}\)</span> to analytical thermalization - this could be interesting on it’s own, but could also be used to curtail the simulation once it’s thermalizes (assuming that thermalization process and thermalized state are the only things of interest and that we’re not interested in the dethermalization)</p>
+<p>Assuming that can be done, it’d be possible to compare simulated <span class="math inline">\(n_{sys}\)</span> to analytical thermalization - this could be interesting on it’s own, but could also be used to curtail the simulation once it’s thermalizes (assuming that thermalization process and thermalized state are the only things of interest and that we’re not interested in the dethermalization).</p>
+<p>Have meeting (virtually) tmr; questions to ask:</p>
+<ul>
+<li>What do all the terms in <a href="#eq-analyticalNsys" class="quarto-xref">Equation&nbsp;13</a>, <a href="#eq-analyticalA" class="quarto-xref">Equation&nbsp;14</a>, <a href="#eq-analyticalLambda" class="quarto-xref">Equation&nbsp;15</a> represent
+<ul>
+<li>given this try to figure out if sympy-ing this would be worth it</li>
+</ul></li>
+<li>Are there any general resources with the information included in <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref"><span>“<span>RLM</span> Occupation,”</span> n.d.</a>)</span> - these notes are very clear, however i do not know how to cite them properly</li>
+<li>Discuss parameter variations I’ve done above - wether the insights i’ve speculated are correct/useful:
+<ul>
+<li>Dethermalization due to finite size - behaviour of dethermalized occupation</li>
+<li>relationship between spectral function and the dip</li>
+<li>1D Ising model phase transition comparison</li>
+</ul></li>
+<li>presentation logistics:
+<ul>
+<li>ik i need to produce presentation - what do i need to do for that</li>
+<li>i suspect i need to give brief overview of problem as in <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Turci 2026</a>)</span></li>
+<li>Probably give an account of what i’ve done thus far</li>
+<li>Presumably give account for plans going forwards and open questions i’m investigating</li>
+<li>TLDR: I want further details on the presentation to make sure i plan prepping that into my schedule</li>
+</ul></li>
+</ul>
 
 
 
