@@ -375,7 +375,11 @@ window.Quarto = {
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">29/09/2026</a>
   <ul class="collapse">
   <li><a href="#simulation-data-spectral-function-parameter-variations" id="toc-simulation-data-spectral-function-parameter-variations" class="nav-link" data-scroll-target="#simulation-data-spectral-function-parameter-variations">Simulation data: Spectral function parameter variations:</a></li>
-  <li><a href="#reading-notes-rlmoccupation2026" id="toc-reading-notes-rlmoccupation2026" class="nav-link" data-scroll-target="#reading-notes-rlmoccupation2026">Reading notes <span class="citation" data-cites="RLMoccupation2026">(<span>“<span>RLM</span> Occupation,”</span> n.d.)</span>:</a></li>
+  <li><a href="#reading-notes-rlmoccupation2026" id="toc-reading-notes-rlmoccupation2026" class="nav-link" data-scroll-target="#reading-notes-rlmoccupation2026">Reading notes <span class="citation" data-cites="RLMoccupation2026">(Strachan, n.d.)</span>:</a></li>
+  </ul></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">30/09/2026</a>
+  <ul class="collapse">
+  <li><a href="#meeting-summary" id="toc-meeting-summary" class="nav-link" data-scroll-target="#meeting-summary">Meeting summary:</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -632,7 +636,7 @@ Figure&nbsp;8: Chemical potential variation: Bath and system occupations (top an
 <p>Additionally note these tests were performed for the same semi-circle spectral function - other spectral functions will likely have differing behaviours. I suspect that the semicircle is responsible for the shape of the bath occupation dip, effectively deciding which bath site energies the system can couple to.</p>
 </section>
 <section id="reading-notes-rlmoccupation2026" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="reading-notes-rlmoccupation2026">Reading notes <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref"><span>“<span>RLM</span> Occupation,”</span> n.d.</a>)</span>:</h3>
+<h3 class="anchored" data-anchor-id="reading-notes-rlmoccupation2026">Reading notes <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref">Strachan, n.d.</a>)</span>:</h3>
 <p>Reading through the thermalization maths David sent me. Derivation starts w/same hamiltonian and spectral function expressed more generally:</p>
 <p><span id="eq-hamiltonian"><span class="math display">\[
 \hat{H} = \epsilon \hat{s}^{\dagger}\hat{s} + \sum_{k=1}^{N}g_{k}(\hat{b}_{k}^{\dagger}\hat{s}+\hat{b}_{k}\hat{s}^{\dagger}) + \sum_{k=1}^{N}
@@ -722,7 +726,7 @@ A(\omega) = \frac{2\pi J(\omega)}{(\omega-\epsilon-\Lambda(\omega))^2+\pi^2J(\om
 <ul>
 <li>given this try to figure out if sympy-ing this would be worth it</li>
 </ul></li>
-<li>Are there any general resources with the information included in <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref"><span>“<span>RLM</span> Occupation,”</span> n.d.</a>)</span> - these notes are very clear, however i do not know how to cite them properly</li>
+<li>Are there any general resources with the information included in <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref">Strachan, n.d.</a>)</span> - these notes are very clear, however i do not know how to cite them properly</li>
 <li>Discuss parameter variations I’ve done above - wether the insights i’ve speculated are correct/useful:
 <ul>
 <li>Dethermalization due to finite size - behaviour of dethermalized occupation</li>
@@ -738,6 +742,77 @@ A(\omega) = \frac{2\pi J(\omega)}{(\omega-\epsilon-\Lambda(\omega))^2+\pi^2J(\om
 <li>TLDR: I want further details on the presentation to make sure i plan prepping that into my schedule</li>
 </ul></li>
 </ul>
+</section>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">30/09/2026</h2>
+<p>Have a (virtual) supervisor meeting today. Points brought up during meeting:</p>
+<ul>
+<li><p><span class="math inline">\(f(\omega)\)</span> - fermi dirac function</p></li>
+<li><p>principal value <span class="math inline">\(\mathcal{P}\)</span> of integral</p></li>
+<li><p>bandwidth int bounds because</p></li>
+<li><p>dethermalization - yes due to finite size - decoherences of quantum modes - recurrences - correspond</p></li>
+<li><p><span class="math inline">\(A(\omega)\)</span> represents what system can “access” (lorentzian)</p></li>
+<li><p>thermalization analytical implementation</p>
+<ul>
+<li>plot fermi - bath / A() could illustrate “system access” to bath</li>
+</ul></li>
+<li><p>calculate the map</p>
+<ul>
+<li>start 2 sims, 1 empty, 1 full, can extract map (Choi isomorphism)</li>
+</ul></li>
+<li><p>then first thing to explore is memory kernel</p></li>
+<li><p>scary paper: fig 6 - reentrance time could be interesting - reentrance time is seemingly interesting and related to memory effects</p></li>
+</ul>
+<section id="meeting-summary" class="level3">
+<h3 class="anchored" data-anchor-id="meeting-summary">Meeting summary:</h3>
+<p>Recapped what i’ve done:</p>
+<ul>
+<li>Discussed some of the trends i’ve observed:
+<ul>
+<li>The nearly periodic behaviour of post thermalization evident in <a href="#fig-bathsizeVariation" class="quarto-xref">Figure&nbsp;4</a> are indeed due to finite model size. Especially at <span class="math inline">\(n=100\)</span>, can think of system less as thermodynamic bath, and more as a bunch of mechanical coupled oscillators; therefore the “recurrences” in this dethermalization</li>
+<li>briefly noted the apparent non finite phase changes and relationship to 1D ising model - not the main point, but relation to chain mapping is seemingly valid, however is an aside</li>
+</ul></li>
+</ul>
+<p>Clarified mystery terms in <a href="#eq-analyticalNsys" class="quarto-xref">Equation&nbsp;13</a>, <a href="#eq-analyticalA" class="quarto-xref">Equation&nbsp;14</a>, <a href="#eq-analyticalLambda" class="quarto-xref">Equation&nbsp;15</a>:</p>
+<ul>
+<li><span class="math inline">\(f(\omega)=\)</span> fermi dirac distribution</li>
+<li><span class="math inline">\(\mathcal{P}=\)</span> Principal value of integral (relates to singularities)</li>
+<li>Integral bounds for <a href="#eq-analyticalNsys" class="quarto-xref">Equation&nbsp;13</a>, <a href="#eq-analyticalLambda" class="quarto-xref">Equation&nbsp;15</a> are technically infinite, but constrained by spectral function, so bandwidth bounds are practical</li>
+<li>Intuition note: <span class="math inline">\(A(\omega)\)</span> roughly represents what bath modes the dot (system) can access (the term “lorentzian” may be useful search term)</li>
+<li>provided ref paper which goes through the derivation of <span class="citation" data-cites="RLMoccupation2026">(<a href="#ref-RLMoccupation2026" role="doc-biblioref">Strachan, n.d.</a>)</span> - turns out already in my ref manager <span class="citation" data-cites="RolandiWeakCoupling2023">(<a href="#ref-RolandiWeakCoupling2023" role="doc-biblioref">Rolandi and Perarnau-Llobet 2023</a>)</span> - its appendix goes through the derivation in more detail (and slightly differently for greater generality)</li>
+</ul>
+<p>Provided some additional papers in the process:</p>
+<ul>
+<li>“scary paper” - a paper doing ~ what this project is doing. Is dense and large, so not a single reading thing, but may act almost as a review paper, giving field specific context, and act as a citation directory to find further reading on specific subtopics <span class="citation" data-cites="scaryPaper2019">(<a href="#ref-scaryPaper2019" role="doc-biblioref">Reimer et al. 2019</a>)</span></li>
+<li><span class="citation" data-cites="Abiuso2025">(<a href="#ref-Abiuso2025" role="doc-biblioref">Abiuso et al. 2025</a>)</span> was briefly given in case it provided derivation for analytical thermalization</li>
+</ul>
+<p>Misc points:</p>
+<ul>
+<li>Saving simulation point - Francesco made the excellent point that simulation can be run in reverse from correlation matrix - if storage becomes significant issue, but need correlation matrices saved, could always save em sparsely and then propagate them from those sparse points as necessary</li>
+<li>Apparently the idea of “reentrance time” (time it takes dot to return to a particular state) is interesting in its relation to memory effects (this was noted w/ref to fig.&nbsp;6 in <span class="citation" data-cites="scaryPaper2019">(<a href="#ref-scaryPaper2019" role="doc-biblioref">Reimer et al. 2019</a>)</span>)</li>
+</ul>
+<p>Next steps:</p>
+<ul>
+<li>Implement analytical thermalization into code:
+<ul>
+<li>This will probably be a sympy job - either a standalone utility or integrated into the simulation class? the simulation class will probs make use of it - I could see utility in the simulation running until it reaches some small seperation from the analytical value - would allow for simulations to be run till thermalization instead of for a fixed time</li>
+<li>Plotting and examining <span class="math inline">\(A(\omega)\)</span> may be useful - it represents what the dot can access, so it may be interesting to plot/examinine - may be interesting to try a different spectral function to illustrate this</li>
+</ul></li>
+<li>Once analytical thermalization is implemented, need to extract the dynamical map. David will provide resources explaining how to do this:
+<ul>
+<li>one approach is apparently a pain and involves “Choi isomorphisms”</li>
+<li>Needn’t do that given that dot is a two state <span class="math inline">\(\alpha\ket{0}+\beta\ket{1}\)</span> system - can just simulate 2 versions of system starting from either <span class="math inline">\(\ket{0}\)</span> or <span class="math inline">\(\ket{1}\)</span> in order to extrct the map</li>
+<li>Given this approach, code wise i’d probably implement a “dual simulation” class which runs 2 identical simulation, but starting in a <span class="math inline">\(\ket{0}\)</span> and <span class="math inline">\(\ket{1}\)</span> states respectively, and has utilities to extract and save the dynamical map - this object would then become the main object when it comes to investigating memory effects</li>
+</ul></li>
+<li>once the dynamical map is extracted, can begin investigating memory effects in full</li>
+</ul>
+<p>I think the main things to aim for next week are:</p>
+<ul>
+<li>Analytical thermalization implementation</li>
+<li>Display/familiarize self w/analytical thermalization</li>
+<li>Read up on dynamical map extraction method</li>
+</ul>
 
 
 
@@ -745,8 +820,17 @@ A(\omega) = \frac{2\pi J(\omega)}{(\omega-\epsilon-\Lambda(\omega))^2+\pi^2J(\om
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Abiuso2025" class="csl-entry" role="listitem">
+Abiuso, Paolo, Alberto Rolandi, John Calsamiglia, Pavel Sekatski, and Martí Perarnau-Llobet. 2025. <span>“An Information-Theoretic Proof of the <span>Planckian</span> Bound for Thermalization.”</span> arXiv. <a href="https://doi.org/10.48550/arXiv.2506.19188">https://doi.org/10.48550/arXiv.2506.19188</a>.
+</div>
+<div id="ref-scaryPaper2019" class="csl-entry" role="listitem">
+Reimer, Viktor, Maarten Rolf Wegewijs, Konstantin Nestmann, and Mikhail Pletyukhov. 2019. <span>“Five Approaches to Exact Open-System Dynamics: <span>Complete</span> Positivity, Divisibility and Time-Dependent Observables.”</span> <em>The Journal of Chemical Physics</em> 151 (4): 044101. <a href="https://doi.org/10.1063/1.5094412">https://doi.org/10.1063/1.5094412</a>.
+</div>
+<div id="ref-RolandiWeakCoupling2023" class="csl-entry" role="listitem">
+Rolandi, Alberto, and Martí Perarnau-Llobet. 2023. <span>“Finite-Time <span>Landauer</span> Principle Beyond Weak Coupling.”</span> <em>Quantum</em> 7 (November): 1161. <a href="https://doi.org/10.22331/q-2023-11-03-1161">https://doi.org/10.22331/q-2023-11-03-1161</a>.
+</div>
 <div id="ref-RLMoccupation2026" class="csl-entry" role="listitem">
-<span>“<span>RLM</span> Occupation.”</span> n.d.
+Strachan, David J. n.d. <span>“<span>RLM</span> Occupation.”</span>
 </div>
 <div id="ref-ProjectOutline2026" class="csl-entry" role="listitem">
 Turci, Francesco. 2026. <span>“<span>MarkovianityOutline</span>.”</span>
