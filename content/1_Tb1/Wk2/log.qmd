@@ -341,7 +341,7 @@ Points brought up during meeting:
 Recapped what i've done:
 
 * Discussed some of the trends i've observed:
-	* The nearly periodic behaviour of post thermalization evident in @fig-bathsizeVariation are indeed due to finite model size. Especially at $n=100$, can think of system less as thermodynamic bath, and more as a bunch of mechanical coupled oscillators; therefore the "recurrences" in this dethermalization 
+	* The nearly periodic behaviour of post thermalization evident in @fig-bathsizeVariation are indeed due to finite model size. Especially at $n=100$, can think of system less as thermodynamic bath, and more as a bunch of mechanical coupled oscillators; therefore the "recurrences" in this dethermalization - apparently chain mapping method makes these reccurences really evident as "reflections" bounce back through the system
 	* briefly noted the apparent non finite phase changes and relationship to 1D ising model - not the main point, but relation to chain mapping is seemingly valid, however is an aside
 
 Clarified mystery terms in @eq-analyticalNsys, @eq-analyticalA, @eq-analyticalLambda:
