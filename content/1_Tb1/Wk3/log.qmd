@@ -1,0 +1,2 @@
+## 05/10/2026
+Continuing on with the analytical thermalization implementation.
