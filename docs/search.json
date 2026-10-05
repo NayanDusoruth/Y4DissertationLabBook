@@ -241,7 +241,7 @@
     "href": "content/1_Tb1/Wk1/log.html#section-3",
     "title": "labBook",
     "section": "27/09/2026",
-    "text": "27/09/2026\nHave realized there are some additional bits that would be convenient to implement into the base utility:\n\nSaving method - don’t need to save all the correlation matrices, just the densities:\n\nDo still need to save the last correlation matrix - need it to be able to compute further correlation matrices\n\nimplement simulation names - will help with file handling\nSave all method - create folder into which .simData, all plots, and a readable json w/simulation info is placed\n\nHave implemented the above. The saved object is significantly smaller now which will help in future. I think next steps are:\n\nSimulate and save results over variations on spectral function parameters - gain qualitative insight into the system behaviour as a result\nImplement the analytical thermalization solution David has given me (“RLM Occupation,” n.d.)",
+    "text": "27/09/2026\nHave realized there are some additional bits that would be convenient to implement into the base utility:\n\nSaving method - don’t need to save all the correlation matrices, just the densities:\n\nDo still need to save the last correlation matrix - need it to be able to compute further correlation matrices\n\nimplement simulation names - will help with file handling\nSave all method - create folder into which .simData, all plots, and a readable json w/simulation info is placed\n\nHave implemented the above. The saved object is significantly smaller now which will help in future. I think next steps are:\n\nSimulate and save results over variations on spectral function parameters - gain qualitative insight into the system behaviour as a result\nImplement the analytical thermalization solution David has given me (Strachan, n.d.)",
     "crumbs": [
       "TB1",
       "Wk1 Log"
@@ -300,6 +300,28 @@
     "crumbs": [
       "TB1",
       "Wk2 Log"
+    ]
+  },
+  {
+    "objectID": "content/1_Tb1/Wk3/log.html",
+    "href": "content/1_Tb1/Wk3/log.html",
+    "title": "labBook",
+    "section": "",
+    "text": "Continuing on with the analytical thermalization implementation. Have finished implementing the analytical thermalization into it’s own little object. It is able to produce the expected system occupation, as well as plot \\(A(\\omega)\\). The simulation object generates a thermalization object such that it can compare the analytical vs numeric thermalization on the plot (as in Figure 1, Figure 2)\n\n\n\n\n\n\nFigure 1: \\(A(\\omega)\\) for standard parameters\n\n\n\n\n\n\n\n\n\nFigure 2: System occupancy over time with red line representing analytical thermalization value\n\n\n\nThat took significantly longer than I would have liked; trying for symbolic automation of that integral was a poor idea.",
+    "crumbs": [
+      "TB1",
+      "Wk3 Log"
+    ]
+  },
+  {
+    "objectID": "content/1_Tb1/Wk3/log.html#section",
+    "href": "content/1_Tb1/Wk3/log.html#section",
+    "title": "labBook",
+    "section": "",
+    "text": "Continuing on with the analytical thermalization implementation. Have finished implementing the analytical thermalization into it’s own little object. It is able to produce the expected system occupation, as well as plot \\(A(\\omega)\\). The simulation object generates a thermalization object such that it can compare the analytical vs numeric thermalization on the plot (as in Figure 1, Figure 2)\n\n\n\n\n\n\nFigure 1: \\(A(\\omega)\\) for standard parameters\n\n\n\n\n\n\n\n\n\nFigure 2: System occupancy over time with red line representing analytical thermalization value\n\n\n\nThat took significantly longer than I would have liked; trying for symbolic automation of that integral was a poor idea.",
+    "crumbs": [
+      "TB1",
+      "Wk3 Log"
     ]
   }
 ]

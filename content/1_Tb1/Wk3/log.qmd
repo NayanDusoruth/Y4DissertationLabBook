@@ -1,2 +1,9 @@
 ## 05/10/2026
 Continuing on with the analytical thermalization implementation.
+Have finished implementing the analytical thermalization into it's own little object. It is able to produce the expected system occupation, as well as plot $A(\omega)$. The simulation object generates a thermalization object such that it can compare the analytical vs numeric thermalization on the plot (as in @fig-Aomega, @fig-numericVsAnalyticalThermalization)
+
+![$A(\omega)$ for standard parameters](figures/testSim_AomegaPlot.png){#fig-Aomega} 
+
+![System occupancy over time with red line representing analytical thermalization value](figures/testSim_systemOccupation.png){#fig-numericVsAnalyticalThermalization} 
+
+That took significantly longer than I would have liked; trying for symbolic automation of that integral was a poor idea. 
