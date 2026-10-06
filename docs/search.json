@@ -323,5 +323,16 @@
       "TB1",
       "Wk3 Log"
     ]
+  },
+  {
+    "objectID": "content/1_Tb1/Wk3/log.html#section-1",
+    "href": "content/1_Tb1/Wk3/log.html#section-1",
+    "title": "labBook",
+    "section": "06/10/2026",
+    "text": "06/10/2026\nStarting to look at the dynamical map; David has updated (Turci 2026) with a quick outline.\n\nReading notes: Dynamical map extraction (Turci 2026)\nBecause the simple model we’re using only allows the system to be in a \\(\\ket{0}\\), or \\(\\ket{1}\\) state, we expect the dynamical map to be a 2x2 matrix of form:\n\\[\n\\hat{\\Lambda(t)} = \\begin{bmatrix}\n\\nu & \\sigma \\\\\n\\alpha & \\beta\n\\end{bmatrix}\n\\tag{1}\\]\nConsidering it’s action on some state of occupation \\(p\\) \\(\\ket{\\psi}=\\begin{bmatrix}1-p \\\\ p\\end{bmatrix}\\) and enforcing trace preservation yields:\n\\[\n\\hat{\\Lambda(t)}\\ket{\\psi} =  \\begin{bmatrix}\\nu(1-p)+\\sigma p \\\\ \\alpha(1-p)+\\beta p \\end{bmatrix}\n\\tag{2}\\]\n\\[\n\\downarrow\n\\]\n\\[\n\\nu(1-p)+\\sigma p+\\alpha(1-p)+\\beta p=1\n\\]\n\\[\n(\\nu+\\alpha)+(\\sigma+\\beta-nu-\\alpha)p = 1\n\\]\nwhich can only hold \\(\\forall p\\) if:\n\\[\n\\hat{\\Lambda(t)} = \\begin{bmatrix}\n\\nu & \\sigma \\\\\n1-\\nu & 1-\\sigma\n\\end{bmatrix}\n\\]\nNeed to ensure “positivity” (unsure as to exactly why, but will roll w/it). Equation 2 maps initial occupation \\(p\\) to a new occupation $p^{*}=(1-p)+p = (1-p)+p $. Oh i see why positivity; \\(p^{*}\\) represents an occupation probability; negative values are nonsensical ergo \\(p^{*}\\in[0,1]\\) is a useful condition. Expressing \\(p^{*}=C_{11}(t)\\) where \\(C\\) is the correlation matrix directly links the dynamical map s.t:\n\\[\nC_{11}(t)= \\begin{cases}1-\\nu & C_{11}(0)=0=\\textit{occupied} \\\\\n\\nu-\\sigma & C_{11}(0)=1=\\textit{unoccupied} \\end{cases}\n\\tag{3}\\]\nTherefore:\n\\[\n\\hat{\\Lambda(t)} = \\begin{bmatrix}\n1-C_{occ}(t) & 1-C_{occ}(t)-C_{unocc}(t) \\\\\nC_{occ}(t) & C_{occ}(t)+C_{unocc}(t)\n\\end{bmatrix}\n\\tag{4}\\]\nwhere \\(C_{occ}(t)=C_{11}(t)\\) for the initially occupied state, \\(C_{unocc}(t)=C_{11}(t)\\) for the initially unoccupied state.\nIt is a touch unclear to me over which \\(t\\) \\(C_{11}(t)\\) needs to be measured. My naive assumption is that it needs to be defined over all \\(t\\) of interest; so simulate till thermalization and then \\(\\Lambda(t)\\) encapsulates the dynamics over that time range. If so, the dynamical map would probably be stored as either a time-instantaneous dynamical map dictionary, or in an array. Far less storage required compared to the full correlation matrix (besides which the dynamical map is the primary object of analysis for later).\nBut assuming i’m correct, then implementing the dynamical map should simply be a matter of querying \\(C_{11}(t)\\) for the occupied and unoccupied simulations respectively, and inputting those values into Equation 4.\nHave added some empty functions and code comments to the dual sim object; nothing functional yet, just systems that will support this dynamical map extraction and use.",
+    "crumbs": [
+      "TB1",
+      "Wk3 Log"
+    ]
   }
 ]
