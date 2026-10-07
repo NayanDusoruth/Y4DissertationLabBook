@@ -334,5 +334,16 @@
       "TB1",
       "Wk3 Log"
     ]
+  },
+  {
+    "objectID": "content/1_Tb1/Wk3/log.html#section-2",
+    "href": "content/1_Tb1/Wk3/log.html#section-2",
+    "title": "labBook",
+    "section": "07/10/2026",
+    "text": "07/10/2026\nHad supervisor meeting:\n\nExplained what i had done thus far\nBriefly discussed presentation:\n\nShort explanation of what my project is and what the plan is\n1st slide, explain general research area\n2nd slide, explain specific problem and questions\nexplain general methods and background\nshow current results\noutline plan\nNote to self: is to a large degree pedagogical exercise; need to explain topic to unfamiliar peers; if they understand overview of what i’m doing, that’s a win\n\nNote: can get system occupation from dynamical map; plotting this may be useful gut check to ensure everything is working\nShort-mid term plan:\n\nImplement dynamical map into code\nImplement memory kernel as first measure of non markovianity\nDo more literature reading - I’ve spent a lot of time implementing a solid technical foundation for the project, but have spent comparatively little time delving into the literature and the theory\nprep for presentation\n\nProvided additional papers; *(memoryKernelOutline2014?) should outline the memory kernel stuff,\n\n(analyticalTransferTensor2026?) may provide useful comparison of numerical kernel and analytical limit. This latter paper should provide insight into the subtleties and potential pitfalls if i don’t treat this carefully\n\n\nConsolidating the plan for the foreseable, i think it follows:\n\nShort term (pre presentation):\n\nWk of 05/10/2026: Implement dynamical map, implement plotting and analytical utilities for it in order to gut check it generally - maybe polish some of the plotting utilities to make them more flexible for\nWk of 12/10/2026: Implement memory kernels and use it as case study to help guide literature deep dive\nWk of 19/10/2026: Block week out to work on presentation\nWk of 26/10/2026: Presentation slides are due this Wk - can take some time to practice presentation\nWk of 02/11/2026: Presentations occur\n\nMid-long term (post presentation):\n\nFinish off literature deep dive - this should give me a firm conceptual framework for the topic area and the different measures of non markovianity\nImplement other memory definitions\nCompare memory definitions on current setup\nFigure out next steps w/insight gained at this point",
+    "crumbs": [
+      "TB1",
+      "Wk3 Log"
+    ]
   }
 ]

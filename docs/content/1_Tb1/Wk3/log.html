@@ -377,6 +377,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#reading-notes-dynamical-map-extraction-projectoutline2026" id="toc-reading-notes-dynamical-map-extraction-projectoutline2026" class="nav-link" data-scroll-target="#reading-notes-dynamical-map-extraction-projectoutline2026">Reading notes: Dynamical map extraction <span class="citation" data-cites="ProjectOutline2026">(Turci 2026)</span></a></li>
   </ul></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">07/10/2026</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -460,10 +461,57 @@ C_{occ}(t) &amp; C_{occ}(t)+C_{unocc}(t)
 <p>It is a touch unclear to me over which <span class="math inline">\(t\)</span> <span class="math inline">\(C_{11}(t)\)</span> needs to be measured. My naive assumption is that it needs to be defined over all <span class="math inline">\(t\)</span> of interest; so simulate till thermalization and then <span class="math inline">\(\Lambda(t)\)</span> encapsulates the dynamics over that time range. If so, the dynamical map would probably be stored as either a time-instantaneous dynamical map dictionary, or in an array. Far less storage required compared to the full correlation matrix (besides which the dynamical map is the primary object of analysis for later).</p>
 <p>But assuming i’m correct, then implementing the dynamical map should simply be a matter of querying <span class="math inline">\(C_{11}(t)\)</span> for the occupied and unoccupied simulations respectively, and inputting those values into <a href="#eq-mapCorrelationForm" class="quarto-xref">Equation&nbsp;4</a>.</p>
 <p>Have added some empty functions and code comments to the dual sim object; nothing functional yet, just systems that will support this dynamical map extraction and use.</p>
-
-
-
 </section>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">07/10/2026</h2>
+<p>Had supervisor meeting:</p>
+<ul>
+<li><p>Explained what i had done thus far</p></li>
+<li><p>Briefly discussed presentation:</p>
+<ul>
+<li>Short explanation of what my project is and what the plan is</li>
+<li>1st slide, explain general research area</li>
+<li>2nd slide, explain specific problem and questions</li>
+<li>explain general methods and background</li>
+<li>show current results</li>
+<li>outline plan</li>
+<li>Note to self: is to a large degree pedagogical exercise; need to explain topic to unfamiliar peers; if they understand overview of what i’m doing, that’s a win</li>
+</ul></li>
+<li><p>Note: can get system occupation from dynamical map; plotting this may be useful gut check to ensure everything is working</p></li>
+<li><p>Short-mid term plan:</p>
+<ul>
+<li>Implement dynamical map into code</li>
+<li>Implement memory kernel as first measure of non markovianity</li>
+<li>Do more literature reading - I’ve spent a lot of time implementing a solid technical foundation for the project, but have spent comparatively little time delving into the literature and the theory</li>
+<li>prep for presentation</li>
+</ul></li>
+<li><p>Provided additional papers; *<span class="citation" data-cites="memoryKernelOutline2014">(<a href="#ref-memoryKernelOutline2014" role="doc-biblioref"><strong>memoryKernelOutline2014?</strong></a>)</span> should outline the memory kernel stuff,</p>
+<ul>
+<li><span class="citation" data-cites="analyticalTransferTensor2026">(<a href="#ref-analyticalTransferTensor2026" role="doc-biblioref"><strong>analyticalTransferTensor2026?</strong></a>)</span> may provide useful comparison of numerical kernel and analytical limit. This latter paper should provide insight into the subtleties and potential pitfalls if i don’t treat this carefully</li>
+</ul></li>
+</ul>
+<p>Consolidating the plan for the foreseable, i think it follows:</p>
+<ul>
+<li>Short term (pre presentation):
+<ul>
+<li>Wk of 05/10/2026: Implement dynamical map, implement plotting and analytical utilities for it in order to gut check it generally - maybe polish some of the plotting utilities to make them more flexible for</li>
+<li>Wk of 12/10/2026: Implement memory kernels and use it as case study to help guide literature deep dive</li>
+<li>Wk of 19/10/2026: Block week out to work on presentation</li>
+<li>Wk of 26/10/2026: Presentation slides are due this Wk - can take some time to practice presentation</li>
+<li>Wk of 02/11/2026: Presentations occur</li>
+</ul></li>
+<li>Mid-long term (post presentation):
+<ul>
+<li>Finish off literature deep dive - this should give me a firm conceptual framework for the topic area and the different measures of non markovianity</li>
+<li>Implement other memory definitions</li>
+<li>Compare memory definitions on current setup</li>
+<li>Figure out next steps w/insight gained at this point</li>
+</ul></li>
+</ul>
+
+
+
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

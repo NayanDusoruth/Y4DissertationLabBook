@@ -74,3 +74,44 @@ But assuming i'm correct, then implementing the dynamical map should simply be a
 
 
 Have added some empty functions and code comments to the dual sim object; nothing functional yet, just systems that will support this dynamical map extraction and use.
+
+
+## 07/10/2026
+Had supervisor meeting:
+
+* Explained what i had done thus far
+* Briefly discussed presentation:
+	* Short explanation of what my project is and what the plan is
+	* 1st slide, explain general research area
+	* 2nd slide, explain specific problem and questions
+	* explain general methods and background
+	* show current results
+	* outline plan
+	* Note to self: is to a large degree pedagogical exercise; need to explain topic to unfamiliar peers; if they understand overview of what i'm doing, that's a win
+
+* Note: can get system occupation from dynamical map; plotting this may be useful gut check to ensure everything is working
+
+* Short-mid term plan:
+	* Implement dynamical map into code
+	* Implement memory kernel as first measure of non markovianity
+	* Do more literature reading - I've spent a lot of time implementing a solid technical foundation for the project, but have spent comparatively little time delving into the literature and the theory
+	* prep for presentation
+
+* Provided additional papers; 
+	*[@memoryKernelOutline2014] should outline the memory kernel stuff, 
+	* [@analyticalTransferTensor2026] may provide useful comparison of numerical kernel and analytical limit. This latter paper should provide insight into the subtleties and potential pitfalls if i don't treat this carefully
+
+Consolidating the plan for the foreseable, i think it follows:
+
+* Short term (pre presentation):
+	* Wk of 05/10/2026: Implement dynamical map, implement plotting and analytical utilities for it in order to gut check it generally - maybe polish some of the plotting utilities to make them more flexible for 
+	* Wk of 12/10/2026: Implement memory kernels and use it as case study to help guide literature deep dive
+	* Wk of 19/10/2026: Block week out to work on presentation
+	* Wk of 26/10/2026: Presentation slides are due this Wk - can take some time to practice presentation
+	* Wk of 02/11/2026: Presentations occur
+* Mid-long term (post presentation):
+	* Finish off literature deep dive - this should give me a firm conceptual framework for the topic area and the different measures of non markovianity
+	* Implement other memory definitions
+	* Compare memory definitions on current setup
+	* Figure out next steps w/insight gained at this point
+  
