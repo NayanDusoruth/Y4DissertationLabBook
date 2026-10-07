@@ -375,7 +375,7 @@ window.Quarto = {
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">05/10/2026</a></li>
   <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">06/10/2026</a>
   <ul class="collapse">
-  <li><a href="#reading-notes-dynamical-map-extraction-projectoutline2026" id="toc-reading-notes-dynamical-map-extraction-projectoutline2026" class="nav-link" data-scroll-target="#reading-notes-dynamical-map-extraction-projectoutline2026">Reading notes: Dynamical map extraction <span class="citation" data-cites="ProjectOutline2026">(Turci 2026)</span></a></li>
+  <li><a href="#reading-notes-dynamical-map-extraction-projectoutline2026" id="toc-reading-notes-dynamical-map-extraction-projectoutline2026" class="nav-link" data-scroll-target="#reading-notes-dynamical-map-extraction-projectoutline2026">Reading notes: Dynamical map extraction <span class="citation" data-cites="ProjectOutline2026">(Strachan 2026)</span></a></li>
   </ul></li>
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">07/10/2026</a></li>
   </ul>
@@ -415,9 +415,9 @@ Figure&nbsp;2: System occupancy over time with red line representing analytical 
 </section>
 <section id="section-1" class="level2">
 <h2 class="anchored" data-anchor-id="section-1">06/10/2026</h2>
-<p>Starting to look at the dynamical map; David has updated <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Turci 2026</a>)</span> with a quick outline.</p>
+<p>Starting to look at the dynamical map; David has updated <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Strachan 2026</a>)</span> with a quick outline.</p>
 <section id="reading-notes-dynamical-map-extraction-projectoutline2026" class="level3">
-<h3 class="anchored" data-anchor-id="reading-notes-dynamical-map-extraction-projectoutline2026">Reading notes: Dynamical map extraction <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Turci 2026</a>)</span></h3>
+<h3 class="anchored" data-anchor-id="reading-notes-dynamical-map-extraction-projectoutline2026">Reading notes: Dynamical map extraction <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Strachan 2026</a>)</span></h3>
 <p>Because the simple model we’re using only allows the system to be in a <span class="math inline">\(\ket{0}\)</span>, or <span class="math inline">\(\ket{1}\)</span> state, we expect the dynamical map to be a 2x2 matrix of form:</p>
 <p><span id="eq-mapForm"><span class="math display">\[
 \hat{\Lambda(t)} = \begin{bmatrix}
@@ -486,9 +486,9 @@ C_{occ}(t) &amp; C_{occ}(t)+C_{unocc}(t)
 <li>Do more literature reading - I’ve spent a lot of time implementing a solid technical foundation for the project, but have spent comparatively little time delving into the literature and the theory</li>
 <li>prep for presentation</li>
 </ul></li>
-<li><p>Provided additional papers; *<span class="citation" data-cites="memoryKernelOutline2014">(<a href="#ref-memoryKernelOutline2014" role="doc-biblioref"><strong>memoryKernelOutline2014?</strong></a>)</span> should outline the memory kernel stuff,</p>
+<li><p>Provided additional papers; *<span class="citation" data-cites="memoryKernelOutline2014">(<a href="#ref-memoryKernelOutline2014" role="doc-biblioref">Cerrillo and Cao 2014</a>)</span> should outline the memory kernel stuff,</p>
 <ul>
-<li><span class="citation" data-cites="analyticalTransferTensor2026">(<a href="#ref-analyticalTransferTensor2026" role="doc-biblioref"><strong>analyticalTransferTensor2026?</strong></a>)</span> may provide useful comparison of numerical kernel and analytical limit. This latter paper should provide insight into the subtleties and potential pitfalls if i don’t treat this carefully</li>
+<li><span class="citation" data-cites="analyticalTransferTensor2026">(<a href="#ref-analyticalTransferTensor2026" role="doc-biblioref">Morillas-Rozas et al. 2026</a>)</span> may provide useful comparison of numerical kernel and analytical limit. This latter paper should provide insight into the subtleties and potential pitfalls if i don’t treat this carefully</li>
 </ul></li>
 </ul>
 <p>Consolidating the plan for the foreseable, i think it follows:</p>
@@ -515,8 +515,14 @@ C_{occ}(t) &amp; C_{occ}(t)+C_{unocc}(t)
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-memoryKernelOutline2014" class="csl-entry" role="listitem">
+Cerrillo, Javier, and Jianshu Cao. 2014. <span>“Non-<span>Markovian</span> <span>Dynamical</span> <span>Maps</span>: <span>Numerical</span> <span>Processing</span> of <span>Open</span> <span>Quantum</span> <span>Trajectories</span>.”</span> <em>Physical Review Letters</em> 112 (11): 110401. <a href="https://doi.org/10.1103/PhysRevLett.112.110401">https://doi.org/10.1103/PhysRevLett.112.110401</a>.
+</div>
+<div id="ref-analyticalTransferTensor2026" class="csl-entry" role="listitem">
+Morillas-Rozas, Marcel, Alberto López-García, Gonzalo Reina Rivero, Jianshu Cao, and Javier Cerrillo. 2026. <span>“The <span>Transfer</span> <span>Tensor</span> <span>Method</span>: An <span>Analytical</span> <span>Study</span> <span>Case</span>.”</span> <em>The Journal of Chemical Physics</em> 165 (5): 054108. <a href="https://doi.org/10.1063/5.0340784">https://doi.org/10.1063/5.0340784</a>.
+</div>
 <div id="ref-ProjectOutline2026" class="csl-entry" role="listitem">
-Turci, Francesco. 2026. <span>“<span>MarkovianityOutline</span>.”</span>
+Strachan, David J. 2026. <span>“<span>MarkovianityOutline</span>.”</span>
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
