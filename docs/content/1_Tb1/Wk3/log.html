@@ -378,6 +378,7 @@ window.Quarto = {
   <li><a href="#reading-notes-dynamical-map-extraction-projectoutline2026" id="toc-reading-notes-dynamical-map-extraction-projectoutline2026" class="nav-link" data-scroll-target="#reading-notes-dynamical-map-extraction-projectoutline2026">Reading notes: Dynamical map extraction <span class="citation" data-cites="ProjectOutline2026">(Strachan 2026)</span></a></li>
   </ul></li>
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">07/10/2026</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">09/10/2026</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -439,27 +440,27 @@ Figure&nbsp;2: System occupancy over time with red line representing analytical 
 (\nu+\alpha)+(\sigma+\beta-nu-\alpha)p = 1
 \]</span></p>
 <p>which can only hold <span class="math inline">\(\forall p\)</span> if:</p>
-<p><span class="math display">\[
+<p><span id="eq-lambdaForm"><span class="math display">\[
 \hat{\Lambda(t)} = \begin{bmatrix}
 \nu &amp; \sigma \\
 1-\nu &amp; 1-\sigma
 \end{bmatrix}
-\]</span></p>
+\tag{3}\]</span></span></p>
 <p>Need to ensure “positivity” (unsure as to exactly why, but will roll w/it). <a href="#eq-dynamicalMapOnState" class="quarto-xref">Equation&nbsp;2</a> maps initial occupation <span class="math inline">\(p\)</span> to a new occupation $p^{*}=(1-p)+p = (1-p)+p $. Oh i see why positivity; <span class="math inline">\(p^{*}\)</span> represents an occupation probability; negative values are nonsensical ergo <span class="math inline">\(p^{*}\in[0,1]\)</span> is a useful condition. Expressing <span class="math inline">\(p^{*}=C_{11}(t)\)</span> where <span class="math inline">\(C\)</span> is the correlation matrix directly links the dynamical map s.t:</p>
 <p><span id="eq-dynamicalMapCorrelationRelation"><span class="math display">\[
 C_{11}(t)= \begin{cases}1-\nu &amp; C_{11}(0)=0=\textit{occupied} \\
 \nu-\sigma &amp; C_{11}(0)=1=\textit{unoccupied} \end{cases}
-\tag{3}\]</span></span></p>
+\tag{4}\]</span></span></p>
 <p>Therefore:</p>
 <p><span id="eq-mapCorrelationForm"><span class="math display">\[
 \hat{\Lambda(t)} = \begin{bmatrix}
 1-C_{occ}(t) &amp; 1-C_{occ}(t)-C_{unocc}(t) \\
 C_{occ}(t) &amp; C_{occ}(t)+C_{unocc}(t)
 \end{bmatrix}
-\tag{4}\]</span></span></p>
+\tag{5}\]</span></span></p>
 <p>where <span class="math inline">\(C_{occ}(t)=C_{11}(t)\)</span> for the initially occupied state, <span class="math inline">\(C_{unocc}(t)=C_{11}(t)\)</span> for the initially unoccupied state.</p>
 <p>It is a touch unclear to me over which <span class="math inline">\(t\)</span> <span class="math inline">\(C_{11}(t)\)</span> needs to be measured. My naive assumption is that it needs to be defined over all <span class="math inline">\(t\)</span> of interest; so simulate till thermalization and then <span class="math inline">\(\Lambda(t)\)</span> encapsulates the dynamics over that time range. If so, the dynamical map would probably be stored as either a time-instantaneous dynamical map dictionary, or in an array. Far less storage required compared to the full correlation matrix (besides which the dynamical map is the primary object of analysis for later).</p>
-<p>But assuming i’m correct, then implementing the dynamical map should simply be a matter of querying <span class="math inline">\(C_{11}(t)\)</span> for the occupied and unoccupied simulations respectively, and inputting those values into <a href="#eq-mapCorrelationForm" class="quarto-xref">Equation&nbsp;4</a>.</p>
+<p>But assuming i’m correct, then implementing the dynamical map should simply be a matter of querying <span class="math inline">\(C_{11}(t)\)</span> for the occupied and unoccupied simulations respectively, and inputting those values into <a href="#eq-mapCorrelationForm" class="quarto-xref">Equation&nbsp;5</a>.</p>
 <p>Have added some empty functions and code comments to the dual sim object; nothing functional yet, just systems that will support this dynamical map extraction and use.</p>
 </section>
 </section>
@@ -509,6 +510,78 @@ C_{occ}(t) &amp; C_{occ}(t)+C_{unocc}(t)
 <li>Figure out next steps w/insight gained at this point</li>
 </ul></li>
 </ul>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3">09/10/2026</h2>
+<p>Have quickly implemented computing the dynamical map. Also implementing a “compute state from dynamical map” method which takes in an initial occupation probability, and evolves it using the dynamical map. Have also implemented a quick system plotting function which can plot this occupation over time. It doesn’t match the basic simulation evolution; likely a typo somewhere in the maths.</p>
+<p>hmmm, something odd is occuring.</p>
+<div id="fig-refEvo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-refEvo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/referenceEvolution.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-refEvo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: System occupation evolution computed from correlation evolution
+</figcaption>
+</figure>
+</div>
+<div id="fig-dynamicalEvoBroken" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dynamicalEvoBroken-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/dynamicalEvoDt1.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="figures/dynamicalEvoDt01.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dynamicalEvoBroken-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: System evolution from occupied state propagated by dynamical map for <span class="math inline">\(\Delta t=1, 0.1\)</span> respectively
+</figcaption>
+</figure>
+</div>
+<p>Comparing a standard simulation <a href="#fig-refEvo" class="quarto-xref">Figure&nbsp;3</a> to the dynamical map propagated occupation <a href="#fig-dynamicalEvoBroken" class="quarto-xref">Figure&nbsp;4</a> reveals some issues. The dynamical map evolution is clearly distinct in its scale (<span class="math inline">\(n_{occ} \in [0,8]\)</span> vs <span class="math inline">\(n_{occ} \in[0,1]\)</span> for dynamic and simulation derived occupations), as well as thermalizing slower. But further than that, the timestep seems to have an effect on the dynamical map derived occupation evolution.</p>
+<p>Have quickly implemented unitary check for the dynamical map. Aaaand it isn’t unitary; smth is wrong. Ok have removed one error; new evolution for dynamical map yields <a href="#fig-dynamicalMap2" class="quarto-xref">Figure&nbsp;5</a>.</p>
+<div id="fig-dynamicalMap2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dynamicalMap2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/dynamicalEvo2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dynamicalMap2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: System occupation evolution computed from dynamical map after minor fix
+</figcaption>
+</figure>
+</div>
+<p>This is still of the wrong scale, but is at least the right shape on first inspection. Quickly summarising what the code was doing:</p>
+<p><span class="math display">\[\ket{\psi(0)} = \begin{bmatrix}0 \\ 1 \end{bmatrix}\]</span> <span class="math display">\[\ket{\psi(t)} = \Lambda(t)\cdot\ket{\psi(t-\Delta t)}\]</span></p>
+<p>the fix switched it to:</p>
+<p><span class="math display">\[\ket{\psi(t)} = \Lambda(t)\cdot\ket{\psi(0)}\]</span></p>
+<p>The dynamical map at every steps applies to the initial state; not the previous state; which was causing issues. Its still not of the right magnitude which i suspect is due to the non unitary <span class="math inline">\(\Lambda(t)\)</span>. It almost seems that a multiplication by 2 is occuring somewhere…</p>
+<p>None of the dynamical maps are unitary for any time t.</p>
+<p>Quickly checking some of the maths:</p>
+<p><span id="eq-checkingLambdaUnitarity"><span class="math display">\[
+\hat{\Lambda(t)} \cdot \hat{\Lambda(t)}^{\dagger}= \begin{bmatrix}
+\nu &amp; \sigma \\
+1-\nu &amp; 1-\sigma
+\end{bmatrix} \cdot
+\begin{bmatrix}
+\nu^{\dagger} &amp; (1-\nu)^{^{\dagger}} \\
+\sigma^{\dagger} &amp; (1-\sigma)^{\dagger}
+\end{bmatrix} = \begin{bmatrix}
+\nu &amp; \sigma \\
+1-\nu &amp; 1-\sigma
+\end{bmatrix} \cdot
+\begin{bmatrix}
+\nu^{\dagger} &amp; 1-\nu^{^{\dagger}} \\
+\sigma^{\dagger} &amp; 1-\sigma^{\dagger}
+\end{bmatrix}= \begin{bmatrix}
+2 &amp; \nu+\sigma-2 \\
+\nu^{\dagger}+\sigma^{\dagger}-2 &amp; 2
+\end{bmatrix}
+\tag{6}\]</span></span></p>
+<p>If i haven’t done my maths wrong; the expression <a href="#eq-lambdaForm" class="quarto-xref">Equation&nbsp;3</a> isn’t unitary as in <a href="#eq-checkingLambdaUnitarity" class="quarto-xref">Equation&nbsp;6</a>? I wouldn’t bet against my doing the maths wrong; i am quite tired now and pen and papering the above… Which i think is a good sign to put this away for now. Tmr i can recheck the maths with better focus.</p>
 
 
 

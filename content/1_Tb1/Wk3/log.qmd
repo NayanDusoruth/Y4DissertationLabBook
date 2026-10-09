@@ -48,7 +48,7 @@ $$
 \nu & \sigma \\
 1-\nu & 1-\sigma
 \end{bmatrix}
-$$
+$${#eq-lambdaForm}
 
 Need to ensure "positivity" (unsure as to exactly why, but will roll w/it). @eq-dynamicalMapOnState maps initial occupation $p$ to a new occupation $p^{*}=\nu(1-p)+\sigma p = \alpha(1-p)+\beta p $. Oh i see why positivity; $p^{*}$ represents an occupation probability; negative values are nonsensical ergo $p^{*}\in[0,1]$ is a useful condition. Expressing $p^{*}=C_{11}(t)$ where $C$ is the correlation matrix directly links the dynamical map s.t:
 
@@ -114,4 +114,68 @@ Consolidating the plan for the foreseable, i think it follows:
 	* Implement other memory definitions
 	* Compare memory definitions on current setup
 	* Figure out next steps w/insight gained at this point
-  
+
+## 09/10/2026
+Have quickly implemented computing the dynamical map. Also implementing a "compute state from dynamical map" method which takes in an initial occupation probability, and evolves it using the dynamical map. Have also implemented a quick system plotting function which can plot this occupation over time. It doesn't match the basic simulation evolution; likely a typo somewhere in the maths.
+
+hmmm, something odd is occuring.
+
+![System occupation evolution computed from correlation evolution](figures/referenceEvolution.png){#fig-refEvo} 
+
+::: {#fig-dynamicalEvoBroken layout-ncol=2}
+
+![](figures/dynamicalEvoDt1.png)
+
+![](figures/dynamicalEvoDt01.png)
+
+System evolution from occupied state propagated by dynamical map for $\Delta t=1, 0.1$ respectively
+:::
+
+Comparing a standard simulation @fig-refEvo to the dynamical map propagated occupation @fig-dynamicalEvoBroken reveals some issues. The dynamical map evolution is clearly distinct in its scale ($n_{occ} \in [0,8]$ vs $n_{occ} \in[0,1]$ for dynamic and simulation derived occupations), as well as thermalizing slower. But further than that, the timestep seems to have an effect on the dynamical map derived occupation evolution. 
+
+Have quickly implemented unitary check for the dynamical map. Aaaand it isn't unitary; smth is wrong.
+Ok have removed one error; new evolution for dynamical map yields @fig-dynamicalMap2.
+
+![System occupation evolution computed from dynamical map after minor fix](figures/dynamicalEvo2.png){#fig-dynamicalMap2} 
+
+This is still of the wrong scale, but is at least the right shape on first inspection.
+Quickly summarising what the code was doing:
+
+
+$$\ket{\psi(0)} = \begin{bmatrix}0 \\ 1 \end{bmatrix}$$
+$$\ket{\psi(t)} = \Lambda(t)\cdot\ket{\psi(t-\Delta t)}$$
+
+the fix switched it to:
+
+$$\ket{\psi(t)} = \Lambda(t)\cdot\ket{\psi(0)}$$
+
+The dynamical map at every steps applies to the initial state; not the previous state; which was causing issues. Its still not of the right magnitude which i suspect is due to the non unitary $\Lambda(t)$. It almost seems that a multiplication by 2 is occuring somewhere...
+
+None of the dynamical maps are unitary for any time t.
+
+Quickly checking some of the maths:
+
+
+$$
+\hat{\Lambda(t)} \cdot \hat{\Lambda(t)}^{\dagger}= \begin{bmatrix}
+\nu & \sigma \\
+1-\nu & 1-\sigma
+\end{bmatrix} \cdot
+\begin{bmatrix}
+\nu^{\dagger} & (1-\nu)^{^{\dagger}} \\
+\sigma^{\dagger} & (1-\sigma)^{\dagger}
+\end{bmatrix} = \begin{bmatrix}
+\nu & \sigma \\
+1-\nu & 1-\sigma
+\end{bmatrix} \cdot
+\begin{bmatrix}
+\nu^{\dagger} & 1-\nu^{^{\dagger}} \\
+\sigma^{\dagger} & 1-\sigma^{\dagger}
+\end{bmatrix}= \begin{bmatrix}
+2 & \nu+\sigma-2 \\
+\nu^{\dagger}+\sigma^{\dagger}-2 & 2
+\end{bmatrix}
+$${#eq-checkingLambdaUnitarity}
+
+If i haven't done my maths wrong; the expression @eq-lambdaForm isn't unitary as in @eq-checkingLambdaUnitarity? I wouldn't bet against my doing the maths wrong; i am quite tired now and pen and papering the above...
+Which i think is a good sign to put this away for now. Tmr i can recheck the maths with better focus.
