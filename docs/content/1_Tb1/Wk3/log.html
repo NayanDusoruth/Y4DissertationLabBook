@@ -379,7 +379,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">07/10/2026</a></li>
   <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">09/10/2026</a></li>
-  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">10/10/2026</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">10/10/2026</a>
+  <ul class="collapse">
+  <li><a href="#reading-notes-openquantumsystemsintro2012" id="toc-reading-notes-openquantumsystemsintro2012" class="nav-link" data-scroll-target="#reading-notes-openquantumsystemsintro2012">Reading notes: <span class="citation" data-cites="OpenQuantumSystemsIntro2012">(Rivas and Huelga 2012)</span></a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -645,9 +648,93 @@ Figure&nbsp;7: System occupation evolution computed using dynamical map for both
 </figcaption>
 </figure>
 </div>
+<p>The next steps require reading up on the different memory definitions. <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Strachan 2026</a>)</span> notes memory kernels, information backflow and failure of complete positivity. Going through and implementing these one by one may be wise. This would help me familiarize myself w/the theory in one context, which should hopefully yield enough insight to make understanding the other definitions easier. As such, examining the memory kernels feels a decent place to start.</p>
+<p><span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Strachan 2026</a>)</span> notes memory kernels are defined in terms of the Nakajima-Zwanzig formalism. <span class="citation" data-cites="OpenQuantumSystemsIntro2012">(<a href="#ref-OpenQuantumSystemsIntro2012" role="doc-biblioref">Rivas and Huelga 2012</a>)</span> seems to have decent information on the topic, so will start there.</p>
+<section id="reading-notes-openquantumsystemsintro2012" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="reading-notes-openquantumsystemsintro2012">Reading notes: <span class="citation" data-cites="OpenQuantumSystemsIntro2012">(<a href="#ref-OpenQuantumSystemsIntro2012" role="doc-biblioref">Rivas and Huelga 2012</a>)</span></h3>
+<p>Classical markovianity for context (p35) - stochastic processes w/Random variable <span class="math inline">\(x(t)\)</span> is markovian if the probability of <span class="math inline">\(x_{n}, t_{n}\)</span> is conditioned solely on the previous timestep s.t:</p>
+<p><span id="eq-discreeteClassicallyMarkovianity"><span class="math display">\[
+p(x_{n}, t_{n}|x_{n-1}, t_{-1};...;x_{0}, t_{0})=p(x_{n}, t_{n}|x_{n-1})
+\tag{11}\]</span></span></p>
+<p>Taking a continuum limit yields:</p>
+<p><span class="math display">\[
+p(x,t;x',t')=p(x,t|x',t')p(x',t')
+\]</span></p>
+<p>Where <span class="math inline">\(x', t'\)</span> take the place of <span class="math inline">\(x_{n-1}, t_{n-1}\)</span> for some infintesimal step. Integrating over <span class="math inline">\(x'\)</span> directly relates the two absolute probabilities:</p>
+<p><span class="math display">\[
+p(x,t)=\int dx' p(x,t|x',t')p(x',t') = \int dx' K(x,t|x',t')p(x',t')
+\]</span></p>
+<p>Which is of similar form to the summary in <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Strachan 2026</a>)</span>; with <span class="math inline">\(K\)</span> being the memory kernel. This would make sense given that it literally represents the conditional probability of a given state <span class="math inline">\(x,t\)</span> given some prior state(s) <span class="math inline">\(x', t'\)</span>.</p>
+<p>Sec 5.2 (p37) then outlines the specifics for quantum markovian evolution and its master eq. The key result of this section is the statement that QM markovian systems obey the Master equation:</p>
+<p><span id="eq-QMarkovianMasterEq"><span class="math display">\[
+\frac{d\rho(t)}{dt} = -i[H(t),\rho(t)]+\sum_{k}\gamma_{k}(t)(V_{k}(t)\rho(t)V^{\dagger}_{k}(t)-\frac{1}{2}\{V_{k}(t)V^{\dagger}_{k}(t), \rho(t)\})
+\tag{12}\]</span></span></p>
+<p>Where <span class="math inline">\(H(t)\)</span> is hermitian, <span class="math inline">\(\gamma_{k}(t)&gt;0\)</span>. The section goes through the proof. Presumably <span class="math inline">\(H(t)\)</span> is the system hamiltonian, <span class="math inline">\(\gamma_{k}(t)\)</span> seemingly represent some eigenvalues; the meaning of <span class="math inline">\(V_{k}\)</span> isn’t clear. Would need to look at the proof in more detail; as well as try to parse the fairly abstract terms therein to get some intuition to what these terms represent. Not an immediate now thing.</p>
+<p>Sec 6.1 (p52) introduces the Nakajima-Zwanzig Eq (albeit presumably in a markovian context). It sets up the hamiltonian:</p>
+<p><span id="eq-Nakajima-ZwanzigHamiltonian"><span class="math display">\[
+H = H_{a}+H_{b}+V
+\tag{13}\]</span></span></p>
+<p>Where <span class="math inline">\(H_{a}\)</span> and <span class="math inline">\(H_{b}\)</span> are the independent hamiltonians of the system and bath, whilst <span class="math inline">\(V\)</span> represents the interaction between them (i wonder if this relates to the above <span class="math inline">\(V_{k}\)</span> terms?). This results in a combined hilbert space <span class="math inline">\(\mathcal{H}=\mathcal{H_{a}}\otimes\mathcal{H_{b}}\)</span>. It is apparently useful to define 2 orthogonal projection operators <span class="math inline">\(\mathcal{P}, \mathcal{Q}\)</span> s.t <span class="math inline">\(\mathcal{P}^{2}=\mathcal{P}\)</span>, <span class="math inline">\(\mathcal{Q}^{2}=\mathcal{Q}\)</span>, <span class="math inline">\(\mathcal{P}\mathcal{Q}=\mathcal{Q}\mathcal{P}=0\)</span> defined as:</p>
+<p><span id="eq-Poperator"><span class="math display">\[
+\mathcal{P}_{\rho} = Tr_{b}(\rho)\otimes\rho_{b}
+\tag{14}\]</span></span> <span id="eq-Qoperator"><span class="math display">\[
+\mathcal{Q}_{\rho} = (\mathcal{I}-\mathcal{P}_{\rho})\rho
+\tag{15}\]</span></span></p>
+<p>The method sets <span class="math inline">\(\rho_{b}\)</span> to be the environments initial state as a convenience, and assumes initial thermal equilibrium s.t:</p>
+<p><span id="eq-rhoBinitial"><span class="math display">\[
+\rho_{b} = e^{-\beta H_{b}}[Tr(e^{-\beta H_{b}})]^{-1}
+\tag{16}\]</span></span></p>
+<p>Inserting <a href="#eq-Nakajima-ZwanzigHamiltonian" class="quarto-xref">Equation&nbsp;13</a> into the “Von Neuman Eq” yields:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>From context the Von Neuman Eq is <span class="math inline">\(\frac{d\rho(t)}{dt}=-i[H,\rho]\)</span></p>
+</div></div><p><span id="eq-Nakajima-ZwanzigVonNeumanEq"><span class="math display">\[
+\frac{d\rho(t)}{dt}=-i[H_{a}+H_{b}+V,\rho]
+\tag{17}\]</span></span></p>
+<p>The method takes the projection operator on <a href="#eq-Nakajima-ZwanzigVonNeumanEq" class="quarto-xref">Equation&nbsp;17</a>. Note that this method uses the interaction picture; so seperates out the system/enviroment and interaction terms by defining:</p>
+<p><span class="math display">\[
+\rho'(t)=e^{i(H_{a}+H_{b})t}\rho(t)e^{-i(H_{a}+H_{b})t}
+\]</span></p>
+<p>For trace preservation reasons, the projector operators on <a href="#eq-Nakajima-ZwanzigVonNeumanEq" class="quarto-xref">Equation&nbsp;17</a> can be written in this interaction picture as:</p>
+<p><span id="eq-Nakajima-ZwanzigVonNeumanEqPoperator"><span class="math display">\[
+\frac{d\mathcal{P}\rho'(t)}{dt}=-i\mathcal{P}[V,\rho']
+\tag{18}\]</span></span></p>
+<p><span id="eq-Nakajima-ZwanzigVonNeumanEqQoperator"><span class="math display">\[
+\frac{d\mathcal{Q}\rho'(t)}{dt}=-i\mathcal{Q}[V,\rho']
+\tag{19}\]</span></span></p>
+<p>By redefining <span class="math inline">\(\mathcal{V}(t)=-i[V,.]\)</span>, and taking several other steps, the generalized Nakajima-Zwanzig Eq results:</p>
+<p><span id="eq-generalizedNakajima-ZwanzigEq"><span class="math display">\[
+\frac{d}{dt}\mathcal{P}\rho'(t) = \mathcal{P}\mathcal{V}(t)\mathcal{P}\rho'(t)+\mathcal{P}\mathcal{V}(t)\mathcal{G}(t,0)\mathcal{Q}\rho'(0)+\int_{0}^{t}dt'\mathcal{P}\mathcal{V}(t)\mathcal{G}(t,t')\mathcal{Q}\mathcal{V}(t')\mathcal{P}\rho'(t')
+\tag{20}\]</span></span></p>
+<p><span class="math display">\[
+\mathcal{G}(t,t')=\mathcal{T}e^{\int_{t'}^{t} ds\mathcal{Q}\mathcal{V}(s)}
+\]</span></p>
+<p>Which is awful to look at. The paper notes 2 common assumptions; A) <span class="math inline">\(\mathcal{P}\mathcal{V}(t)\mathcal{P}=0\)</span>, B) assuming initial state <span class="math inline">\(\rho(0)=\rho_{a}(0)\otimes\rho_{b}(0)\)</span> is a product state of A, B. This simplifies <a href="#eq-generalizedNakajima-ZwanzigEq" class="quarto-xref">Equation&nbsp;20</a> to:</p>
+<p><span id="eq-simpleNakajima-ZwanzigEq"><span class="math display">\[
+\frac{d}{dt}\mathcal{P}\rho'(t) = \int_{0}^{t}dt'\mathcal{K}(t,t')\mathcal{P}\rho'(t')
+\tag{21}\]</span></span></p>
+<p><span id="eq-Nakajima-ZwanzigEqKernel"><span class="math display">\[
+\mathcal{K}(t,t') = \mathcal{P}\mathcal{V}(t)\mathcal{G}(t,t')\mathcal{Q}\mathcal{V}(t')
+\tag{22}\]</span></span></p>
+<p>With <a href="#eq-simpleNakajima-ZwanzigEq" class="quarto-xref">Equation&nbsp;21</a> being similar in form to the summary given by <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Strachan 2026</a>)</span>. Some differences are present; <span class="math inline">\(\mathcal{P}\)</span> isn’t present, and the interaction <span class="math inline">\(\rho'\)</span> isn’t acknowledged; i suspect that that may be simplified in this project, hence their absence. Further note that kernel homogeneity is a condition s.t <span class="math inline">\(\mathcal{K}(t,t')=\mathcal{K}(t-t')\)</span> (which is also the form given by <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Strachan 2026</a>)</span>) which is apparently solvable by laplace eq.</p>
+<p>The paper continues in sec 6.2 (p56) and sec 6.3 (p75) by examining a weak coupling limit and a singular coupling limit respectively. These are both long and involved sections; and i’m not sure how relevant they may be. That said however, there are examples in sec 6.2.5 (p67) which look familiar.</p>
+<p>Sec 7 (p82) begins examining the non markovian case. Reiterates <a href="#eq-simpleNakajima-ZwanzigEq" class="quarto-xref">Equation&nbsp;21</a>, noting that in the non markovian case; <a href="#eq-Nakajima-ZwanzigEqKernel" class="quarto-xref">Equation&nbsp;22</a> is difficult to write s.t <a href="#eq-simpleNakajima-ZwanzigEq" class="quarto-xref">Equation&nbsp;21</a> isn’t necessarily solvable. It notes an additional step to try and reduce non markovian dynamics to markovian dynamics as:</p>
+<p><span id="eq-Nakajima-ZwanzigMemoryForm"><span class="math display">\[
+\frac{d\rho(t)}{dt}=\int_{0}^{t}dt'k(t-t')\mathcal{L}(\rho(t'))
+\tag{23}\]</span></span></p>
+<p>Which almost exactly corresponds to that introduced by <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Strachan 2026</a>)</span>, with <span class="math inline">\(k(t-t')\)</span> representing the memory effects w/<span class="math inline">\(k(t-t')\to\delta(t-t')\)</span> recovering markovian behaviour.</p>
+<p>Note that <span class="citation" data-cites="ProjectOutline2026">(<a href="#ref-ProjectOutline2026" role="doc-biblioref">Strachan 2026</a>)</span> expresses this as:</p>
+<p><span id="eq-Nakajima-ZwanzigMemoryForm2"><span class="math display">\[
+\frac{d\rho(t)}{dt}=\int_{0}^{t}dt'k(t-t')\rho(t')
+\tag{24}\]</span></span></p>
+<p>With the idea being inverting this eq to extract <span class="math inline">\(k(t-t')\)</span>. Not entirely sure how to do that yet since the integral is over a different <span class="math inline">\(t'\)</span> to <span class="math inline">\(\rho(t)\)</span>…</p>
+<p>Aside; but skimming over <span class="citation" data-cites="analyticalTransferTensor2026">(<a href="#ref-analyticalTransferTensor2026" role="doc-biblioref">Morillas-Rozas et al. 2026</a>)</span> seems to confirm my understanding acquired from the above reading; similar terms and logic poping up. Its not that papers main focus; but reassuring to note.</p>
+<p><span class="citation" data-cites="memoryKernelOutline2014">(<a href="#ref-memoryKernelOutline2014" role="doc-biblioref">Cerrillo and Cao 2014</a>)</span> likewise has similar terms. Both papers refer to “transfer tensors” seemingly as discreete objects which relate to the kernels somehow. Both papers seem to be exploring a “transfer tensor method” to extract certain system parameters including the memory kernel.</p>
+<p><span class="citation" data-cites="scaryPaper2019">(<a href="#ref-scaryPaper2019" role="doc-biblioref">Reimer et al. 2019</a>)</span> which compares multiple defs of quantum non markovianity (similarly to this project) has a section on memory kernels which echoes the same ideas as above.</p>
 
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
@@ -656,6 +743,12 @@ Cerrillo, Javier, and Jianshu Cao. 2014. <span>“Non-<span>Markovian</span> <sp
 </div>
 <div id="ref-analyticalTransferTensor2026" class="csl-entry" role="listitem">
 Morillas-Rozas, Marcel, Alberto López-García, Gonzalo Reina Rivero, Jianshu Cao, and Javier Cerrillo. 2026. <span>“The <span>Transfer</span> <span>Tensor</span> <span>Method</span>: An <span>Analytical</span> <span>Study</span> <span>Case</span>.”</span> <em>The Journal of Chemical Physics</em> 165 (5): 054108. <a href="https://doi.org/10.1063/5.0340784">https://doi.org/10.1063/5.0340784</a>.
+</div>
+<div id="ref-scaryPaper2019" class="csl-entry" role="listitem">
+Reimer, Viktor, Maarten Rolf Wegewijs, Konstantin Nestmann, and Mikhail Pletyukhov. 2019. <span>“Five Approaches to Exact Open-System Dynamics: <span>Complete</span> Positivity, Divisibility and Time-Dependent Observables.”</span> <em>The Journal of Chemical Physics</em> 151 (4): 044101. <a href="https://doi.org/10.1063/1.5094412">https://doi.org/10.1063/1.5094412</a>.
+</div>
+<div id="ref-OpenQuantumSystemsIntro2012" class="csl-entry" role="listitem">
+Rivas, Ángel, and Susana F Huelga. 2012. <em>Open <span>Quantum</span> <span>Systems</span>. <span>An</span> <span>Introduction</span></em>. https://doi.org/<a href="https://doi.org/10.48550/arXiv.1104.5242">https://doi.org/10.48550/arXiv.1104.5242</a>.
 </div>
 <div id="ref-ProjectOutline2026" class="csl-entry" role="listitem">
 Strachan, David J. 2026. <span>“<span>MarkovianityOutline</span>.”</span>

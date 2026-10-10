@@ -241,4 +241,137 @@ $${#eq-mapCorrelationForm2}
 Ok thats better; it seems the maths was misderived. @eq-mapCorrelationForm2 still isn't unitary seemingly; but is reproducing the correct dynamics.
 Have tidied up some plotting utilities inc one which shows the system evolution from both occupied and unoccupied starting states:
 
-![System occupation evolution computed using dynamical map for both occupied and unoccupied starts](figures/dynamicalEvoDual.png){#fig-dynamicalMapDual} 
+![System occupation evolution computed using dynamical map for both occupied and unoccupied starts](figures/dynamicalEvoDual.png){#fig-dynamicalMapDual}
+
+The next steps require reading up on the different memory definitions. [@ProjectOutline2026] notes memory kernels, information backflow and failure of complete positivity. Going through and implementing these one by one may be wise. This would help me familiarize myself w/the theory in one context, which should hopefully yield enough insight to make understanding the other definitions easier.
+As such, examining the memory kernels feels a decent place to start.
+
+[@ProjectOutline2026] notes memory kernels are defined in terms of the Nakajima-Zwanzig formalism. [@OpenQuantumSystemsIntro2012] seems to have decent information on the topic, so will start there.
+
+### Reading notes: [@OpenQuantumSystemsIntro2012]
+
+Classical markovianity for context (p35) - stochastic processes w/Random variable $x(t)$ is markovian if the probability of $x_{n}, t_{n}$ is conditioned solely on the previous timestep s.t:
+
+$$
+p(x_{n}, t_{n}|x_{n-1}, t_{-1};...;x_{0}, t_{0})=p(x_{n}, t_{n}|x_{n-1})
+$${#eq-discreeteClassicallyMarkovianity}
+
+Taking a continuum limit yields:
+
+$$
+p(x,t;x',t')=p(x,t|x',t')p(x',t')
+$$
+
+Where $x', t'$ take the place of $x_{n-1}, t_{n-1}$ for some infintesimal step.
+Integrating over $x'$ directly relates the two absolute probabilities:
+
+$$
+p(x,t)=\int dx' p(x,t|x',t')p(x',t') = \int dx' K(x,t|x',t')p(x',t') 
+$$
+
+Which is of similar form to the summary in [@ProjectOutline2026]; with $K$ being the memory kernel. This would make sense given that it literally represents the conditional probability of a given state $x,t$ given some prior state(s) $x', t'$. 
+
+Sec 5.2 (p37) then outlines the specifics for quantum markovian evolution and its master eq. The key result of this section is the statement that QM markovian systems obey the Master equation:
+
+$$
+\frac{d\rho(t)}{dt} = -i[H(t),\rho(t)]+\sum_{k}\gamma_{k}(t)(V_{k}(t)\rho(t)V^{\dagger}_{k}(t)-\frac{1}{2}\{V_{k}(t)V^{\dagger}_{k}(t), \rho(t)\})
+$${#eq-QMarkovianMasterEq}
+
+Where $H(t)$ is hermitian, $\gamma_{k}(t)>0$. The section goes through the proof. Presumably $H(t)$ is the system hamiltonian, $\gamma_{k}(t)$ seemingly represent some eigenvalues; the meaning of $V_{k}$ isn't clear. Would need to look at the proof in more detail; as well as try to parse the fairly abstract terms therein to get some intuition to what these terms represent. Not an immediate now thing.
+
+Sec 6.1 (p52) introduces the Nakajima-Zwanzig Eq (albeit presumably in a markovian context).
+It sets up the hamiltonian:
+
+$$
+H = H_{a}+H_{b}+V
+$${#eq-Nakajima-ZwanzigHamiltonian}
+
+Where $H_{a}$ and $H_{b}$ are the independent hamiltonians of the system and bath, whilst $V$ represents the interaction between them (i wonder if this relates to the above $V_{k}$ terms?).
+This results in a combined hilbert space $\mathcal{H}=\mathcal{H_{a}}\otimes\mathcal{H_{b}}$. It is apparently useful to define 2 orthogonal projection operators $\mathcal{P}, \mathcal{Q}$ s.t $\mathcal{P}^{2}=\mathcal{P}$, $\mathcal{Q}^{2}=\mathcal{Q}$, $\mathcal{P}\mathcal{Q}=\mathcal{Q}\mathcal{P}=0$ defined as:
+
+$$
+\mathcal{P}_{\rho} = Tr_{b}(\rho)\otimes\rho_{b}
+$${#eq-Poperator}
+$$
+\mathcal{Q}_{\rho} = (\mathcal{I}-\mathcal{P}_{\rho})\rho
+$${#eq-Qoperator}
+
+The method sets $\rho_{b}$ to be the environments initial state as a convenience, and assumes initial thermal equilibrium s.t:
+
+$$
+\rho_{b} = e^{-\beta H_{b}}[Tr(e^{-\beta H_{b}})]^{-1}
+$${#eq-rhoBinitial}
+
+Inserting @eq-Nakajima-ZwanzigHamiltonian into the "Von Neuman Eq" yields:
+
+::: {.column-margin}
+From context the Von Neuman Eq is $\frac{d\rho(t)}{dt}=-i[H,\rho]$
+:::
+
+$$
+\frac{d\rho(t)}{dt}=-i[H_{a}+H_{b}+V,\rho]
+$${#eq-Nakajima-ZwanzigVonNeumanEq}
+
+The method takes the projection operator on @eq-Nakajima-ZwanzigVonNeumanEq. Note that this method uses the interaction picture; so seperates out the system/enviroment and interaction terms by defining: 
+
+$$
+\rho'(t)=e^{i(H_{a}+H_{b})t}\rho(t)e^{-i(H_{a}+H_{b})t}
+$$
+
+For trace preservation reasons, the projector operators on @eq-Nakajima-ZwanzigVonNeumanEq can be written in this interaction picture as:
+
+$$
+\frac{d\mathcal{P}\rho'(t)}{dt}=-i\mathcal{P}[V,\rho']
+$${#eq-Nakajima-ZwanzigVonNeumanEqPoperator}
+
+$$
+\frac{d\mathcal{Q}\rho'(t)}{dt}=-i\mathcal{Q}[V,\rho']
+$${#eq-Nakajima-ZwanzigVonNeumanEqQoperator}
+
+By redefining $\mathcal{V}(t)=-i[V,.]$, and taking several other steps, the generalized Nakajima-Zwanzig Eq results:
+
+$$
+\frac{d}{dt}\mathcal{P}\rho'(t) = \mathcal{P}\mathcal{V}(t)\mathcal{P}\rho'(t)+\mathcal{P}\mathcal{V}(t)\mathcal{G}(t,0)\mathcal{Q}\rho'(0)+\int_{0}^{t}dt'\mathcal{P}\mathcal{V}(t)\mathcal{G}(t,t')\mathcal{Q}\mathcal{V}(t')\mathcal{P}\rho'(t')
+$${#eq-generalizedNakajima-ZwanzigEq}
+
+$$
+\mathcal{G}(t,t')=\mathcal{T}e^{\int_{t'}^{t} ds\mathcal{Q}\mathcal{V}(s)}
+$$
+
+Which is awful to look at. The paper notes 2 common assumptions; A) $\mathcal{P}\mathcal{V}(t)\mathcal{P}=0$, B) assuming initial state $\rho(0)=\rho_{a}(0)\otimes\rho_{b}(0)$ is a product state of A, B. This simplifies @eq-generalizedNakajima-ZwanzigEq to:
+
+$$
+\frac{d}{dt}\mathcal{P}\rho'(t) = \int_{0}^{t}dt'\mathcal{K}(t,t')\mathcal{P}\rho'(t')
+$${#eq-simpleNakajima-ZwanzigEq}
+
+$$
+\mathcal{K}(t,t') = \mathcal{P}\mathcal{V}(t)\mathcal{G}(t,t')\mathcal{Q}\mathcal{V}(t')
+$${#eq-Nakajima-ZwanzigEqKernel}
+
+With @eq-simpleNakajima-ZwanzigEq being similar in form to the summary given by [@ProjectOutline2026]. Some differences are present; $\mathcal{P}$ isn't present, and the interaction $\rho'$ isn't acknowledged; i suspect that that may be simplified in this project, hence their absence.
+Further note that kernel homogeneity is a condition s.t $\mathcal{K}(t,t')=\mathcal{K}(t-t')$ (which is also the form given by
+[@ProjectOutline2026]) which is apparently solvable by laplace eq.
+
+The paper continues in sec 6.2 (p56) and sec 6.3 (p75) by examining a weak coupling limit and a singular coupling limit respectively. These are both long and involved sections; and i'm not sure how relevant they may be. That said however, there are examples in sec 6.2.5 (p67) which look familiar. 
+
+Sec 7 (p82) begins examining the non markovian case. Reiterates @eq-simpleNakajima-ZwanzigEq, noting that in the non markovian case; @eq-Nakajima-ZwanzigEqKernel is difficult to write s.t @eq-simpleNakajima-ZwanzigEq isn't necessarily solvable. It notes an additional step to try and reduce non markovian dynamics to markovian dynamics as:
+
+$$
+\frac{d\rho(t)}{dt}=\int_{0}^{t}dt'k(t-t')\mathcal{L}(\rho(t'))
+$${#eq-Nakajima-ZwanzigMemoryForm}
+
+Which almost exactly corresponds to that introduced by [@ProjectOutline2026], with $k(t-t')$ representing the memory effects w/$k(t-t')\to\delta(t-t')$ recovering markovian behaviour.
+
+Note that [@ProjectOutline2026] expresses this as:
+
+$$
+\frac{d\rho(t)}{dt}=\int_{0}^{t}dt'k(t-t')\rho(t')
+$${#eq-Nakajima-ZwanzigMemoryForm2}
+
+With the idea being inverting this eq to extract $k(t-t')$. Not entirely sure how to do that yet since the integral is over a different $t'$ to $\rho(t)$...
+
+Aside; but skimming over [@analyticalTransferTensor2026] seems to confirm my understanding acquired from the above reading; similar terms and logic poping up. Its not that papers main focus; but reassuring to note.
+
+[@memoryKernelOutline2014] likewise has similar terms. Both papers refer to "transfer tensors" seemingly as discreete objects which relate to the kernels somehow. Both papers seem to be exploring a "transfer tensor method" to extract certain system parameters including the memory kernel.
+
+[@scaryPaper2019] which compares multiple defs of quantum non markovianity (similarly to this project) has a section on memory kernels which echoes the same ideas as above. 
