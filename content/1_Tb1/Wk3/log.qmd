@@ -50,7 +50,7 @@ $$
 \end{bmatrix}
 $${#eq-lambdaForm}
 
-Need to ensure "positivity" (unsure as to exactly why, but will roll w/it). @eq-dynamicalMapOnState maps initial occupation $p$ to a new occupation $p^{*}=\nu(1-p)+\sigma p = \alpha(1-p)+\beta p $. Oh i see why positivity; $p^{*}$ represents an occupation probability; negative values are nonsensical ergo $p^{*}\in[0,1]$ is a useful condition. Expressing $p^{*}=C_{11}(t)$ where $C$ is the correlation matrix directly links the dynamical map s.t:
+Need to ensure "positivity" (unsure as to exactly why, but will roll w/it). @eq-dynamicalMapOnState maps initial occupation $p$ to a new occupation $p^{*}=\nu(1-p)+\sigma p = \alpha(1-p)+\beta p$. Oh i see why positivity; $p^{*}$ represents an occupation probability; negative values are nonsensical ergo $p^{*}\in[0,1]$ is a useful condition. Expressing $p^{*}=C_{11}(t)$ where $C$ is the correlation matrix directly links the dynamical map s.t:
 
 $$
 C_{11}(t)= \begin{cases}1-\nu & C_{11}(0)=0=\textit{occupied} \\
@@ -104,7 +104,7 @@ Had supervisor meeting:
 Consolidating the plan for the foreseable, i think it follows:
 
 * Short term (pre presentation):
-	* Wk of 05/10/2026: Implement dynamical map, implement plotting and analytical utilities for it in order to gut check it generally - maybe polish some of the plotting utilities to make them more flexible for 
+	* Wk of 05/10/2026: Implement dynamical map, implement plotting and analytical utilities for it in order to gut check it generally - maybe polish some of the plotting utilities to make them more flexible for later subplotting
 	* Wk of 12/10/2026: Implement memory kernels and use it as case study to help guide literature deep dive
 	* Wk of 19/10/2026: Block week out to work on presentation
 	* Wk of 26/10/2026: Presentation slides are due this Wk - can take some time to practice presentation
@@ -179,3 +179,66 @@ $${#eq-checkingLambdaUnitarity}
 
 If i haven't done my maths wrong; the expression @eq-lambdaForm isn't unitary as in @eq-checkingLambdaUnitarity? I wouldn't bet against my doing the maths wrong; i am quite tired now and pen and papering the above...
 Which i think is a good sign to put this away for now. Tmr i can recheck the maths with better focus.
+
+## 10/10/2026
+Have quickly double checked the above maths @eq-checkingLambdaUnitarity using sympy:
+
+```
+>>> import sympy
+
+>>> v, o = sympy.symbols('v o')
+>>> lambdaMatrix = sympy.matrices.Matrix([[v,o],[1-v,1-o]])
+>>> conjugateMatrix = lambdaMatrix.H
+>>> outputMatrix = sympy.simplify(lambdaMatrix * conjugateMatrix)
+>>> print(sympy.latex(lambdaMatrix), "\cdot", sympy.latex(conjugateMatrix),"=", sympy.latex(outputMatrix))
+```
+
+::: {.column-margin}
+Notation; when sympy exports to latex; it denotes conjugate using $\overline{x}$ instead of $x^{\dagger}$
+:::
+
+$$
+\left[\begin{matrix}u & \sigma\\1 - u & 1 - \sigma\end{matrix}\right] \cdot \left[\begin{matrix}\overline{u} & 1 - \overline{u}\\\overline{\sigma} & 1 - \overline{\sigma}\end{matrix}\right] = \left[\begin{matrix}\sigma \overline{\sigma} + u \overline{u} & - \sigma \overline{\sigma} + \sigma - u \overline{u} + u\\- \left(\sigma - 1\right) \overline{\sigma} - \left(u - 1\right) \overline{u} & \left(\sigma - 1\right) \left(\overline{\sigma} - 1\right) + \left(u - 1\right) \left(\overline{u} - 1\right)\end{matrix}\right]
+$${#eq-checkingLambdaUnitaritySympy}
+
+Using sympy because its quite a flexible symbolic calculator, and I wanted to double check the pen and paper maths in @eq-checkingLambdaUnitarity.
+@eq-checkingLambdaUnitaritySympy seems to be entirely equivilant to @eq-checkingLambdaUnitarity. If $\nu+\sigma=2$, $\nu, \sigma \in \mathcal{R}$, then $\Lambda\Lambda^{\dagger}=2I$ which is interesting because of the apparently $\times 2$ factor in @fig-dynamicalMap2 compared to @fig-refEvo.
+Given @eq-dynamicalMapCorrelationRelation, $\nu+\sigma=2$ imply $2C_{occ}+C_{unocc}=0$. No idea what this would imply; but it feels rather arbitrary...
+
+Redoing some of the maths:
+
+$$
+\hat{\Lambda(t)}\cdot\ket{\psi(t=0)} = \begin{bmatrix}
+\nu & \sigma \\
+1-\nu & 1-\sigma
+\end{bmatrix}\cdot \begin{bmatrix} 1-p \\ p\end{bmatrix}=\begin{bmatrix}\nu(1-p)+\sigma p \\ (1-\nu)(1-p)+(1-\sigma)p\end{bmatrix} = \begin{bmatrix} 1-p^{*} \\ p^{*} \end{bmatrix}
+$$
+
+since $C_{11}(t)=n_{occ}$ it follows that $C_{11}(t)=p^{*}$ so:
+
+$$
+(1-\nu)(1-p)+(1-\sigma)p = C_{11}(t)
+$${#eq-rederivedCorrelationRelation}
+
+Since $\ket{\psi(p=0)}=(1-p)\ket{0}+p\ket{1}= \ket{0}$, $p=0$ implies an empty system, $p=1$ an occupied system; so @eq-rederivedCorrelationRelation becomes:
+
+$$
+C_{11}(t)= \begin{cases}1-\sigma & C_{11}(0)=0=\textit{occupied} \\
+1-\nu & C_{11}(0)=1=\textit{unoccupied} \end{cases}
+$${#eq-dynamicalMapCorrelationRelation2}
+
+which differs to @eq-dynamicalMapCorrelationRelation and would imply:
+
+$$
+\hat{\Lambda(t)} = \begin{bmatrix}
+1-C_{unocc}(t) & 1-C_{unocc}(t) \\
+C_{unocc}(t) & C_{occ}(t)
+\end{bmatrix}
+$${#eq-mapCorrelationForm2}
+
+![System occupation evolution computed from dynamical map @eq-mapCorrelationForm2](figures/dynamicalEvo3.png){#fig-dynamicalMap3} 
+
+Ok thats better; it seems the maths was misderived. @eq-mapCorrelationForm2 still isn't unitary seemingly; but is reproducing the correct dynamics.
+Have tidied up some plotting utilities inc one which shows the system evolution from both occupied and unoccupied starting states:
+
+![System occupation evolution computed using dynamical map for both occupied and unoccupied starts](figures/dynamicalEvoDual.png){#fig-dynamicalMapDual} 

@@ -122,7 +122,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar docked slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -379,11 +379,12 @@ window.Quarto = {
   </ul></li>
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">07/10/2026</a></li>
   <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">09/10/2026</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">10/10/2026</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk3/log.html">Wk3 Log</a></li></ol></nav></header>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk3/log.html">Wk3 Log</a></li></ol></nav></header>
 
 
 
@@ -446,7 +447,7 @@ Figure&nbsp;2: System occupancy over time with red line representing analytical 
 1-\nu &amp; 1-\sigma
 \end{bmatrix}
 \tag{3}\]</span></span></p>
-<p>Need to ensure “positivity” (unsure as to exactly why, but will roll w/it). <a href="#eq-dynamicalMapOnState" class="quarto-xref">Equation&nbsp;2</a> maps initial occupation <span class="math inline">\(p\)</span> to a new occupation $p^{*}=(1-p)+p = (1-p)+p $. Oh i see why positivity; <span class="math inline">\(p^{*}\)</span> represents an occupation probability; negative values are nonsensical ergo <span class="math inline">\(p^{*}\in[0,1]\)</span> is a useful condition. Expressing <span class="math inline">\(p^{*}=C_{11}(t)\)</span> where <span class="math inline">\(C\)</span> is the correlation matrix directly links the dynamical map s.t:</p>
+<p>Need to ensure “positivity” (unsure as to exactly why, but will roll w/it). <a href="#eq-dynamicalMapOnState" class="quarto-xref">Equation&nbsp;2</a> maps initial occupation <span class="math inline">\(p\)</span> to a new occupation <span class="math inline">\(p^{*}=\nu(1-p)+\sigma p = \alpha(1-p)+\beta p\)</span>. Oh i see why positivity; <span class="math inline">\(p^{*}\)</span> represents an occupation probability; negative values are nonsensical ergo <span class="math inline">\(p^{*}\in[0,1]\)</span> is a useful condition. Expressing <span class="math inline">\(p^{*}=C_{11}(t)\)</span> where <span class="math inline">\(C\)</span> is the correlation matrix directly links the dynamical map s.t:</p>
 <p><span id="eq-dynamicalMapCorrelationRelation"><span class="math display">\[
 C_{11}(t)= \begin{cases}1-\nu &amp; C_{11}(0)=0=\textit{occupied} \\
 \nu-\sigma &amp; C_{11}(0)=1=\textit{unoccupied} \end{cases}
@@ -496,7 +497,7 @@ C_{occ}(t) &amp; C_{occ}(t)+C_{unocc}(t)
 <ul>
 <li>Short term (pre presentation):
 <ul>
-<li>Wk of 05/10/2026: Implement dynamical map, implement plotting and analytical utilities for it in order to gut check it generally - maybe polish some of the plotting utilities to make them more flexible for</li>
+<li>Wk of 05/10/2026: Implement dynamical map, implement plotting and analytical utilities for it in order to gut check it generally - maybe polish some of the plotting utilities to make them more flexible for later subplotting</li>
 <li>Wk of 12/10/2026: Implement memory kernels and use it as case study to help guide literature deep dive</li>
 <li>Wk of 19/10/2026: Block week out to work on presentation</li>
 <li>Wk of 26/10/2026: Presentation slides are due this Wk - can take some time to practice presentation</li>
@@ -582,6 +583,68 @@ Figure&nbsp;5: System occupation evolution computed from dynamical map after min
 \end{bmatrix}
 \tag{6}\]</span></span></p>
 <p>If i haven’t done my maths wrong; the expression <a href="#eq-lambdaForm" class="quarto-xref">Equation&nbsp;3</a> isn’t unitary as in <a href="#eq-checkingLambdaUnitarity" class="quarto-xref">Equation&nbsp;6</a>? I wouldn’t bet against my doing the maths wrong; i am quite tired now and pen and papering the above… Which i think is a good sign to put this away for now. Tmr i can recheck the maths with better focus.</p>
+</section>
+<section id="section-4" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section-4">10/10/2026</h2>
+<p>Have quickly double checked the above maths <a href="#eq-checkingLambdaUnitarity" class="quarto-xref">Equation&nbsp;6</a> using sympy:</p>
+<pre><code>&gt;&gt;&gt; import sympy
+
+&gt;&gt;&gt; v, o = sympy.symbols('v o')
+&gt;&gt;&gt; lambdaMatrix = sympy.matrices.Matrix([[v,o],[1-v,1-o]])
+&gt;&gt;&gt; conjugateMatrix = lambdaMatrix.H
+&gt;&gt;&gt; outputMatrix = sympy.simplify(lambdaMatrix * conjugateMatrix)
+&gt;&gt;&gt; print(sympy.latex(lambdaMatrix), "\cdot", sympy.latex(conjugateMatrix),"=", sympy.latex(outputMatrix))</code></pre>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Notation; when sympy exports to latex; it denotes conjugate using <span class="math inline">\(\overline{x}\)</span> instead of <span class="math inline">\(x^{\dagger}\)</span></p>
+</div></div><p><span id="eq-checkingLambdaUnitaritySympy"><span class="math display">\[
+\left[\begin{matrix}u &amp; \sigma\\1 - u &amp; 1 - \sigma\end{matrix}\right] \cdot \left[\begin{matrix}\overline{u} &amp; 1 - \overline{u}\\\overline{\sigma} &amp; 1 - \overline{\sigma}\end{matrix}\right] = \left[\begin{matrix}\sigma \overline{\sigma} + u \overline{u} &amp; - \sigma \overline{\sigma} + \sigma - u \overline{u} + u\\- \left(\sigma - 1\right) \overline{\sigma} - \left(u - 1\right) \overline{u} &amp; \left(\sigma - 1\right) \left(\overline{\sigma} - 1\right) + \left(u - 1\right) \left(\overline{u} - 1\right)\end{matrix}\right]
+\tag{7}\]</span></span></p>
+<p>Using sympy because its quite a flexible symbolic calculator, and I wanted to double check the pen and paper maths in <a href="#eq-checkingLambdaUnitarity" class="quarto-xref">Equation&nbsp;6</a>. <a href="#eq-checkingLambdaUnitaritySympy" class="quarto-xref">Equation&nbsp;7</a> seems to be entirely equivilant to <a href="#eq-checkingLambdaUnitarity" class="quarto-xref">Equation&nbsp;6</a>. If <span class="math inline">\(\nu+\sigma=2\)</span>, <span class="math inline">\(\nu, \sigma \in \mathcal{R}\)</span>, then <span class="math inline">\(\Lambda\Lambda^{\dagger}=2I\)</span> which is interesting because of the apparently <span class="math inline">\(\times 2\)</span> factor in <a href="#fig-dynamicalMap2" class="quarto-xref">Figure&nbsp;5</a> compared to <a href="#fig-refEvo" class="quarto-xref">Figure&nbsp;3</a>. Given <a href="#eq-dynamicalMapCorrelationRelation" class="quarto-xref">Equation&nbsp;4</a>, <span class="math inline">\(\nu+\sigma=2\)</span> imply <span class="math inline">\(2C_{occ}+C_{unocc}=0\)</span>. No idea what this would imply; but it feels rather arbitrary…</p>
+<p>Redoing some of the maths:</p>
+<p><span class="math display">\[
+\hat{\Lambda(t)}\cdot\ket{\psi(t=0)} = \begin{bmatrix}
+\nu &amp; \sigma \\
+1-\nu &amp; 1-\sigma
+\end{bmatrix}\cdot \begin{bmatrix} 1-p \\ p\end{bmatrix}=\begin{bmatrix}\nu(1-p)+\sigma p \\ (1-\nu)(1-p)+(1-\sigma)p\end{bmatrix} = \begin{bmatrix} 1-p^{*} \\ p^{*} \end{bmatrix}
+\]</span></p>
+<p>since <span class="math inline">\(C_{11}(t)=n_{occ}\)</span> it follows that <span class="math inline">\(C_{11}(t)=p^{*}\)</span> so:</p>
+<p><span id="eq-rederivedCorrelationRelation"><span class="math display">\[
+(1-\nu)(1-p)+(1-\sigma)p = C_{11}(t)
+\tag{8}\]</span></span></p>
+<p>Since <span class="math inline">\(\ket{\psi(p=0)}=(1-p)\ket{0}+p\ket{1}= \ket{0}\)</span>, <span class="math inline">\(p=0\)</span> implies an empty system, <span class="math inline">\(p=1\)</span> an occupied system; so <a href="#eq-rederivedCorrelationRelation" class="quarto-xref">Equation&nbsp;8</a> becomes:</p>
+<p><span id="eq-dynamicalMapCorrelationRelation2"><span class="math display">\[
+C_{11}(t)= \begin{cases}1-\sigma &amp; C_{11}(0)=0=\textit{occupied} \\
+1-\nu &amp; C_{11}(0)=1=\textit{unoccupied} \end{cases}
+\tag{9}\]</span></span></p>
+<p>which differs to <a href="#eq-dynamicalMapCorrelationRelation" class="quarto-xref">Equation&nbsp;4</a> and would imply:</p>
+<p><span id="eq-mapCorrelationForm2"><span class="math display">\[
+\hat{\Lambda(t)} = \begin{bmatrix}
+1-C_{unocc}(t) &amp; 1-C_{unocc}(t) \\
+C_{unocc}(t) &amp; C_{occ}(t)
+\end{bmatrix}
+\tag{10}\]</span></span></p>
+<div id="fig-dynamicalMap3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dynamicalMap3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/dynamicalEvo3.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dynamicalMap3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: System occupation evolution computed from dynamical map <a href="#eq-mapCorrelationForm2" class="quarto-xref">Equation&nbsp;10</a>
+</figcaption>
+</figure>
+</div>
+<p>Ok thats better; it seems the maths was misderived. <a href="#eq-mapCorrelationForm2" class="quarto-xref">Equation&nbsp;10</a> still isn’t unitary seemingly; but is reproducing the correct dynamics. Have tidied up some plotting utilities inc one which shows the system evolution from both occupied and unoccupied starting states:</p>
+<div id="fig-dynamicalMapDual" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dynamicalMapDual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/dynamicalEvoDual.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dynamicalMapDual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: System occupation evolution computed using dynamical map for both occupied and unoccupied starts
+</figcaption>
+</figure>
+</div>
 
 
 

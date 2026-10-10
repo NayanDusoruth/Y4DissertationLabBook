@@ -33,11 +33,11 @@ Insert sidenote here!
 :::
 
 ```
-::: {.callout-note title="Insert textboxt title here!"}
+::: {.callout-note title="Insert textbox title here!"}
 Insert textbox contents here!
 :::
 ```
-::: {.callout-note title="Insert textboxt title here!"}
+::: {.callout-note title="Insert textbox title here!"}
 Insert textbox contents here!
 :::
 
