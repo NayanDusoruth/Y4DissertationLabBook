@@ -375,3 +375,6 @@ Aside; but skimming over [@analyticalTransferTensor2026] seems to confirm my und
 [@memoryKernelOutline2014] likewise has similar terms. Both papers refer to "transfer tensors" seemingly as discreete objects which relate to the kernels somehow. Both papers seem to be exploring a "transfer tensor method" to extract certain system parameters including the memory kernel.
 
 [@scaryPaper2019] which compares multiple defs of quantum non markovianity (similarly to this project) has a section on memory kernels which echoes the same ideas as above. 
+
+
+Thinking ahead; in order to extract memory kernels; i mostly need to figure out how to invert @eq-Nakajima-ZwanzigMemoryForm2; the density $\rho$ is known for all $t$; therefore it should just be a bit of calc; but unsure exactly how to do that given the different $t'$ integration variable... not a today problem; will come back to it tmr...

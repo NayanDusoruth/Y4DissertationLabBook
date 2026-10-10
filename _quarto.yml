@@ -2,6 +2,7 @@ project:
   type: website
   output-dir: docs
 
+
 website:
   title: "labBook"
   sidebar:
@@ -79,8 +80,8 @@ website:
 format:
   html:
     theme:
-      - cosmo
-      - brand
+      light: flatly
+      dark: darkly
     css: styles.css
     toc: true
   pdf: 
@@ -89,6 +90,8 @@ format:
             \usepackage{amsfonts}
             \usepackage{amsmath}
             \usepackage{braket}
+
+
 
 
 
