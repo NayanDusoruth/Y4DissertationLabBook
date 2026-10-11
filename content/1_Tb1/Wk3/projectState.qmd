@@ -1,0 +1,60 @@
+## Taking stock: State of the project (11/10/2026)
+I think its worth taking stock of where the project is, and what needs to happen next. 
+Thus far the project has:
+
+1. Build initial simulation utility inc analytical/plotting methods, examined the toy model, and validated it against analytical thermalization:
+	* Adapted the provided simulation code for a fermionic quantum "star geometry" system-bath setup into a python code utility
+	* Built various plotting methods into this code utility
+	* Examined the simulation for a variety of input parameters
+	* Implemented an analytical thermalization utility which predicts the thermalized system occupancy the simulation is expected to reach
+2. Build the dual-simulation and dynamic map extraction utility:
+	* Setup a dualSimulation class which runs simulations from empty/occupied initial states respectively
+	* Extracted the dynamic map as outlined above
+	* Compare the simulation results to a dynamic map propagated system occupancy - this revealed a typo in the dynamic map extraction step outlined above
+	* Fixed the dynamic map extraction such that it agrees w/simulation
+	* Implement some minor plotting utilities
+3. Familiarise self w/theory for memory kernel definition:
+	* Read parts of [@OpenQuantumSystemsIntro2012] which introduced the Nakajima-Zwansig formalism
+	* considered how to extract the memory kernel
+	* Read parts of multiple other papers before settling on the Transfer Tensor Method (TTM) as the most promising approach
+	* Considered gaps in knowledge for this method, particularly when it comes to bounding the finite timestep error
+
+Which leaves this project to the present.
+What happens immediately next is less straightforwards, as I need to alot time to prepare for the dissertation presentation. Given other courseworks and obligations, my instinct is to prioritize the presentation as next steps. As such the plan going forwards may be:
+
+1. Prepare for presentation:
+	* Need to outline what narrative/results i need to include:
+		* Field background - memory effects in quantum thermodynamic systems
+		* Project impetus - unclear and somewhat contradicting memory definitions for quantum non markovianity vs classical non markovianity
+		* Project setup - simulation of star geometry system in order to produce dynamical maps which can be used to test different memory definitions
+		* Work done thus far
+		* Preliminary results 
+		* Future plans
+	* Produce slides and practice presentation for timing and flow reasons
+	* Share slides and presentation w/supervisors as a last check before presentation submission
+2. Implement the memory kernel definition:
+	* Check w/supervisors that A) TTM is the appropriate way of doing this, B) I understand the method correctly, C) The cauchy error bounding is an appropriate way to quantify error
+	* If all thats alright, implement a "memory kernel" class - should be a wrapper for 2 dual simulations (with slightly different timesteps for error estimation)
+	* memory kernel class should then implement the TTM method on both dual simulations, and estimate the memory kernel over all time for finite timestep
+	* should have plotting methods inc error bounds
+3. Examine the initial memory kernel results:
+	* potentially redo the initial parameter variations, and examine the memory kernels over all those variations to glean insight
+4. Mid term plans (pre Christmas break):
+	* implement the other memory definitions outlined by [@ProjectOutline2026] - probably implement these as their own classes
+	* repeat the parameter variation analysis on these other memory definitions
+	* compare the results
+5. Long term plans (post Christmas break):
+	* write interim report
+	* evaluate findings to date:
+		* What interesting features exist
+		* Are there any other measures/metrics to help characterise the memory definitions
+		* What further variation in setup and analysis would be interesting to perform (I.E, different spectral functions)
+	* Rerun parameter and spectral function variation using all the insight gathered up to this point. (Re)produce a "final(ish)" dataset, analysis and discussion/conclusions
+	* Prepare for the poster session
+	* Write the final report
+
+In terms of the next supervisor meeting, i think there are 3 broad questions:
+
+1. Have i understood the memory kernel correctly, including its extraction via TTM and the finite timestep error bounding
+2. Do the above project plans for the project seem reasonable
+3. Does the outline for the presentation seem reasonable

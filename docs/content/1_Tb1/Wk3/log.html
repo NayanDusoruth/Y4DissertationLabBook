@@ -389,6 +389,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../content/1_Tb1/Wk3/projectState.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State of the project (11/10/2026)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../content/1_Tb1/Wk4/log.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wk4 Log</span></a>
   </div>
@@ -551,6 +557,12 @@ window.Quarto = {
   <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">10/10/2026</a>
   <ul class="collapse">
   <li><a href="#reading-notes-openquantumsystemsintro2012" id="toc-reading-notes-openquantumsystemsintro2012" class="nav-link" data-scroll-target="#reading-notes-openquantumsystemsintro2012">Reading notes: <span class="citation" data-cites="OpenQuantumSystemsIntro2012">(Rivas and Huelga 2012)</span></a></li>
+  </ul></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">11/10/2026</a>
+  <ul class="collapse">
+  <li><a href="#reading-notes-memorykerneloutline2014" id="toc-reading-notes-memorykerneloutline2014" class="nav-link" data-scroll-target="#reading-notes-memorykerneloutline2014">Reading notes: <span class="citation" data-cites="memoryKernelOutline2014">(Cerrillo and Cao 2014)</span>:</a></li>
+  <li><a href="#reading-notes-analyticaltransfertensor2026" id="toc-reading-notes-analyticaltransfertensor2026" class="nav-link" data-scroll-target="#reading-notes-analyticaltransfertensor2026">Reading notes: <span class="citation" data-cites="analyticalTransferTensor2026">(Morillas-Rozas et al. 2026)</span></a></li>
+  <li><a href="#reading-takeaways" id="toc-reading-takeaways" class="nav-link" data-scroll-target="#reading-takeaways">Reading takeaways:</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -901,7 +913,117 @@ H = H_{a}+H_{b}+V
 <p>Aside; but skimming over <span class="citation" data-cites="analyticalTransferTensor2026">(<a href="#ref-analyticalTransferTensor2026" role="doc-biblioref">Morillas-Rozas et al. 2026</a>)</span> seems to confirm my understanding acquired from the above reading; similar terms and logic poping up. Its not that papers main focus; but reassuring to note.</p>
 <p><span class="citation" data-cites="memoryKernelOutline2014">(<a href="#ref-memoryKernelOutline2014" role="doc-biblioref">Cerrillo and Cao 2014</a>)</span> likewise has similar terms. Both papers refer to “transfer tensors” seemingly as discreete objects which relate to the kernels somehow. Both papers seem to be exploring a “transfer tensor method” to extract certain system parameters including the memory kernel.</p>
 <p><span class="citation" data-cites="scaryPaper2019">(<a href="#ref-scaryPaper2019" role="doc-biblioref">Reimer et al. 2019</a>)</span> which compares multiple defs of quantum non markovianity (similarly to this project) has a section on memory kernels which echoes the same ideas as above.</p>
-<p>Thinking ahead; in order to extract memory kernels; i mostly need to figure out how to invert <a href="#eq-Nakajima-ZwanzigMemoryForm2" class="quarto-xref">Equation&nbsp;24</a>; the density <span class="math inline">\(\rho\)</span> is known for all <span class="math inline">\(t\)</span>; therefore it should just be a bit of calc; but unsure exactly how to do that given the different <span class="math inline">\(t'\)</span> integration variable… not a today problem; will come back to it tmr…</p>
+<p>Thinking ahead; in order to extract memory kernels; i mostly need to figure out how to invert <a href="#eq-Nakajima-ZwanzigMemoryForm2" class="quarto-xref">Equation&nbsp;25</a>; the density <span class="math inline">\(\rho\)</span> is known for all <span class="math inline">\(t\)</span>; therefore it should just be a bit of calc; but unsure exactly how to do that given the different <span class="math inline">\(t'\)</span> integration variable… not a today problem; will come back to it tmr…</p>
+</section>
+</section>
+<section id="section-5" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section-5">11/10/2026</h2>
+<p>Right,</p>
+<p><span id="eq-Nakajima-ZwanzigMemoryForm2"><span class="math display">\[
+\frac{d\rho(t)}{dt}=\int_{0}^{t}dt'k(t-t')\rho(t')
+\tag{25}\]</span></span></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Did briefly wonder if i could simply U sub <a href="#eq-Nakajima-ZwanzigMemoryForm2" class="quarto-xref">Equation&nbsp;25</a> w/<span class="math inline">\(u=t-t'\)</span> then take <span class="math inline">\(\frac{d}{du}\)</span> derivative; however i doubt that would work</p>
+</div></div><p>Is an integral transform; that should provide a search term for figuring out how best to extract the kernel… Almost reminds me of greens functions too; although not sure how i’d set that up…</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Looking at some of my old notes; my understanding of greens functions are they are a way of dealing with inhomogeneous differential equations of the form: <span id="eq-greenDE"><span class="math display">\[
+\mathcal{D}f(x)=h(x)
+\tag{26}\]</span></span> Where <span class="math inline">\(\mathcal{D}\)</span> is a generalized differential operator. The green function <span class="math inline">\(G(x-y)\)</span> satisfies: <span id="eq-greenFunc"><span class="math display">\[
+\mathcal{D}G(x-y)=\delta(x-y)
+\tag{27}\]</span></span> such that the solution for <span class="math inline">\(f(x)\)</span> follows: <span id="eq-greenSol"><span class="math display">\[
+f(x)=\int dy h(y)G(x-y)
+\tag{28}\]</span></span> If this understanding is true (would need to verify this), then <a href="#eq-Nakajima-ZwanzigMemoryForm2" class="quarto-xref">Equation&nbsp;25</a> could be expressed as a green function problem where <span class="math inline">\(f(t)=\frac{d\rho(t)}{dt}\)</span>, <span class="math inline">\(h(t')=\rho(t')\)</span> and the kernel <span class="math inline">\(G(t-t')=k(t-t')\)</span>. If this is the case, identifying <span class="math inline">\(k(t-t')\)</span> may be a matter of identifying <span class="math inline">\(\mathcal{D}\)</span>, and solving <a href="#eq-greenFunc" class="quarto-xref">Equation&nbsp;27</a>… Given that <span class="math inline">\(\rho(t)\)</span> evolves according to the dynamic map, I suspect <span class="math inline">\(\mathcal{D}\)</span> could be expressed in terms of the dynamic map. However there are a lot of unkowns with this potential approach, so will do some further reading first to double check i’m not missing a more straightforward approach.</p>
+</div></div><p>Skimming through a bunch of resources, it seems that the “integro-differential form” of <a href="#eq-Nakajima-ZwanzigMemoryForm2" class="quarto-xref">Equation&nbsp;25</a> is a major headache; hence motivating various methods which do not involve this convolution (“time convolutionless forms” according to <span class="citation" data-cites="OpenQuantumSystemsIntro2012">(<a href="#ref-OpenQuantumSystemsIntro2012" role="doc-biblioref">Rivas and Huelga 2012</a>)</span>). Thus far the only explicit mention of extracting the kernel i’ve seen is using transfer tensor methods (TTM) as in <span class="citation" data-cites="memoryKernelOutline2014">(<a href="#ref-memoryKernelOutline2014" role="doc-biblioref">Cerrillo and Cao 2014</a>)</span>. So that is my next port of call.</p>
+<section id="reading-notes-memorykerneloutline2014" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="reading-notes-memorykerneloutline2014">Reading notes: <span class="citation" data-cites="memoryKernelOutline2014">(<a href="#ref-memoryKernelOutline2014" role="doc-biblioref">Cerrillo and Cao 2014</a>)</span>:</h3>
+<p>Paper notes 2 approaches to quantum non markovianity:</p>
+<ol type="1">
+<li>Quantum master eqs such as the Nakajima-Zwansig formalism - these are exact but limited to certain limits (the same ones noted by <span class="citation" data-cites="OpenQuantumSystemsIntro2012">(<a href="#ref-OpenQuantumSystemsIntro2012" role="doc-biblioref">Rivas and Huelga 2012</a>)</span>; weak coupling… or similar limits)</li>
+<li>path integral simulations - adopts “harmonic bath assumption” which allows more flexibility but scales poorly w/bath size</li>
+</ol>
+<p><span class="citation" data-cites="memoryKernelOutline2014">(<a href="#ref-memoryKernelOutline2014" role="doc-biblioref">Cerrillo and Cao 2014</a>)</span> proposes a unified method which treats the underlying simulation as a black box which outputs system trajectories. The method can thus use these “approach agnostic trajectories” (encoded in the dynamical maps) to extract “Transfer tensors” which can then be used (among other things) to solve the Nakajima-Zwansiz Eq, and thus extract the original hamiltonian AND memory kernels.</p>
+<p>The paper quickly outlines how to extract the dynamical map by considering trajectories from a full initial basis set for the system hilbert space (which is how this was implemented for this project).</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Note to self: <span class="citation" data-cites="memoryKernelOutline2014">(<a href="#ref-memoryKernelOutline2014" role="doc-biblioref">Cerrillo and Cao 2014</a>)</span> denotes the dynamical map as <span class="math inline">\(\xi_{k}\)</span> for timesteps <span class="math inline">\(t_{k}\)</span> s.t <span class="math inline">\(\rho(t_{k})=\xi_{k}\rho(0)\)</span> - this is familiar just different notation</p>
+</div></div><p>The paper notes that for Markovian evolution, the dynamical maps relate to each other multiplicatively <span class="math inline">\(\xi_{n}=\xi_{1}^{n}\)</span>, however this doesn’t apply for non markovian evolution; thus requiring dynamic maps for every timestep to be found (which is inefficient, and currently what this project has implemented). The paper is thus interested in transfer tensors not only for the kernel extraction, but also to more efficiently extract the dynamic maps for non markovian evolution.</p>
+<p>As such, the paper transforms the dynamical map to transfer tensors s.t transfer tensors can always propagate the evolution multiplicatively regardless of the non markovianity. It defines the following transformation:</p>
+<p><span id="eq-transferTensorTransform"><span class="math display">\[
+T_{n,0} = \xi_{n}+\sum_{m=1}^{n-1}T_{n,m}\xi_{m}
+\tag{29}\]</span></span></p>
+<p>for <span class="math inline">\(n\)</span> timesteps. Therefore the time evolution follows as:</p>
+<p><span id="eq-TTMevolution"><span class="math display">\[
+\rho(t_{n}) = \sum_{k=0}^{n-1}T_{n,k}\rho(t_{k})
+\tag{30}\]</span></span></p>
+<p>Ergo the transfer tensors represent some sense of temporal correlation between any 2 times in the evolution. Paper then notes simplifying assumptions (I.E, seperarable system-bath initial conditions, time independent hamiltonian) which result in time translational invariance in the transfer tensor s.t <span class="math inline">\(T_{t,k}=T_{t-k}=T_{\Delta t}\)</span>. This allows for the transfer tensors to be extracted iteratively, starting w/<span class="math inline">\(T_{1}=\xi_{1}\)</span>:</p>
+<ul>
+<li><span class="math inline">\(T_{2}=\xi_{2}-T_{1}\xi_{1}\)</span></li>
+<li><span class="math inline">\(T_{3}=\xi_{3}-T_{1}\xi_{2}-T_{2}\xi_{1}\)</span></li>
+</ul>
+<p>Its a touch unclear how this procedure continues; presumably it follows from <a href="#eq-transferTensorTransform" class="quarto-xref">Equation&nbsp;29</a> but am unsure…</p>
+<p>The paper then explores the system propagation application of TTM.</p>
+<p>It later discusses extracting the Nakajima-Zwansig eq and compares the transfer tensors to the terms in the somewhat more general form:</p>
+<p><span id="eq-Nakajima-ZwansigGeneralFormForTensorMethod"><span class="math display">\[
+\frac{d\rho(t)}{dt}=-i\mathcal{L}\rho(t)+\int_{0}^{t}mathcal{K}(t-t')\rho(t')dt'
+\tag{31}\]</span></span></p>
+<p>which relates to the transfer tensors as:</p>
+<p><span id="eq-transferTensorKernelRelation"><span class="math display">\[
+T_{k,n}=(1-i\mathcal{L}\delta t)\delta_{k,n+1}+\mathcal{K}_{k,n}\delta t^{2}
+\tag{32}\]</span></span></p>
+<p>Where <span class="math inline">\(\mathcal{L}\)</span> is the system Liouvillian. Its unclear how to best extract the kernels; but the relationship is there…</p>
+<p>Another paper <span class="citation" data-cites="analyticalTransferTensor2026">(<a href="#ref-analyticalTransferTensor2026" role="doc-biblioref">Morillas-Rozas et al. 2026</a>)</span> seems to discuss similar stuff and may give a more practical idea of how to do this. Actually skimming that immediately shows the relationship:</p>
+<p><span class="math display">\[
+\lim_{\delta t \to 0}(\frac{T_{k}(\delta t)}{\delta t}) = \mathcal{K(t)}
+\]</span></p>
+<p>Which… Given the finite nature of the simulation; may or may not work… Will have to see…</p>
+</section>
+<section id="reading-notes-analyticaltransfertensor2026" class="level3">
+<h3 class="anchored" data-anchor-id="reading-notes-analyticaltransfertensor2026">Reading notes: <span class="citation" data-cites="analyticalTransferTensor2026">(<a href="#ref-analyticalTransferTensor2026" role="doc-biblioref">Morillas-Rozas et al. 2026</a>)</span></h3>
+<p>This paper notes the transfer tensor transform a touch differently:</p>
+<p><span id="eq-transferTensorTransform2"><span class="math display">\[
+T_{k} = \xi_{k}+\sum_{j=1}^{k}T_{j}\xi_{k-j}
+\tag{33}\]</span></span></p>
+<p>w/the propagation following:</p>
+<p><span id="eq-tensorPropagation"><span class="math display">\[
+\rho(t_{k}) = \sum_{j=1}^{k}T_{j}\rho(t_{k-j})
+\tag{34}\]</span></span></p>
+<p>It also explicitly relates the Nakajima-Zwansig operators <span class="math inline">\(\mathcal{P}, \mathcal{Q}\)</span> to the dynamical map:</p>
+<p><span id="eq-mapOperatorRelation"><span class="math display">\[
+\xi_{k}=\mathcal{P}\mathcal{U}^{k}\mathcal{P}
+\tag{35}\]</span></span></p>
+<p>where <span class="math inline">\(\mathcal{U}(k\delta t)=\mathcal{U}^{k}\)</span> is the time step propagator; so apparently the transfer tensor can be expressed as:</p>
+<p><span id="eq-transferOperatorRelation"><span class="math display">\[
+T_{k}=\mathcal{P}\mathcal{U}\mathcal{Q}(\mathcal{Q}\mathcal{U}\mathcal{Q})^{k-2}\mathcal{Q}\mathcal{U}\mathcal{P}
+\tag{36}\]</span></span></p>
+<p>w/<span class="math inline">\(\mathcal{Q}=1-\mathcal{P}\)</span>. It notes a slightly different Nakajima-Zwansig in terms of the dynamical map:</p>
+<p><span id="eq-mapNakajima-ZwansigEq"><span class="math display">\[
+\frac{d\xi(t)}{dt}=\mathcal{P}\mathcal{L}\mathcal{P}\xi(t)+\int_{0}^{t}\mathcal{K}(t-t')\xi(t')dt'
+\tag{37}\]</span></span></p>
+<p>W/the kernel being expressed in operator form as:</p>
+<p><span id="eq-kernelOperatorRelation"><span class="math display">\[
+\mathcal{K}(t-t')=\mathcal{P}\mathcal{L}\mathcal{Q}exp(\mathcal{Q}\mathcal{L}\mathcal{Q}t)\mathcal{Q}\mathcal{L}\mathcal{P}
+\tag{38}\]</span></span></p>
+<p>Yielding the aforementioned limit: <span id="eq-transferLimitToKernel"><span class="math display">\[
+\lim_{\delta t \to 0}(\frac{T_{k}(\delta t)}{\delta t}) = \mathcal{K(t)}
+\tag{39}\]</span></span></p>
+<p>The paper then goes on to compare the finite transfer tensors to the analytical kernel for a particular analytically solvable case study; w/fig 3 neatly demonstrating the convergence as <span class="math inline">\(\delta t\to0\)</span>. The paper explores the implications of these finite timestep differences…</p>
+</section>
+<section id="reading-takeaways" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="reading-takeaways">Reading takeaways:</h3>
+<p>Given <a href="#eq-Nakajima-ZwanzigMemoryForm2" class="quarto-xref">Equation&nbsp;25</a>, the most obviously tractable method is the Transfer Tensor method. There may be other methods in the literature, however this stands out as the most practicable. The questions that this entails are:</p>
+<ul>
+<li>How exactly does the iterative method work? Presumably <a href="#eq-transferTensorTransform" class="quarto-xref">Equation&nbsp;29</a> yields this iteration, but am not 100% sure - need to look into it</li>
+<li>The transfer matrices converge onto the kernel for <span class="math inline">\(\delta t\to 0\)</span>; however are distinct objects at the necessarily finite timesteps simulated by this project. <span class="citation" data-cites="analyticalTransferTensor2026">(<a href="#ref-analyticalTransferTensor2026" role="doc-biblioref">Morillas-Rozas et al. 2026</a>)</span> outlines this difference in a particular analytical case, however a general method for quantifying this error would be useful. If there are going to be finite time errors with this method, it would be useful to be able to quantify them.</li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>A potentially crude manner of quantifying the finite timestep error; would be be considering the transfer tensor for timesteps <span class="math inline">\(T(\delta t_{1})\)</span> and <span class="math inline">\(T(\delta t_{2})\)</span> s.t <span class="math inline">\(\delta t_{1} &gt; \delta t_{2}\)</span>. Given that <span class="math inline">\(\frac{T}{\delta t^{2}}\)</span> apparently converges in the <span class="math inline">\(\delta t\to0\)</span> limit; presumably the error in <span class="math inline">\(\frac{T(\delta t_{1})}{\delta t_{1}^2}\)</span> will be larger than in <span class="math inline">\(\frac{T(\delta t_{2})}{\delta t_{2}^2}\)</span>; so presumably <span class="math inline">\(| \frac{T(\delta t_{1})}{\delta t_{1}^2} - \frac{T(\delta t_{2})}{\delta t_{2}^2} |\)</span> relates to the error. This isn’t necessarily an upper bound on that error, but may be a starting point… Actually… Cauchy convergence may provide an answer here. Examining my old analysis notes; if we let <span class="math inline">\(a_{n}=\frac{T(\delta t_{n})}{\delta t_{n}^2}\)</span> s.t <span class="math inline">\(\delta t_{n}&gt;\delta t_{n+1}\)</span>, <span class="math inline">\(lim_{n\to\infty}\delta t_{n}=0\)</span>; the limit <span class="math inline">\(\lim_{\delta t\to 0}\frac{T(\delta t)}{\delta t^2} = \lim_{n\to\infty}a_{n}=\alpha\)</span> where <span class="math inline">\(\alpha\)</span> is the kernel limit. From the definition of cauchy convergence (that i have written down), it follows that <span class="math inline">\(|a_{n}-\alpha|\le |a_{n}-a_{m}|+|a_{m}-\alpha|\)</span> for <span class="math inline">\(m&gt;n\)</span>. The <span class="math inline">\(|a_{n}-a_{m}|\)</span> term can easily be evaluated as above; the <span class="math inline">\(|a_{m}-\alpha|&lt;|a_{n}-\alpha|\)</span>. Therefore an upper bound for this error can be said to be <span class="math inline">\(|a_{n}-\alpha|\le |a_{n}-a_{m}|+|a_{m}-\alpha| \le |a_{n}-a_{m}|+|a_{n}-a_{m}|=2|a_{n}-a_{m}|\)</span>. This isn’t an exact error, but it should bound the error from above for a particular <span class="math inline">\(\delta t_{n}\)</span> I suspect that the smaller the difference <span class="math inline">\(\delta t_{n} - \delta t_{m}\)</span>, the more closely this expression would bound the error. As such, assuming i’ve reasoned this correctly (and am using cauchy convergence appropriately), a bound on the error between the transfer tensor and the memory kernel would follow: <span class="math display">\[
+\epsilon(\delta t)\le 2|\frac{T(\delta t+\nu)}{(\delta t +\nu)^{2}}-\frac{T(\delta t)}{\delta t^{2}}| \forall\nu\in[0,\infty]
+\]</span> where <span class="math inline">\(\epsilon(\delta t)=|\frac{T(\delta t)}{\delta t^{2}}-\mathcal{K}|\)</span> is the error between the transfer tensor and the memory kernel…</p>
+</div></div><p>The appendices of <span class="citation" data-cites="analyticalTransferTensor2026">(<a href="#ref-analyticalTransferTensor2026" role="doc-biblioref">Morillas-Rozas et al. 2026</a>)</span> may help; appendix A goes through the iteration explicitly; appendix B shows the limit <a href="#eq-transferLimitToKernel" class="quarto-xref">Equation&nbsp;39</a>; however it goes over my head atm. Given appendix B, it may be possible to extract some error term, but its unclear. Ok exmaining appendix A, #eq-transferTensorTransform2 is a lot clearer and makes the iteration clearly explicit.</p>
+<p>The sidenote has an idea for bounding the finite time step error. I’m unsure how rigorously true it is, but it may provide a start.</p>
 
 
 

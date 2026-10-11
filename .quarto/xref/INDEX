@@ -104,5 +104,9 @@
   "content/0_preTb1/Wk0/labbookNotesToSelf.qmd": {
     "labbookNotesToSelf.html": "80b085f0",
     "labbookNotesToSelf.tex": "e64dee22"
+  },
+  "content/1_Tb1/Wk3/projectState.qmd": {
+    "projectState.html": "51a386b4",
+    "projectState.tex": "2970a6ec"
   }
 }

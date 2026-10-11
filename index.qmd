@@ -1,5 +1,6 @@
 ---
-title: "labBook"
+title: "Dissertation labbook: Driving Non Markovianity in open systems"
+author: "Nayan Dusoruth"
 ---
 
 This quarto notebook is a lab book for my Y4 Msci physics dissertation project
