@@ -1,0 +1,36 @@
+## 14/10/2026
+
+Supervisor meeting:
+
+* Dynamical map vs simulation plot atop on ech other to confirm
+
+* potential stretch goals:
+	* different spectral function
+	* 2 site impurity potentially
+	
+
+
+* TTM - plotting error more specifically
+* TTM - discretization error is less important than thought - TT is exact for its timestep which is what we're interestint
+
+* avoid non thermalizing bound states as a general rule (may be interesting as stretch goal)
+* wierdness for system energy near bounds of bath - non thermalization
+
+* presentation:
+	* need to convey why is this question interesting
+	* don't need to overdo it; can keep it fairly conceptual
+
+* try evolution which starts at thermalization - it may do some wierd stuff
+
+* recent paper which bites out semi circle - spectral function relation to memory; correlations in the bath - acquire later
+
+
+To do:
+
+* dynamical propagation vs simulation propagation plot - subtract em from each other to show they equal
+* Consider plotting simulation evolution that starts at thermalization occupancy
+* attempt TTM implementation - don't worry if it takes longer; switch to presentation otherwise
+	* If it works quickly, plot it over a basic testing range of parameters
+* Draft presentation:
+	* Setup slides
+	* use slides to figure out what additional plots i'd like to generate for illustrative purposes
