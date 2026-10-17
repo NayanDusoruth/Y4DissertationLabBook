@@ -34,3 +34,61 @@ To do:
 * Draft presentation:
 	* Setup slides
 	* use slides to figure out what additional plots i'd like to generate for illustrative purposes
+
+
+## 17/10/2026
+Going to start on the presentation today.
+Copy/pasting the things i need to include:
+
+* Field background - memory effects in quantum thermodynamic systems
+* Project impetus - unclear and somewhat contradicting memory definitions for quantum non markovianity vs classical non markovianity
+* Project setup - simulation of star geometry system in order to produce dynamical maps which can be used to test different memory definitions
+* Work done thus far
+* Preliminary results 
+* Future plans
+
+Setting up slides as:
+
+1. Title slide
+2. Field background
+	* Quantum thermodynamics as a concept​
+	* Compare to classical thermodynamics – recap concepts of system, bath, thermalization​
+	* Introduce classical ideas of memory effects/markovianity​
+3. Project motivation and background
+	* State that memory effects in quantum systems aren't fully understood
+	* This project aims to compare different definitions of non markovianity by numerical simulation
+	* Name drop three definitions
+	* This is being done in order to provide additional research context to this area
+4. Project setup (model explanation)
+	* introduce computational model:
+		* 1 dot system connected to a discreetized bath
+		* Note this discreetized bath is different to classical case where bath is assumed homogeneous
+		* Note spectral function as characterizing bath shape (plot may be useful here)
+	* maybe show hamiltonian?
+5. Work done thus far part 1:
+	* Build up simulation utility - use this as opportunity to explain how the simulation is being propagated through time
+	* Show initial simulation test data here (gif of bath/system occupation evolution may help show what this evolution looks like)
+	* maybe run an additional sim where the system starts at thermalization - show plot w/occupation start 0, 1, n_{thermal} all in one plot - use this to highlight the wierdness of quantum memory effects
+6. Work done thus far part 2:
+	* Build up dynamic map extraction - explain dynamic map is "reduced" object which contains full dynamical information
+	* Show the simulation vs dynamic map evolution to show that this does indeed perfectly encapsulate the dynamics of the system
+	* State that this object is what will be analysed to extract memory definitions
+7. Future plans:
+	* Implement memory definitions:
+		* immediate next step: implement memory kernel definition as "pathfinding" def for formalism
+		* examine it's data to gain familiarity w/memory
+	* Implement other memory definitions using the insight gained
+	* test the definitions against each other with the spectral function as the main "experimental nob"
+8. Bibliography
+
+
+Given that, have quickly tested the initially thermalized occupation setup, and it is indeed odd:
+
+![System evolution for $n_{sys}(0)=\lim_{t\to\infty}n_{sys}(t)$](figures/simFromThermalization_systemOccupation.png){#fig-thermalInitialOcc} 
+
+Which is what was expected; good to see that it behaves interstingly.
+
+Also looking to generate gif versions of some of the plots for presentation reasons using [@pltGifs], [@pltAnimationHelp].
+Have fiddled a bunch and produced the following:
+
+{{< video figures/animated_systenBathEvo.mp4 >}}

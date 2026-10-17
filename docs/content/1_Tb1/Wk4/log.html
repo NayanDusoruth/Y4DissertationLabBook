@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -45,6 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/bootstrap/bootstrap-4d8b594121dd52e54118692cc759f5c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/bootstrap/bootstrap-dark-567b30ad711c8693efb6495feb883fb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../../site_libs/bootstrap/bootstrap-4d8b594121dd52e54118692cc759f5c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -73,6 +95,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 </head>
@@ -499,6 +550,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">14/10/2026</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">17/10/2026</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -545,11 +597,92 @@ ul.task-list li input[type="checkbox"] {
 <li>use slides to figure out what additional plots i’d like to generate for illustrative purposes</li>
 </ul></li>
 </ul>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">17/10/2026</h2>
+<p>Going to start on the presentation today. Copy/pasting the things i need to include:</p>
+<ul>
+<li>Field background - memory effects in quantum thermodynamic systems</li>
+<li>Project impetus - unclear and somewhat contradicting memory definitions for quantum non markovianity vs classical non markovianity</li>
+<li>Project setup - simulation of star geometry system in order to produce dynamical maps which can be used to test different memory definitions</li>
+<li>Work done thus far</li>
+<li>Preliminary results</li>
+<li>Future plans</li>
+</ul>
+<p>Setting up slides as:</p>
+<ol type="1">
+<li>Title slide</li>
+<li>Field background
+<ul>
+<li>Quantum thermodynamics as a concept​</li>
+<li>Compare to classical thermodynamics – recap concepts of system, bath, thermalization​</li>
+<li>Introduce classical ideas of memory effects/markovianity​</li>
+</ul></li>
+<li>Project motivation and background
+<ul>
+<li>State that memory effects in quantum systems aren’t fully understood</li>
+<li>This project aims to compare different definitions of non markovianity by numerical simulation</li>
+<li>Name drop three definitions</li>
+<li>This is being done in order to provide additional research context to this area</li>
+</ul></li>
+<li>Project setup (model explanation)
+<ul>
+<li>introduce computational model:
+<ul>
+<li>1 dot system connected to a discreetized bath</li>
+<li>Note this discreetized bath is different to classical case where bath is assumed homogeneous</li>
+<li>Note spectral function as characterizing bath shape (plot may be useful here)</li>
+</ul></li>
+<li>maybe show hamiltonian?</li>
+</ul></li>
+<li>Work done thus far part 1:
+<ul>
+<li>Build up simulation utility - use this as opportunity to explain how the simulation is being propagated through time</li>
+<li>Show initial simulation test data here (gif of bath/system occupation evolution may help show what this evolution looks like)</li>
+<li>maybe run an additional sim where the system starts at thermalization - show plot w/occupation start 0, 1, n_{thermal} all in one plot - use this to highlight the wierdness of quantum memory effects</li>
+</ul></li>
+<li>Work done thus far part 2:
+<ul>
+<li>Build up dynamic map extraction - explain dynamic map is “reduced” object which contains full dynamical information</li>
+<li>Show the simulation vs dynamic map evolution to show that this does indeed perfectly encapsulate the dynamics of the system</li>
+<li>State that this object is what will be analysed to extract memory definitions</li>
+</ul></li>
+<li>Future plans:
+<ul>
+<li>Implement memory definitions:
+<ul>
+<li>immediate next step: implement memory kernel definition as “pathfinding” def for formalism</li>
+<li>examine it’s data to gain familiarity w/memory</li>
+</ul></li>
+<li>Implement other memory definitions using the insight gained</li>
+<li>test the definitions against each other with the spectral function as the main “experimental nob”</li>
+</ul></li>
+<li>Bibliography</li>
+</ol>
+<p>Given that, have quickly tested the initially thermalized occupation setup, and it is indeed odd:</p>
+<div id="fig-thermalInitialOcc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thermalInitialOcc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/simFromThermalization_systemOccupation.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thermalInitialOcc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: System evolution for <span class="math inline">\(n_{sys}(0)=\lim_{t\to\infty}n_{sys}(t)\)</span>
+</figcaption>
+</figure>
+</div>
+<p>Which is what was expected; good to see that it behaves interstingly.</p>
+<p>Also looking to generate gif versions of some of the plots for presentation reasons using <span class="citation" data-cites="pltGifs">(<a href="#ref-pltGifs" role="doc-biblioref"><strong>pltGifs?</strong></a>)</span>, <span class="citation" data-cites="pltAnimationHelp">(<a href="#ref-pltAnimationHelp" role="doc-biblioref">Daniel 2018</a>)</span>. Have fiddled a bunch and produced the following:</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="figures/animated_systenBathEvo.mp4"></video></div>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-pltAnimationHelp" class="csl-entry" role="listitem">
+Daniel. 2018. <span>“Python <span>Matplotlib</span> <span>FuncAnimation</span> + <span>Saving</span>.”</span> Forum post. <em>Stack Overflow</em>. <a href="https://stackoverflow.com/q/49133207">https://stackoverflow.com/q/49133207</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -964,6 +1097,7 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 
