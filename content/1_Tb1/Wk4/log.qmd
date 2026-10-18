@@ -91,11 +91,22 @@ Which is what was expected; good to see that it behaves interstingly.
 Also looking to generate gif versions of some of the plots for presentation reasons using [@pltGifs], [@pltAnimationHelp].
 Have fiddled a bunch and produced the following:
 
-{{< video /Users/nayandusoruth/Desktop/Y4physics/Dissertation/Y4DissertationLabBook/content/1_Tb1/Wk4/figures/animated_systenBathEvo.mp4 >}}
+{{< video figures/animated_systenBathEvo.mp4 >}}
 
 which quarto doesn't seem to be rendering... tmr problem.
 
 ## 18/10/2026
-Fiddled a bit more w/animation plotting to give better control over animation length yielding:
+Fiddled a bit more w/animation plotting to give better control over animation length. Am having issues displaying these on quarto; attempting to troubleshoot. Can't display local mp4 or gif, however can display yt vid. Its fine...
+Spent some time quickly tidying up the simulation queue code - packed sim args into a dictionary to make variations and "standard sets" easier.
+Have also built some additional utilities to make running datasets and such easier.
 
-![System evolution for $n_{sys}(0)=\lim_{t\to\infty}n_{sys}(t)$](figures/animated_systenBathEvo.gif){#fig-animatedGif} 
+Am trying to reproduce these @fig-thermalInitialOcc results after cleaning up the code, however can't. I suspect i made a coding error when producing this plot and accidentally added a small value to the analytical thermalization. @fig-thermalInitialOcc seems to thermalize to a$n\approx 0.73$ in this plot (before recurrence due to model finite size occurs). As such, i think this plot is wrong and to be disregarded. 
+
+Have produced plot of dynamic vs simulated evolution:
+
+
+![System evolution propagated by dynamic map and simulation](figures/standardDualSim_compareEvo.png){#fig-dualVsSim} 
+
+As well as adding some utilities to make using the dual sim system easier.
+
+Have produced animated gif illustration of star geometry setup for the dissertation presentation.

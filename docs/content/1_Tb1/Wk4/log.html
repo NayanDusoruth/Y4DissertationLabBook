@@ -392,7 +392,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../content/1_Tb1/Wk3/projectState.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">State of the project (11/10/2026)</span></a>
+ <span class="menu-text">State of the project 11/10/2026</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -673,22 +673,26 @@ Figure&nbsp;1: System evolution for <span class="math inline">\(n_{sys}(0)=\lim_
 </div>
 <p>Which is what was expected; good to see that it behaves interstingly.</p>
 <p>Also looking to generate gif versions of some of the plots for presentation reasons using <span class="citation" data-cites="pltGifs">(<a href="#ref-pltGifs" role="doc-biblioref"><strong>pltGifs?</strong></a>)</span>, <span class="citation" data-cites="pltAnimationHelp">(<a href="#ref-pltAnimationHelp" role="doc-biblioref">Daniel 2018</a>)</span>. Have fiddled a bunch and produced the following:</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="../../../Users/nayandusoruth/Desktop/Y4physics/Dissertation/Y4DissertationLabBook/content/1_Tb1/Wk4/figures/animated_systenBathEvo.mp4"></video></div>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="figures/animated_systenBathEvo.mp4"></video></div>
 <p>which quarto doesn’t seem to be rendering… tmr problem.</p>
 </section>
 <section id="section-2" class="level2">
 <h2 class="anchored" data-anchor-id="section-2">18/10/2026</h2>
-<p>Fiddled a bit more w/animation plotting to give better control over animation length yielding:</p>
-<div id="fig-animatedGif" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>Fiddled a bit more w/animation plotting to give better control over animation length. Am having issues displaying these on quarto; attempting to troubleshoot. Can’t display local mp4 or gif, however can display yt vid. Its fine… Spent some time quickly tidying up the simulation queue code - packed sim args into a dictionary to make variations and “standard sets” easier. Have also built some additional utilities to make running datasets and such easier.</p>
+<p>Am trying to reproduce these <a href="#fig-thermalInitialOcc" class="quarto-xref">Figure&nbsp;1</a> results after cleaning up the code, however can’t. I suspect i made a coding error when producing this plot and accidentally added a small value to the analytical thermalization. <a href="#fig-thermalInitialOcc" class="quarto-xref">Figure&nbsp;1</a> seems to thermalize to a<span class="math inline">\(n\approx 0.73\)</span> in this plot (before recurrence due to model finite size occurs). As such, i think this plot is wrong and to be disregarded.</p>
+<p>Have produced plot of dynamic vs simulated evolution:</p>
+<div id="fig-dualVsSim" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-animatedGif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/animated_systenBathEvo.gif" class="img-fluid figure-img">
+<div aria-describedby="fig-dualVsSim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/standardDualSim_compareEvo.png" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-animatedGif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: System evolution for <span class="math inline">\(n_{sys}(0)=\lim_{t\to\infty}n_{sys}(t)\)</span>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dualVsSim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: System evolution propagated by dynamic map and simulation
 </figcaption>
 </figure>
 </div>
+<p>As well as adding some utilities to make using the dual sim system easier.</p>
+<p>Have produced animated gif illustration of star geometry setup for the dissertation presentation.</p>
 
 
 
