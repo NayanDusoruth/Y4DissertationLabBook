@@ -551,6 +551,7 @@ window.Quarto = {
   <ul>
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">14/10/2026</a></li>
   <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">17/10/2026</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">18/10/2026</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -672,7 +673,22 @@ Figure&nbsp;1: System evolution for <span class="math inline">\(n_{sys}(0)=\lim_
 </div>
 <p>Which is what was expected; good to see that it behaves interstingly.</p>
 <p>Also looking to generate gif versions of some of the plots for presentation reasons using <span class="citation" data-cites="pltGifs">(<a href="#ref-pltGifs" role="doc-biblioref"><strong>pltGifs?</strong></a>)</span>, <span class="citation" data-cites="pltAnimationHelp">(<a href="#ref-pltAnimationHelp" role="doc-biblioref">Daniel 2018</a>)</span>. Have fiddled a bunch and produced the following:</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="figures/animated_systenBathEvo.mp4"></video></div>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="../../../Users/nayandusoruth/Desktop/Y4physics/Dissertation/Y4DissertationLabBook/content/1_Tb1/Wk4/figures/animated_systenBathEvo.mp4"></video></div>
+<p>which quarto doesn’t seem to be rendering… tmr problem.</p>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">18/10/2026</h2>
+<p>Fiddled a bit more w/animation plotting to give better control over animation length yielding:</p>
+<div id="fig-animatedGif" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-animatedGif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/animated_systenBathEvo.gif" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-animatedGif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: System evolution for <span class="math inline">\(n_{sys}(0)=\lim_{t\to\infty}n_{sys}(t)\)</span>
+</figcaption>
+</figure>
+</div>
 
 
 

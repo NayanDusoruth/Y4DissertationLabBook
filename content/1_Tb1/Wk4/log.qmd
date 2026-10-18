@@ -91,4 +91,11 @@ Which is what was expected; good to see that it behaves interstingly.
 Also looking to generate gif versions of some of the plots for presentation reasons using [@pltGifs], [@pltAnimationHelp].
 Have fiddled a bunch and produced the following:
 
-{{< video figures/animated_systenBathEvo.mp4 >}}
+{{< video /Users/nayandusoruth/Desktop/Y4physics/Dissertation/Y4DissertationLabBook/content/1_Tb1/Wk4/figures/animated_systenBathEvo.mp4 >}}
+
+which quarto doesn't seem to be rendering... tmr problem.
+
+## 18/10/2026
+Fiddled a bit more w/animation plotting to give better control over animation length yielding:
+
+![System evolution for $n_{sys}(0)=\lim_{t\to\infty}n_{sys}(t)$](figures/animated_systenBathEvo.gif){#fig-animatedGif} 
