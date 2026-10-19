@@ -152,4 +152,11 @@ I think the best way to illustrate that is unfortunately showing the conditional
 
 Have ignored that for now and gotten most of the rest of the presentation drafted.
 
-Have got a full draft (minus the references which can be added later) here: [presentation draft](https://uob-my.sharepoint.com/:p:/g/personal/hx21918_bristol_ac_uk/IQAxHoGUDOXaQ5f2EMPY8mX0ATvUz0yuHUQQV01cOwx3EG4?e=jM7VKp)
+Have got a full draft (minus the references which can be added later) here: [presentation draft](https://uob-my.sharepoint.com/:p:/g/personal/hx21918_bristol_ac_uk/IQAxHoGUDOXaQ5f2EMPY8mX0ATvUz0yuHUQQV01cOwx3EG4?e=jM7VKp).
+
+Things that still need doing:
+
+* Equations are blurry; this may be due to settings in libreoffice tex processor
+* Fix system gif on slide 4 - in presenter mode it overlaps the plot
+* check w/supervisors that this is what i need
+* add references
