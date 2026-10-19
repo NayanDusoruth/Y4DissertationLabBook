@@ -52,7 +52,7 @@ Setting up slides as:
 1. Title slide
 2. Field background
 	* Quantum thermodynamics as a concept​
-	* Compare to classical thermodynamics – recap concepts of system, bath, thermalization​
+	* Compare to classical thermodynamics – recap concepts of system, bath, thermalization​ - stochastics may also be worth mentioning
 	* Introduce classical ideas of memory effects/markovianity​
 3. Project motivation and background
 	* State that memory effects in quantum systems aren't fully understood
@@ -110,3 +110,46 @@ Have produced plot of dynamic vs simulated evolution:
 As well as adding some utilities to make using the dual sim system easier.
 
 Have produced animated gif illustration of star geometry setup for the dissertation presentation.
+
+## 19/10/2026
+
+Am thinking in terms of what background/theoretical content needs to be included. It'd be good to include the names/equations for the different non markovianity defs.
+
+[@OpenQuantumSystemsIntro2012] includes explanation of memory kernels.
+
+[@QuantumStochasticProcesses2021] may also be a good resource; it includes classical non markovianity which will be a useful reference point for presentation reasons.
+
+### Reading notes [@QuantumStochasticProcesses2021]
+This is a long review paper. Introduction helps motivate the topic. Open systems are ones connected to some external environment that cannot be modelled for computational reasons. Stochastics aims to treat these environmental interactions statistically in order to model the system. Practical interest for range of reasons:
+
+* better understanding of environmental interaction will help create fault tolerant qubits for quantum computing reasons
+* Modelling many body quantum systems, with applications across condensed matter physics, quantum chemistry...
+
+This review aims to introduce and explain memory effects in quantum stochastic processes, and relate them to classical stochastic theories.
+
+Section 2 of the paper outlines classical examples; this will likely be quite useful for presentation reasons.
+Uses the example of sequential random dice tosses in order to illustrate stochastic processes. Uses this to illustrate memory effects - probability $P_{n}(O)$ does not depend on previous outcomes for memoryless systems. "Memoryless" Markov processes are introduced.
+
+::: {.column-margin}
+The dice example may be a good example to use; i wonder if a random walk could help illustrate a non markovian process visually. Paper uses examples of poorly retossed dice instead to illustrate conditional probability on past events.
+:::
+
+This paper looks quite interesting and worth going into greater depth later; for now however am just going to extract things useful for presentation. The poorly tossed dice example is probably useful way of illustrating memory effects; although i do wonder if a random walk may be better. 
+
+Quickly checking through the rest of the paper, it does discuss the complete-positivity memory definition.
+
+### presentation work continued
+[@MeasureForNonMarkovianity2009] is seemingly the original paper discussing information backflow.
+Therefore for the 3 measures mentioned, i think i can cite them from:
+
+* memory kernels [@OpenQuantumSystemsIntro2012]
+* Information backflow [@MeasureForNonMarkovianity2009]
+* Failure of complete positivity [@QuantumStochasticProcesses2021]
+
+Thats reassuring.
+Have produced a diagram to illustrate open vs closed systems.
+I think the best way to illustrate that is unfortunately showing the conditional probability expression for a set of sequential events w/memory. I'd rather do it diagramatically, however am unsure there is a good way to do so... Might be able to do it as a table of outcomes over time steps; one column represents a memoryless system, the other a memory-full system - can then show memory effects timestep by timestep using a concrete example.
+
+Have ignored that for now and gotten most of the rest of the presentation drafted.
+
+Have got a full draft (minus the references which can be added later) here: [presentation draft](https://uob-my.sharepoint.com/:p:/g/personal/hx21918_bristol_ac_uk/IQAxHoGUDOXaQ5f2EMPY8mX0ATvUz0yuHUQQV01cOwx3EG4?e=jM7VKp)

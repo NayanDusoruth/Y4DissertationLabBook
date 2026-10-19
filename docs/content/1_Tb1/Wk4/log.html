@@ -128,7 +128,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -552,11 +552,16 @@ window.Quarto = {
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">14/10/2026</a></li>
   <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">17/10/2026</a></li>
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">18/10/2026</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">19/10/2026</a>
+  <ul class="collapse">
+  <li><a href="#reading-notes-quantumstochasticprocesses2021" id="toc-reading-notes-quantumstochasticprocesses2021" class="nav-link" data-scroll-target="#reading-notes-quantumstochasticprocesses2021">Reading notes <span class="citation" data-cites="QuantumStochasticProcesses2021">(Milz and Modi 2021)</span></a></li>
+  <li><a href="#presentation-work-continued" id="toc-presentation-work-continued" class="nav-link" data-scroll-target="#presentation-work-continued">presentation work continued</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk4/log.html">Wk4 Log</a></li></ol></nav></header>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk4/log.html">Wk4 Log</a></li></ol></nav></header>
 
 
 
@@ -616,7 +621,7 @@ window.Quarto = {
 <li>Field background
 <ul>
 <li>Quantum thermodynamics as a concept​</li>
-<li>Compare to classical thermodynamics – recap concepts of system, bath, thermalization​</li>
+<li>Compare to classical thermodynamics – recap concepts of system, bath, thermalization​ - stochastics may also be worth mentioning</li>
 <li>Introduce classical ideas of memory effects/markovianity​</li>
 </ul></li>
 <li>Project motivation and background
@@ -693,14 +698,56 @@ Figure&nbsp;2: System evolution propagated by dynamic map and simulation
 </div>
 <p>As well as adding some utilities to make using the dual sim system easier.</p>
 <p>Have produced animated gif illustration of star geometry setup for the dissertation presentation.</p>
+</section>
+<section id="section-3" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section-3">19/10/2026</h2>
+<p>Am thinking in terms of what background/theoretical content needs to be included. It’d be good to include the names/equations for the different non markovianity defs.</p>
+<p><span class="citation" data-cites="OpenQuantumSystemsIntro2012">(<a href="#ref-OpenQuantumSystemsIntro2012" role="doc-biblioref">Rivas and Huelga 2012</a>)</span> includes explanation of memory kernels.</p>
+<p><span class="citation" data-cites="QuantumStochasticProcesses2021">(<a href="#ref-QuantumStochasticProcesses2021" role="doc-biblioref">Milz and Modi 2021</a>)</span> may also be a good resource; it includes classical non markovianity which will be a useful reference point for presentation reasons.</p>
+<section id="reading-notes-quantumstochasticprocesses2021" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="reading-notes-quantumstochasticprocesses2021">Reading notes <span class="citation" data-cites="QuantumStochasticProcesses2021">(<a href="#ref-QuantumStochasticProcesses2021" role="doc-biblioref">Milz and Modi 2021</a>)</span></h3>
+<p>This is a long review paper. Introduction helps motivate the topic. Open systems are ones connected to some external environment that cannot be modelled for computational reasons. Stochastics aims to treat these environmental interactions statistically in order to model the system. Practical interest for range of reasons:</p>
+<ul>
+<li>better understanding of environmental interaction will help create fault tolerant qubits for quantum computing reasons</li>
+<li>Modelling many body quantum systems, with applications across condensed matter physics, quantum chemistry…</li>
+</ul>
+<p>This review aims to introduce and explain memory effects in quantum stochastic processes, and relate them to classical stochastic theories.</p>
+<p>Section 2 of the paper outlines classical examples; this will likely be quite useful for presentation reasons. Uses the example of sequential random dice tosses in order to illustrate stochastic processes. Uses this to illustrate memory effects - probability <span class="math inline">\(P_{n}(O)\)</span> does not depend on previous outcomes for memoryless systems. “Memoryless” Markov processes are introduced.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The dice example may be a good example to use; i wonder if a random walk could help illustrate a non markovian process visually. Paper uses examples of poorly retossed dice instead to illustrate conditional probability on past events.</p>
+</div></div><p>This paper looks quite interesting and worth going into greater depth later; for now however am just going to extract things useful for presentation. The poorly tossed dice example is probably useful way of illustrating memory effects; although i do wonder if a random walk may be better.</p>
+<p>Quickly checking through the rest of the paper, it does discuss the complete-positivity memory definition.</p>
+</section>
+<section id="presentation-work-continued" class="level3">
+<h3 class="anchored" data-anchor-id="presentation-work-continued">presentation work continued</h3>
+<p><span class="citation" data-cites="MeasureForNonMarkovianity2009">(<a href="#ref-MeasureForNonMarkovianity2009" role="doc-biblioref">Breuer, Laine, and Piilo 2009</a>)</span> is seemingly the original paper discussing information backflow. Therefore for the 3 measures mentioned, i think i can cite them from:</p>
+<ul>
+<li>memory kernels <span class="citation" data-cites="OpenQuantumSystemsIntro2012">(<a href="#ref-OpenQuantumSystemsIntro2012" role="doc-biblioref">Rivas and Huelga 2012</a>)</span></li>
+<li>Information backflow <span class="citation" data-cites="MeasureForNonMarkovianity2009">(<a href="#ref-MeasureForNonMarkovianity2009" role="doc-biblioref">Breuer, Laine, and Piilo 2009</a>)</span></li>
+<li>Failure of complete positivity <span class="citation" data-cites="QuantumStochasticProcesses2021">(<a href="#ref-QuantumStochasticProcesses2021" role="doc-biblioref">Milz and Modi 2021</a>)</span></li>
+</ul>
+<p>Thats reassuring. Have produced a diagram to illustrate open vs closed systems. I think the best way to illustrate that is unfortunately showing the conditional probability expression for a set of sequential events w/memory. I’d rather do it diagramatically, however am unsure there is a good way to do so… Might be able to do it as a table of outcomes over time steps; one column represents a memoryless system, the other a memory-full system - can then show memory effects timestep by timestep using a concrete example.</p>
+<p>Have ignored that for now and gotten most of the rest of the presentation drafted.</p>
+<p>Have got a full draft (minus the references which can be added later) here: <a href="https://uob-my.sharepoint.com/:p:/g/personal/hx21918_bristol_ac_uk/IQAxHoGUDOXaQ5f2EMPY8mX0ATvUz0yuHUQQV01cOwx3EG4?e=jM7VKp">presentation draft</a></p>
 
 
 
 </section>
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-MeasureForNonMarkovianity2009" class="csl-entry" role="listitem">
+Breuer, Heinz-Peter, Elsi-Mari Laine, and Jyrki Piilo. 2009. <span>“Measure for the <span>Degree</span> of <span>Non</span>-<span>Markovian</span> <span>Behavior</span> of <span>Quantum</span> <span>Processes</span> in <span>Open</span> <span>Systems</span>.”</span> <em>Physical Review Letters</em> 103 (21): 210401. <a href="https://doi.org/10.1103/PhysRevLett.103.210401">https://doi.org/10.1103/PhysRevLett.103.210401</a>.
+</div>
 <div id="ref-pltAnimationHelp" class="csl-entry" role="listitem">
 Daniel. 2018. <span>“Python <span>Matplotlib</span> <span>FuncAnimation</span> + <span>Saving</span>.”</span> Forum post. <em>Stack Overflow</em>. <a href="https://stackoverflow.com/q/49133207">https://stackoverflow.com/q/49133207</a>.
+</div>
+<div id="ref-QuantumStochasticProcesses2021" class="csl-entry" role="listitem">
+Milz, Simon, and Kavan Modi. 2021. <span>“Quantum <span>Stochastic</span> <span>Processes</span> and <span>Quantum</span> Non-<span>Markovian</span> <span>Phenomena</span> <span></span> <span>PRX</span> <span>Quantum</span>.”</span> <a href="https://doi.org/10.1103/PRXQuantum.2.030201">https://doi.org/10.1103/PRXQuantum.2.030201</a>.
+</div>
+<div id="ref-OpenQuantumSystemsIntro2012" class="csl-entry" role="listitem">
+Rivas, Ángel, and Susana F Huelga. 2012. <em>Open <span>Quantum</span> <span>Systems</span>. <span>An</span> <span>Introduction</span></em>. https://doi.org/<a href="https://doi.org/10.48550/arXiv.1104.5242">https://doi.org/10.48550/arXiv.1104.5242</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
