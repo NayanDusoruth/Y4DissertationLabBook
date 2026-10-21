@@ -455,5 +455,16 @@
       "TB1",
       "Wk4 Log"
     ]
+  },
+  {
+    "objectID": "content/1_Tb1/Wk4/log.html#section-4",
+    "href": "content/1_Tb1/Wk4/log.html#section-4",
+    "title": "Dissertation labbook: Driving Non Markovianity in open systems",
+    "section": "21/10/2026",
+    "text": "21/10/2026\nAm quickly fixing the equations and fiddling with presentation. Currently doing it with a libreoffice odp format (it works better than powerpoint), but will convert it to ppt at a later date.\n\nsupervisor meeting:\nHad supervisor meeting, much good advice on presentation was given:\n\nSlide 2 - information backflow diagram (system, arrows indicating information flow) would be much stronger conceptual way to illustrate memory effects than wall of maths currently on display\nSlide 3 - expand the practical use of this understanding a bit more\nSlide 3 - remove the equations - don’t need them\nSlide 4 - aims - rephrase as 1 line question - try to move to slide 3\nSlide 5 - the specific hamiltonian expressions aren’t necessary - remove\nSlide 5 - worth explaining that diagonalizing a general bath into its momentum eigenstates produces this star geometry\nSlide 5 - may be worth trying to communicate the importance of the fermi dirac distribution\nSlide 6 - make animated fig centerpiece; remove recurrence\nSlide 7 - plot overlap - for dashed line, duplicate the dashed data and plot it below the black dashed line as a thicker white dashed line to outline the dashes - helps w/visibility\nSlide 8 - reduce to 3 main points\nSlide 8 - may be good place to include plot of non-markovian effect from thermalization\n\nDavid pointed out that i wasn’t getting non markovian wibbliness because of the small prefactor. With appropriate parameters the following results:\n\n\n\n\n\n\nFigure 3: Non markovian behaviour from thermalization for \\(f_{pre}=0.05, \\beta=10, \\mu=0.1, n=100\\), Note that the analytical thermalization struggles for this setup; this is likely a numerical integration issue\n\n\n\nIt may be illustrative to produce a gif/animation of this plot varying the prefactor in order to demonstrate its effect on the markovianity.",
+    "crumbs": [
+      "TB1",
+      "Wk4 Log"
+    ]
   }
 ]
