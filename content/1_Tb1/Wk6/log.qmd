@@ -1,0 +1,84 @@
+## 26/10/2026
+Considering redoing presentation using current draft as a guide. That may help redo some formatting and such whilst being quicker than a full restart.
+
+::: {.column-margin}
+Coding sidenote - currently the plotting code is a mess of using the standard params dict and args; i've implemented a quick "copyDict" function which can quickly copy and edit dictionaries in 1 line. I should asp refactor some of the code so that plotting always uses the figparams for everything; and i simply quickly edit the figparams dict using this copyDict function.
+
+May need to think about this further; i could restructure that standardFigParams dict a bit (I.E include list of standard colors, list of labels... then i can do all my plotting through one dictionary instead of arbitrary parameters), however not a now problem; presentation comes first.
+:::
+
+First taking a sec to make sure my plotted figs are in their final form.
+Have tried Francesco's suggestion for the dynamic map vs simulation plot clarity issue, it helps a lot:
+
+![Reworked overlapping plot](figures/standardDualSim_compareEvo.png){#fig-newDynamicPlot}
+
+::: {.column-margin}
+Coding sidenote - currently have the main simulation utility and a simulation queue. However the simulation queue also has assorted utilities for the purposes of running/saving simulation runs. This may be worth splitting off into it's own little utility as well; so the structure goes "main simulation classes" <-> "simulation handling utilities" <-> "top level simulation queue".
+
+Again not a now thing, but to be considered
+:::
+
+Am currently trying to get an animated system occupation over parameter variation animation working; if i can show a parameter variation (I.E coupling strength) which produces memory effects; that'd be cool for presentation reasons.
+
+::: {.column-margin}
+A good analogy to verbally use in the presentation is a cup of tea cooling down to room temperature; this immediately connects the idea of open systems to familiar thermodynamics and makes "overshooting" memory driven thermalizations a lot wierder
+:::
+
+
+::: {.column-margin}
+Note to self; it may be worth switching the quarto notebook to a book format asp; it would let me have a single export to pdf button for the whole thing, and i suspect that it MIGHT help with displaying mp4 content (had a look at the quarto files for the CDM course (which has mp4 files displayed); thats the only difference i can see assuming there's not some metadata difference internal to mp4s)
+:::
+
+Have got something animated that works well enough for now; turning attention back to presentation.
+
+Have reworked presentation completely in power point here [reworked presentation](https://uob-my.sharepoint.com/:p:/g/personal/hx21918_bristol_ac_uk/IQBiDPEAs_J-S6p_8MhuUuLmAYHjqEYJtmfswm4x341tmOk?e=GJUEL3) despite issues w/latex equations. Handled that by copy/pasting latex eqs as pngs from tex editor.
+
+At this point, all the content is in the presentation, what needs doing follows:
+
+* Figure captions
+* Citations
+* Stock photo for slide 2/8?
+* slide transitions
+
+In no particular order; going to put citations in first. Examining the slides, the citations needed follow:
+
+* [@OpenQuantumSystemsIntro2012] - general theory
+* [@OpenQuantumSystemsTextbook2007] - general theory
+* [@QuantumStochasticProcesses2021] - general theory inc classical analogies and practical applications of the field
+* [@EntanglementNonMarkovianity2010] - has theory on dynamic map extraction and general setup stuff
+* [@scaryPaper2019] - names the different definitions we're testing
+* [@memoryKernelOutline2014] - for memory kernel stuff specifically
+* [@MeasureForNonMarkovianity2009] - for backflow stuff specifically
+* [@positiveDivisibilityAndMarkovianity2019] for CP divisibility specifically
+
+exporting these to an IOP style produces:
+
+
+[ ] Rivas Á and Huelga S F 2012 Open Quantum Systems. An Introduction
+
+[ ] Heinz-Peter Breuer, and Francesco Petruccione 2007 The Theory of Open Quantum Systems
+
+[ ] Milz S and Modi K 2021 Quantum Stochastic Processes and Quantum non-Markovian Phenomena | PRX Quantum Online: https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.2.030201
+
+
+[ ] Reimer V, Wegewijs M R, Nestmann K and Pletyukhov M 2019 Five approaches to exact open-system dynamics: Complete positivity, divisibility and time-dependent observables The Journal of Chemical Physics 151 044101
+
+[ ] Rivas Á, Huelga S F and Plenio M B 2010 Entanglement and non-Markovianity of quantum evolutions Phys. Rev. Lett. 105 050403
+
+[ ] Cerrillo J and Cao J 2014 Non-Markovian Dynamical Maps: Numerical Processing of Open Quantum Trajectories Phys. Rev. Lett. 112 110401
+
+[ ] Breuer H-P, Laine E-M and Piilo J 2009 Measure for the Degree of Non-Markovian Behavior of Quantum Processes in Open Systems Phys. Rev. Lett. 103 210401
+
+[ ] Milz S, Kim M S, Pollock F A and Modi K 2019 Completely Positive Divisibility Does Not Mean Markovianity Phys. Rev. Lett. 123 040401
+
+
+
+Right, have put in citations, fig captions, and animation transitions. Some things that still need doing:
+
+* Get stock photo(s)
+* figure out how to get video to play on presentation click
+* figure out why gifs don't play in presenter mode
+
+Beyond that i'm reasonably happy w/these slides. They're not the most exciting thing in the world; but the information is clear; diagrams and gifs present; citations in. I just need to make sure to get rid of the final "construction" slide (a slide i used to test gifs and such; not part of presentation).
+
+Going to leave it there for now; will likely be back at it after dinner.

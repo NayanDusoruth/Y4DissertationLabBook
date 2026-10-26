@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>log – labBook</title>
+<title>log – Dissertation labbook: Driving Non Markovianity in open systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,10 +57,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-4d8b594121dd52e54118692cc759f5c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-567b30ad711c8693efb6495feb883fb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-4d8b594121dd52e54118692cc759f5c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -73,7 +97,169 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -97,7 +283,10 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../../">labBook</a> 
+      <a href="../../../">Dissertation labbook: Driving Non Markovianity in open systems</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -116,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Pre reading</span></a>
+ <span class="menu-text">Pre TB1 work</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -126,6 +315,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../content/0_preTb1/Wk0/ProjectInfo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../content/0_preTb1/Wk0/labbookNotesToSelf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labbook formatting notes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -161,6 +356,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../content/1_Tb1/Wk3/log.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wk3 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../content/1_Tb1/Wk3/projectState.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State of the project 11/10/2026</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -312,21 +513,134 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">26/10/2026</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk6/log.html">Wk6 Log</a></li></ol></nav></header>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk6/log.html">Wk6 Log</a></li></ol></nav></header>
 
 
 
 
 
+<section id="section" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section">26/10/2026</h2>
+<p>Considering redoing presentation using current draft as a guide. That may help redo some formatting and such whilst being quicker than a full restart.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Coding sidenote - currently the plotting code is a mess of using the standard params dict and args; i’ve implemented a quick “copyDict” function which can quickly copy and edit dictionaries in 1 line. I should asp refactor some of the code so that plotting always uses the figparams for everything; and i simply quickly edit the figparams dict using this copyDict function.</p>
+<p>May need to think about this further; i could restructure that standardFigParams dict a bit (I.E include list of standard colors, list of labels… then i can do all my plotting through one dictionary instead of arbitrary parameters), however not a now problem; presentation comes first.</p>
+</div></div><p>First taking a sec to make sure my plotted figs are in their final form. Have tried Francesco’s suggestion for the dynamic map vs simulation plot clarity issue, it helps a lot:</p>
+<div id="fig-newDynamicPlot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-newDynamicPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/standardDualSim_compareEvo.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-newDynamicPlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Reworked overlapping plot
+</figcaption>
+</figure>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Coding sidenote - currently have the main simulation utility and a simulation queue. However the simulation queue also has assorted utilities for the purposes of running/saving simulation runs. This may be worth splitting off into it’s own little utility as well; so the structure goes “main simulation classes” &lt;-&gt; “simulation handling utilities” &lt;-&gt; “top level simulation queue”.</p>
+<p>Again not a now thing, but to be considered</p>
+</div></div><p>Am currently trying to get an animated system occupation over parameter variation animation working; if i can show a parameter variation (I.E coupling strength) which produces memory effects; that’d be cool for presentation reasons.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>A good analogy to verbally use in the presentation is a cup of tea cooling down to room temperature; this immediately connects the idea of open systems to familiar thermodynamics and makes “overshooting” memory driven thermalizations a lot wierder</p>
+</div><div class="">
+<p>Note to self; it may be worth switching the quarto notebook to a book format asp; it would let me have a single export to pdf button for the whole thing, and i suspect that it MIGHT help with displaying mp4 content (had a look at the quarto files for the CDM course (which has mp4 files displayed); thats the only difference i can see assuming there’s not some metadata difference internal to mp4s)</p>
+</div></div>
+<p>Have got something animated that works well enough for now; turning attention back to presentation.</p>
+<p>Have reworked presentation completely in power point here <a href="https://uob-my.sharepoint.com/:p:/g/personal/hx21918_bristol_ac_uk/IQBiDPEAs_J-S6p_8MhuUuLmAYHjqEYJtmfswm4x341tmOk?e=GJUEL3">reworked presentation</a> despite issues w/latex equations. Handled that by copy/pasting latex eqs as pngs from tex editor.</p>
+<p>At this point, all the content is in the presentation, what needs doing follows:</p>
+<ul>
+<li>Figure captions</li>
+<li>Citations</li>
+<li>Stock photo for slide 2/8?</li>
+<li>slide transitions</li>
+</ul>
+<p>In no particular order; going to put citations in first. Examining the slides, the citations needed follow:</p>
+<ul>
+<li><span class="citation" data-cites="OpenQuantumSystemsIntro2012">(<a href="#ref-OpenQuantumSystemsIntro2012" role="doc-biblioref">Rivas and Huelga 2012</a>)</span> - general theory</li>
+<li><span class="citation" data-cites="OpenQuantumSystemsTextbook2007">(<a href="#ref-OpenQuantumSystemsTextbook2007" role="doc-biblioref">Heinz-Peter Breuer, and Francesco Petruccione 2007</a>)</span> - general theory</li>
+<li><span class="citation" data-cites="QuantumStochasticProcesses2021">(<a href="#ref-QuantumStochasticProcesses2021" role="doc-biblioref">Milz and Modi 2021</a>)</span> - general theory inc classical analogies and practical applications of the field</li>
+<li><span class="citation" data-cites="EntanglementNonMarkovianity2010">(<a href="#ref-EntanglementNonMarkovianity2010" role="doc-biblioref">Rivas, Huelga, and Plenio 2010</a>)</span> - has theory on dynamic map extraction and general setup stuff</li>
+<li><span class="citation" data-cites="scaryPaper2019">(<a href="#ref-scaryPaper2019" role="doc-biblioref">Reimer et al. 2019</a>)</span> - names the different definitions we’re testing</li>
+<li><span class="citation" data-cites="memoryKernelOutline2014">(<a href="#ref-memoryKernelOutline2014" role="doc-biblioref">Cerrillo and Cao 2014</a>)</span> - for memory kernel stuff specifically</li>
+<li><span class="citation" data-cites="MeasureForNonMarkovianity2009">(<a href="#ref-MeasureForNonMarkovianity2009" role="doc-biblioref">Breuer, Laine, and Piilo 2009</a>)</span> - for backflow stuff specifically</li>
+<li><span class="citation" data-cites="positiveDivisibilityAndMarkovianity2019">(<a href="#ref-positiveDivisibilityAndMarkovianity2019" role="doc-biblioref">Milz et al. 2019</a>)</span> for CP divisibility specifically</li>
+</ul>
+<p>exporting these to an IOP style produces:</p>
+<p>[ ] Rivas Á and Huelga S F 2012 Open Quantum Systems. An Introduction</p>
+<p>[ ] Heinz-Peter Breuer, and Francesco Petruccione 2007 The Theory of Open Quantum Systems</p>
+<p>[ ] Milz S and Modi K 2021 Quantum Stochastic Processes and Quantum non-Markovian Phenomena | PRX Quantum Online: https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.2.030201</p>
+<p>[ ] Reimer V, Wegewijs M R, Nestmann K and Pletyukhov M 2019 Five approaches to exact open-system dynamics: Complete positivity, divisibility and time-dependent observables The Journal of Chemical Physics 151 044101</p>
+<p>[ ] Rivas Á, Huelga S F and Plenio M B 2010 Entanglement and non-Markovianity of quantum evolutions Phys. Rev.&nbsp;Lett. 105 050403</p>
+<p>[ ] Cerrillo J and Cao J 2014 Non-Markovian Dynamical Maps: Numerical Processing of Open Quantum Trajectories Phys. Rev.&nbsp;Lett. 112 110401</p>
+<p>[ ] Breuer H-P, Laine E-M and Piilo J 2009 Measure for the Degree of Non-Markovian Behavior of Quantum Processes in Open Systems Phys. Rev.&nbsp;Lett. 103 210401</p>
+<p>[ ] Milz S, Kim M S, Pollock F A and Modi K 2019 Completely Positive Divisibility Does Not Mean Markovianity Phys. Rev.&nbsp;Lett. 123 040401</p>
+<p>Right, have put in citations, fig captions, and animation transitions. Some things that still need doing:</p>
+<ul>
+<li>Get stock photo(s)</li>
+<li>figure out how to get video to play on presentation click</li>
+<li>figure out why gifs don’t play in presenter mode</li>
+</ul>
+<p>Beyond that i’m reasonably happy w/these slides. They’re not the most exciting thing in the world; but the information is clear; diagrams and gifs present; citations in. I just need to make sure to get rid of the final “construction” slide (a slide i used to test gifs and such; not part of presentation).</p>
+<p>Going to leave it there for now; will likely be back at it after dinner.</p>
 
 
-</main> <!-- /main -->
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-MeasureForNonMarkovianity2009" class="csl-entry" role="listitem">
+Breuer, Heinz-Peter, Elsi-Mari Laine, and Jyrki Piilo. 2009. <span>“Measure for the <span>Degree</span> of <span>Non</span>-<span>Markovian</span> <span>Behavior</span> of <span>Quantum</span> <span>Processes</span> in <span>Open</span> <span>Systems</span>.”</span> <em>Physical Review Letters</em> 103 (21): 210401. <a href="https://doi.org/10.1103/PhysRevLett.103.210401">https://doi.org/10.1103/PhysRevLett.103.210401</a>.
+</div>
+<div id="ref-memoryKernelOutline2014" class="csl-entry" role="listitem">
+Cerrillo, Javier, and Jianshu Cao. 2014. <span>“Non-<span>Markovian</span> <span>Dynamical</span> <span>Maps</span>: <span>Numerical</span> <span>Processing</span> of <span>Open</span> <span>Quantum</span> <span>Trajectories</span>.”</span> <em>Physical Review Letters</em> 112 (11): 110401. <a href="https://doi.org/10.1103/PhysRevLett.112.110401">https://doi.org/10.1103/PhysRevLett.112.110401</a>.
+</div>
+<div id="ref-OpenQuantumSystemsTextbook2007" class="csl-entry" role="listitem">
+Heinz-Peter Breuer, and Francesco Petruccione. 2007. <em>The <span>Theory</span> of <span>Open</span> <span>Quantum</span> <span>Systems</span></em>. https://doi.org/<a href="https://doi.org/10.1093/acprof:oso/9780199213900.001.0001">https://doi.org/10.1093/acprof:oso/9780199213900.001.0001</a>.
+</div>
+<div id="ref-positiveDivisibilityAndMarkovianity2019" class="csl-entry" role="listitem">
+Milz, Simon, M. S. Kim, Felix A. Pollock, and Kavan Modi. 2019. <span>“Completely <span>Positive</span> <span>Divisibility</span> <span>Does</span> <span>Not</span> <span>Mean</span> <span>Markovianity</span>.”</span> <em>Physical Review Letters</em> 123 (4): 040401. <a href="https://doi.org/10.1103/PhysRevLett.123.040401">https://doi.org/10.1103/PhysRevLett.123.040401</a>.
+</div>
+<div id="ref-QuantumStochasticProcesses2021" class="csl-entry" role="listitem">
+Milz, Simon, and Kavan Modi. 2021. <span>“Quantum <span>Stochastic</span> <span>Processes</span> and <span>Quantum</span> Non-<span>Markovian</span> <span>Phenomena</span> <span></span> <span>PRX</span> <span>Quantum</span>.”</span> <a href="https://doi.org/10.1103/PRXQuantum.2.030201">https://doi.org/10.1103/PRXQuantum.2.030201</a>.
+</div>
+<div id="ref-scaryPaper2019" class="csl-entry" role="listitem">
+Reimer, Viktor, Maarten Rolf Wegewijs, Konstantin Nestmann, and Mikhail Pletyukhov. 2019. <span>“Five Approaches to Exact Open-System Dynamics: <span>Complete</span> Positivity, Divisibility and Time-Dependent Observables.”</span> <em>The Journal of Chemical Physics</em> 151 (4): 044101. <a href="https://doi.org/10.1063/1.5094412">https://doi.org/10.1063/1.5094412</a>.
+</div>
+<div id="ref-OpenQuantumSystemsIntro2012" class="csl-entry" role="listitem">
+Rivas, Ángel, and Susana F Huelga. 2012. <em>Open <span>Quantum</span> <span>Systems</span>. <span>An</span> <span>Introduction</span></em>. https://doi.org/<a href="https://doi.org/10.48550/arXiv.1104.5242">https://doi.org/10.48550/arXiv.1104.5242</a>.
+</div>
+<div id="ref-EntanglementNonMarkovianity2010" class="csl-entry" role="listitem">
+Rivas, Ángel, Susana F. Huelga, and Martin B. Plenio. 2010. <span>“Entanglement and Non-<span>Markovianity</span> of Quantum Evolutions.”</span> <em>Physical Review Letters</em> 105 (5): 050403. <a href="https://doi.org/10.1103/PhysRevLett.105.050403">https://doi.org/10.1103/PhysRevLett.105.050403</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

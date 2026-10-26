@@ -557,10 +557,6 @@ window.Quarto = {
   <li><a href="#reading-notes-quantumstochasticprocesses2021" id="toc-reading-notes-quantumstochasticprocesses2021" class="nav-link" data-scroll-target="#reading-notes-quantumstochasticprocesses2021">Reading notes <span class="citation" data-cites="QuantumStochasticProcesses2021">(Milz and Modi 2021)</span></a></li>
   <li><a href="#presentation-work-continued" id="toc-presentation-work-continued" class="nav-link" data-scroll-target="#presentation-work-continued">presentation work continued</a></li>
   </ul></li>
-  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">21/10/2026</a>
-  <ul class="collapse">
-  <li><a href="#supervisor-meeting" id="toc-supervisor-meeting" class="nav-link" data-scroll-target="#supervisor-meeting">supervisor meeting:</a></li>
-  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -682,7 +678,7 @@ Figure&nbsp;1: System evolution for <span class="math inline">\(n_{sys}(0)=\lim_
 </div>
 <p>Which is what was expected; good to see that it behaves interstingly.</p>
 <p>Also looking to generate gif versions of some of the plots for presentation reasons using <span class="citation" data-cites="pltGifs">(<a href="#ref-pltGifs" role="doc-biblioref"><strong>pltGifs?</strong></a>)</span>, <span class="citation" data-cites="pltAnimationHelp">(<a href="#ref-pltAnimationHelp" role="doc-biblioref">Daniel 2018</a>)</span>. Have fiddled a bunch and produced the following:</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="figures/animated_systenBathEvo.mp4"></video></div>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="animated_systenBathEvo.mp4"></video></div>
 <p>which quarto doesn’t seem to be rendering… tmr problem.</p>
 </section>
 <section id="section-2" class="level2">
@@ -741,39 +737,6 @@ Figure&nbsp;2: System evolution propagated by dynamic map and simulation
 <li>check w/supervisors that this is what i need</li>
 <li>add references</li>
 </ul>
-</section>
-</section>
-<section id="section-4" class="level2">
-<h2 class="anchored" data-anchor-id="section-4">21/10/2026</h2>
-<p>Am quickly fixing the equations and fiddling with presentation. Currently doing it with a libreoffice odp format (it works better than powerpoint), but will convert it to ppt at a later date.</p>
-<section id="supervisor-meeting" class="level3">
-<h3 class="anchored" data-anchor-id="supervisor-meeting">supervisor meeting:</h3>
-<p>Had supervisor meeting, much good advice on presentation was given:</p>
-<ul>
-<li>Slide 2 - information backflow diagram (system, arrows indicating information flow) would be much stronger conceptual way to illustrate memory effects than wall of maths currently on display</li>
-<li>Slide 3 - expand the practical use of this understanding a bit more</li>
-<li>Slide 3 - remove the equations - don’t need them</li>
-<li>Slide 4 - aims - rephrase as 1 line question - try to move to slide 3</li>
-<li>Slide 5 - the specific hamiltonian expressions aren’t necessary - remove</li>
-<li>Slide 5 - worth explaining that diagonalizing a general bath into its momentum eigenstates produces this star geometry</li>
-<li>Slide 5 - may be worth trying to communicate the importance of the fermi dirac distribution</li>
-<li>Slide 6 - make animated fig centerpiece; remove recurrence</li>
-<li>Slide 7 - plot overlap - for dashed line, duplicate the dashed data and plot it below the black dashed line as a thicker white dashed line to outline the dashes - helps w/visibility</li>
-<li>Slide 8 - reduce to 3 main points</li>
-<li>Slide 8 - may be good place to include plot of non-markovian effect from thermalization</li>
-</ul>
-<p>David pointed out that i wasn’t getting non markovian wibbliness because of the small prefactor. With appropriate parameters the following results:</p>
-<div id="fig-thermalInitialOcc2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-thermalInitialOcc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/fromThermalizedoccupancy_systemOccupation.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thermalInitialOcc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Non markovian behaviour from thermalization for <span class="math inline">\(f_{pre}=0.05, \beta=10, \mu=0.1, n=100\)</span>, Note that the analytical thermalization struggles for this setup; this is likely a numerical integration issue
-</figcaption>
-</figure>
-</div>
-<p>It may be illustrative to produce a gif/animation of this plot varying the prefactor in order to demonstrate its effect on the markovianity.</p>
 
 
 
