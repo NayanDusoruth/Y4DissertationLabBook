@@ -82,3 +82,51 @@ Right, have put in citations, fig captions, and animation transitions. Some thin
 Beyond that i'm reasonably happy w/these slides. They're not the most exciting thing in the world; but the information is clear; diagrams and gifs present; citations in. I just need to make sure to get rid of the final "construction" slide (a slide i used to test gifs and such; not part of presentation).
 
 Going to leave it there for now; will likely be back at it after dinner.
+
+
+
+## 27/10/2026
+
+###supervisor meeting
+Comments on the presentation:
+
+* information backflow squiggly line arrow flip/remove
+* project setup - fermi dirac stats - distribution of state - distinction - counts out bath / linked
+* dynamic map slide - lambda matrix expression - double check
+* memory effect animated plot zoom in y axis
+* quotation around memory defs to make em clear - memory defs aren't defined - memory kernels link to dynamic map
+* dynamic map - need to state its utility to computing memory defs
+* weakness in plan - examine and compare -> regimes where memory definitions disagree "stronger emphasis" - add to motivation slide - figure out why inconsistent - this is the main why
+* emphasise fact classical non markovianity is well defined - add to motivation slide 
+* motivation slide - can get rid of practical point written - can say verbally
+* dynamic map slide - last point - all metrics use dynamic map as main analytical object
+* appendix slide for question time (have def, eqs and such)
+
+Other meeting notes:
+
+* unrelated to presentation - bath occupation in coupling strength for memory effect - would be interesting to look at
+* next meeting - next steps rather than work
+
+### presentation work:
+Summarizing the above points:
+
+* Fig. 2 - information backflow arrow fix [ ]
+* Slide 3 - not directly determined to fermi dirac stats - related [x]
+* Slide 6 - dynamic map expression - double check [ ]
+* Fig. 6 - zoom in y axis [x]
+* defining memory defs a bit more - quotation marks around them? def memory kernel expression? [~]
+* Slide 2 - state we know there's disagreement between defs - we want to understand why (stronger emphasis) [ ]
+* Slide 2 - compare/contrast to fact classical non markovianity is well understood [~] // i think it's best to say this verbally instead of writing it down 
+* Slide 6 - Relate dynamic map back to memory defs [x]
+* Add appendix slide(s) [x]
+
+In terms of appendicies; these would support Q&A, therefore need to think about what sorts of questions may be asked:
+
+* Details on the memory defs - mainly their eqs
+* Details on the hamiltonian and spectral function inc explicit matrix form
+* explicit form for initial correlation matrix and details on fermi dirac distribution
+
+Have added all 3; I think that covers most of the specifics i could be asked about.
+Have also added a quick note relating dynamic map back to memory defs.
+Have adjusted y axis on the memory animation.
+Have tweaked fig 5
