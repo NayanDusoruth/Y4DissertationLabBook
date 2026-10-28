@@ -93,6 +93,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 </head>
@@ -523,6 +552,11 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#presentation-work" id="toc-presentation-work" class="nav-link" data-scroll-target="#presentation-work">presentation work:</a></li>
   </ul></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">28/10/2026</a>
+  <ul class="collapse">
+  <li><a href="#potential-questions" id="toc-potential-questions" class="nav-link" data-scroll-target="#potential-questions">Potential questions:</a></li>
+  <li><a href="#general-presentation-work" id="toc-general-presentation-work" class="nav-link" data-scroll-target="#general-presentation-work">general presentation work:</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -625,7 +659,7 @@ Figure&nbsp;1: Reworked overlapping plot
 <h3 class="anchored" data-anchor-id="presentation-work">presentation work:</h3>
 <p>Summarizing the above points:</p>
 <ul>
-<li>Fig. 2 - information backflow arrow fix [ ]</li>
+<li>Fig. 1 - information backflow arrow fix [ ]</li>
 <li>Slide 3 - not directly determined to fermi dirac stats - related [x]</li>
 <li>Slide 6 - dynamic map expression - double check [ ]</li>
 <li>Fig. 6 - zoom in y axis [x]</li>
@@ -642,6 +676,97 @@ Figure&nbsp;1: Reworked overlapping plot
 <li>explicit form for initial correlation matrix and details on fermi dirac distribution</li>
 </ul>
 <p>Have added all 3; I think that covers most of the specifics i could be asked about. Have also added a quick note relating dynamic map back to memory defs. Have adjusted y axis on the memory animation. Have tweaked fig 5</p>
+</section>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">28/10/2026</h2>
+<p>Have been struggling with finding a stock image for slide 2; so have drawn a gag comic for it instead:</p>
+<div id="fig-gagComic" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gagComic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/stopCorruptingYourself.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gagComic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Gag comic for motivation slide of presentation
+</figcaption>
+</figure>
+</div>
+<p>Its not exactly professional, but i think it could work on that slide; and hopefully the visual gag will make the presentation a bit more memorable. It does however draw more attention to error correction as an application of this topic; so i would need to anticipate questions on it.</p>
+<section id="potential-questions" class="level3">
+<h3 class="anchored" data-anchor-id="potential-questions">Potential questions:</h3>
+<p>Thinking a bit further, the types of questions I can forsee:</p>
+<ul>
+<li>Further details on:
+<ul>
+<li>The memory definitions (see appendix i)
+<ul>
+<li>Eqs</li>
+<li>what they represent:
+<ul>
+<li>Memory kernel - direct convolutional component to evolution</li>
+<li>Backflow - measure of information “coming back” to system</li>
+<li>failure of CP divisiblity - can dynamic maps be composed in terms of each other (~)</li>
+</ul></li>
+<li>We suspect that they’re will be a hierarchy of defs:
+<ul>
+<li>there are cases where backflow fails</li>
+<li>classical CP divisibility is known to be an insufficient condition for classical markovianity</li>
+</ul></li>
+</ul></li>
+<li>The hamiltonian (see appendix ii):
+<ul>
+<li>operator form of hamiltonian</li>
+<li>matrix form of hamiltonian</li>
+</ul></li>
+<li>Correlation matrix and fermi dirac distribution (see appendix iii)</li>
+</ul></li>
+<li>How non markovian effects relate to error correction:
+<ul>
+<li>the textbook <span class="citation" data-cites="quantumErrorMemoryContext2013">(<a href="#ref-quantumErrorMemoryContext2013" role="doc-biblioref"><strong>quantumErrorMemoryContext2013?</strong></a>)</span> has some additional info</li>
+<li>reminder of quantum error correction (citable in textbook; but my understanding from quantum computing course):
+<ul>
+<li>we consider Qbits experiencing noise as random X, Z operations (all noise can be expressed in these pauli operators)</li>
+<li>By attaching ancilliary Qbits, can diagnose what type of noise has been applied</li>
+<li>can map diagnostic “syndromes” directly to correction operations</li>
+</ul></li>
+<li>for non-markovian noise; the syndrome and correction operation are not independent; so need additional understanding on the non-markovian evolution to apply correction operations</li>
+</ul></li>
+<li>How does non markovian effects relate to other fields:
+<ul>
+<li>Quantum non-markovianity has important implications for open quantum systems generally - these can be found across many fields
+<ul>
+<li>condensed matter physics</li>
+<li>quantum information</li>
+</ul></li>
+</ul></li>
+<li>Questions about specific figs:
+<ul>
+<li>Fig 5 - animated evolution plot
+<ul>
+<li>Questions about specific parameters (weak coupling, semi-circle <span class="math inline">\(J(\omega)\)</span>, bath size)</li>
+<li>there is harmonic wibbliness in the bath occupation near <span class="math inline">\(\omega=0\)</span> for early t - why? because of small bath size; acts more like harmonic oscillators</li>
+</ul></li>
+<li>Fig 7 - general interest; why goes beyond thermalization - information “sloshing” out/back into system - can point out recurrence to highlight memory effect</li>
+</ul></li>
+</ul>
+</section>
+<section id="general-presentation-work" class="level3">
+<h3 class="anchored" data-anchor-id="general-presentation-work">general presentation work:</h3>
+<p>Have done an out loud practice run of the presentation. Was somewhat stuttery/tripping over my words, however thats expected given this is my first proper practice run. Given that caveat, i covered all of the content i wanted to, and did so in 09:45 min; so within the hard 10min time limit. As such i’m confident this presentation covers the right amount of content, and given practice i should be able to present this effectively w/in time.</p>
+<p>As such, i’m confident submitting the presentation as it stands; will do a last check over it to make sure i’m happy w/it, but it is otherwise done, and only needs practice.</p>
+<p>As such the to do list for the next week till the presentation:</p>
+<ul>
+<li>Double check slides</li>
+<li>Submit slides</li>
+<li>Practice delivering slides</li>
+<li>Consolidate above list of “potential Q&amp;A” into smth i can use as a resource when answering questions</li>
+</ul>
+<p>Main other thing to consider, is do i want an appendix slide for the quantum error correction stuff. Its beyond the scope of my project; however is a question i could see being asked, and is smth i’m able to answer.</p>
+<p>have adjusted some diagrams for consistency sake.</p>
+<p>Have fixed a plot.</p>
+<p>I don’t think i need a quantum error correction appendix. Whilst i can answer that question, its a tangent from this project, and would be difficult to illustrate concisely using an appendix; i don’t think its worth worrying about.</p>
+<p>I’ve done final checks; it looks good, i’m going to download a final copy for safe keeping, and submit it i think.</p>
+<p>Have submitted it; can resubmit if i have to, but am happy w/slides. Just need to practice delivery and prep for Q&amp;A.</p>
 
 
 

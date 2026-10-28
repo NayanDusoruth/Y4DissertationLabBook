@@ -110,7 +110,7 @@ Other meeting notes:
 ### presentation work:
 Summarizing the above points:
 
-* Fig. 2 - information backflow arrow fix [ ]
+* Fig. 1 - information backflow arrow fix [ ]
 * Slide 3 - not directly determined to fermi dirac stats - related [x]
 * Slide 6 - dynamic map expression - double check [ ]
 * Fig. 6 - zoom in y axis [x]
@@ -130,3 +130,76 @@ Have added all 3; I think that covers most of the specifics i could be asked abo
 Have also added a quick note relating dynamic map back to memory defs.
 Have adjusted y axis on the memory animation.
 Have tweaked fig 5
+
+## 28/10/2026
+Have been struggling with finding a stock image for slide 2; so have drawn a gag comic for it instead:
+
+![Gag comic for motivation slide of presentation](figures/stopCorruptingYourself.png){#fig-gagComic}
+
+Its not exactly professional, but i think it could work on that slide; and hopefully the visual gag will make the presentation a bit more memorable. It does however draw more attention to error correction as an application of this topic; so i would need to anticipate questions on it.
+
+
+### Potential questions:
+
+Thinking a bit further, the types of questions I can forsee:
+
+* Further details on:
+	* The memory definitions (see appendix i)
+		* Eqs
+		* what they represent:
+			* Memory kernel - direct convolutional component to evolution
+			* Backflow - measure of information "coming back" to system
+			* failure of CP divisiblity - can dynamic maps be composed in terms of each other (~)
+		* We suspect that they're will be a hierarchy of defs:
+			* there are cases where backflow fails
+			* classical CP divisibility is known to be an insufficient condition for classical markovianity
+	* The hamiltonian (see appendix ii):
+		* operator form of hamiltonian
+		* matrix form of hamiltonian
+	* Correlation matrix and fermi dirac distribution (see appendix iii)
+
+* How non markovian effects relate to error correction:
+	* the textbook [@quantumErrorMemoryContext2013] has some additional info
+	* reminder of quantum error correction (citable in textbook; but my understanding from quantum computing course):
+		* we consider Qbits experiencing noise as random X, Z operations (all noise can be expressed in these pauli operators)
+		* By attaching ancilliary Qbits, can diagnose what type of noise has been applied
+		* can map diagnostic "syndromes" directly to correction operations
+	* for non-markovian noise; the syndrome and correction operation are not independent; so need additional understanding on the non-markovian evolution to apply correction operations 
+
+* How does non markovian effects relate to other fields:
+	* Quantum non-markovianity has important implications for open quantum systems generally - these can be found across many fields
+		* condensed matter physics
+		* quantum information
+
+* Questions about specific figs:
+	* Fig 5 - animated evolution plot
+		* Questions about specific parameters (weak coupling, semi-circle $J(\omega)$, bath size)
+		* there is harmonic wibbliness in the bath occupation near $\omega=0$ for early t - why? because of small bath size; acts more like harmonic oscillators
+	* Fig 7 - general interest; why goes beyond thermalization - information "sloshing" out/back into system - can point out recurrence to highlight memory effect
+
+
+### general presentation work:
+
+Have done an out loud practice run of the presentation. Was somewhat stuttery/tripping over my words, however thats expected given this is my first proper practice run. Given that caveat, i covered all of the content i wanted to, and did so in 09:45 min; so within the hard 10min time limit. As such i'm confident this presentation covers the right amount of content, and given practice i should be able to present this effectively w/in time.
+
+As such, i'm confident submitting the presentation as it stands; will do a last check over it to make sure i'm happy w/it, but it is otherwise done, and only needs practice.
+
+As such the to do list for the next week till the presentation:
+
+* Double check slides
+* Submit slides
+* Practice delivering slides
+* Consolidate above list of "potential Q&A" into smth i can use as a resource when answering questions
+
+Main other thing to consider, is do i want an appendix slide for the quantum error correction stuff. Its beyond the scope of my project; however is a question i could see being asked, and is smth i'm able to answer.
+
+have adjusted some diagrams for consistency sake.
+
+Have fixed a plot.
+
+I don't think i need a quantum error correction appendix. Whilst i can answer that question, its a tangent from this project, and would be difficult to illustrate concisely using an appendix; i don't think its worth worrying about.
+
+I've done final checks; it looks good, i'm going to download a final copy for safe keeping, and submit it i think.
+
+Have submitted it; can resubmit if i have to, but am happy w/slides. Just need to practice delivery and prep for Q&A.
+
