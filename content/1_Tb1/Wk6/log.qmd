@@ -203,3 +203,14 @@ I've done final checks; it looks good, i'm going to download a final copy for sa
 
 Have submitted it; can resubmit if i have to, but am happy w/slides. Just need to practice delivery and prep for Q&A.
 
+## 30/10/2026
+Spending some time today practicing delivering the presentation.
+
+* First attempt; was waffly and missed a bit; 8:53 min
+* Second attempt; was less waffly but managed to overrun to 10:31 min (sidenote; magpie outside my window was an impatient audience)
+* Third attempt; less waffly, still overun to 10:18 min
+* Fourth attempt; less waffly, within time 09:51 - am worried i'm speaking a bit quickly; i think i can cut down a bit when motivating stuff w/quantum error correction
+* Fifth attempt; less waffly; within time 09:25 - i think was a bit slower; i took some more breaks to slow down; cutting the explanation for quantum error correction helped
+* sixth attempt - better, 09:25
+
+
