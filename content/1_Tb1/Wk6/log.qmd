@@ -229,4 +229,14 @@ I did also briefly practice explaining some of the question topics:
 
 I should still practice explaining those four points as those seem likely questions; but it should be fine.
 
+## 01/11/2026
+Have done another practice run; felt smooth; 08:50 min; didn't look at stopwatch. Took a moment to practice explaining all the standard question topics, went fine if a bit stumbly; gonna give that another go and time the time it takes me:
+
+* error correction - 1:35min - was fine, quickly crash coursed need for quantum error correction in terms of environmental noise; related back to memory effects - was a bit hand wavier; but i think thats fine for this sort of question
+* memory definitions in detail - 1:57min - felt fine - deep dived into memory kernel and overviewed other defs
+* hamiltonian expression - 1:10min - felt fine - outlined operator form, the matrix, and the arbitrary spectral function
+* fermi dirac distribution - 1:14min - felt fine - outlined fact that it gives statistics, compared to boltzmann dist, pointed out initial correlation matrix initialisation - showed animated plot
+
+As such, i feel relatively confident in giving this presentation
+
 

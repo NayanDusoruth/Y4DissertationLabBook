@@ -587,5 +587,16 @@
       "TB1",
       "Wk6 Log"
     ]
+  },
+  {
+    "objectID": "content/1_Tb1/Wk6/log.html#section-5",
+    "href": "content/1_Tb1/Wk6/log.html#section-5",
+    "title": "Dissertation labbook: Driving Non Markovianity in open systems",
+    "section": "01/11/2026",
+    "text": "01/11/2026\nHave done another practice run; felt smooth; 08:50 min; didn’t look at stopwatch. Took a moment to practice explaining all the standard question topics, went fine if a bit stumbly; gonna give that another go and time the time it takes me:\n\nerror correction - 1:35min - was fine, quickly crash coursed need for quantum error correction in terms of environmental noise; related back to memory effects - was a bit hand wavier; but i think thats fine for this sort of question\nmemory definitions in detail - 1:57min - felt fine - deep dived into memory kernel and overviewed other defs\nhamiltonian expression - 1:10min - felt fine - outlined operator form, the matrix, and the arbitrary spectral function\nfermi dirac distribution - 1:14min - felt fine - outlined fact that it gives statistics, compared to boltzmann dist, pointed out initial correlation matrix initialisation - showed animated plot\n\nAs such, i feel relatively confident in giving this presentation",
+    "crumbs": [
+      "TB1",
+      "Wk6 Log"
+    ]
   }
 ]
