@@ -598,5 +598,38 @@
       "TB1",
       "Wk6 Log"
     ]
+  },
+  {
+    "objectID": "content/1_Tb1/Wk7/log.html",
+    "href": "content/1_Tb1/Wk7/log.html",
+    "title": "Dissertation labbook: Driving Non Markovianity in open systems",
+    "section": "",
+    "text": "Had presentation, think it went decently. ### Quick after presentation scratch notes:\nPresentation felt decent, Went a bit quicker speech wise than i wanted to Throat scratchy didnt help Was under time Questions: - multiple recurrence, yes, inc side note on small system reccurence - how quantum error correction, gave practiced answer - logical qubit size, gave default answer for simple answer, wasnt real logical qbit answer, but i made clear i was talking about minimum example - real examples of this model, i gave impurity in condesned matter crystal, he one upped w/water molecules\nLast 3 were prof, hes a quantum computational guy\nProf was guy who wants to show hes smarter than you, i think i held my own, the power of “this is beyond the scope but…”\nI think my minor jokes (i.e big ugly correlation matrix) helped, i saw minor smiles at that\nLooking at audience, did better than most i think, but still looked at slides a bit too much\nDidnt pause for breath enough i think so went a bit fast",
+    "crumbs": [
+      "TB1",
+      "Wk7 Log"
+    ]
+  },
+  {
+    "objectID": "content/1_Tb1/Wk7/log.html#section",
+    "href": "content/1_Tb1/Wk7/log.html#section",
+    "title": "Dissertation labbook: Driving Non Markovianity in open systems",
+    "section": "",
+    "text": "Had presentation, think it went decently. ### Quick after presentation scratch notes:\nPresentation felt decent, Went a bit quicker speech wise than i wanted to Throat scratchy didnt help Was under time Questions: - multiple recurrence, yes, inc side note on small system reccurence - how quantum error correction, gave practiced answer - logical qubit size, gave default answer for simple answer, wasnt real logical qbit answer, but i made clear i was talking about minimum example - real examples of this model, i gave impurity in condesned matter crystal, he one upped w/water molecules\nLast 3 were prof, hes a quantum computational guy\nProf was guy who wants to show hes smarter than you, i think i held my own, the power of “this is beyond the scope but…”\nI think my minor jokes (i.e big ugly correlation matrix) helped, i saw minor smiles at that\nLooking at audience, did better than most i think, but still looked at slides a bit too much\nDidnt pause for breath enough i think so went a bit fast",
+    "crumbs": [
+      "TB1",
+      "Wk7 Log"
+    ]
+  },
+  {
+    "objectID": "content/1_Tb1/Wk7/log.html#section-1",
+    "href": "content/1_Tb1/Wk7/log.html#section-1",
+    "title": "Dissertation labbook: Driving Non Markovianity in open systems",
+    "section": "04/11/2026",
+    "text": "04/11/2026\n\nsupervisor meeting\nQuickly recapped presentation - went fine, didn’t need to cover that too much. Reiterated next steps of implementing metrics, then can examine memory effects. Discussed potential things that can be examined w/memory effects, discussion was a touch rambly/wide ranging but provided useful intuition inc:\n\nadding narrow peak to spectral function - structure adds memory effects\nrelationship between fourrier transform of spectral function and memory effects (system/bath correlations? $(J())f $ correlations)\nneed to seperate effects of structure and overall coupling - need to normalize coupling strength of spectral function\ndiscussed some of David’s work w/mpemba effect - discussed reentrance time and the gap between initially thermalized state and maximum deviation from that - this may be a useful “mini-memory metric”\nNote - to extract thermalization numerically, can diagonalize \\(\\Lambda \\rho_{therm} = \\rho_{therm}\\), when \\(\\rho_{therm}\\) stabalises, is thermalized\ncan map out maximum deviation metric over \\(\\mu\\) for \\(\\beta=10\\) (see (Strachan, Purkayastha, and Clark 2025) fig 2) - fig 2 phase diagram may be interesting to map out metrics over in general? tbd\n\nimmediate plan:\n\nimplement numeric thermalization determination from map\nimplement deviation gap mini metric\nimplement memory kernel def\nexamine metrics over \\(\\mu\\) as outlined above",
+    "crumbs": [
+      "TB1",
+      "Wk7 Log"
+    ]
   }
 ]

@@ -1,0 +1,44 @@
+## 02/11/2026
+Had presentation, think it went decently.
+### Quick after presentation scratch notes:
+
+Presentation felt decent,
+Went a bit quicker speech wise than i wanted to
+Throat scratchy didnt help
+Was under time
+Questions:
+- multiple recurrence, yes, inc side note on small system reccurence
+- how quantum error correction, gave practiced answer
+- logical qubit size, gave default answer for simple answer, wasnt real logical qbit answer, but i made clear i was talking about minimum example
+- real examples of this model, i gave impurity in condesned matter crystal, he one upped w/water molecules
+
+Last 3 were prof, hes a quantum computational guy
+
+Prof was guy who wants to show hes smarter than you, i think i held my own, the power of "this is beyond the scope but..."
+
+I think my minor jokes (i.e big ugly correlation matrix) helped, i saw minor smiles at that
+
+Looking at audience, did better than most i think, but still looked at slides a bit too much
+
+Didnt pause for breath enough i think so went a bit fast
+
+
+
+## 04/11/2026
+
+### supervisor meeting
+Quickly recapped presentation - went fine, didn't need to cover that too much. Reiterated next steps of implementing metrics, then can examine memory effects. Discussed potential things that can be examined w/memory effects, discussion was a touch rambly/wide ranging but provided useful intuition inc:
+
+* adding narrow peak to spectral function - structure adds memory effects
+* relationship between fourrier transform of spectral function and memory effects (system/bath correlations? $\mathcal{F}(J(\omega))\cdot f \approx $ correlations)
+* need to seperate effects of structure and overall coupling - need to normalize coupling strength of spectral function 
+* discussed some of David's work w/mpemba effect - discussed reentrance time and the gap between initially thermalized state and maximum deviation from that - this may be a useful "mini-memory metric"
+* Note - to extract thermalization numerically, can diagonalize $\Lambda \rho_{therm} = \rho_{therm}$, when $\rho_{therm}$ stabalises, is thermalized 
+* can map out maximum deviation metric over $\mu$ for $\beta=10$ (see [@DavidMpemba2026] fig 2) - fig 2 phase diagram may be interesting to map out metrics over in general? tbd
+
+immediate plan:
+
+* implement numeric thermalization determination from map
+* implement deviation gap mini metric
+* implement memory kernel def
+* examine metrics over $\mu$ as outlined above
