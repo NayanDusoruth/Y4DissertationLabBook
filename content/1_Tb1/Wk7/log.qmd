@@ -33,7 +33,7 @@ Quickly recapped presentation - went fine, didn't need to cover that too much. R
 * relationship between fourrier transform of spectral function and memory effects (system/bath correlations? $\mathcal{F}(J(\omega))\cdot f \approx $ correlations)
 * need to seperate effects of structure and overall coupling - need to normalize coupling strength of spectral function 
 * discussed some of David's work w/mpemba effect - discussed reentrance time and the gap between initially thermalized state and maximum deviation from that - this may be a useful "mini-memory metric"
-* Note - to extract thermalization numerically, can diagonalize $\Lambda \rho_{therm} = \rho_{therm}$, when $\rho_{therm}$ stabalises, is thermalized 
+* Note - to extract thermalization numerically, can diagonalize $\Lambda \rho_{therm} = \rho_{therm}$, when $\rho_{therm}$ stabilises, is thermalized 
 * can map out maximum deviation metric over $\mu$ for $\beta=10$ (see [@DavidMpemba2026] fig 2) - fig 2 phase diagram may be interesting to map out metrics over in general? tbd
 
 immediate plan:
@@ -42,3 +42,74 @@ immediate plan:
 * implement deviation gap mini metric
 * implement memory kernel def
 * examine metrics over $\mu$ as outlined above
+
+
+## 07/11/2026
+Finally returning to actual work on this project.
+
+### Code work: eigenvector thermalization computation
+Going to first try to implement the eigen method for thermalization determination. Unsure exactly how this will work; there are dynamic map matrices for every time step, and given these are $2\times 2$ matrices, i'd assume they have 2 eigenvectors. Going to quickly examine what these look like and see if there's any obvious stabilisation.
+This spits out 2 eigenvectors for each timestep of the dynamic map. Comparing $|\vec{v(t_{n})}-\vec{v(t_{n-1})}|$ for the first and second eigenvectors respectively yields:
+
+![First eigenvector convergence](figures/eigenconvergence1.png){#fig-eigenconvergence1}
+
+![Second eigenvector convergence](figures/eigenconvergence2.png){#fig-eigenconvergence2}
+
+hmm, first eigenvector generally converges, second doesn't. The fact @fig-eigenconvergence2 seems to flip between $|\vec{v(t_{n})}-\vec{v(t_{n-1})}|\approx 0, 2$ is suspicious. I could just use the first eigenvector, but I want to make sure this isn't some artefact or smth that could come back to haunt me. The eigenvectors numpy is spitting out aren't normalized, so will start with that; the @fig-eigenconvergence2 flipping may simply be the eigenvector pointing in different directions. Normalization doesn't help too much:
+
+![Normalized first eigenvector convergence](figures/eigenconvergence1Normed.png){#fig-eigenconvergence1Normed}
+
+![Normalized second eigenvector convergence](figures/eigenconvergence2Normed.png){#fig-eigenconvergence2Normed}
+
+Slightly different behaviour but same lack of convergence in @fig-eigenconvergence2Normed. Last thing to try before continuing with the first eigenvector (and validating that against other thermalization measures) is to compare the dot product $\vec{v(t_{n})}\cdot\vec{v(t_{n-1})}$. Ok i may be an idiot. I am definetely an idiot; turns out i've been using np.linalg.eig wrong; so what I thought was the first eigenvector was simply the eigenvalues. Reimplementing stuff with that in mind.
+Reexamining @fig-eigenconvergence1 and @fig-eigenconvergence2 with this in mind yields:
+
+![First eigenvector convergence fixed](figures/eigenconvergence1Proper.png){#fig-eigenconvergence1Proper}
+
+![Second eigenvector convergence fixed](figures/eigenconvergence2Proper.png){#fig-eigenconvergence2Proper}
+
+Which has the same non convergence as before. I have a suspicion. 
+
+![eigenvector convergence, both, black is for first eigenvector, red is for second eigenvectors](figures/eigenconvergenceBoth.png){#fig-eigenconvergenceBoth}
+
+Examining @fig-eigenconvergenceBoth, both the first and second eigenvectors seem to stop converging for the same timesteps. I wonder if np.linalg.eig is effectively flipping the first and second eigenvectors at random?
+
+I made another code mistake and wasn't pulling the correct eigenvalues...
+
+The first eigenvector isn't stable, the second does converge eventually. It is not a guarantee that the order of "first unstable, second stable" will generalize; so need to algorithmically decide which is stable, then pick the most stable value. This can be done by simply summing up all the $|\vec{v(t_{n})}-\vec{v(t_{n-1})}|$ values; the one with the lowest sum is more stable so more likely to converge. Then just need to find the time for which $|\vec{v(t_{n})}-\vec{v(t_{n-1})}|$ is minimised, and pick that as the "thermalized" eigenvector.
+Have extracted this, hmmmmmmmm. This is an unphysical result. It is giving $\begin{bmatrix}0.13530145+2.42581405\cdot10^{-17}i \\ 0.99080448+0i \end{bmatrix}\approx\begin{bmatrix}0.13 \\ 0.99\end{bmatrix}$. Given that state vectors are of form $\begin{bmatrix}1-p \\ p\end{bmatrix}$ w/$p=$ occupation probability, this isn't a physical result...
+
+I wonder if its a problem due to the relatively short test run times used? Nope running it longer doesn't fix it. Running it w/smaller timestep in case that is the issue. This has no effect.
+
+I may need to rethink how i'm implementing this. Currently i'm just finding the eigenvectors for the dynamic map for all times, seeing how they converge, and picking the best behaved one. I am not applying physicality constraints. A brute force approach where $\begin{bmatrix}1-p \\ p\end{bmatrix}$ is guessed/checked for a range $p$ may be better?
+
+if so, can check dynamic map convergence instead of eigenvector convergence; then brute force check for the physical vector closest to the eigenvector. A binary search for a certain number of steps may be best? Ok this just works right out of the gate.
+
+Right, that was a side step, but that'll be a useful utility in the future.
+
+### First metrics
+In terms of memory metrics, my instinct is to attach them to the dynamic map "dualSimulation" class. The main metrics are all expressed in terms of the dynamic map. The main exception is the "mini metric" of "maximum deviation" from the starting occupation; this "mini metric" depends on the specific simulated path.
+
+That said however, I could implement it into the dualSimulation object with an initial occupation parameter.
+I think i'll do it like that; its a bit crude but should be fine. A thing worth keeping in mind is the difference between an apparently more non-markovian dip beyond thermalization and thermalization. As such, it's probably worth using the presence of a relative extrema to distinguish between a non-markovian dip and thermalization.
+
+Ok, encountering weird effects. For context the "standard example" of this maximum deviation follows in @fig-maxDevFromAbove whereby $n_{sys}$ starts on one side of thermalization, dips past it before thermalizing properly.
+
+![Evolution from $n_{sys}(0)>n_{therm}$ for $f_{pre}=0.2, \beta=10, \mu=0.1, D=2, \epsilon=0$](figures/maxDevFromAbove.png){#fig-maxDevFromAbove}
+
+In this context, the "maximum deviation" is the gap between initial occupation and that particular hump.
+However trying to reproduce this effect from below yielded:
+
+![Evolution from $n_{sys}(0)<n_{therm}$ for $f_{pre}=0.2, \beta=7, \mu=0.1, D=2, \epsilon=0$](figures/maxDevFromBelow.png){#fig-maxDevFromBelow}
+
+Which moves away from thermalization first before thermalizing normally.
+My naive instinct was that it should be possible to symetrically flip @fig-maxDevFromAbove, however that doesn't seem to be the case... This brings some degree of ambiguity in terms of what this "max deviation mini metric" is meant to be measuring. 
+Going to take some time to examine these effects for various initial occupations, because i wonder if these "bumps" are being drawn to similar values regardless of where the occupation starts.
+
+![Evolution from range of $n_{sys}(0)$ for $f_{pre}=0.2, \beta=7, \mu=0.1, D=2, \epsilon=0$](figures/humpDualSimulation_rangeInitial.png){#fig-humpDualSimulation_rangeInitial}
+
+Plotting for a range of initial occupations yields @fig-humpDualSimulation_rangeInitial which does lend the idea that the "bumps" are being drawn to some curve credence...
+
+I'm unsure why this is, however it does expand the initial idea of bumps past thermalization being what needs measuring. In some way this max deviation represents some deviation from a "bumpless" evolution. Unfortunately it doesn't seem simple to substract "w/out bumps" data from "w/ bumps" data in order to try to isolate the "bump" signal. For instance changing the prefactor will necessarily change the timescale of the dynamics requiring rescaling if i'd want to compare them directly.
+
+All that said, i think for this "mini metric" simply doing the deviation from a relative extrema regardless of the shape should be fine?

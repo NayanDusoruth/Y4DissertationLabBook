@@ -552,6 +552,11 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#supervisor-meeting" id="toc-supervisor-meeting" class="nav-link" data-scroll-target="#supervisor-meeting">supervisor meeting</a></li>
   </ul></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">07/11/2026</a>
+  <ul class="collapse">
+  <li><a href="#code-work-eigenvector-thermalization-computation" id="toc-code-work-eigenvector-thermalization-computation" class="nav-link" data-scroll-target="#code-work-eigenvector-thermalization-computation">Code work: eigenvector thermalization computation</a></li>
+  <li><a href="#first-metrics" id="toc-first-metrics" class="nav-link" data-scroll-target="#first-metrics">First metrics</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -582,7 +587,7 @@ window.Quarto = {
 <li>relationship between fourrier transform of spectral function and memory effects (system/bath correlations? $(J())f $ correlations)</li>
 <li>need to seperate effects of structure and overall coupling - need to normalize coupling strength of spectral function</li>
 <li>discussed some of David’s work w/mpemba effect - discussed reentrance time and the gap between initially thermalized state and maximum deviation from that - this may be a useful “mini-memory metric”</li>
-<li>Note - to extract thermalization numerically, can diagonalize <span class="math inline">\(\Lambda \rho_{therm} = \rho_{therm}\)</span>, when <span class="math inline">\(\rho_{therm}\)</span> stabalises, is thermalized</li>
+<li>Note - to extract thermalization numerically, can diagonalize <span class="math inline">\(\Lambda \rho_{therm} = \rho_{therm}\)</span>, when <span class="math inline">\(\rho_{therm}\)</span> stabilises, is thermalized</li>
 <li>can map out maximum deviation metric over <span class="math inline">\(\mu\)</span> for <span class="math inline">\(\beta=10\)</span> (see <span class="citation" data-cites="DavidMpemba2026">(<a href="#ref-DavidMpemba2026" role="doc-biblioref">Strachan, Purkayastha, and Clark 2025</a>)</span> fig 2) - fig 2 phase diagram may be interesting to map out metrics over in general? tbd</li>
 </ul>
 <p>immediate plan:</p>
@@ -592,6 +597,135 @@ window.Quarto = {
 <li>implement memory kernel def</li>
 <li>examine metrics over <span class="math inline">\(\mu\)</span> as outlined above</li>
 </ul>
+</section>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">07/11/2026</h2>
+<p>Finally returning to actual work on this project.</p>
+<section id="code-work-eigenvector-thermalization-computation" class="level3">
+<h3 class="anchored" data-anchor-id="code-work-eigenvector-thermalization-computation">Code work: eigenvector thermalization computation</h3>
+<p>Going to first try to implement the eigen method for thermalization determination. Unsure exactly how this will work; there are dynamic map matrices for every time step, and given these are <span class="math inline">\(2\times 2\)</span> matrices, i’d assume they have 2 eigenvectors. Going to quickly examine what these look like and see if there’s any obvious stabilisation. This spits out 2 eigenvectors for each timestep of the dynamic map. Comparing <span class="math inline">\(|\vec{v(t_{n})}-\vec{v(t_{n-1})}|\)</span> for the first and second eigenvectors respectively yields:</p>
+<div id="fig-eigenconvergence1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eigenconvergence1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/eigenconvergence1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: First eigenvector convergence
+</figcaption>
+</figure>
+</div>
+<div id="fig-eigenconvergence2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eigenconvergence2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/eigenconvergence2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Second eigenvector convergence
+</figcaption>
+</figure>
+</div>
+<p>hmm, first eigenvector generally converges, second doesn’t. The fact <a href="#fig-eigenconvergence2" class="quarto-xref">Figure&nbsp;2</a> seems to flip between <span class="math inline">\(|\vec{v(t_{n})}-\vec{v(t_{n-1})}|\approx 0, 2\)</span> is suspicious. I could just use the first eigenvector, but I want to make sure this isn’t some artefact or smth that could come back to haunt me. The eigenvectors numpy is spitting out aren’t normalized, so will start with that; the <a href="#fig-eigenconvergence2" class="quarto-xref">Figure&nbsp;2</a> flipping may simply be the eigenvector pointing in different directions. Normalization doesn’t help too much:</p>
+<div id="fig-eigenconvergence1Normed" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eigenconvergence1Normed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/eigenconvergence1Normed.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence1Normed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Normalized first eigenvector convergence
+</figcaption>
+</figure>
+</div>
+<div id="fig-eigenconvergence2Normed" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eigenconvergence2Normed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/eigenconvergence2Normed.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence2Normed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Normalized second eigenvector convergence
+</figcaption>
+</figure>
+</div>
+<p>Slightly different behaviour but same lack of convergence in <a href="#fig-eigenconvergence2Normed" class="quarto-xref">Figure&nbsp;4</a>. Last thing to try before continuing with the first eigenvector (and validating that against other thermalization measures) is to compare the dot product <span class="math inline">\(\vec{v(t_{n})}\cdot\vec{v(t_{n-1})}\)</span>. Ok i may be an idiot. I am definetely an idiot; turns out i’ve been using np.linalg.eig wrong; so what I thought was the first eigenvector was simply the eigenvalues. Reimplementing stuff with that in mind. Reexamining <a href="#fig-eigenconvergence1" class="quarto-xref">Figure&nbsp;1</a> and <a href="#fig-eigenconvergence2" class="quarto-xref">Figure&nbsp;2</a> with this in mind yields:</p>
+<div id="fig-eigenconvergence1Proper" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eigenconvergence1Proper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/eigenconvergence1Proper.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence1Proper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: First eigenvector convergence fixed
+</figcaption>
+</figure>
+</div>
+<div id="fig-eigenconvergence2Proper" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eigenconvergence2Proper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/eigenconvergence2Proper.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence2Proper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Second eigenvector convergence fixed
+</figcaption>
+</figure>
+</div>
+<p>Which has the same non convergence as before. I have a suspicion.</p>
+<div id="fig-eigenconvergenceBoth" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eigenconvergenceBoth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/eigenconvergenceBoth.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergenceBoth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: eigenvector convergence, both, black is for first eigenvector, red is for second eigenvectors
+</figcaption>
+</figure>
+</div>
+<p>Examining <a href="#fig-eigenconvergenceBoth" class="quarto-xref">Figure&nbsp;7</a>, both the first and second eigenvectors seem to stop converging for the same timesteps. I wonder if np.linalg.eig is effectively flipping the first and second eigenvectors at random?</p>
+<p>I made another code mistake and wasn’t pulling the correct eigenvalues…</p>
+<p>The first eigenvector isn’t stable, the second does converge eventually. It is not a guarantee that the order of “first unstable, second stable” will generalize; so need to algorithmically decide which is stable, then pick the most stable value. This can be done by simply summing up all the <span class="math inline">\(|\vec{v(t_{n})}-\vec{v(t_{n-1})}|\)</span> values; the one with the lowest sum is more stable so more likely to converge. Then just need to find the time for which <span class="math inline">\(|\vec{v(t_{n})}-\vec{v(t_{n-1})}|\)</span> is minimised, and pick that as the “thermalized” eigenvector. Have extracted this, hmmmmmmmm. This is an unphysical result. It is giving <span class="math inline">\(\begin{bmatrix}0.13530145+2.42581405\cdot10^{-17}i \\ 0.99080448+0i \end{bmatrix}\approx\begin{bmatrix}0.13 \\ 0.99\end{bmatrix}\)</span>. Given that state vectors are of form <span class="math inline">\(\begin{bmatrix}1-p \\ p\end{bmatrix}\)</span> w/<span class="math inline">\(p=\)</span> occupation probability, this isn’t a physical result…</p>
+<p>I wonder if its a problem due to the relatively short test run times used? Nope running it longer doesn’t fix it. Running it w/smaller timestep in case that is the issue. This has no effect.</p>
+<p>I may need to rethink how i’m implementing this. Currently i’m just finding the eigenvectors for the dynamic map for all times, seeing how they converge, and picking the best behaved one. I am not applying physicality constraints. A brute force approach where <span class="math inline">\(\begin{bmatrix}1-p \\ p\end{bmatrix}\)</span> is guessed/checked for a range <span class="math inline">\(p\)</span> may be better?</p>
+<p>if so, can check dynamic map convergence instead of eigenvector convergence; then brute force check for the physical vector closest to the eigenvector. A binary search for a certain number of steps may be best? Ok this just works right out of the gate.</p>
+<p>Right, that was a side step, but that’ll be a useful utility in the future.</p>
+</section>
+<section id="first-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="first-metrics">First metrics</h3>
+<p>In terms of memory metrics, my instinct is to attach them to the dynamic map “dualSimulation” class. The main metrics are all expressed in terms of the dynamic map. The main exception is the “mini metric” of “maximum deviation” from the starting occupation; this “mini metric” depends on the specific simulated path.</p>
+<p>That said however, I could implement it into the dualSimulation object with an initial occupation parameter. I think i’ll do it like that; its a bit crude but should be fine. A thing worth keeping in mind is the difference between an apparently more non-markovian dip beyond thermalization and thermalization. As such, it’s probably worth using the presence of a relative extrema to distinguish between a non-markovian dip and thermalization.</p>
+<p>Ok, encountering weird effects. For context the “standard example” of this maximum deviation follows in <a href="#fig-maxDevFromAbove" class="quarto-xref">Figure&nbsp;8</a> whereby <span class="math inline">\(n_{sys}\)</span> starts on one side of thermalization, dips past it before thermalizing properly.</p>
+<div id="fig-maxDevFromAbove" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-maxDevFromAbove-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/maxDevFromAbove.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxDevFromAbove-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Evolution from <span class="math inline">\(n_{sys}(0)&gt;n_{therm}\)</span> for <span class="math inline">\(f_{pre}=0.2, \beta=10, \mu=0.1, D=2, \epsilon=0\)</span>
+</figcaption>
+</figure>
+</div>
+<p>In this context, the “maximum deviation” is the gap between initial occupation and that particular hump. However trying to reproduce this effect from below yielded:</p>
+<div id="fig-maxDevFromBelow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-maxDevFromBelow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/maxDevFromBelow.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxDevFromBelow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Evolution from <span class="math inline">\(n_{sys}(0)&lt;n_{therm}\)</span> for <span class="math inline">\(f_{pre}=0.2, \beta=7, \mu=0.1, D=2, \epsilon=0\)</span>
+</figcaption>
+</figure>
+</div>
+<p>Which moves away from thermalization first before thermalizing normally. My naive instinct was that it should be possible to symetrically flip <a href="#fig-maxDevFromAbove" class="quarto-xref">Figure&nbsp;8</a>, however that doesn’t seem to be the case… This brings some degree of ambiguity in terms of what this “max deviation mini metric” is meant to be measuring. Going to take some time to examine these effects for various initial occupations, because i wonder if these “bumps” are being drawn to similar values regardless of where the occupation starts.</p>
+<div id="fig-humpDualSimulation_rangeInitial" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-humpDualSimulation_rangeInitial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/humpDualSimulation_rangeInitial.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-humpDualSimulation_rangeInitial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Evolution from range of <span class="math inline">\(n_{sys}(0)\)</span> for <span class="math inline">\(f_{pre}=0.2, \beta=7, \mu=0.1, D=2, \epsilon=0\)</span>
+</figcaption>
+</figure>
+</div>
+<p>Plotting for a range of initial occupations yields <a href="#fig-humpDualSimulation_rangeInitial" class="quarto-xref">Figure&nbsp;10</a> which does lend the idea that the “bumps” are being drawn to some curve credence…</p>
+<p>I’m unsure why this is, however it does expand the initial idea of bumps past thermalization being what needs measuring. In some way this max deviation represents some deviation from a “bumpless” evolution. Unfortunately it doesn’t seem simple to substract “w/out bumps” data from “w/ bumps” data in order to try to isolate the “bump” signal. For instance changing the prefactor will necessarily change the timescale of the dynamics requiring rescaling if i’d want to compare them directly.</p>
+<p>All that said, i think for this “mini metric” simply doing the deviation from a relative extrema regardless of the shape should be fine?</p>
 
 
 
