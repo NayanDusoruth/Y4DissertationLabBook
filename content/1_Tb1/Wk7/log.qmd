@@ -113,3 +113,8 @@ Plotting for a range of initial occupations yields @fig-humpDualSimulation_range
 I'm unsure why this is, however it does expand the initial idea of bumps past thermalization being what needs measuring. In some way this max deviation represents some deviation from a "bumpless" evolution. Unfortunately it doesn't seem simple to substract "w/out bumps" data from "w/ bumps" data in order to try to isolate the "bump" signal. For instance changing the prefactor will necessarily change the timescale of the dynamics requiring rescaling if i'd want to compare them directly.
 
 All that said, i think for this "mini metric" simply doing the deviation from a relative extrema regardless of the shape should be fine?
+
+Have quickly implented a default "examine maximum deviation from initially thermalized state" utility and plotted it as:
+
+![Max deviation from $n_{sys}(0)=n_{therm}$ for different $\mu$](figures/maxDevOverMu.png){#fig-maxDevOverMu}
+

@@ -726,6 +726,17 @@ Figure&nbsp;10: Evolution from range of <span class="math inline">\(n_{sys}(0)\)
 <p>Plotting for a range of initial occupations yields <a href="#fig-humpDualSimulation_rangeInitial" class="quarto-xref">Figure&nbsp;10</a> which does lend the idea that the “bumps” are being drawn to some curve credence…</p>
 <p>I’m unsure why this is, however it does expand the initial idea of bumps past thermalization being what needs measuring. In some way this max deviation represents some deviation from a “bumpless” evolution. Unfortunately it doesn’t seem simple to substract “w/out bumps” data from “w/ bumps” data in order to try to isolate the “bump” signal. For instance changing the prefactor will necessarily change the timescale of the dynamics requiring rescaling if i’d want to compare them directly.</p>
 <p>All that said, i think for this “mini metric” simply doing the deviation from a relative extrema regardless of the shape should be fine?</p>
+<p>Have quickly implented a default “examine maximum deviation from initially thermalized state” utility and plotted it as:</p>
+<div id="fig-maxDevOverMu" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-maxDevOverMu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/maxDevOverMu.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxDevOverMu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Max deviation from <span class="math inline">\(n_{sys}(0)=n_{therm}\)</span> for different <span class="math inline">\(\mu\)</span>
+</figcaption>
+</figure>
+</div>
 
 
 
