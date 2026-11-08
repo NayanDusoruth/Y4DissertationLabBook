@@ -116,5 +116,40 @@ All that said, i think for this "mini metric" simply doing the deviation from a 
 
 Have quickly implented a default "examine maximum deviation from initially thermalized state" utility and plotted it as:
 
-![Max deviation from $n_{sys}(0)=n_{therm}$ for different $\mu$](figures/maxDevOverMu.png){#fig-maxDevOverMu}
+![Max deviation from $n_{sys}(0)=n_{therm}$ for different $\mu$ for $\beta=7, f_{pre}=0.2, D=2$](figures/maxDevOverMu.png){#fig-maxDevOverMu}
 
+Interesting how well behaved it is. I wonder if i decrease the temperature if it will show a sharper curve?
+
+![Max deviation from $n_{sys}(0)=n_{therm}$ for different $\mu$ for $\beta=10, f_{pre}=0.2, D=2$](figures/maxDevOverMuBeta10.png){#fig-maxDevOverMuBeta1-}
+
+Well thats interesting... its not a logistic function; but I doubt its periodic... Actually, examining [@DavidMpemba2026] fig 2 this is consistent. It seems to be generally of the right order of magnitude and behaviour at first inspection. And that is enough for today, will get back to this another time.
+
+
+## 08/11/2026
+Think i'm going to do some minor code restructuring/cleanup today.
+Main thing is that i want the "code utilities" that standardise simulation and data calls to be a bit cleaner. Particularly i currently do not make use of the save/load utilities. Given that compute times are increasing, being able to load in standard simulation sets for analysis will likely be useful.
+
+an additional related bit of work is restructuring how i'm organising my saved data. Currently its all in a disorganised folder. I think most of whats currently there can be moved to a "pathfinding" data folder, and a better organisational structure can then be implemented for the long term.
+
+Have implemented and tested some loading utilities.
+Currently the utilities also have some functions which can easily generate and simulate parameter variations for a single parameter. This is fine currently, but I do want the option of varying multiple parameters over a $d>1$ parameter space. As such I want to rethink exactly how i'm storing these "datasets" for multiple runs.
+
+Currently with 1D variations (1 parameter is varied) a list of parameter args and a list of simulations or dualSim objects is sufficient. However if I end up making multidimensional parameter spaces, that approach may get cumbersome.
+
+It may be worth implementing a "dataset" class which handles this. This would keep track of the coordinates in parameter space and their corresponding simulation/dual simulation. Given that i'll mostly be working with the dynamic map from now on, I think it's mainly worth implementing it for the dualSim object. If i need this functionality for the simulation class, i can implement that later.
+
+This "dataset object" should ideally:
+
+* store points in parameter space - this includes both the parameters and the attached dualSimulation object
+	* this will also require constructing/running this space in the first place, i think this construction should follow a "grid" construction - i give it lists of parameter variations (I.E, spectralPrefactor: [0.01, 0.02...], beta: [0, 0.1...]) then it will construct all combinations of points (I.E [[(0.01, 0), (0.01, 0.1)] ... [(0.02, 0), (0.02, 0.1)] ...]) 
+* be able to save itself to folder/file
+* be able to load itself from folder/file
+* handle queries to the data:
+	* should be able to request dualSim associated w/specific coordinates in parameter space
+	* should be able to request "slices" of the data - specify some fixed parameter and let the rest vary
+
+This will take a bit of time to implement robustly, however it should make the rest of this project a lot easier.
+The main question then is how do i want to structure the internal "parameter space" datastructure. It will need to be spat out to a 1D list asp for saving/loading purposes. However it'd be nice to be able to access the data in the full dimensional space.
+Pandas may help, pandas dataframe w/each row a different point; columns for all the parameters, one column for the corresponding dualSim object. this would let me access data using pandas filtering functionality.
+
+Have started implementing this, however not finishing today i think.

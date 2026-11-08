@@ -557,6 +557,7 @@ window.Quarto = {
   <li><a href="#code-work-eigenvector-thermalization-computation" id="toc-code-work-eigenvector-thermalization-computation" class="nav-link" data-scroll-target="#code-work-eigenvector-thermalization-computation">Code work: eigenvector thermalization computation</a></li>
   <li><a href="#first-metrics" id="toc-first-metrics" class="nav-link" data-scroll-target="#first-metrics">First metrics</a></li>
   </ul></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">08/11/2026</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -733,14 +734,50 @@ Figure&nbsp;10: Evolution from range of <span class="math inline">\(n_{sys}(0)\)
 <img src="figures/maxDevOverMu.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxDevOverMu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Max deviation from <span class="math inline">\(n_{sys}(0)=n_{therm}\)</span> for different <span class="math inline">\(\mu\)</span>
+Figure&nbsp;11: Max deviation from <span class="math inline">\(n_{sys}(0)=n_{therm}\)</span> for different <span class="math inline">\(\mu\)</span> for <span class="math inline">\(\beta=7, f_{pre}=0.2, D=2\)</span>
 </figcaption>
 </figure>
 </div>
-
-
-
+<p>Interesting how well behaved it is. I wonder if i decrease the temperature if it will show a sharper curve?</p>
+<div id="fig-maxDevOverMuBeta1-" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-maxDevOverMuBeta1--caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/maxDevOverMuBeta10.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxDevOverMuBeta1--caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Max deviation from <span class="math inline">\(n_{sys}(0)=n_{therm}\)</span> for different <span class="math inline">\(\mu\)</span> for <span class="math inline">\(\beta=10, f_{pre}=0.2, D=2\)</span>
+</figcaption>
+</figure>
+</div>
+<p>Well thats interesting… its not a logistic function; but I doubt its periodic… Actually, examining <span class="citation" data-cites="DavidMpemba2026">(<a href="#ref-DavidMpemba2026" role="doc-biblioref">Strachan, Purkayastha, and Clark 2025</a>)</span> fig 2 this is consistent. It seems to be generally of the right order of magnitude and behaviour at first inspection. And that is enough for today, will get back to this another time.</p>
 </section>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3">08/11/2026</h2>
+<p>Think i’m going to do some minor code restructuring/cleanup today. Main thing is that i want the “code utilities” that standardise simulation and data calls to be a bit cleaner. Particularly i currently do not make use of the save/load utilities. Given that compute times are increasing, being able to load in standard simulation sets for analysis will likely be useful.</p>
+<p>an additional related bit of work is restructuring how i’m organising my saved data. Currently its all in a disorganised folder. I think most of whats currently there can be moved to a “pathfinding” data folder, and a better organisational structure can then be implemented for the long term.</p>
+<p>Have implemented and tested some loading utilities. Currently the utilities also have some functions which can easily generate and simulate parameter variations for a single parameter. This is fine currently, but I do want the option of varying multiple parameters over a <span class="math inline">\(d&gt;1\)</span> parameter space. As such I want to rethink exactly how i’m storing these “datasets” for multiple runs.</p>
+<p>Currently with 1D variations (1 parameter is varied) a list of parameter args and a list of simulations or dualSim objects is sufficient. However if I end up making multidimensional parameter spaces, that approach may get cumbersome.</p>
+<p>It may be worth implementing a “dataset” class which handles this. This would keep track of the coordinates in parameter space and their corresponding simulation/dual simulation. Given that i’ll mostly be working with the dynamic map from now on, I think it’s mainly worth implementing it for the dualSim object. If i need this functionality for the simulation class, i can implement that later.</p>
+<p>This “dataset object” should ideally:</p>
+<ul>
+<li>store points in parameter space - this includes both the parameters and the attached dualSimulation object
+<ul>
+<li>this will also require constructing/running this space in the first place, i think this construction should follow a “grid” construction - i give it lists of parameter variations (I.E, spectralPrefactor: [0.01, 0.02…], beta: [0, 0.1…]) then it will construct all combinations of points (I.E [[(0.01, 0), (0.01, 0.1)] … [(0.02, 0), (0.02, 0.1)] …])</li>
+</ul></li>
+<li>be able to save itself to folder/file</li>
+<li>be able to load itself from folder/file</li>
+<li>handle queries to the data:
+<ul>
+<li>should be able to request dualSim associated w/specific coordinates in parameter space</li>
+<li>should be able to request “slices” of the data - specify some fixed parameter and let the rest vary</li>
+</ul></li>
+</ul>
+<p>This will take a bit of time to implement robustly, however it should make the rest of this project a lot easier. The main question then is how do i want to structure the internal “parameter space” datastructure. It will need to be spat out to a 1D list asp for saving/loading purposes. However it’d be nice to be able to access the data in the full dimensional space. Pandas may help, pandas dataframe w/each row a different point; columns for all the parameters, one column for the corresponding dualSim object. this would let me access data using pandas filtering functionality.</p>
+<p>Have started implementing this, however not finishing today i think.</p>
+
+
+
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
