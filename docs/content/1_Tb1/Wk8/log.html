@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>log – labBook</title>
+<title>log – Dissertation labbook: Driving Non Markovianity in open systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,10 +57,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-4d8b594121dd52e54118692cc759f5c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-567b30ad711c8693efb6495feb883fb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-4d8b594121dd52e54118692cc759f5c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,11 +93,202 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -97,7 +312,10 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../../">labBook</a> 
+      <a href="../../../">Dissertation labbook: Driving Non Markovianity in open systems</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -116,7 +334,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Pre reading</span></a>
+ <span class="menu-text">Pre TB1 work</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -126,6 +344,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../content/0_preTb1/Wk0/ProjectInfo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../content/0_preTb1/Wk0/labbookNotesToSelf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labbook formatting notes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -161,6 +385,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../content/1_Tb1/Wk3/log.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wk3 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../content/1_Tb1/Wk3/projectState.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State of the project 11/10/2026</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -312,8 +542,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">10/11/2026</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk8/log.html">Wk8 Log</a></li></ol></nav></header>
@@ -322,11 +558,67 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">10/11/2026</h2>
+<p>Right continuing refactoring work. Going to split off the “simulationQueue.py” file into two; “simulationHandlers.py” and “simulationQueue.py”.</p>
+<p>Have seperated stuff out and finished the basic implementation for the dualDataset object. It is able to be instantiated over a grid, run dual sims for each of those grid points, save itself to a standard format, and load itself from that standard format.</p>
+<p>Still need to implement the accessor methods. I think i’d like it to spit out the sliced data as an appropriately shaped “inputArgs” and corresponding array of dualSims (same shape). Therefore if i ask for a 2D slice of the data (I.E, prefactor and bandwidth varied for all other args constant), it should give me a 2D array of prefactors/bandwidth points, and a 2D array of dualSims.</p>
+<p>This is effectively the inverse operation of “constructParameterSpace” which takes variations in parameters and produces a 1D representation for a dense grid of args; this needs to take a slice, seperate it out by its variations in order to produce a multidimensional array of args/dualSims.</p>
+<p>I suspect i may need a recursive helper method which takes a dict of arg lists (inc a list of indices), then spits out the multidimensional array filled w/row indices.</p>
+<p>Right after a little bit of thinking and tinkering, have managed to get the slicer working. it spits out an appropriately shaped array of args, and appropriately shaped array of dualSimulation objects.</p>
+<p>A quick test case i could use this for to illustrate its utility is reproducing <span class="citation" data-cites="DavidMpemba2026">(<a href="#ref-DavidMpemba2026" role="doc-biblioref">Strachan, Purkayastha, and Clark 2025</a>)</span> fig 2 entirely.</p>
+<p>Ok i’m glad i’ve implemented saving/loading functionality; this will save time. Given that even a 2D space w/reasonable sampling could have hundreds of simulated points; being able to load these from memory may speed things up.</p>
+<p>ok something else is broken and not working, debugging. ok have got a patch fix; need to refine these methods, but have it working enough for this specific set of tests. For some reason loading in data is taking forever… Turns out that the analytical thermalization was being recomputed every time; have put a “do not do that” optional param into the system to avoid those issue.</p>
+<p>Its a VERY rough figure, but a quick attempt at reproducing that phase diagram yields:</p>
+<div id="fig-muBetaPhase" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-muBetaPhase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/muBetaPhase.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-muBetaPhase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Maximum deviation over range of <span class="math inline">\(\mu,\beta\)</span>, <span class="math inline">\(f_{pre}=0.005, D=1, \epsilon=0, n=200\)</span>
+</figcaption>
+</figure>
+</div>
+<p>This isn’t quite the same as <span class="citation" data-cites="DavidMpemba2026">(<a href="#ref-DavidMpemba2026" role="doc-biblioref">Strachan, Purkayastha, and Clark 2025</a>)</span> fig 2, but some common features emerge. The behaviour about <span class="math inline">\(\mu=0\)</span> is familiar - there is a nearly discontinuous line as the max deviation sign flips. Furthermore for lower <span class="math inline">\(\beta\)</span> (and higher <span class="math inline">\(T\)</span>) there is a “smearing” with less extreme values. Two features differ. First of all, <a href="#fig-muBetaPhase" class="quarto-xref">Figure&nbsp;1</a> returns NaN for <span class="math inline">\(\beta=0\)</span>. This isn’t necessarily an issue, i suspect its just a boundary computational effect which can be ignored for now. More importantly, <span class="citation" data-cites="DavidMpemba2026">(<a href="#ref-DavidMpemba2026" role="doc-biblioref">Strachan, Purkayastha, and Clark 2025</a>)</span> fig 2 has symetrical “gaps” in max deviation for <span class="math inline">\(\beta&gt;7\)</span> about <span class="math inline">\(\mu\)</span>. These aren’t present in <a href="#fig-muBetaPhase" class="quarto-xref">Figure&nbsp;1</a>. I suspect the simulation parameters aren’t the same; <a href="#fig-muBetaPhase" class="quarto-xref">Figure&nbsp;1</a> was produced using standard test parameters i’ve been using the validate the code.</p>
+<p>Ok quickly skimming <span class="citation" data-cites="DavidMpemba2026">(<a href="#ref-DavidMpemba2026" role="doc-biblioref">Strachan, Purkayastha, and Clark 2025</a>)</span>, they use <span class="math inline">\(f_{pre}=0.02/\pi^2 \approx 0.002\)</span>, so is less coupled than <span class="math inline">\(f_{pre}=0.005\)</span>. This may explain why <a href="#fig-muBetaPhase" class="quarto-xref">Figure&nbsp;1</a> lacks this region.</p>
+<p>Right running another dataset with that prefactor and a finer resolution now that it seems to be working. After much anticipated waiting (~20min), it has produced (a rather ugly plot):</p>
+<div id="fig-muBetaPhase2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-muBetaPhase2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/muBetaPhase2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-muBetaPhase2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Maximum deviation over range of <span class="math inline">\(\mu,\beta\)</span>, <span class="math inline">\(f_{pre}=0.02/\pi^2, D=1, \epsilon=0, n=200\)</span>
+</figcaption>
+</figure>
+</div>
+<p>Which not what i expected… I strongly suspect that the gaps in this are computing artefacts. Alternatively, these may be the same gaps as in <span class="citation" data-cites="DavidMpemba2026">(<a href="#ref-DavidMpemba2026" role="doc-biblioref">Strachan, Purkayastha, and Clark 2025</a>)</span>, but incomplete for whatever reason. A thing which may cause issues is the relatively long timestep <span class="math inline">\(\Delta t=1\)</span> - this makes for a rather coarse time evolution which may obscure the actual maximum deviation value. I’m unsure how this would affect the data… Not a today problem, will discuss this w/supervisors tmr.</p>
 
 
-</main> <!-- /main -->
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-DavidMpemba2026" class="csl-entry" role="listitem">
+Strachan, David J., Archak Purkayastha, and Stephen R. Clark. 2025. <span>“Non-<span>Markovian</span> <span>Quantum</span> <span>Mpemba</span> <span>Effect</span>.”</span> <em>Physical Review Letters</em> 134 (22): 220403. <a href="https://doi.org/10.1103/PhysRevLett.134.220403">https://doi.org/10.1103/PhysRevLett.134.220403</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
