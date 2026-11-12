@@ -548,6 +548,10 @@ window.Quarto = {
    
   <ul>
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">10/11/2026</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">11/11/2026</a>
+  <ul class="collapse">
+  <li><a href="#supervisor-meeting" id="toc-supervisor-meeting" class="nav-link" data-scroll-target="#supervisor-meeting">Supervisor meeting</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -593,10 +597,35 @@ Figure&nbsp;2: Maximum deviation over range of <span class="math inline">\(\mu,\
 </figcaption>
 </figure>
 </div>
-<p>Which not what i expected… I strongly suspect that the gaps in this are computing artefacts. Alternatively, these may be the same gaps as in <span class="citation" data-cites="DavidMpemba2026">(<a href="#ref-DavidMpemba2026" role="doc-biblioref">Strachan, Purkayastha, and Clark 2025</a>)</span>, but incomplete for whatever reason. A thing which may cause issues is the relatively long timestep <span class="math inline">\(\Delta t=1\)</span> - this makes for a rather coarse time evolution which may obscure the actual maximum deviation value. I’m unsure how this would affect the data… Not a today problem, will discuss this w/supervisors tmr.</p>
+<p>Which not what i expected… I strongly suspect that the gaps in this are computing artefacts. Alternatively, these may be the same gaps as in <span class="citation" data-cites="DavidMpemba2026">(<a href="#ref-DavidMpemba2026" role="doc-biblioref">Strachan, Purkayastha, and Clark 2025</a>)</span>, but incomplete for whatever reason. A thing which may cause issues is the relatively long timestep <span class="math inline">\(\Delta t=1\)</span> - this makes for a rather coarse time evolution which may obscure the actual maximum deviation value. Additionally, the sims aren’t running for particularly long (<span class="math inline">\(t_{max}=50\)</span>), therefore the numerical thermalization may not be converging properly, skewing the results. I’m unsure how this would affect the data… Not a today problem, will discuss this w/supervisors tmr.</p>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">11/11/2026</h2>
+<section id="supervisor-meeting" class="level3">
+<h3 class="anchored" data-anchor-id="supervisor-meeting">Supervisor meeting</h3>
+<ul>
+<li>analytically relate kernel to map - try to gt idea of what it represents</li>
+<li>implement kernel</li>
+<li>reaction coords - expanding system to inc bath sites</li>
+<li>lack of gaps in <a href="#fig-muBetaPhase" class="quarto-xref">Figure&nbsp;1</a> are expected - slightly different measure to in paper</li>
+</ul>
+<p>To do list:</p>
+<ul>
+<li>Continue as planned
+<ul>
+<li>can connect the expression for the map to the kernel directly</li>
+<li>impleent the kernel method</li>
+</ul></li>
+</ul>
+<p>Some longer term ideas discussed:</p>
+<ul>
+<li>potentially explore the correlations w/bath more explicitly; these are source of memory, so may be useful in later analysis</li>
+<li>maybe expand system to include a bath site - reaction coords - expanding system to inc bath sites - (The reaction coordinate mapping in quantum thermodynamics)</li>
+</ul>
 
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

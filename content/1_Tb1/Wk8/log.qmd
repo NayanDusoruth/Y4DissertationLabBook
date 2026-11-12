@@ -32,5 +32,25 @@ Right running another dataset with that prefactor and a finer resolution now tha
 
 ![Maximum deviation over range of $\mu,\beta$, $f_{pre}=0.02/\pi^2, D=1, \epsilon=0, n=200$](figures/muBetaPhase2.png){#fig-muBetaPhase2}
 
-Which not what i expected... I strongly suspect that the gaps in this are computing artefacts. Alternatively, these may be the same gaps as in [@DavidMpemba2026], but incomplete for whatever reason. A thing which may cause issues is the relatively long timestep $\Delta t=1$ - this makes for a rather coarse time evolution which may obscure the actual maximum deviation value. 
+Which not what i expected... I strongly suspect that the gaps in this are computing artefacts. Alternatively, these may be the same gaps as in [@DavidMpemba2026], but incomplete for whatever reason. A thing which may cause issues is the relatively long timestep $\Delta t=1$ - this makes for a rather coarse time evolution which may obscure the actual maximum deviation value.
+Additionally, the sims aren't running for particularly long ($t_{max}=50$), therefore the numerical thermalization may not be converging properly, skewing the results.
 I'm unsure how this would affect the data... Not a today problem, will discuss this w/supervisors tmr.
+
+## 11/11/2026
+
+### Supervisor meeting
+* analytically relate kernel to map - try to gt idea of what it represents
+* implement kernel
+* reaction coords - expanding system to inc bath sites
+* lack of gaps in @fig-muBetaPhase are expected - slightly different measure to in paper
+
+To do list:
+
+* Continue as planned
+	* can connect the expression for the map to the kernel directly
+	* impleent the kernel method
+
+Some longer term ideas discussed:
+
+* potentially explore the correlations w/bath more explicitly; these are source of memory, so may be useful in later analysis
+* maybe expand system to include a bath site - reaction coords - expanding system to inc bath sites - (The reaction coordinate mapping in quantum thermodynamics)
