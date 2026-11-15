@@ -455,7 +455,7 @@ The paper then explores the system propagation application of TTM.
 It later discusses extracting the Nakajima-Zwansig eq and compares the transfer tensors to the terms in the somewhat more general form:
 
 $$
-\frac{d\rho(t)}{dt}=-i\mathcal{L}\rho(t)+\int_{0}^{t}mathcal{K}(t-t')\rho(t')dt'
+\frac{d\rho(t)}{dt}=-i\mathcal{L}\rho(t)+\int_{0}^{t}\mathcal{K}(t-t')\rho(t')dt'
 $${#eq-Nakajima-ZwansigGeneralFormForTensorMethod}
 
 which relates to the transfer tensors as:

@@ -552,6 +552,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#supervisor-meeting" id="toc-supervisor-meeting" class="nav-link" data-scroll-target="#supervisor-meeting">Supervisor meeting</a></li>
   </ul></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">15/11/2026</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -622,10 +623,78 @@ Figure&nbsp;2: Maximum deviation over range of <span class="math inline">\(\mu,\
 <li>potentially explore the correlations w/bath more explicitly; these are source of memory, so may be useful in later analysis</li>
 <li>maybe expand system to include a bath site - reaction coords - expanding system to inc bath sites - (The reaction coordinate mapping in quantum thermodynamics)</li>
 </ul>
-
-
-
 </section>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">15/11/2026</h2>
+<p>Right, two things to do before next meeting. I think i’m going to implement the kernel first. Its the somewhat more “straightforward” step and the one which will produce more results. Quickly resumarising some stuff from Wk3, the TTM method recursively builds the memory kernel as:</p>
+<p><span id="eq-transferTensorTransform2"><span class="math display">\[
+T_{k} = \Lambda_{k}-\sum_{j=1}^{k}T_{j}\Lambda_{k-j}
+\tag{1}\]</span></span></p>
+<p>w/the propagation following:</p>
+<p><span id="eq-tensorPropagation"><span class="math display">\[
+\rho(t_{k}) = \sum_{j=1}^{k}T_{j}\rho(t_{k-j})
+\tag{2}\]</span></span></p>
+<p>With the dynamic map expressed as:</p>
+<p><span id="eq-mapCorrelationForm2"><span class="math display">\[
+\hat{\Lambda(t)} = \begin{bmatrix}
+1-C_{unocc}(t) &amp; 1-C_{unocc}(t) \\
+C_{unocc}(t) &amp; C_{occ}(t)
+\end{bmatrix}
+\tag{3}\]</span></span></p>
+<p>Right implementation has gone quickly/smoothly, however am unsure what these objects represent. It spits out a 2x2 matrix (which makes sense given <a href="#eq-transferTensorTransform2" class="quarto-xref">Equation&nbsp;1</a>), so it may be worth doing the derivation.</p>
+<p>Have simply plugged in <a href="#eq-mapCorrelationForm2" class="quarto-xref">Equation&nbsp;3</a> (and substituted <span class="math inline">\(c_{unocc}(t)=c_{0}(t_{k})\)</span>, <span class="math inline">\(c_{occ}(t)=c_{1}(t_{k})\)</span> for convenience) into <a href="#eq-transferTensorTransform2" class="quarto-xref">Equation&nbsp;1</a>:</p>
+<p><span id="eq-tensorMapRelation"><span class="math display">\[
+\begin{align}
+T_{k} &amp;= \begin{bmatrix} a_{k} &amp; b_{k} \\ c_{k} &amp; d_{k} \end{bmatrix} \\
+a_{k}&amp;=1-c_{0}(t_{k})-\sum_{j=1}^{k}a_{j}+c_{0}(t_{k-j})(b_{j}-a_{j}) \\
+b_{k}&amp;=1-c_{0}(t_{k})-\sum_{j=1}^{k}a_{j}(1-c_{0}(t_{k-j}))+b_{j}c_{1}(t_{k-j}) \\
+c_{k}&amp;=c_{0}(t_{k})-\sum_{j=1}^{k}c_{j}+c_{0}(t_{k-j})(d_{j}-c_{j}) \\
+d_{k}&amp;=c_{1}(t_{k})-\sum_{j=1}^{k}c_{j}(1-c_{0}(t_{k-j}))+d_{j}c_{1}(t_{k-j}) \\
+\end{align}
+\tag{4}\]</span></span></p>
+<p>There is evidently structure in <a href="#eq-tensorMapRelation" class="quarto-xref">Equation&nbsp;4</a>; intuition indicates that <span class="math inline">\(T_{k}\)</span> may be expressable in terms of 2 parameters, although thats a hunch… Doing some rearanging, the variables <span class="math inline">\(v_{k}=a_{k}+c_{k}\)</span> and <span class="math inline">\(w_{k}=b_{k}+d_{k}\)</span> may be useful? These can be expressed as:</p>
+<p><span id="eq-tensorMapSubstitution1_v"><span class="math display">\[
+v_{k}=a_{k}+c_{k}=1-\sum_{j=1}^{k}v_{j}(1-c_{0}(t_{k-j}))+w_{j}c_{0}(t_{k-j})
+\tag{5}\]</span></span></p>
+<p><span id="eq-tensorMapSubstitution1_w"><span class="math display">\[
+w_{k}=b_{k}+d_{k}=1+c_{1}(t_{k})-c_{0}(t_{k}) - \sum_{j=1}^{k}v_{j}(1-c_{0}(t_{k-j}))+w_{j}c_{1}(t_{k-j})
+\tag{6}\]</span></span></p>
+<p>hmmm, not sure thats the best substitution to make… Would be nice to get the eigenvectors of <a href="#eq-tensorMapRelation" class="quarto-xref">Equation&nbsp;4</a>, however that promises to be horrible to compute, so want to avoid that for now…</p>
+<p>Going to work through <a href="#eq-tensorPropagation" class="quarto-xref">Equation&nbsp;2</a>, <span class="math inline">\(\rho\)</span> has intuitive physical meaning, so this may provide insight into the terms in <span class="math inline">\(T_{k}\)</span>:</p>
+<p><span id="eq-tensorPropagationSubstitution1"><span class="math display">\[
+\begin{align}
+\rho(t_{k})&amp;=\sum_{j=1}^{k}T_{j}\rho(t_{k-1}) \\
+&amp;=\sum_{j=1}^{k}\begin{bmatrix}a_{j} &amp; b_{j} \\ c_{j} &amp; d_{j}\end{bmatrix}\begin{bmatrix}1-p(t_{k-j}) \\ p(t_{k-j})\end{bmatrix} \\
+&amp;=\sum_{j=1}^{k}\begin{bmatrix}a_{j}+(b_{j}-a_{j})p(t_{k-j}) \\ c_{j}+(d_{j}-c_{j})p(t_{k-j}) \end{bmatrix} \\
+\begin{bmatrix}1-p(t_{k}) \\ p(t_{k})\end{bmatrix} &amp;= \sum_{j=1}^{k}\begin{bmatrix}a_{j}+(b_{j}-a_{j})p(t_{k-j}) \\ c_{j}+(d_{j}-c_{j})p(t_{k-j}) \end{bmatrix}
+\end{align}
+\tag{7}\]</span></span></p>
+<p>Given the interelated terms in <span class="math inline">\(\rho\)</span>, <a href="#eq-tensorPropagationSubstitution1" class="quarto-xref">Equation&nbsp;7</a> can be interelated as:</p>
+<p><span id="eq-tensorPropagationSubstitution1_relation"><span class="math display">\[
+\begin{align}
+p(t_{k}) &amp;= 1 - \sum_{j=1}^{k} a_{j}+(b_{j}-a_{j})p(t_{k-j}) \\
+p(t_{k}) &amp;=\sum_{j=1}^{k} c_{j}+(d_{j}-c_{j})p(t_{k-j}) \\
+\downarrow \\
+1&amp;=\sum_{j=1}^{k}(a_{j}+c_{j})+(b_{j}+d_{j}-a_{j}-c_{j})p(t_{k-j}) \\
+&amp;= \sum_{j=1}^{k}v_{j}+(w_{j}-v_{j})p(t_{k-j})
+\end{align}
+\tag{8}\]</span></span></p>
+<p>Which may be a useful identity… I think it can be reduced further as:</p>
+<p><span id="eq-tensorPropagationSubstitution1_relationIdentity"><span class="math display">\[
+\begin{align}
+1&amp;= \sum_{j=1}^{k}v_{j}+(w_{j}-v_{j})p(t_{k-j})\\
+\sum_{j}^{k}\frac{1}{k} &amp;= \sum_{j=1}^{k}v_{j}+(w_{j}-v_{j})p(t_{k-j}) \\
+\frac{1}{k} &amp;= v_{j}+(w_{j}-v_{j})p(t_{k-j}) \\
+\downarrow k\to\infty \\
+0 &amp;= v_{j}+(w_{j}-v_{j})p(t_{k-j}) \\
+\end{align}
+\tag{9}\]</span></span></p>
+<p>I’m unsure if this is a valid thing to do; particularly the <span class="math inline">\(k\to\infty\)</span> limit. Furthermore i’m not quite sure what this represents; it encodes some sort of constraint on <span class="math inline">\(T_{k}\)</span>, however its unclear what sort of constraint… I wonder if substituting in dynamically propagated <span class="math inline">\(\rho(t)=\Lambda\rho(0)\)</span> into <a href="#eq-tensorPropagationSubstitution1" class="quarto-xref">Equation&nbsp;7</a> may be helpful…</p>
+<p>Not a today thing…</p>
+
+
+
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

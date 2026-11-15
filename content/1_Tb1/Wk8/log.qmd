@@ -54,3 +54,96 @@ Some longer term ideas discussed:
 
 * potentially explore the correlations w/bath more explicitly; these are source of memory, so may be useful in later analysis
 * maybe expand system to include a bath site - reaction coords - expanding system to inc bath sites - (The reaction coordinate mapping in quantum thermodynamics)
+
+## 15/11/2026
+Right, two things to do before next meeting.
+I think i'm going to implement the kernel first. Its the somewhat more "straightforward" step and the one which will produce more results.
+Quickly resumarising some stuff from Wk3, the TTM method recursively builds the memory kernel as:
+
+$$
+T_{k} = \Lambda_{k}-\sum_{j=1}^{k}T_{j}\Lambda_{k-j}
+$${#eq-transferTensorTransform2}
+
+w/the propagation following:
+
+$$
+\rho(t_{k}) = \sum_{j=1}^{k}T_{j}\rho(t_{k-j})
+$${#eq-tensorPropagation}
+
+With the dynamic map expressed as:
+
+$$
+\hat{\Lambda(t)} = \begin{bmatrix}
+1-C_{unocc}(t) & 1-C_{unocc}(t) \\
+C_{unocc}(t) & C_{occ}(t)
+\end{bmatrix}
+$${#eq-mapCorrelationForm2}
+
+Right implementation has gone quickly/smoothly, however am unsure what these objects represent. It spits out a 2x2 matrix (which makes sense given @eq-transferTensorTransform2), so it may be worth doing the derivation.
+
+Have simply plugged in @eq-mapCorrelationForm2 (and substituted $c_{unocc}(t)=c_{0}(t_{k})$, $c_{occ}(t)=c_{1}(t_{k})$ for convenience) into @eq-transferTensorTransform2:
+
+$$
+\begin{align}
+T_{k} &= \begin{bmatrix} a_{k} & b_{k} \\ c_{k} & d_{k} \end{bmatrix} \\
+a_{k}&=1-c_{0}(t_{k})-\sum_{j=1}^{k}a_{j}+c_{0}(t_{k-j})(b_{j}-a_{j}) \\
+b_{k}&=1-c_{0}(t_{k})-\sum_{j=1}^{k}a_{j}(1-c_{0}(t_{k-j}))+b_{j}c_{1}(t_{k-j}) \\
+c_{k}&=c_{0}(t_{k})-\sum_{j=1}^{k}c_{j}+c_{0}(t_{k-j})(d_{j}-c_{j}) \\
+d_{k}&=c_{1}(t_{k})-\sum_{j=1}^{k}c_{j}(1-c_{0}(t_{k-j}))+d_{j}c_{1}(t_{k-j}) \\
+\end{align}
+$${#eq-tensorMapRelation}
+
+There is evidently structure in @eq-tensorMapRelation; intuition indicates that $T_{k}$ may be expressable in terms of 2 parameters, although thats a hunch...
+Doing some rearanging, the variables $v_{k}=a_{k}+c_{k}$ and $w_{k}=b_{k}+d_{k}$ may be useful?
+These can be expressed as:
+
+$$
+v_{k}=a_{k}+c_{k}=1-\sum_{j=1}^{k}v_{j}(1-c_{0}(t_{k-j}))+w_{j}c_{0}(t_{k-j})
+$${#eq-tensorMapSubstitution1_v}
+
+$$
+w_{k}=b_{k}+d_{k}=1+c_{1}(t_{k})-c_{0}(t_{k}) - \sum_{j=1}^{k}v_{j}(1-c_{0}(t_{k-j}))+w_{j}c_{1}(t_{k-j})
+$${#eq-tensorMapSubstitution1_w}
+
+hmmm, not sure thats the best substitution to make...
+Would be nice to get the eigenvectors of @eq-tensorMapRelation, however that promises to be horrible to compute, so want to avoid that for now...
+
+Going to work through @eq-tensorPropagation, $\rho$ has intuitive physical meaning, so this may provide insight into the terms in $T_{k}$:
+
+$$
+\begin{align}
+\rho(t_{k})&=\sum_{j=1}^{k}T_{j}\rho(t_{k-1}) \\
+&=\sum_{j=1}^{k}\begin{bmatrix}a_{j} & b_{j} \\ c_{j} & d_{j}\end{bmatrix}\begin{bmatrix}1-p(t_{k-j}) \\ p(t_{k-j})\end{bmatrix} \\
+&=\sum_{j=1}^{k}\begin{bmatrix}a_{j}+(b_{j}-a_{j})p(t_{k-j}) \\ c_{j}+(d_{j}-c_{j})p(t_{k-j}) \end{bmatrix} \\
+\begin{bmatrix}1-p(t_{k}) \\ p(t_{k})\end{bmatrix} &= \sum_{j=1}^{k}\begin{bmatrix}a_{j}+(b_{j}-a_{j})p(t_{k-j}) \\ c_{j}+(d_{j}-c_{j})p(t_{k-j}) \end{bmatrix}
+\end{align}
+$${#eq-tensorPropagationSubstitution1}
+
+Given the interelated terms in $\rho$, @eq-tensorPropagationSubstitution1 can be interelated as:
+
+$$
+\begin{align}
+p(t_{k}) &= 1 - \sum_{j=1}^{k} a_{j}+(b_{j}-a_{j})p(t_{k-j}) \\ 
+p(t_{k}) &=\sum_{j=1}^{k} c_{j}+(d_{j}-c_{j})p(t_{k-j}) \\
+\downarrow \\
+1&=\sum_{j=1}^{k}(a_{j}+c_{j})+(b_{j}+d_{j}-a_{j}-c_{j})p(t_{k-j}) \\
+&= \sum_{j=1}^{k}v_{j}+(w_{j}-v_{j})p(t_{k-j})
+\end{align}
+$${#eq-tensorPropagationSubstitution1_relation}
+
+Which may be a useful identity... I think it can be reduced further as:
+
+$$
+\begin{align}
+1&= \sum_{j=1}^{k}v_{j}+(w_{j}-v_{j})p(t_{k-j})\\
+\sum_{j}^{k}\frac{1}{k} &= \sum_{j=1}^{k}v_{j}+(w_{j}-v_{j})p(t_{k-j}) \\
+\frac{1}{k} &= v_{j}+(w_{j}-v_{j})p(t_{k-j}) \\
+\downarrow k\to\infty \\
+0 &= v_{j}+(w_{j}-v_{j})p(t_{k-j}) \\
+\end{align}
+$${#eq-tensorPropagationSubstitution1_relationIdentity}
+
+I'm unsure if this is a valid thing to do; particularly the $k\to\infty$ limit. Furthermore i'm not quite sure what this represents; it encodes some sort of constraint on $T_{k}$, however its unclear what sort of constraint...
+I wonder if substituting in dynamically propagated $\rho(t)=\Lambda\rho(0)$ into @eq-tensorPropagationSubstitution1 may be helpful...
+
+Not a today thing...
