@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>log – labBook</title>
+<title>log – Dissertation labbook: Driving Non Markovianity in open systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,10 +57,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-4d8b594121dd52e54118692cc759f5c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-567b30ad711c8693efb6495feb883fb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-4d8b594121dd52e54118692cc759f5c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,11 +93,202 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -97,7 +312,10 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../../">labBook</a> 
+      <a href="../../../">Dissertation labbook: Driving Non Markovianity in open systems</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -116,7 +334,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Pre reading</span></a>
+ <span class="menu-text">Pre TB1 work</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -126,6 +344,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../content/0_preTb1/Wk0/ProjectInfo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../content/0_preTb1/Wk0/labbookNotesToSelf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labbook formatting notes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -161,6 +385,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../content/1_Tb1/Wk3/log.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wk3 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../content/1_Tb1/Wk3/projectState.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State of the project 11/10/2026</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -312,8 +542,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">17/11/2026</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">19/11/2026</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk9/log.html">Wk9 Log</a></li></ol></nav></header>
@@ -322,11 +559,155 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">17/11/2026</h2>
+<p>Right, recap; have implemented memory kernel computation, however its a 2x2 matrix; so what its terms represent isn’t exactly clear. Tried to analytically relate these terms to more intuitive quantities, however haven’t reached an end there.</p>
+<p>I think it may be worth going back to the code; and actually plotting some things. Sure its unclear what exactly should be plot; but given its a 2x2 matrix, there’s a limited number of things to plot. Plotting all of these may help me understand the analytics at play.</p>
+<p>As such, given:</p>
+<p><span id="eq-tensorMapRelation"><span class="math display">\[
+\begin{align}
+T_{k} &amp;= \begin{bmatrix} a_{k} &amp; b_{k} \\ c_{k} &amp; d_{k} \end{bmatrix} \\
+a_{k}&amp;=1-c_{0}(t_{k})-\sum_{j=1}^{k}a_{j}+c_{0}(t_{k-j})(b_{j}-a_{j}) \\
+b_{k}&amp;=1-c_{0}(t_{k})-\sum_{j=1}^{k}a_{j}(1-c_{0}(t_{k-j}))+b_{j}c_{1}(t_{k-j}) \\
+c_{k}&amp;=c_{0}(t_{k})-\sum_{j=1}^{k}c_{j}+c_{0}(t_{k-j})(d_{j}-c_{j}) \\
+d_{k}&amp;=c_{1}(t_{k})-\sum_{j=1}^{k}c_{j}(1-c_{0}(t_{k-j}))+d_{j}c_{1}(t_{k-j}) \\
+\end{align}
+\tag{1}\]</span></span></p>
+<p><span id="eq-tensorMapSubstitution1_v"><span class="math display">\[
+v_{k}=a_{k}+c_{k}=1-\sum_{j=1}^{k}v_{j}(1-c_{0}(t_{k-j}))+w_{j}c_{0}(t_{k-j})
+\tag{2}\]</span></span></p>
+<p><span id="eq-tensorMapSubstitution1_w"><span class="math display">\[
+w_{k}=b_{k}+d_{k}=1+c_{1}(t_{k})-c_{0}(t_{k}) - \sum_{j=1}^{k}v_{j}(1-c_{0}(t_{k-j}))+w_{j}c_{1}(t_{k-j})
+\tag{3}\]</span></span></p>
+<p>from last week, there are 6 obvious things to plot; <span class="math inline">\(a,b,c,d\)</span> and <span class="math inline">\(v,w\)</span>. It may also be worth defining some norm over the entire <span class="math inline">\(T\)</span> and plotting that as well.</p>
+<p>Recalling my quantum computing course notes, an operator norm may be defined as:</p>
+<p><span id="eq-operatorNorm"><span class="math display">\[
+||A||=max(A\ket{\psi})=max(\lambda_{i})
+\tag{4}\]</span></span></p>
+<p>Where max(_{i}) is the largest eigenvalue of operator A. Quick search reveals this def to be the “spectral norm” <span class="citation" data-cites="spectralNorm">(<a href="#ref-spectralNorm" role="doc-biblioref">Weisstein n.d.</a>)</span>; reading np docs it can be implemented using numpy.linalg.norm, however this is apparently slow according to <span class="citation" data-cites="spectralNormStackOverflow">(<a href="#ref-spectralNormStackOverflow" role="doc-biblioref">ali_m 2015</a>)</span>; given hermitian operators (which this should be), so can speed it up.</p>
+<p>Ok, have got a basic plot:</p>
+<div id="fig-normedKernelFirstAttempt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normedKernelFirstAttempt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/normedKernelFirstAttempt.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normedKernelFirstAttempt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: System evolution (black line) and memory kernel (scatter points)
+</figcaption>
+</figure>
+</div>
+<p>And this leads me to believe i’ve implemented something wrong. I sincerely doubt that the memory kernel diverges for a well behaved evolution. I flipped a sign in one of the computations; fixing that provides:</p>
+<div id="fig-normedKernelFixedAttempt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normedKernelFixedAttempt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/normedKernelFixedAttempt.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normedKernelFixedAttempt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: System evolution (black line) and memory kernel (scatter points)
+</figcaption>
+</figure>
+</div>
+<p>Which seems a lot more reasonable. Actually not, most of those values (save the first) are 0s… ok for some reason the summation term in <a href="#eq-transferTensorTransform2" class="quarto-xref">Equation&nbsp;5</a></p>
+<p><span id="eq-transferTensorTransform2"><span class="math display">\[
+T_{k} = \Lambda_{k}-\sum_{j=1}^{k}T_{j}\Lambda_{k-j}
+\tag{5}\]</span></span></p>
+<p>is exactly equaling to <span class="math inline">\(\Lambda_{k}\)</span>, causing it to cancel out exactly. Ok was indexing that summation wrong; have fixed… Odd behaviour, switching from the manual implementation of spectral norm to numpy’s built in helps, but still odd behaviour:</p>
+<p><img src="figures/normedKernelFixedNonMarkovian.png" id="fig-normedKernelFixedNonMarkovian" class="img-fluid" alt="System evolution (black line) and memory kernel (scatter points) for T_{max}=50, \delta t=1">.</p>
+<p>With some discontinuous jumping between two general trends. Increasing the timestep produces:</p>
+<p><img src="figures/normedKernelHigherTimeStep.png" id="fig-normedKernelHigherTimeStep" class="img-fluid" alt="System evolution (black line) and memory kernel (scatter points) for T_{max}=50, \delta t=0.1">.</p>
+<p>Which seems to “converge” these two trends to more constant values. This apparent convergence is expected; as <span class="math inline">\(\delta t\to 0\)</span>, the transfer tensor should approach the memory kernel; this is somewhat illustrated by <span class="citation" data-cites="analyticalTransferTensor2026">(<a href="#ref-analyticalTransferTensor2026" role="doc-biblioref">Morillas-Rozas et al. 2026</a>)</span> fig 3. Given that <strong>?@fig-normedKernelHigherTimeStep</strong> uses non markovian standard parameters, the kernel should go to 0 which it does for one of the trends, not the other. I wonder if i’m just not using the numpy function correctly… It seems i am… Numpy has some other matrix norms; gonna quickly try some of the others… The “frobenius norm” is similiarly discontinuous:</p>
+<p><img src="figures/frobeniusNormedKernel.png" id="fig-frobeniusNormedKernel" class="img-fluid" alt="System evolution (black line) and frobenius normed memory kernel (scatter points) for T_{max}=50, \delta t=1">.</p>
+<p>As is the “nuclear norm”:</p>
+<p><img src="figures/nuclearNormedKernel.png" id="fig-nuclearNormedKernel" class="img-fluid" alt="System evolution (black line) and nuclear normed memory kernel (scatter points) for T_{max}=50, \delta t=1">.</p>
+<p>hmmmmmmmm… It may be worth trying to figure out if there is an actual discontinuity in the tensor, or if it’s an artefact of the norm. A first step to doing so would be to plot the components of <span class="math inline">\(T\)</span> and see if there’s any obvious discontinuity there.</p>
+<p>A bit of a crude plot, however plotting the real components of <span class="math inline">\(T\)</span> yields:</p>
+<p><img src="figures/memoryKernelComponents.png" id="fig-memoryKernelComponents" class="img-fluid" alt="memory kernel matrix T_{k} &amp;= \begin{bmatrix} a_{k} &amp; b_{k} \\ c_{k} &amp; d_{k} \end{bmatrix} components for T_{max}=50, \delta t=1">.</p>
+<p>Which also shows this discontinuity… This tensor is expressed in terms of the dynamic map, going to check its components as well:</p>
+<p><img src="figures/dynamicMapComponents.png" id="fig-dynamicMapComponents" class="img-fluid" alt="Dynamic map matrix T_{k} &amp;= \begin{bmatrix} a_{k} &amp; b_{k} \\ c_{k} &amp; d_{k} \end{bmatrix} components for T_{max}=50, \delta t=1">.</p>
+<p>So the dynamic map is continuous, but the memory kernel may not be… (i say may not because <strong>?@fig-memoryKernelComponents</strong> only shows the real components of each term).</p>
+<p>Increasing <span class="math inline">\(\delta t=1 \to 0.5\)</span> doesn’t qualitatively change anything:</p>
+<p><img src="figures/kernelComponentsDenser.png" id="fig-kernelComponentsDenser" class="img-fluid" alt="memory kernel matrix T_{k} &amp;= \begin{bmatrix} a_{k} &amp; b_{k} \\ c_{k} &amp; d_{k} \end{bmatrix} components for T_{max}=50, \delta t=0.5">.</p>
+<p>Can check continuity of the memory kernel itself by examining <span class="math inline">\(||T_{k}-T_{k-1}||\)</span>; going to use spectral norm for this.</p>
+<p><img src="figures/kernelContinuity.png" id="fig-kernelContinuity" class="img-fluid" alt="||T_{k}-T_{k-1}|| for T_{max}=50, \delta t=1">.</p>
+<p><img src="figures/kernelContinuityDense.png" id="fig-kernelContinuityDense" class="img-fluid" alt="||T_{k}-T_{k-1}|| for T_{max}=50, \delta t=0.1">.</p>
+<p>Its interesting how the norm seems to jump between the “continuous” part and <span class="math inline">\(||T_{k}-T_{k-1}||=1\)</span> for 2 points, then back to the “continuous” part. I wonder if (for some reason) some reflection or rotation transformation is being applied s.t <span class="math inline">\(AT_{k}=V_{k}\)</span>, <span class="math inline">\(AAT_{k}=W_{k}\)</span>, <span class="math inline">\(AAAT_{k}=T_{k}\)</span>, <span class="math inline">\(||T_{k}-V_{k}||=1\)</span>, <span class="math inline">\(||V_{k}-W_{k}||=1\)</span>…</p>
+<p>Copy/pasting the first few memory kernels from the code output yields:</p>
+<p><span class="math display">\[
+\begin{align}
+T_{0} &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \\
+T_{1} &amp;= \begin{bmatrix} 0.99724679 &amp; 0.00106782 \\ 0.00275321 &amp; 0.99893218 \end{bmatrix} \approx \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \\
+T_{2} &amp;= \begin{bmatrix} 0 &amp; 0 \\ 0 &amp; 0 \end{bmatrix} \\
+T_{3} &amp;= \begin{bmatrix} -0.98694813-3.23111680\cdot 10^{-19}i &amp; -0.00504947+1.04708321\cdot 10^{-21}i \\ -0.01305187+3.23111680\cdot 10^{-19}i &amp; -0.99495053-1.04708321\cdot 10^{-21}i \end{bmatrix} \approx -\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\\
+T_{4} &amp;= \begin{bmatrix} -0.97626925+8.64047521\cdot 10^{-19}i &amp; -0.00913725+6.48035641e\cdot 10^{-19}i \\ -0.02373075-8.64047521\cdot 10^{-19}i &amp; -0.99086275-6.48035641\cdot 10^{-19}i \end{bmatrix} \approx -\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\\
+T_{5} &amp;= \begin{bmatrix} 0.01239272+3.23038288\cdot 10^{-18}i &amp; -0.00464539+1.51129964\cdot 10^{-18}i \\ -0.01239272-3.23038288\cdot 10^{-18}i &amp; 0.00464539-1.51129964\cdot 10^{-18}i \end{bmatrix} \approx \begin{bmatrix} 0 &amp; 0 \\ 0 &amp; 0 \end{bmatrix}\\
+T_{6} &amp;= \begin{bmatrix} 0.97976237+1.61664863\cdot 10^{-18}i &amp; 0.00806559+8.73035960\cdot 10^{-19}i \\ 0.02023763-1.61664863\cdot 10^{-18}i &amp; 0.99193441-8.73035960\cdot 10^{-19}i \end{bmatrix} \approx\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\\
+T_{7} &amp;= \begin{bmatrix} 0.956307  -3.70285829\cdot 10^{-18}i &amp; 0.01706489-9.36264110\cdot 10^{-19}i \\ 0.043693  +3.70285829\cdot 10^{-18}i &amp; 0.98293511+9.36264110\cdot 10^{-19}i \end{bmatrix} \approx\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\\
+T_{8} &amp;= \begin{bmatrix} -0.02601805-5.96955427\cdot 10^{-18}i &amp; 0.00995065-3.82443416\cdot 10^{-18}i \\ 0.02601805+5.96955427\cdot 10^{-18}i &amp; -0.00995065+3.82443416\cdot 10^{-18}i \end{bmatrix} \approx\begin{bmatrix} 0 &amp; 0 \\ 0 &amp; 0 \end{bmatrix}\\
+\end{align}
+\]</span></p>
+<p>Which is interesting. It seems to be almost a <span class="math inline">\(T_{k}=T_{k-1}-T_{k-2}\)</span> behaviour (with some additional wibbliness). It may have been another indexing problem…</p>
+<p>For context, <a href="#eq-transferTensorTransform2" class="quarto-xref">Equation&nbsp;5</a> is 1-indexed, the code is 0 indexed. First attempt, summation was running <span class="math inline">\(j\in[0, k]\)</span> which resulted in diverging behaviour, second attempt summation was running <span class="math inline">\(j\in[0, k-1]\)</span> resulting in this discontinuous behaviour; trying <span class="math inline">\(j\in[1, k]\)</span> yields:</p>
+<p><img src="figures/kernelIndexAttempt.png" id="fig-kernelIndexAttempt" class="img-fluid" alt="System evolution (black line) and normed memory kernel (scatter points) for T_{max}=50, \delta t=1">.</p>
+<p>which seems reasonable. Attempting this for a markovian evolution:</p>
+<p><img src="figures/markovianKernelIndex.png" id="fig-markovianKernelIndex" class="img-fluid" alt="System evolution (black line) and normed memory kernel (scatter points) for T_{max}=50, \delta t=1, \beta=7, \mu=0.1, f_{pre}=0.2, D=2">.</p>
+<p>hmmmm, less reasonable… May curtail the first two memory kernels; see what that produces?</p>
+<p><img src="figures/kernelMarkovianCurtailed.png" id="fig-kernelMarkovianCurtailed" class="img-fluid" alt="System evolution (black line) and normed memory kernel (scatter points) for T_{max}=10, \delta t=0.1, \beta=7, \mu=0.1, f_{pre}=0.2, D=2 - curtailed first 2 points">.</p>
+<p>now THAT looks more reasonable. Examining the components in a similar manner yields:</p>
+<p><img src="figures/kernelComponentsFixed.png" id="fig-kernelComponentsFixed" class="img-fluid" alt="memory kernel matrix T_{k} &amp;= \begin{bmatrix} a_{k} &amp; b_{k} \\ c_{k} &amp; d_{k} \end{bmatrix} components for T_{max}=10, \delta t=0.1, \beta=7, \mu=0.1, f_{pre}=0.2, D=2">.</p>
+<p>Which illustrates a lot of structure. There does appear to be a symmetry between $a,c&amp; and <span class="math inline">\(b,d\)</span>; so it seems that <span class="math inline">\(v=a+c\)</span>, <span class="math inline">\(w=b+d\)</span> from last week may actually be useful to look at.</p>
+<p>A few things to note:</p>
+<ul>
+<li>the memory kernel doesn’t depend on the initial occupation; these plots don’t need to show the system evolution necessarily</li>
+<li>it makes sense the first few kernels are nonsense, there’s no past evolution to speak of.</li>
+</ul>
+<p>Going to put this down for today; have other things i need to do, but progress!</p>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">19/11/2026</h2>
+<p>Supervisor meeting went well, general discussion points:</p>
+<ul>
+<li>fit memory kernel to exp decay * sinusoidal</li>
+<li>fourrier transform data - can probably extract periodicity</li>
+<li>propagate system evo w/memeory kernel to compare to dynamic map as sanity check</li>
+<li>check markovian regime</li>
+<li>compare for smaller time steps</li>
+<li>examine first most important bath mode - compare to memory kernel; should be comparable?
+<ul>
+<li>chain mapping may help with this - may also help with expanding system later</li>
+<li>the wierd wibbles of bath evolution!</li>
+</ul></li>
+</ul>
 
 
-</main> <!-- /main -->
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-spectralNormStackOverflow" class="csl-entry" role="listitem">
+ali_m. 2015. <span>“Answer to "<span>Computing</span> the Spectral Norms of <span>~</span>1m <span>Hermitian</span> Matrices: ‘Numpy.linalg.norm‘ Is Too Slow".”</span> <em>Stack Overflow</em>. <a href="https://stackoverflow.com/a/33627240">https://stackoverflow.com/a/33627240</a>.
+</div>
+<div id="ref-analyticalTransferTensor2026" class="csl-entry" role="listitem">
+Morillas-Rozas, Marcel, Alberto López-García, Gonzalo Reina Rivero, Jianshu Cao, and Javier Cerrillo. 2026. <span>“The <span>Transfer</span> <span>Tensor</span> <span>Method</span>: An <span>Analytical</span> <span>Study</span> <span>Case</span>.”</span> <em>The Journal of Chemical Physics</em> 165 (5): 054108. <a href="https://doi.org/10.1063/5.0340784">https://doi.org/10.1063/5.0340784</a>.
+</div>
+<div id="ref-spectralNorm" class="csl-entry" role="listitem">
+Weisstein, Eric W. n.d. <span>“Spectral <span>Norm</span>.”</span> Text. Wolfram Research, Inc. Accessed November 17, 2026. <a href="https://mathworld.wolfram.com/SpectralNorm.html">https://mathworld.wolfram.com/SpectralNorm.html</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

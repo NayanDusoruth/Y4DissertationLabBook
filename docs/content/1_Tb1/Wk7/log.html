@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.8.27" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 
 
 <title>log – Dissertation labbook: Driving Non Markovianity in open systems</title>
@@ -42,29 +44,7 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
-
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-4d8b594121dd52e54118692cc759f5c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-567b30ad711c8693efb6495feb883fb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-4d8b594121dd52e54118692cc759f5c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<!-- htmldependencies:E3FAD763 -->
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -123,10 +103,276 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../styles.css" />
 </head>
 
-<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn"
+      data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" 
+      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <h1 class="quarto-secondary-nav-title no-breadcrumbs"></h1>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" role="link"
+        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="/">
+      Dissertation labbook: Driving Non Markovianity in open systems
+      </a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1"  role="navigation" aria-expanded="true">
+ <span class="menu-text">Pre TB1 work</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/0_preTb1/Wk0/ProjectInfo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/0_preTb1/Wk0/labbookNotesToSelf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labbook formatting notes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/0_preTb1/Wk0/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk0 Log</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2"  role="navigation" aria-expanded="true">
+ <span class="menu-text">TB1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk1/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk1 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk2/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk2 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk3/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk3 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk3/projectState.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State of the project 11/10/2026</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk4/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk4 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk5/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk5 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk6/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk6 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk7/log.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Wk7 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk8/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk8 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk9/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk9 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk10/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk10 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk11/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/1_Tb1/Wk12/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk12 Log</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3"  role="navigation" aria-expanded="true">
+ <span class="menu-text">Winter break</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/2_WinterHoliday/WinterHoliday/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Winter holiday Log</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4"  role="navigation" aria-expanded="true">
+ <span class="menu-text">TB2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/3_Tb2/Wk13/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk13 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/3_Tb2/Wk14/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk14 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/3_Tb2/Wk15/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk15 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/3_Tb2/Wk16/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk16 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/3_Tb2/Wk17/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk17 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/3_Tb2/Wk18/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk18 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/3_Tb2/Wk19/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk19 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/3_Tb2/Wk20/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk20 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/3_Tb2/Wk21/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk21 Log</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/content/3_Tb2/Wk22/log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk22 Log</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" ></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <div id="quarto-toc-target"></div>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<script id = "quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -290,286 +536,27 @@ window.Quarto = {
     }
   </script>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk7/log.html">Wk7 Log</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../../../">Dissertation labbook: Driving Non Markovianity in open systems</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">home</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Pre TB1 work</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/0_preTb1/Wk0/ProjectInfo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project information</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/0_preTb1/Wk0/labbookNotesToSelf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Labbook formatting notes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/0_preTb1/Wk0/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk0 Log</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">TB1</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk1/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk1 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk2/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk2 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk3/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk3 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk3/projectState.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">State of the project 11/10/2026</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk4/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk4 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk5/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk5 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk6/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk6 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk7/log.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Wk7 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk8/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk8 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk9/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk9 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk10/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk10 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk11/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk11 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/1_Tb1/Wk12/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk12 Log</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Winter break</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/2_WinterHoliday/WinterHoliday/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Winter holiday Log</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">TB2</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/3_Tb2/Wk13/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk13 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/3_Tb2/Wk14/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk14 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/3_Tb2/Wk15/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk15 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/3_Tb2/Wk16/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk16 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/3_Tb2/Wk17/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk17 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/3_Tb2/Wk18/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk18 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/3_Tb2/Wk19/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk19 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/3_Tb2/Wk20/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk20 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/3_Tb2/Wk21/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk21 Log</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/3_Tb2/Wk22/log.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wk22 Log</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+
+
+<nav id="TOC" role="doc-toc">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">02/11/2026</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">04/11/2026</a>
-  <ul class="collapse">
-  <li><a href="#supervisor-meeting" id="toc-supervisor-meeting" class="nav-link" data-scroll-target="#supervisor-meeting">supervisor meeting</a></li>
+  <li><a href="#section" id="toc-section">02/11/2026</a></li>
+  <li><a href="#section-1" id="toc-section-1">04/11/2026</a>
+  <ul>
+  <li><a href="#supervisor-meeting" id="toc-supervisor-meeting">supervisor meeting</a></li>
   </ul></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">07/11/2026</a>
-  <ul class="collapse">
-  <li><a href="#code-work-eigenvector-thermalization-computation" id="toc-code-work-eigenvector-thermalization-computation" class="nav-link" data-scroll-target="#code-work-eigenvector-thermalization-computation">Code work: eigenvector thermalization computation</a></li>
-  <li><a href="#first-metrics" id="toc-first-metrics" class="nav-link" data-scroll-target="#first-metrics">First metrics</a></li>
+  <li><a href="#section-2" id="toc-section-2">07/11/2026</a>
+  <ul>
+  <li><a href="#code-work-eigenvector-thermalization-computation" id="toc-code-work-eigenvector-thermalization-computation">Code work: eigenvector thermalization computation</a></li>
+  <li><a href="#first-metrics" id="toc-first-metrics">First metrics</a></li>
   </ul></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">08/11/2026</a></li>
+  <li><a href="#section-3" id="toc-section-3">08/11/2026</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="log.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk1/log.html">TB1</a></li><li class="breadcrumb-item"><a href="../../../content/1_Tb1/Wk7/log.html">Wk7 Log</a></li></ol></nav></header>
-
-
-
-
-
+</nav>
 <section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">02/11/2026</h2>
+<h2>02/11/2026</h2>
 <p>Had presentation, think it went decently. ### Quick after presentation scratch notes:</p>
 <p>Presentation felt decent, Went a bit quicker speech wise than i wanted to Throat scratchy didnt help Was under time Questions: - multiple recurrence, yes, inc side note on small system reccurence - how quantum error correction, gave practiced answer - logical qubit size, gave default answer for simple answer, wasnt real logical qbit answer, but i made clear i was talking about minimum example - real examples of this model, i gave impurity in condesned matter crystal, he one upped w/water molecules</p>
 <p>Last 3 were prof, hes a quantum computational guy</p>
@@ -579,9 +566,9 @@ window.Quarto = {
 <p>Didnt pause for breath enough i think so went a bit fast</p>
 </section>
 <section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1">04/11/2026</h2>
+<h2>04/11/2026</h2>
 <section id="supervisor-meeting" class="level3">
-<h3 class="anchored" data-anchor-id="supervisor-meeting">supervisor meeting</h3>
+<h3>supervisor meeting</h3>
 <p>Quickly recapped presentation - went fine, didn’t need to cover that too much. Reiterated next steps of implementing metrics, then can examine memory effects. Discussed potential things that can be examined w/memory effects, discussion was a touch rambly/wide ranging but provided useful intuition inc:</p>
 <ul>
 <li>adding narrow peak to spectral function - structure adds memory effects</li>
@@ -601,85 +588,85 @@ window.Quarto = {
 </section>
 </section>
 <section id="section-2" class="level2">
-<h2 class="anchored" data-anchor-id="section-2">07/11/2026</h2>
+<h2>07/11/2026</h2>
 <p>Finally returning to actual work on this project.</p>
 <section id="code-work-eigenvector-thermalization-computation" class="level3">
-<h3 class="anchored" data-anchor-id="code-work-eigenvector-thermalization-computation">Code work: eigenvector thermalization computation</h3>
+<h3>Code work: eigenvector thermalization computation</h3>
 <p>Going to first try to implement the eigen method for thermalization determination. Unsure exactly how this will work; there are dynamic map matrices for every time step, and given these are <span class="math inline">\(2\times 2\)</span> matrices, i’d assume they have 2 eigenvectors. Going to quickly examine what these look like and see if there’s any obvious stabilisation. This spits out 2 eigenvectors for each timestep of the dynamic map. Comparing <span class="math inline">\(|\vec{v(t_{n})}-\vec{v(t_{n-1})}|\)</span> for the first and second eigenvectors respectively yields:</p>
-<div id="fig-eigenconvergence1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<div id="fig-eigenconvergence1" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-eigenconvergence1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/eigenconvergence1.png" class="img-fluid figure-img">
+<img src="figures/eigenconvergence1.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: First eigenvector convergence
+Figure 1: First eigenvector convergence
 </figcaption>
 </figure>
 </div>
-<div id="fig-eigenconvergence2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<div id="fig-eigenconvergence2" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-eigenconvergence2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/eigenconvergence2.png" class="img-fluid figure-img">
+<img src="figures/eigenconvergence2.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Second eigenvector convergence
+Figure 2: Second eigenvector convergence
 </figcaption>
 </figure>
 </div>
-<p>hmm, first eigenvector generally converges, second doesn’t. The fact <a href="#fig-eigenconvergence2" class="quarto-xref">Figure&nbsp;2</a> seems to flip between <span class="math inline">\(|\vec{v(t_{n})}-\vec{v(t_{n-1})}|\approx 0, 2\)</span> is suspicious. I could just use the first eigenvector, but I want to make sure this isn’t some artefact or smth that could come back to haunt me. The eigenvectors numpy is spitting out aren’t normalized, so will start with that; the <a href="#fig-eigenconvergence2" class="quarto-xref">Figure&nbsp;2</a> flipping may simply be the eigenvector pointing in different directions. Normalization doesn’t help too much:</p>
-<div id="fig-eigenconvergence1Normed" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<p>hmm, first eigenvector generally converges, second doesn’t. The fact <a href="#fig-eigenconvergence2" class="quarto-xref">Figure 2</a> seems to flip between <span class="math inline">\(|\vec{v(t_{n})}-\vec{v(t_{n-1})}|\approx 0, 2\)</span> is suspicious. I could just use the first eigenvector, but I want to make sure this isn’t some artefact or smth that could come back to haunt me. The eigenvectors numpy is spitting out aren’t normalized, so will start with that; the <a href="#fig-eigenconvergence2" class="quarto-xref">Figure 2</a> flipping may simply be the eigenvector pointing in different directions. Normalization doesn’t help too much:</p>
+<div id="fig-eigenconvergence1Normed" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-eigenconvergence1Normed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/eigenconvergence1Normed.png" class="img-fluid figure-img">
+<img src="figures/eigenconvergence1Normed.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence1Normed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Normalized first eigenvector convergence
+Figure 3: Normalized first eigenvector convergence
 </figcaption>
 </figure>
 </div>
-<div id="fig-eigenconvergence2Normed" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<div id="fig-eigenconvergence2Normed" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-eigenconvergence2Normed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/eigenconvergence2Normed.png" class="img-fluid figure-img">
+<img src="figures/eigenconvergence2Normed.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence2Normed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Normalized second eigenvector convergence
+Figure 4: Normalized second eigenvector convergence
 </figcaption>
 </figure>
 </div>
-<p>Slightly different behaviour but same lack of convergence in <a href="#fig-eigenconvergence2Normed" class="quarto-xref">Figure&nbsp;4</a>. Last thing to try before continuing with the first eigenvector (and validating that against other thermalization measures) is to compare the dot product <span class="math inline">\(\vec{v(t_{n})}\cdot\vec{v(t_{n-1})}\)</span>. Ok i may be an idiot. I am definetely an idiot; turns out i’ve been using np.linalg.eig wrong; so what I thought was the first eigenvector was simply the eigenvalues. Reimplementing stuff with that in mind. Reexamining <a href="#fig-eigenconvergence1" class="quarto-xref">Figure&nbsp;1</a> and <a href="#fig-eigenconvergence2" class="quarto-xref">Figure&nbsp;2</a> with this in mind yields:</p>
-<div id="fig-eigenconvergence1Proper" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<p>Slightly different behaviour but same lack of convergence in <a href="#fig-eigenconvergence2Normed" class="quarto-xref">Figure 4</a>. Last thing to try before continuing with the first eigenvector (and validating that against other thermalization measures) is to compare the dot product <span class="math inline">\(\vec{v(t_{n})}\cdot\vec{v(t_{n-1})}\)</span>. Ok i may be an idiot. I am definetely an idiot; turns out i’ve been using np.linalg.eig wrong; so what I thought was the first eigenvector was simply the eigenvalues. Reimplementing stuff with that in mind. Reexamining <a href="#fig-eigenconvergence1" class="quarto-xref">Figure 1</a> and <a href="#fig-eigenconvergence2" class="quarto-xref">Figure 2</a> with this in mind yields:</p>
+<div id="fig-eigenconvergence1Proper" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-eigenconvergence1Proper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/eigenconvergence1Proper.png" class="img-fluid figure-img">
+<img src="figures/eigenconvergence1Proper.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence1Proper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: First eigenvector convergence fixed
+Figure 5: First eigenvector convergence fixed
 </figcaption>
 </figure>
 </div>
-<div id="fig-eigenconvergence2Proper" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<div id="fig-eigenconvergence2Proper" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-eigenconvergence2Proper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/eigenconvergence2Proper.png" class="img-fluid figure-img">
+<img src="figures/eigenconvergence2Proper.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergence2Proper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Second eigenvector convergence fixed
+Figure 6: Second eigenvector convergence fixed
 </figcaption>
 </figure>
 </div>
 <p>Which has the same non convergence as before. I have a suspicion.</p>
-<div id="fig-eigenconvergenceBoth" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<div id="fig-eigenconvergenceBoth" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-eigenconvergenceBoth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/eigenconvergenceBoth.png" class="img-fluid figure-img">
+<img src="figures/eigenconvergenceBoth.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenconvergenceBoth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: eigenvector convergence, both, black is for first eigenvector, red is for second eigenvectors
+Figure 7: eigenvector convergence, both, black is for first eigenvector, red is for second eigenvectors
 </figcaption>
 </figure>
 </div>
-<p>Examining <a href="#fig-eigenconvergenceBoth" class="quarto-xref">Figure&nbsp;7</a>, both the first and second eigenvectors seem to stop converging for the same timesteps. I wonder if np.linalg.eig is effectively flipping the first and second eigenvectors at random?</p>
+<p>Examining <a href="#fig-eigenconvergenceBoth" class="quarto-xref">Figure 7</a>, both the first and second eigenvectors seem to stop converging for the same timesteps. I wonder if np.linalg.eig is effectively flipping the first and second eigenvectors at random?</p>
 <p>I made another code mistake and wasn’t pulling the correct eigenvalues…</p>
 <p>The first eigenvector isn’t stable, the second does converge eventually. It is not a guarantee that the order of “first unstable, second stable” will generalize; so need to algorithmically decide which is stable, then pick the most stable value. This can be done by simply summing up all the <span class="math inline">\(|\vec{v(t_{n})}-\vec{v(t_{n-1})}|\)</span> values; the one with the lowest sum is more stable so more likely to converge. Then just need to find the time for which <span class="math inline">\(|\vec{v(t_{n})}-\vec{v(t_{n-1})}|\)</span> is minimised, and pick that as the “thermalized” eigenvector. Have extracted this, hmmmmmmmm. This is an unphysical result. It is giving <span class="math inline">\(\begin{bmatrix}0.13530145+2.42581405\cdot10^{-17}i \\ 0.99080448+0i \end{bmatrix}\approx\begin{bmatrix}0.13 \\ 0.99\end{bmatrix}\)</span>. Given that state vectors are of form <span class="math inline">\(\begin{bmatrix}1-p \\ p\end{bmatrix}\)</span> w/<span class="math inline">\(p=\)</span> occupation probability, this isn’t a physical result…</p>
 <p>I wonder if its a problem due to the relatively short test run times used? Nope running it longer doesn’t fix it. Running it w/smaller timestep in case that is the issue. This has no effect.</p>
@@ -688,64 +675,64 @@ Figure&nbsp;7: eigenvector convergence, both, black is for first eigenvector, re
 <p>Right, that was a side step, but that’ll be a useful utility in the future.</p>
 </section>
 <section id="first-metrics" class="level3">
-<h3 class="anchored" data-anchor-id="first-metrics">First metrics</h3>
+<h3>First metrics</h3>
 <p>In terms of memory metrics, my instinct is to attach them to the dynamic map “dualSimulation” class. The main metrics are all expressed in terms of the dynamic map. The main exception is the “mini metric” of “maximum deviation” from the starting occupation; this “mini metric” depends on the specific simulated path.</p>
 <p>That said however, I could implement it into the dualSimulation object with an initial occupation parameter. I think i’ll do it like that; its a bit crude but should be fine. A thing worth keeping in mind is the difference between an apparently more non-markovian dip beyond thermalization and thermalization. As such, it’s probably worth using the presence of a relative extrema to distinguish between a non-markovian dip and thermalization.</p>
-<p>Ok, encountering weird effects. For context the “standard example” of this maximum deviation follows in <a href="#fig-maxDevFromAbove" class="quarto-xref">Figure&nbsp;8</a> whereby <span class="math inline">\(n_{sys}\)</span> starts on one side of thermalization, dips past it before thermalizing properly.</p>
-<div id="fig-maxDevFromAbove" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<p>Ok, encountering weird effects. For context the “standard example” of this maximum deviation follows in <a href="#fig-maxDevFromAbove" class="quarto-xref">Figure 8</a> whereby <span class="math inline">\(n_{sys}\)</span> starts on one side of thermalization, dips past it before thermalizing properly.</p>
+<div id="fig-maxDevFromAbove" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-maxDevFromAbove-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/maxDevFromAbove.png" class="img-fluid figure-img">
+<img src="figures/maxDevFromAbove.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxDevFromAbove-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Evolution from <span class="math inline">\(n_{sys}(0)&gt;n_{therm}\)</span> for <span class="math inline">\(f_{pre}=0.2, \beta=10, \mu=0.1, D=2, \epsilon=0\)</span>
+Figure 8: Evolution from <span class="math inline">\(n_{sys}(0)&gt;n_{therm}\)</span> for <span class="math inline">\(f_{pre}=0.2, \beta=10, \mu=0.1, D=2, \epsilon=0\)</span>
 </figcaption>
 </figure>
 </div>
 <p>In this context, the “maximum deviation” is the gap between initial occupation and that particular hump. However trying to reproduce this effect from below yielded:</p>
-<div id="fig-maxDevFromBelow" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<div id="fig-maxDevFromBelow" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-maxDevFromBelow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/maxDevFromBelow.png" class="img-fluid figure-img">
+<img src="figures/maxDevFromBelow.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxDevFromBelow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Evolution from <span class="math inline">\(n_{sys}(0)&lt;n_{therm}\)</span> for <span class="math inline">\(f_{pre}=0.2, \beta=7, \mu=0.1, D=2, \epsilon=0\)</span>
+Figure 9: Evolution from <span class="math inline">\(n_{sys}(0)&lt;n_{therm}\)</span> for <span class="math inline">\(f_{pre}=0.2, \beta=7, \mu=0.1, D=2, \epsilon=0\)</span>
 </figcaption>
 </figure>
 </div>
-<p>Which moves away from thermalization first before thermalizing normally. My naive instinct was that it should be possible to symetrically flip <a href="#fig-maxDevFromAbove" class="quarto-xref">Figure&nbsp;8</a>, however that doesn’t seem to be the case… This brings some degree of ambiguity in terms of what this “max deviation mini metric” is meant to be measuring. Going to take some time to examine these effects for various initial occupations, because i wonder if these “bumps” are being drawn to similar values regardless of where the occupation starts.</p>
-<div id="fig-humpDualSimulation_rangeInitial" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<p>Which moves away from thermalization first before thermalizing normally. My naive instinct was that it should be possible to symetrically flip <a href="#fig-maxDevFromAbove" class="quarto-xref">Figure 8</a>, however that doesn’t seem to be the case… This brings some degree of ambiguity in terms of what this “max deviation mini metric” is meant to be measuring. Going to take some time to examine these effects for various initial occupations, because i wonder if these “bumps” are being drawn to similar values regardless of where the occupation starts.</p>
+<div id="fig-humpDualSimulation_rangeInitial" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-humpDualSimulation_rangeInitial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/humpDualSimulation_rangeInitial.png" class="img-fluid figure-img">
+<img src="figures/humpDualSimulation_rangeInitial.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-humpDualSimulation_rangeInitial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Evolution from range of <span class="math inline">\(n_{sys}(0)\)</span> for <span class="math inline">\(f_{pre}=0.2, \beta=7, \mu=0.1, D=2, \epsilon=0\)</span>
+Figure 10: Evolution from range of <span class="math inline">\(n_{sys}(0)\)</span> for <span class="math inline">\(f_{pre}=0.2, \beta=7, \mu=0.1, D=2, \epsilon=0\)</span>
 </figcaption>
 </figure>
 </div>
-<p>Plotting for a range of initial occupations yields <a href="#fig-humpDualSimulation_rangeInitial" class="quarto-xref">Figure&nbsp;10</a> which does lend the idea that the “bumps” are being drawn to some curve credence…</p>
+<p>Plotting for a range of initial occupations yields <a href="#fig-humpDualSimulation_rangeInitial" class="quarto-xref">Figure 10</a> which does lend the idea that the “bumps” are being drawn to some curve credence…</p>
 <p>I’m unsure why this is, however it does expand the initial idea of bumps past thermalization being what needs measuring. In some way this max deviation represents some deviation from a “bumpless” evolution. Unfortunately it doesn’t seem simple to substract “w/out bumps” data from “w/ bumps” data in order to try to isolate the “bump” signal. For instance changing the prefactor will necessarily change the timescale of the dynamics requiring rescaling if i’d want to compare them directly.</p>
 <p>All that said, i think for this “mini metric” simply doing the deviation from a relative extrema regardless of the shape should be fine?</p>
 <p>Have quickly implented a default “examine maximum deviation from initially thermalized state” utility and plotted it as:</p>
-<div id="fig-maxDevOverMu" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<div id="fig-maxDevOverMu" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-maxDevOverMu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/maxDevOverMu.png" class="img-fluid figure-img">
+<img src="figures/maxDevOverMu.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxDevOverMu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Max deviation from <span class="math inline">\(n_{sys}(0)=n_{therm}\)</span> for different <span class="math inline">\(\mu\)</span> for <span class="math inline">\(\beta=7, f_{pre}=0.2, D=2\)</span>
+Figure 11: Max deviation from <span class="math inline">\(n_{sys}(0)=n_{therm}\)</span> for different <span class="math inline">\(\mu\)</span> for <span class="math inline">\(\beta=7, f_{pre}=0.2, D=2\)</span>
 </figcaption>
 </figure>
 </div>
 <p>Interesting how well behaved it is. I wonder if i decrease the temperature if it will show a sharper curve?</p>
-<div id="fig-maxDevOverMuBeta1-" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<div id="fig-maxDevOverMuBeta1-" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-maxDevOverMuBeta1--caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/maxDevOverMuBeta10.png" class="img-fluid figure-img">
+<img src="figures/maxDevOverMuBeta10.png" class="img-fluid" />
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-maxDevOverMuBeta1--caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Max deviation from <span class="math inline">\(n_{sys}(0)=n_{therm}\)</span> for different <span class="math inline">\(\mu\)</span> for <span class="math inline">\(\beta=10, f_{pre}=0.2, D=2\)</span>
+Figure 12: Max deviation from <span class="math inline">\(n_{sys}(0)=n_{therm}\)</span> for different <span class="math inline">\(\mu\)</span> for <span class="math inline">\(\beta=10, f_{pre}=0.2, D=2\)</span>
 </figcaption>
 </figure>
 </div>
@@ -753,7 +740,7 @@ Figure&nbsp;12: Max deviation from <span class="math inline">\(n_{sys}(0)=n_{the
 </section>
 </section>
 <section id="section-3" class="level2">
-<h2 class="anchored" data-anchor-id="section-3">08/11/2026</h2>
+<h2>08/11/2026</h2>
 <p>Think i’m going to do some minor code restructuring/cleanup today. Main thing is that i want the “code utilities” that standardise simulation and data calls to be a bit cleaner. Particularly i currently do not make use of the save/load utilities. Given that compute times are increasing, being able to load in standard simulation sets for analysis will likely be useful.</p>
 <p>an additional related bit of work is restructuring how i’m organising my saved data. Currently its all in a disorganised folder. I think most of whats currently there can be moved to a “pathfinding” data folder, and a better organisational structure can then be implemented for the long term.</p>
 <p>Have implemented and tested some loading utilities. Currently the utilities also have some functions which can easily generate and simulate parameter variations for a single parameter. This is fine currently, but I do want the option of varying multiple parameters over a <span class="math inline">\(d&gt;1\)</span> parameter space. As such I want to rethink exactly how i’m storing these “datasets” for multiple runs.</p>
@@ -775,17 +762,21 @@ Figure&nbsp;12: Max deviation from <span class="math inline">\(n_{sys}(0)=n_{the
 </ul>
 <p>This will take a bit of time to implement robustly, however it should make the rest of this project a lot easier. The main question then is how do i want to structure the internal “parameter space” datastructure. It will need to be spat out to a 1D list asp for saving/loading purposes. However it’d be nice to be able to access the data in the full dimensional space. Pandas may help, pandas dataframe w/each row a different point; columns for all the parameters, one column for the corresponding dualSim object. this would let me access data using pandas filtering functionality.</p>
 <p>Have started implementing this, however not finishing today i think.</p>
-
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl">Dissertation labbook: Driving Non Markovianity in open systems</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU=">Dissertation labbook: Driving Non Markovianity in open systems</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uZXh0">Wk8 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1wcmV2">Wk6 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9pbmRleC5odG1saG9tZQ==">home</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMQ==">Pre TB1 work</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzBfcHJlVGIxL1drMC9Qcm9qZWN0SW5mby5odG1sUHJvamVjdC1pbmZvcm1hdGlvbg==">Project information</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzBfcHJlVGIxL1drMC9sYWJib29rTm90ZXNUb1NlbGYuaHRtbExhYmJvb2stZm9ybWF0dGluZy1ub3Rlcw==">Labbook formatting notes</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzBfcHJlVGIxL1drMC9sb2cuaHRtbFdrMC1Mb2c=">Wk0 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMg==">TB1</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drMS9sb2cuaHRtbFdrMS1Mb2c=">Wk1 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drMi9sb2cuaHRtbFdrMi1Mb2c=">Wk2 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drMy9sb2cuaHRtbFdrMy1Mb2c=">Wk3 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drMy9wcm9qZWN0U3RhdGUuaHRtbFN0YXRlLW9mLXRoZS1wcm9qZWN0LTExLzEwLzIwMjY=">State of the project 11/10/2026</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drNC9sb2cuaHRtbFdrNC1Mb2c=">Wk4 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drNS9sb2cuaHRtbFdrNS1Mb2c=">Wk5 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drNi9sb2cuaHRtbFdrNi1Mb2c=">Wk6 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drNy9sb2cuaHRtbFdrNy1Mb2c=">Wk7 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drOC9sb2cuaHRtbFdrOC1Mb2c=">Wk8 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drOS9sb2cuaHRtbFdrOS1Mb2c=">Wk9 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drMTAvbG9nLmh0bWxXazEwLUxvZw==">Wk10 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drMTEvbG9nLmh0bWxXazExLUxvZw==">Wk11 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzFfVGIxL1drMTIvbG9nLmh0bWxXazEyLUxvZw==">Wk12 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMw==">Winter break</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzJfV2ludGVySG9saWRheS9XaW50ZXJIb2xpZGF5L2xvZy5odG1sV2ludGVyLWhvbGlkYXktTG9n">Winter holiday Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tNA==">TB2</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzNfVGIyL1drMTMvbG9nLmh0bWxXazEzLUxvZw==">Wk13 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzNfVGIyL1drMTQvbG9nLmh0bWxXazE0LUxvZw==">Wk14 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzNfVGIyL1drMTUvbG9nLmh0bWxXazE1LUxvZw==">Wk15 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzNfVGIyL1drMTYvbG9nLmh0bWxXazE2LUxvZw==">Wk16 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzNfVGIyL1drMTcvbG9nLmh0bWxXazE3LUxvZw==">Wk17 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzNfVGIyL1drMTgvbG9nLmh0bWxXazE4LUxvZw==">Wk18 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzNfVGIyL1drMTkvbG9nLmh0bWxXazE5LUxvZw==">Wk19 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzNfVGIyL1drMjAvbG9nLmh0bWxXazIwLUxvZw==">Wk20 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzNfVGIyL1drMjEvbG9nLmh0bWxXazIxLUxvZw==">Wk21 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9jb250ZW50LzNfVGIyL1drMjIvbG9nLmh0bWxXazIyLUxvZw==">Wk22 Log</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWJyZWFkY3J1bWJzLVRCMQ==">TB1</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWJyZWFkY3J1bWJzLVdrNy1Mb2c=">Wk7 Log</span></p>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGF0aXRsZQ==">Dissertation labbook: Driving Non Markovianity in open systems</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=">Dissertation labbook: Driving Non Markovianity in open systems</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZHRpdGxl">Dissertation labbook: Driving Non Markovianity in open systems</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGFzaXRlbmFtZQ==">Dissertation labbook: Driving Non Markovianity in open systems</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw=="></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZGRkZXNj"></span></p>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-DavidMpemba2026" class="csl-entry" role="listitem">
 Strachan, David J., Archak Purkayastha, and Stephen R. Clark. 2025. <span>“Non-<span>Markovian</span> <span>Quantum</span> <span>Mpemba</span> <span>Effect</span>.”</span> <em>Physical Review Letters</em> 134 (22): 220403. <a href="https://doi.org/10.1103/PhysRevLett.134.220403">https://doi.org/10.1103/PhysRevLett.134.220403</a>.
 </div>
-</div></section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id = "quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1200,7 +1191,6 @@ Strachan, David J., Archak Purkayastha, and Stephen R. Clark. 2025. <span>“Non
   </script>
 </div> <!-- /content -->
 
+</body>
 
-
-
-</body></html>
+</html>

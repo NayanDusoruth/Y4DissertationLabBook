@@ -77,10 +77,12 @@
     "log.tex": "dbe4e92b"
   },
   "content/1_Tb1/Wk9/log.qmd": {
-    "log.html": "686e5888"
+    "log.html": "686e5888",
+    "log.tex": "8f61c05d"
   },
   "content/1_Tb1/Wk7/log.qmd": {
-    "log.html": "fa8f3b67"
+    "log.html": "fa8f3b67",
+    "log.tex": "3fca209f"
   },
   "content/1_Tb1/Wk12/log.qmd": {
     "log.html": "5628146e"
@@ -94,7 +96,8 @@
     "log.tex": "864021b0"
   },
   "content/1_Tb1/Wk8/log.qmd": {
-    "log.html": "97bced37"
+    "log.html": "97bced37",
+    "log.tex": "6f1d70d7"
   },
   "content/0_preTb1/Wk0/log.qmd": {
     "log.html": "5fd4a0c0"
